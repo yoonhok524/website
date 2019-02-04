@@ -327,8 +327,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
       }
     ```
 
- 4. Remove the word generation code from `MyApp` by making the changes shown in
-    the following diff:
+ 4. 아래 diff에 표시된 변경사항처럼 `MyApp`에서 단어 생성 코드를 삭제하세요:
 
     <?code-excerpt path-base="codelabs/startup_namer"?>
     <?code-excerpt "{step2_use_package,step3_stateful_widget}/lib/main.dart" to="}"?>
@@ -355,21 +354,20 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
        }
     ```
 
- 5. Restart the app.
-    The app should behave as before, displaying a word
-    pairing each time you hot reload or save the app.
+ 5. 앱을 재시작하세요.
+    앱은 이전에 동작하던 방식과 마찬가지로 
+    hot reload 하거나 저장할 때마다 단어 쌍을 계속 보여줘야 합니다.   
 
 {{site.alert.tip}}
-  If you see the following warning on a hot reload, consider restarting
-  the app:
+  Hot reload 할 때 아래와 같은 경고문구가 나온다면, 앱을 재시작하는 게 좋습니다. 
 
   **Reloading...<br>
   Some program elements were changed during reload but did not run when
   the view was reassembled; you may need to restart the app (by pressing "R")
   for the changes to have an effect.**
 
-  It may be a false positive, but restarting ensures that your changes
-  are reflected in the app's UI.
+  메시지가 잘못 표시된 것일 수 있지만,
+  재시작하면 변경 사항이 확실하게 앱 UI에 반영됩니다.
 {{site.alert.end}}
 
 
