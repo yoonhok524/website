@@ -53,7 +53,7 @@ description: The landing page for Flutter documentation.
 ## Flutter가 처음인가요?
 
 [시작하기](/docs/get-started/install)와
- [첫번째 앱을 작성해보세요](/docs/get-started/codelab)를 완료했다면, 
+ [첫 번째 앱 작성하기](/docs/get-started/codelab)를 완료했다면, 
 다음 단계가 준비되어 있습니다.
 
 [안드로이드 개발자를 위한 Flutter](/docs/get-started/flutter-for/android-devs)

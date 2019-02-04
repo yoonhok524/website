@@ -11,7 +11,7 @@ Sadly, Jekyll doesn't seem to supported nested includes, so the following won't 
       {% asset 'get-started/android/{{include.image}}'
           alt='{{include.alt}} on Android'
           class='{{include.class}}' %}
-      <figcaption class="figure-caption">Android</figcaption>
+      <figcaption class="figure-caption">안드로이드</figcaption>
   </div>
   <div class="site-figure-container">
       {% asset 'get-started/ios/{{include.image}}'
