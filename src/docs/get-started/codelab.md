@@ -47,7 +47,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
   * Flutter 앱의 기본 구조.
   * 패키지를 찾고 패키지를 사용하여 기능을 확장하기.
   * 더 빠른 개발 사이클을 위한 hot reload 사용.
-  * 상태를 저장하는 위젯을 구현하는 방법.
+  * 상태가 있는 위젯을 구현하는 방법.
   * Lazy하게 로드하는 무한 리스트를 만드는 방법.
 
   코드랩 [2부](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)에서는
@@ -70,7 +70,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
   * [Android 에뮬레이터](install/macos#set-up-the-android-emulator).
 {{site.alert.end}}
 
-## Step 1: Starter Flutter app 만들기 
+## 1단계: Starter Flutter app 만들기 
 
 <?code-excerpt path-base="codelabs/startup_namer/step1_base"?>
 
@@ -157,19 +157,18 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 * 이 예제는 자식 위젯으로 `Text`을 포함하는 `Center` 위젯으로 구성됩니다. 
   Center 위젯은 하위 위젯을 화면 중앙에 정렬합니다. 
 
-## Step 2: Use an external package
+## 2단계: 외부 패키지 이용하기
 
-In this step, you’ll start using an open-source package named
-[english_words](https://pub.dartlang.org/packages/english_words),
-which contains a few thousand of the most used
-English words plus some utility functions.
+이 단계에서는 
+가장 많이 사용되는 영어 단어 수천 개와 몇 가지 유틸리티 기능이 포함되어 있는
+오픈소스 패키지인 [english_words](https://pub.dartlang.org/packages/english_words)를 이용할 것입니다.
 
-You can find the `english_words` package, as well as many other open source
-packages, on [the Package site](https://pub.dartlang.org/flutter).
+다른 오픈소스 패키지와 마찬가지로, 
+[the Package site](https://pub.dartlang.org/flutter)에서
+`english_words` 패키지를 찾을 수 있습니다.
 
- 1. The pubspec file manages the assets and dependencies for a Flutter app. In
-    `pubspec.yaml`, add `english_words` (3.1.0 or higher) to the dependencies
-    list:
+ 1. Flutter 앱에서 디펜던시 및 asset 관리는 pubspec 파일이 담당합니다. 
+    `pubspec.yaml`의 디펜던시 목록에 `english_words` (3.1.0 이상)를 추가하세요:  
 
     <?code-excerpt path-base="codelabs/startup_namer"?>
     <?code-excerpt "{step1_base,step2_use_package}/pubspec.yaml" diff-u="4" from="dependencies" to="english"?>
@@ -184,9 +183,9 @@ packages, on [the Package site](https://pub.dartlang.org/flutter).
     +  english_words: ^3.1.0
     ```
 
- 2. While viewing the pubspec in Android Studio's editor view,
-    click **Packages get**. This pulls the package into
-    your project. You should see the following in the console:
+ 2. 안드로이드 스튜디오의 편집기 화면에서 pubspec 파일을 보는 동안 나타나는 **Packages get**를 클릭하세요.
+    이렇게 하면 해당 패키지를 프로젝트로 가져옵니다.
+    아래와 같은 메시지를 콘솔에서 확인할 수 있습니다:  
 
     ```terminal
     $ flutter packages get
@@ -194,11 +193,11 @@ packages, on [the Package site](https://pub.dartlang.org/flutter).
     Process finished with exit code 0
     ```
 
-    Performing `Packages get` also auto-generates the `pubspec.lock`
-    file with a list of all packages pulled into the project and
-    their version numbers.
+    또한 `Packages get`을 수행하면 `pubspec.lock`
+    프로젝트로 가져온 모든 패키지 목록과 버전 번호를 포함하고 있는 
+    `pubspec.lock` 파일도 자동으로 생성됩니다.
 
- 3. In `lib/main.dart`, import the new package:
+ 3. `lib/main.dart`에서 새 패키지를 가져오세요:
 
     <?code-excerpt path-base="codelabs/startup_namer/step2_use_package"?>
     <?code-excerpt "lib/main.dart" title retain="/^import/" replace="/import.*?english.*/[!$&!]/g" indent-by="2"?>
@@ -207,12 +206,10 @@ packages, on [the Package site](https://pub.dartlang.org/flutter).
       [!import 'package:english_words/english_words.dart';!]
     ```
 
-    As you type, Android Studio gives you suggestions for libraries to import.
-    It then renders the import string in gray, letting you know that the
-    imported library is unused (so far).
+    입력 할 때, 안드로이드 스튜디오가 import 할만한 라이브러리를 추천해줍니다.
+    그런 다음 import 문자열이 회색으로 나타내어 해당 라이브러리가 (지금까지는) 사용되지 않았음을 알려줍니다. 
 
- 4. Use the English words package to generate the text instead of
-    using the string "Hello World":
+ 4. "Hello World" 문자열 대신 English words를 사용하여 텍스트를 생성하세요: 
 
     <?code-excerpt path-base="codelabs/startup_namer"?>
     <?code-excerpt "{step1_base,step2_use_package}/lib/main.dart" from="class"?>
@@ -239,54 +236,51 @@ packages, on [the Package site](https://pub.dartlang.org/flutter).
     ```
 
     {{site.alert.note}}
-      "Pascal case" (also known as "upper camel case"),
-      means that each word in the string, including the first one,
-      begins with an uppercase letter. So, "uppercamelcase" becomes
-      "UpperCamelCase".
+      "Pascal case" ("upper camel case"라고도 알려져있음)는
+      문자열에서 맨 처음 단어를 포함한 모든 단어의 첫번째 글자가 대문자로 시작하는 형식입니다.
+      그래서, "uppercamelcase"는 "UpperCamelCase"가 됩니다.  
     {{site.alert.end}}
 
- 5. If the app is running, use the hot reload button
-    <i class="material-icons align-bottom">offline_bolt</i>
-    to update the running app. Each time you click hot reload,
-    or save the project, you should see a different word pair,
-    chosen at random, in the running app.
-    This is because the word pairing is generated inside the build
-    method, which is run each time the MaterialApp requires rendering,
-    or when toggling the Platform in Flutter Inspector.
+ 5. 앱이 실행중이면, hot reload 버튼<i class="material-icons align-bottom">offline_bolt</i>을 사용하여 
+    실행중인 앱을 업데이트하세요. 
+    실행중인 앱에서 hot reload를 클릭할 때마다 혹은 프로젝트를 저장할 때마다, 랜덤하게 선택된 다른 단어 쌍을 볼 수 있을 것입니다.
+    왜냐하면 MaterialApp이 랜더링 될 때마다 혹은 또는 Flutter Inspector에서 플랫폼을 전환할 때마다
+    실행되는 build 메서드 안에서 단어 쌍을 생성하고 있기 때문입니다.
 
     {% indent %}
       {% include android-ios-figure-pair.md image="step2.png" alt="App at completion of second step" %}
     {% endindent %}
 
-### Problems?
+### 문제가 있나요?
 {:.no_toc}
 
-If your app is not running correctly, look for typos. If needed,
-use the code at the following links to get back on track.
+앱이 올바르게 동작하지 않는다면, 오타를 확인해보세요.
+필요하다면, 아래 코드를 사용하여 다시 올바르게 동작하게 하세요. 
 
 * [pubspec.yaml]({{code-url}}/startup_namer/step2_use_package/pubspec.yaml)
 * [lib/main.dart]({{code-url}}/startup_namer/step2_use_package/lib/main.dart)
 
-## Step 3: Add a Stateful widget
+## 3단계: 상태가 있는 위젯 추가하기
 
 <?code-excerpt path-base="codelabs/startup_namer/step3_stateful_widget"?>
 
-State<em>less</em> widgets are immutable, meaning that their
-properties can’t change&mdash;all values are final.
+상태가 <em>없는</em><sup>State<em>less</em></sup> 위젯은 변경불가능<sup>immutable</sup>합니다. 
+속성을 변경할 수 없습니다&mdash;모든 값이 final입니다.
 
-State<em>ful</em> widgets maintain state that might change
-during the lifetime of the widget. Implementing a stateful
-widget requires at least two classes: 1) a StatefulWidget class
-that creates an instance of 2) a State class. The StatefulWidget
-class is, itself, immutable, but the State class persists over the
-lifetime of the widget.
+상태가 <em>있는</em><sup>State<em>ful</em></sup> 위젯은 
+위젯의 수명동안 변경될 수 있는 상태를 유지합니다.
+상태가 있는 위젯은 최소 두 개 이상 클래스가 필요합니다: 
+1) StatefulWidget 클래스가 
+2) State 클래스
+의 인스턴스를 생성합니다. 
+StatefulWidget 클래스 그자체는 변경불가능합니다. 
+하지만 State 클래스가 위젯의 수명동안 상태를 유지합니다.
 
-In this step, you’ll add a stateful widget, `RandomWords`, which creates
-its `State` class, `RandomWordsState`. You'll then use `RandomWords` as
-a child inside the existing `MyApp` stateless widget.
+이 단계에서는, 상태가 있는 위젯 `RandomWords`를 추가하고, 
+그 위젯에서 `State` 클래스인 `RandomWordsState`를 생성할 것입니다.
+그런 다음 `RandomWords`를 기존 상태가 없는 위젯 `MyApp`의 자식으로 사용할 것입니다.  
 
- 1. Create a minimal state class. Add the following to the bottom
-    of `main.dart`:
+ 1. 최소한의 상태를 가지는 클래스를 생성하세요. `main.dart`의 하단에 아래 코드를 추가하세요:
 
     <?code-excerpt "lib/main.dart (RandomWordsState)" title region="RWS-class-only" plaster="// TODO Add build() method" indent-by="2"?>
     ```dart
@@ -295,20 +289,18 @@ a child inside the existing `MyApp` stateless widget.
       }
     ```
 
-    Notice the declaration `State<RandomWords>`. This indicates that we're
-    using the generic
-    [State](https://docs.flutter.io/flutter/widgets/State-class.html)
-    class specialized for use with `RandomWords`. Most of the app's logic
-    and state resides here&mdash;it maintains the state for the `RandomWords`
-    widget. This class saves the generated word pairs, which grows infinitely
-    as the user scrolls, and favorite word pairs (in
-    [part 2](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)),
-    as the user adds or removes them from the list by toggling the heart icon.
+    `State<RandomWords>` 선언을 눈여겨보세요. 
+    `RandomWords`로 지정된 제네릭으로 [State](https://docs.flutter.io/flutter/widgets/State-class.html) 클래스를 사용하고 있습니다. 
+    대부분의 앱 로직과 상태는 여기서 유지됩니다&mdash;`RandomWords` 위젯을 위해 상태를 보관합니다.
+    이 클래스에 생성된 단어 쌍이 저장됩니다.
+    사용자가 스크롤함에 따라 단어 쌍이 무한히 증가하고, 
+    사용자가 하트 아이콘 스위치를 눌러 
+    가장 좋아하는 단어 쌍을 지정할 수 있습니다([part 2](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)에서). 
 
-    `RandomWordsState` depends on the `RandomWords` class. You'll add that next.
+    `RandomWordsState`는 `RandomWords` 클래스에 의존적입니다. 아래에서 추가할 것입니다.
 
- 2. Add the stateful `RandomWords` widget to `main.dart`.
-    The `RandomWords` widget does little else beside creating its State class:
+ 2. 상태가 있는 위젯 `RandomWords`를 `main.dart`에 추가하세요.
+    `RandomWords` 위젯은 상태 클래스를 만드는 것 이외에 별다른 일을 하지 않습니다:
 
     <?code-excerpt "lib/main.dart (RandomWords)" title indent-by="2"?>
     ```dart
@@ -318,12 +310,11 @@ a child inside the existing `MyApp` stateless widget.
       }
     ```
 
-    After adding the state class, the IDE complains that
-    the class is missing a build method. Next, you'll add a basic
-    build method that generates the word pairs by moving the
-    word generation code from `MyApp` to `RandomWordsState`.
+    상태 클래스를 추가한 후, IDE가 클래스에 build 메서드가 없다고 경고합니다.
+    다음으로, 기본 메서드 build를 추가하고 
+    단어 생성 코드를 `MyApp`에서 `RandomWordsState`로 옮겨 단어 쌍을 생성하도록 하세요.
 
- 3. Add the `build()` method to `RandomWordsState`:
+ 3. `build()` 메서드를 `RandomWordsState`에 추가하세요:
 
     <?code-excerpt "lib/main.dart (RandomWordsState)" title indent-by="2" replace="/(\n  )(.*)/$1[!$2!]/g"?>
     ```dart
