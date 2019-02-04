@@ -129,7 +129,7 @@
     - title: 도구 & 기법
       permalink: /docs/development/tools
       children:
-        - title: 안드로이드 스튜디오 / 인텔리제이
+        - title: 안드로이드 스튜디오 / IntelliJ
           permalink: /docs/development/tools/android-studio
         - title: 비주얼 스튜디오 코드
           permalink: /docs/development/tools/vs-code

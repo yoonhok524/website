@@ -67,7 +67,7 @@ Flutter 앱을 실제 iOS 기기에 배포하려면 몇 가지 추가적인 도�
     $ brew update
     ```
 
- 1. 다음 명령을 입력하여 Flutter앱을 iOS 기기에 배포하기 위한 도구를 설치하세요:
+ 1. 다음 명령을 입력하여 Flutter 앱을 iOS 기기에 배포하기 위한 도구를 설치하세요:
 
     ```terminal
     $ brew install --HEAD usbmuxd
