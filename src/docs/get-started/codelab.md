@@ -1,6 +1,6 @@
 ---
-title: Write your first Flutter app, part 1
-short-title: Write your first app
+title: 첫 번째 Flutter 앱 작성하기 - 1부
+short-title: 첫 번째 Flutter 앱 작성하기
 prev:
   title: Test drive
   path: /docs/get-started/test-drive
@@ -19,82 +19,75 @@ diff2html: true
 {% endcomment -%}
 <style>pre .highlight { background-color: #dfd; }</style>
 
-This is a guide to creating your first Flutter app. If you
-are familiar with object-oriented code and basic programming
-concepts such as variables, loops, and conditionals,
-you can complete this tutorial. You don’t need
-previous experience with Dart or mobile programming.
+첫 번째 Flutter 앱을 만드는 방법을 안내합니다.
+변수, 반복문, 조건문 등 기본 프로그래밍 개념과 객체지향에 친숙하다면, 이 튜토리얼을 완료할 수 있습니다.
+다트 경험이나 모바일 프로그래밍 경험이 없어도 상관없습니다.
 
-This guide is part 1 of a two-part codelab. You can find
-[part 2](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)
-on [Google Developers](https://codelabs.developers.google.com).
-[Part 1](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt1)
-can also be found on [Google Developers](https://codelabs.developers.google.com).
+이 가이드는 코드랩 2부 중 1부입니다.
+[2부](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)는
+[Google Developers](https://codelabs.developers.google.com)에서 보실 수 있습니다.
+[1부](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt1) 또한
+[Google Developers](https://codelabs.developers.google.com)에서도 볼 수 있습니다.
 
-## What you'll build in part 1
+## 1부에서 무엇을 만드는가
 {:.no_toc}
 
-You’ll implement a simple mobile app that generates proposed names for a
-startup company. The user can select and unselect names,
-saving the best ones. The code lazily generates names.
-As the user scrolls, more names are generated.
-There is no limit to how far a user can scroll.
+스타트업 회사를 위해 이름을 생성하여 제안하는 간단한 모바일 앱을 구현할 것입니다.
+사용자는 이름을 선택하거나 선택을 취소할 수 있으며, 가장 좋은 이름을 저장할 수 있습니다.
+코드는 lazy하게 이름을 생성합니다.
+사용자가 스크롤하면 더 많은 이름이 생성됩니다.
+무한하게 스크롤 할 수 있습니다.
 
-The animated GIF shows how the app works at the completion of part 1.
+GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 보여줍니다.
 
 {{site.alert.secondary}}
-  <h4 class="no_toc">What you’ll learn in part 1</h4>
+  <h4 class="no_toc">1부에서 무엇을 배우는가</h4>
 
-  * How to write a Flutter app that looks natural on both iOS and Android.
-  * Basic structure of a Flutter app.
-  * Finding and using packages to extend functionality.
-  * Using hot reload for a quicker development cycle.
-  * How to implement a stateful widget.
-  * How to create an infinite, lazily loaded list.
+  * iOS와 Android 모두에서 자연스럽게 보이는 Flutter 앱을 작성하는 방법.
+  * Flutter 앱의 기본 구조.
+  * 패키지를 찾고 패키지를 사용하여 기능을 확장하기.
+  * 더 빠른 개발 사이클을 위한 hot reload 사용.
+  * 상태를 저장하는 위젯을 구현하는 방법.
+  * Lazy하게 로드하는 무한 리스트를 만드는 방법.
 
-  In [part 2](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)
-  of this codelab, you'll add interactivity, modify the app's theme, and
-  add the ability to navigate to a new screen (called a _route_ in Flutter).
+  코드랩 [2부](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)에서는
+  상호작용을 추가하고, 앱 테마를 수정하며, 새 화면으로 이동하는 기능(Flutter에서 _route_ 라고 불립니다)을 추가합니다.
 {{site.alert.end}}
 
 {{site.alert.secondary}}
-  <h4 class="no_toc">What you'll use</h4>
+  <h4 class="no_toc">무엇을 사용하는가</h4>
 
-  You need two pieces of software to complete this lab: the
-  [Flutter SDK](/docs/get-started/install) and [an editor](/docs/get-started/editor).
-  This codelab assumes Android Studio, but you can use your preferred
-  editor.
+  이 코드랩을 완료하기 위해 
+  [Flutter SDK](/docs/get-started/install)와 [에디터](/docs/get-started/editor)가 필요합니다.
+  이 코드랩은 안드로이드 스튜디오를 기반으로 되어있지만, 원한다면 에디터를 이용할 수도 있습니다. 
 
-  You can run this codelab using any of the following devices:
+  이 코드랩을 아래 기기에서 실행할 수 있습니다:
 
-  * A physical device ([Android](install/macos#set-up-your-android-device)
-    or [iOS](install/macos#deploy-to-ios-devices)) connected to your
-    computer and set to developer mode.
-  * The [iOS simulator](install/macos#set-up-the-ios-simulator).
-  * The [Android emulator](install/macos#set-up-the-android-emulator).
+  * 컴퓨터에 연결되어 있고 개발자 모드로 설정되어 있는 
+    실제 기기 ([안드로이드](install/macos#set-up-your-android-device)
+    또는 [iOS](install/macos#deploy-to-ios-devices)).
+  * [iOS 시뮬레이터](install/macos#set-up-the-ios-simulator).
+  * [Android 에뮬레이터](install/macos#set-up-the-android-emulator).
 {{site.alert.end}}
 
-## Step 1: Create the starter Flutter app
+## Step 1: Starter Flutter app 만들기 
 
 <?code-excerpt path-base="codelabs/startup_namer/step1_base"?>
 
-Create a simple, templated Flutter app, using the instructions in
-[Getting Started with your first Flutter app.](/docs/get-started/test-drive#create-app)
-Name the project **startup_namer** (instead of _myapp_).
+[첫 번째 Flutter 앱 시작하기](/docs/get-started/test-drive#create-app)에 있는 지침을 따라 
+간단한 템플릿 기반 Flutter 앱을 만듭니다.
+이름을 **startup_namer**로 지정합니다 (_myapp_ 대신).
 
 {{site.alert.tip}}
-  If you don't see "New Flutter Project" as an option in your IDE, make
-  sure you have the [plugins installed for Flutter and
-  Dart](/docs/get-started/editor).
+  IDE에서 "New Flutter Project"가 보이지 않는다면,
+  [Flutter와 다트 플러그인 설치](/docs/get-started/editor)가 설치되어 있는지 확인하세요.
 {{site.alert.end}}
 
-In this codelab, you'll mostly be editing **lib/main.dart**,
-where the Dart code lives.
+코드랩에서는 주로 다트 코드가 있는 **lib/main.dart**를 수정할 것입니다.
 
- 1. Replace the contents of `lib/main.dart`.<br>
-    Delete all of the code from **lib/main.dart**.
-    Replace with the following code, which displays "Hello World" in the center
-    of the screen.
+ 1. `lib/main.dart`의 내용을 바꿉니다.<br>
+    **lib/main.dart**의 모든 코드를 삭제합니다.
+    화면 중앙에 "Hello World"를 표시하는 아래 코드로 대체합니다.
 
     <?code-excerpt "lib/main.dart" title?>
     ```dart
@@ -121,51 +114,48 @@ where the Dart code lives.
     ```
 
     {{site.alert.tip}}
-      When pasting code into your app, indentation can become skewed.
-      You can fix this automatically with the Flutter tools:
+      코드를 앱에 붙여 넣을 때 들여쓰기가 깨질 수 있습니다.
+      Flutter 도구를 활용하여 자동으로 문제를 해결할 수 있습니다.
 
-      * Android Studio / IntelliJ IDEA: Right-click the code and
-        select **Reformat Code with dartfmt**.
-      * VS Code: Right-click and select **Format Document**.
-      * Terminal: Run `flutter format <filename>`.
+      * 안드로이드 스튜디오 / IntelliJ IDEA: 코드에서 오른쪽 버튼을 클릭한 후 
+      **Reformat Code with dartfmt**를 선택하세요.
+      * VS Code: 오른쪽 버튼을 클릭한 후 **Format Document**를 선택하세요.
+      * 터미널: `flutter format <파일명>`을 실행하세요.
     {{site.alert.end}}
 
- 2. [Run the app](/docs/get-started/test-drive#androidstudio) by clicking
-    the green arrow in the IDE.
-    You should see either Android or iOS output, depending on your device.
+ 2. IDE에서 녹색 화살표를 클릭하여 [앱을 실행](/docs/get-started/test-drive#androidstudio)하세요.  
+    기기에 따라, 안드로이드 또는 iOS 화면에 글자가 표시되어야 합니다. 
 
     {% indent %}
       {% include android-ios-figure-pair.md image="hello-world.png" alt="Hello world app" %}
     {% endindent %}
 
     {{site.alert.tip}}
-      The first time you run on a physical device, it can take awhile to load.
-      After this, you can use hot reload for quick updates. **Save** also
-      performs a hot reload if the app is running.
+      실제 기기에서 처음 실행할 때는, 로딩에 시간이 걸릴 수 있습니다.
+      이후, 빠른 업데이트를 위해 hot reload를 사용할 수 있습니다.
+      앱이 실행 중일 때 **저장**을 하면 hot reload를 수행합니다.
     {{site.alert.end}}
 
-### Observations
+### 관찰
 {:.no_toc}
 
-* This example creates a Material app.
-  [Material](https://material.io/guidelines/) is a visual design language
-  that is standard on mobile and the web. Flutter offers a rich set
-  of Material widgets.
-* The `main()` method uses arrow (`=>`) notation.
-  Use arrow notation for one-line functions or methods.
-* The app extends `StatelessWidget` which makes the app itself a
-  widget. In Flutter, almost everything is a widget, including
-  alignment, padding, and layout.
-* The `Scaffold` widget, from the Material library,
-  provides a default app bar, title, and a body property that
-  holds the widget tree for the home screen. The widget subtree
-  can be quite complex.
-* A widget’s main job is to provide a `build()` method
-  that describes how to display the widget in terms of other,
-  lower level widgets.
-* The body for this example consists of a `Center` widget containing
-  a `Text` child widget. The Center widget aligns its widget subtree
-  to the center of the screen.
+* 이 예제는 머터리얼 앱을 만듭니다. 
+  [머터리얼](https://material.io/guidelines/)은
+  모바일 및 웹에서 표준으로 사용되는 시각 디자인 언어입니다.
+  Flutter는 다양한 머터리얼 위젯을 제공합니다. 
+* `main()` 메서드는 화살표(`=>`) 표기법을 사용합니다.
+  한 줄 함수 또는 메서드에 화살표 표기법을 사용하세요.
+* 앱은 `StatelessWidget`을 상속받아 앱 자체를 위젯으로 만듭니다.
+  Flutter에서는 정렬, 여백, 레이아웃 등 거의 모든것이 위젯입니다.
+* 머터리얼 라이브러리의 `Scaffold` 위젯은
+  홈 스크린의 위젯 트리를 구성하는
+  app bar, title, body 속성을 기본으로 제공합니다.  
+  위젯 하위 트리는 상당히 복잡할 수 있습니다. 
+* 위젯의 주된 임무는 
+  다른 하위 위젯을 어떻게 표현할 지를 설명하는
+  `build()` 메서드를 제공하는 것입니다.  
+* 이 예제는 자식 위젯으로 `Text`을 포함하는 `Center` 위젯으로 구성됩니다. 
+  Center 위젯은 하위 위젯을 화면 중앙에 정렬합니다. 
 
 ## Step 2: Use an external package
 
