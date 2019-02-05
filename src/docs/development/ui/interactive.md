@@ -264,7 +264,7 @@ it. In the same location, create the stateful widget:
 
 That's it! When you hot reload the app, the star icon should now respond to taps.
 
-### Problems?
+### 문제가 있나요?
 
 If you can't get your code to run, look in your IDE for possible errors.
 [Debugging Flutter Apps](/docs/testing/debugging) might help. If you still can't
