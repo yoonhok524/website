@@ -4,7 +4,7 @@
       permalink: /docs/get-started/install
     - title: 2. 에디터 설정
       permalink: /docs/get-started/editor
-    - title: 3. Test drive
+    - title: 3. 시운전
       permalink: /docs/get-started/test-drive
     - title: 4. 첫 번째 앱 작성하기
       permalink: /docs/get-started/codelab
@@ -22,7 +22,7 @@
           permalink: /docs/get-started/flutter-for/react-native-devs
         - title: 웹 개발자를 위한 Flutter
           permalink: /docs/get-started/flutter-for/web-devs
-        - title: 자마린.폼즈 개발자를 위한 Flutter
+        - title: Xamarin.Forms 개발자를 위한 Flutter
           permalink: /docs/get-started/flutter-for/xamarin-forms-devs
     - title: "다트 언어 개요"
       permalink: https://www.dartlang.org/guides/language
