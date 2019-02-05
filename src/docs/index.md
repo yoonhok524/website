@@ -68,8 +68,8 @@ description: The landing page for Flutter documentation.
 [리액트 네이티브 개발자를 위한 Flutter](/docs/get-started/flutter-for/react-native-devs)
 : 리액트 네이티브 개발 경험이 있다면 이 팁을 봐보세요.
 
-[자마린 폼즈 개발자를 위한 Flutter](/docs/get-started/flutter-for/xamarin-forms-devs)
-: 자마린 폼즈 개발 경험이 있다면 이 팁을 봐보세요.
+[Xamarin.Forms 개발자를 위한 Flutter](/docs/get-started/flutter-for/xamarin-forms-devs)
+: Xamarin.Forms 개발 경험이 있다면 이 팁을 봐보세요.
 
 [Flutter에서 레이아웃](/docs/development/ui/layout)
 : 레이아웃을 만드는 방법을 배워보세요. Flutter에서는 모든 게 위젯입니다.
