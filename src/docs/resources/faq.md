@@ -358,7 +358,7 @@ Android app, run `flutter build apk` and load the APK
 (`build/app/outputs/apk/release/app-release.apk`) into Android Studio
 ([instructions](https://developer.android.com/studio/build/apk-analyzer)) for a
 detailed size report. To measure an iOS app, upload a release IPA to Apple's
-App Store Connect ([instructions](https://flutter.io/docs/deployment/ios)) and
+App Store Connect ([instructions](https://flutter-io.kr/docs/deployment/ios)) and
 obtain the size report from there.
 
 ## Capabilities
