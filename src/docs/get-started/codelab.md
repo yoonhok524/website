@@ -2,7 +2,7 @@
 title: 첫 번째 Flutter 앱 작성하기 - 1부
 short-title: 첫 번째 Flutter 앱 작성하기
 prev:
-  title: Test drive
+  title: 시운전
   path: /docs/get-started/test-drive
 next:
   title: 더 알아보기
@@ -527,7 +527,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
 {:.no_toc}
 
 {% include app-figure.md class="site-image-right" img-class="border"
-    image="get-started/startup-namer.gif" caption="The app from part 2" %}
+    image="get-started/startup-namer.gif" caption="2부에서 만들 앱" %}
 
 축하합니다!
 

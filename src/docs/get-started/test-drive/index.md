@@ -1,5 +1,5 @@
 ---
-title: Test drive
+title: 시운전
 prev:
   title: 에디터 설정
   path: /docs/get-started/editor
