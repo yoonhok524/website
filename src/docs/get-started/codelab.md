@@ -47,7 +47,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
   * Flutter 앱의 기본 구조.
   * 패키지를 찾고 패키지를 사용하여 기능을 확장하기.
   * 더 빠른 개발 사이클을 위한 hot reload 사용.
-  * 상태가 있는 위젯을 구현하는 방법.
+  * Stateful 위젯을 구현하는 방법.
   * Lazy하게 로드하는 무한 리스트를 만드는 방법.
 
   코드랩 [2부](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)에서는
@@ -260,25 +260,25 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 * [pubspec.yaml]({{code-url}}/startup_namer/step2_use_package/pubspec.yaml)
 * [lib/main.dart]({{code-url}}/startup_namer/step2_use_package/lib/main.dart)
 
-## 3단계: 상태가 있는 위젯 추가하기
+## 3단계: Stateful 위젯 추가하기
 
 <?code-excerpt path-base="codelabs/startup_namer/step3_stateful_widget"?>
 
-상태가 <em>없는</em><sup>State<em>less</em></sup> 위젯은 변경불가능<sup>immutable</sup>합니다. 
+State<em>less</em> 위젯은 변경불가능<sup>immutable</sup>합니다. 
 속성을 변경할 수 없습니다&mdash;모든 값이 final입니다.
 
-상태가 <em>있는</em><sup>State<em>ful</em></sup> 위젯은 
+<sup>State<em>ful</em> 위젯은 
 위젯의 수명동안 변경될 수 있는 상태를 유지합니다.
-상태가 있는 위젯은 최소 두 개 이상 클래스가 필요합니다: 
+Stateful 위젯은 최소 두 개 이상 클래스가 필요합니다: 
 1) StatefulWidget 클래스가 
 2) State 클래스
 의 인스턴스를 생성합니다. 
 StatefulWidget 클래스 그자체는 변경불가능합니다. 
 하지만 State 클래스가 위젯의 수명동안 상태를 유지합니다.
 
-이 단계에서는, 상태가 있는 위젯 `RandomWords`를 추가하고, 
+이 단계에서는, Stateful 위젯 `RandomWords`를 추가하고, 
 그 위젯에서 `State` 클래스인 `RandomWordsState`를 생성할 것입니다.
-그런 다음 `RandomWords`를 기존 상태가 없는 위젯 `MyApp`의 자식으로 사용할 것입니다.  
+그런 다음 `RandomWords`를 기존 Stateless 위젯 `MyApp`의 자식으로 사용할 것입니다.  
 
  1. 최소한의 상태를 가지는 클래스를 생성하세요. `main.dart`의 하단에 아래 코드를 추가하세요:
 
@@ -299,7 +299,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
 
     `RandomWordsState`는 `RandomWords` 클래스에 의존적입니다. 아래에서 추가할 것입니다.
 
- 2. 상태가 있는 위젯 `RandomWords`를 `main.dart`에 추가하세요.
+ 2. Stateful 위젯 `RandomWords`를 `main.dart`에 추가하세요.
     `RandomWords` 위젯은 상태 클래스를 만드는 것 이외에 별다른 일을 하지 않습니다:
 
     <?code-excerpt "lib/main.dart (RandomWords)" title indent-by="2"?>
@@ -371,27 +371,24 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
 {{site.alert.end}}
 
 
-### Problems?
+### 문제가 있나요?
 {:.no_toc}
 
-If your app is not running correctly, you can use the code
-at the following link to get back on track.
+앱이 제대로 실행되지 않을 경우, 
+아래 링크에 있는 코드 활용하여 다시 올바르게 동작하게 할 수 있습니다.
 
 * [lib/main.dart]({{code-url}}/startup_namer/step3_stateful_widget/lib/main.dart)
 
-## Step 4: Create an infinite scrolling ListView
+## 4단계: 무한 스크롤 ListView 생성하기
 
 <?code-excerpt path-base="codelabs/startup_namer/step4_infinite_list"?>
 
-In this step, you'll expand `RandomWordsState` to generate
-and display a list of word pairings. As the user scrolls, the list
-displayed in a `ListView` widget, grows infinitely. `ListView`'s
-`builder` factory constructor allows you to build a list view
-lazily, on demand.
+이 단계에서는, `RandomWordsState`를 확장하여 단어 쌍 목록을 생성하고 표시합니다.
+`ListView` 위젯 안에 표시되는 목록이 사용자가 스크롤할 때마다 무한하게 늘어납니다. 
+`ListView`의 `builder` 팩토리 생성자를 사용하면 필요에 따라 lazy한 방식으로 목록을 만듭니다.  
 
- 1. Add a `_suggestions` list to the `RandomWordsState`
-    class for saving suggested word pairings.
-    Also, add a `_biggerFont` variable for making the font size larger.
+ 1. 제안된 단어 쌍을 저장하기 위해 `RandomWordsState` 클래스에 `_suggestions` 목록을 추가하세요. 
+    또한, 글자 크기를 키우기 위해 `_biggerFont` 변수를 추가하세요. 
 
     <?code-excerpt "lib/main.dart" title region="RWS-var" indent-by="2" replace="/final .*/[!$&!]/g"?>
     ```dart
@@ -403,24 +400,20 @@ lazily, on demand.
     ```
 
     {{site.alert.note}}
-      Prefixing an identifier with an underscore [enforces
-      privacy](https://www.dartlang.org/guides/language/language-tour)
-      in the Dart
-      language.
+      다트 언어에서는 식별자 앞에 밑줄을 붙이면 
+      [프라이빗 적용](https://www.dartlang.org/guides/language/language-tour)이 됩니다. 
     {{site.alert.end}}
 
-    Next, you'll add a `_buildSuggestions()` function to the `RandomWordsState`
-    class. This method builds the `ListView` that displays the suggested
-    word pairing.
+    다음으로, `RandomWordsState` 클래스에 `_buildSuggestions()` 함수를 추가하세요. 
+    이 메서드는 제안된 단어 쌍을 표시하는 `ListView`를 만듭니다.
 
-    The `ListView` class provides a builder property, `itemBuilder`, that's a
-    factory builder and callback function specified as an anonymous function.
-    Two parameters are passed to the function&mdash;the `BuildContext`,
-    and the row iterator, `i`. The iterator begins at 0 and increments
-    each time the function is called, once for every suggested word pairing.
-    This model allows the suggested list to grow infinitely as the user scrolls.
+    `ListView` 클래스는 builder 속성인 `itemBuilder`를 제공합니다. 
+    이 팩토리 빌더는 익명 함수 형태의 콜백 함수를 받습니다.
+    두 인자가 함수에 전달됩니다; `BuildContext`와 행 반복자 `i`입니다.
+    반복자는 0부터 시작되고 제안된 모든 단어 쌍에 대해 각각 한 번씩 함수가 호출될 때마다 증가합니다.
+    이 방식을 사용하여 사용자가 스크롤을 할 때마다 목록이 무한하게 증가할 수 있게 할 수 있습니다.
 
- 2. Add a `_buildSuggestions()` function to the `RandomWordsState` class:
+ 2. `RandomWordsState` 클래스에 `_buildSuggestions()` 함수를 추가하세요: 
 
     <?code-excerpt "lib/main.dart (_buildSuggestions)" title indent-by="2"?>
     ```dart
@@ -440,24 +433,21 @@ lazily, on demand.
     ```
 
     {:.numbered-code-notes}
-     1. The `itemBuilder` callback is called once per suggested word pairing,
-        and places each suggestion into a `ListTile` row. For even rows, the
-        function adds a `ListTile` row for the word pairing. For odd rows, the
-        function adds a `Divider` widget to visually separate the entries. Note
-        that the divider may be difficult to see on smaller devices.
-     2. Add a one-pixel-high divider widget before each row in the `ListView`.
-     3. The expression `i ~/ 2` divides `i` by 2 and returns an integer result.
-        For example: 1, 2, 3, 4, 5 becomes 0, 1, 1, 2, 2. This calculates the
-        actual number of word pairings in the `ListView`, minus the divider
-        widgets.
-     4. If you've reached the end of the available word pairings, then generate
-        10 more and add them to the suggestions list.
+     1. `itemBuilder` 콜백은 단어 쌍이 제안될 때마다 호출되고 
+        각각을 `ListTile` 행에 배치합니다.
+        짝수 행인 경우 `ListTile` 행에 단어 쌍을 추가합니다.
+        홀수 행인 경우 시각적으로 각 항목을 구분하는 `Divider` 위젯을 추가합니다. 
+        작은 기기에서는 구분선을 보기 어려울 수 있습니다.
+     2. `ListView`의 각 행 앞에 1 픽셀 높이의 구분선 위젯을 추가하십시오. 
+     3. `i ~/ 2` 표현식은 `i`를 2로 나눈 뒤 정수 결과를 반환합니다.
+        예를 들어: 1, 2, 3, 4, 5는 0, 1, 1, 2, 2가 됩니다.
+        이렇게 하면 구분선 위젯을 제외한 `ListView`에 있는 단어 쌍 수가 계산됩니다. 
+     4. 가능한 단어 쌍을 모두 사용하고 나면, 10개를 더 생성하고 제안 목록에 추가합니다.   
 
-    The `_buildSuggestions()` function calls `_buildRow()` once per
-    word pair. This function displays each new pair in a `ListTile`,
-    which allows you to make the rows more attractive in the next step.
+    `_buildSuggestions()` 함수는 단어 쌍 마다 한 번 씩 `_buildRow()`를 호출합니다. 
+    이 함수는 `ListTile`에서 각각 새로운 쌍을 표시하여 다음 단계에서 행을 더 매력적으로 만들 수 있게 합니다.  
 
- 3. Add a `_buildRow()` function to `RandomWordsState`:
+ 3. `RandomWordsState`에 `_buildRow()`를 추가하세요:
 
     <?code-excerpt "lib/main.dart (_buildRow)" title indent-by="2"?>
     ```dart
@@ -471,12 +461,11 @@ lazily, on demand.
       }
     ```
 
- 4. In the `RandomWordsState` class, update the `build()` method to use
-    `_buildSuggestions()`, rather than directly calling the word
-    generation library.
-    ([Scaffold](https://docs.flutter.io/flutter/material/Scaffold-class.html)
-    implements the basic Material Design visual layout.)
-    Replace the method body with the highlighted code:
+ 4. `RandomWordsState` 클래스에서 `build()` 메서드를 변경하여 
+    단어 생성 라이브러리를 직접 호출하지 말고 `_buildSuggestions()`을 사용하도록 하세요, 
+    ([Scaffold](https://docs.flutter.io/flutter/material/Scaffold-class.html)는 
+    기본적인 머터리얼 디자인 시각 레이아웃을 구현합니다.)
+    메서드의 본문을 아래 강조 표시된 코드로 교체하세요:
 
     <?code-excerpt "lib/main.dart (build)" title region="RWS-build" replace="/(\n  )(return.*|  .*|\);)/$1[!$2!]/g" indent-by="2"?>
     ```dart
@@ -491,8 +480,8 @@ lazily, on demand.
       }
     ```
 
- 5. In the `MyApp` class, update the `build()` method by changing the title, and
-    changing the home to be a `RandomWords` widget:
+ 5. `MyApp` 클래스에서 `build()` 메서드를 수정하세요. 
+    title을 변경하고 home을 `RandomWords`으로 변경하세요:
 
     <?code-excerpt path-base="codelabs/startup_namer"?>
     <?code-excerpt "{step3_stateful_widget,step4_infinite_list}/lib/main.dart" diff-u="4" from="class MyApp" to="}"?>
@@ -526,40 +515,39 @@ lazily, on demand.
       {% include android-ios-figure-pair.md image="step4-infinite-list.png" alt="App at completion of fourth step" %}
     {% endindent %}
 
-### Problems?
+### 문제가 있나요?
 {:.no_toc}
 
-If your app is not running correctly, you can use the code at the following link
-to get back on track.
+앱이 제대로 실행되지 않을 경우, 
+아래 링크에 있는 코드 활용하여 다시 올바르게 동작하게 할 수 있습니다.
 
 * [lib/main.dart]({{code-url}}/startup_namer/step4_infinite_list/lib/main.dart)
 
-## Next steps
+## 다음 단계
 {:.no_toc}
 
 {% include app-figure.md class="site-image-right" img-class="border"
     image="get-started/startup-namer.gif" caption="The app from part 2" %}
 
-Congratulations!
+축하합니다!
 
-You've written an interactive Flutter app that runs on both iOS and Android.
-In this codelab, you've:
+iOS와 Android 모두에서 작동하는 인터랙티브한 Flutter 앱을 작성해보았습니다.
+이 코드랩에서:
 
-* Created a Flutter app from the ground up.
-* Written Dart code.
-* Leveraged an external, third-party library.
-* Used hot reload for a faster development cycle.
-* Implemented a stateful widget.
-* Created a lazily loaded, infinite scrolling list.
+* Flutter 앱을 처음부터 만들었습니다.
+* 다트 코드를 작성했습니다.
+* 외부 서드파티 라이브러리를 활용했습니다.
+* 빠른 개발 사이클을 위해 hot reload를 사용했습니다.
+* Stateful 위젯을 적용했습니다.
+* Lazy한 방식 무한 스크롤 목록을 만들었습니다. 
 
-If you would like to extend this app, proceed to
-[part 2](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)
-on the
-[Google Developers Codelabs](https://codelabs.developers.google.com) site,
-where you add the following functionality:
+이 앱을 확장하고 싶다면, 
+[구글 개발자 코드랩](https://codelabs.developers.google.com) 사이트에서,
+[2부](https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2)를 진행하세요.
+아래 기능을 추가하게 될 것입니다:
 
-* Implement interactivity by adding a clickable heart icon to save
-  favorite pairings.
-* Implement navigation to a new route by adding a new screen
-  containing the saved favorites.
-* Modify the theme color, making an all-white app.
+* 클릭 가능한 하트 아이콘을 추가하여
+  가장 좋아하는 단어 쌍을 저장하고 앱을 인터랙티브하게 만들어봅니다. 
+* 가장 좋아하는 단어를 보관하는 새로운 화면과 경로를 추가하고
+  그 화면으로 이동하는 내비게이션 기능을 구현해봅니다. 
+* 테마 색을 수정하여 흰색 앱을 만들어봅니다.
