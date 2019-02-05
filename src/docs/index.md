@@ -78,7 +78,7 @@ description: The landing page for Flutter documentation.
 : 상태를 저장할 수 있는 위젯을 만드는 방법을 배워보세요.
 
 [Flutter 위젯 프레임워크 둘러보기](/docs/development/ui/widgets-intro)
-: 리액트 스타일 프레임워크 Flutter에 대해 더 알아봅시다.
+: react-style 프레임워크 Flutter에 대해 더 알아봅시다.
 
 [자주 묻는 질문](/docs/resources/faq)
 : 자주 묻는 질문에 대한 답변을 살펴보세요.

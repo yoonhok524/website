@@ -1,32 +1,28 @@
 ---
-title: Flutter for Android developers
+title: 안드로이드 개발자를 위한 Flutter
 description: Learn how to apply Android developer knowledge when building Flutter apps.
 ---
 
-This document is meant for Android developers looking to apply their
-existing Android knowledge to build mobile apps with Flutter. If you understand
-the fundamentals of the Android framework then you can use this document as a
-jump start to Flutter development.
+이 문서는 기존 안드로이드 지식을 활용하여 
+Flutter 모바일 앱을 개발하고자 하는 안드로이드 개발자를 대상으로 합니다.
+안드로이드 프레임워크의 기본 내용을 이해하고 있다면,
+이 문서를 활용하여 Flutter 개발로 도약할 수 있습니다.
 
-Your Android knowledge and skill set are highly valuable when building with
-Flutter, because Flutter relies on the mobile operating system for numerous
-capabilities and configurations. Flutter is a new way to build UIs for mobile,
-but it has a plugin system to communicate with Android (and iOS) for non-UI
-tasks. If you're an expert with Android, you don't have to relearn everything
-to use Flutter.
+Flutter가 다양한 기능과 구성을 위해 모바일 운영체제를 사용하기 때문에 
+안드로이드 관련 지식과 기술은 Flutter 앱을 만들 때 매우 유용합니다.
+Flutter는 모바일에서 UI를 만드는 새로운 방법이지만,
+UI 이외 작업을 위해, 안드로이드 (그리고 iOS)와 통신하는 플러그인 시스템도 가지고 있습니다.
+안드로이드의 전문가라면, Flutter를 사용하기 위해 모든 것을 다시 배울 필요가 없습니다.
 
-This document can be used as a cookbook by jumping around and finding questions
-that are most relevant to your needs.
+필요한 부분에 가장 적합한 질문을 찾아내는 방식으로 이 문서를 요리책(cookbook)처럼 활용하실 수도 있습니다.
 
-## Views
+## 뷰
 
-### What is the equivalent of a `View` in Flutter?
+### Flutter에서 `View`와 동일한 것은?
 
 {{site.alert.secondary}}
-How is react-style, or _declarative_, programming different than the
-traditional imperative style?
-For a comparison, see [Introduction to declarative
-UI](/docs/get-started/flutter-for/declarative).
+react-style 프로그래밍(또는 선언적 프로그래밍)이 기존 명령형 스타일과 어떻게 다를까요? 
+비교를 위해, [선언적 UI 소개](/docs/get-started/flutter-for/declarative)를 참조하세요.
 {{site.alert.end}}
 
 In Android, the `View` is the foundation of everything that shows up on the
