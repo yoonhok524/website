@@ -31,7 +31,7 @@ Flutter에서는 `위젯`이 `뷰`와 유사합니다.
 위젯이 안드로이드의 뷰와 정확하게 일치하는 건 아니지만, 
 Flutter를 익힐 때 위젯이 "UI를 선언하고 구성하는 방식"이라고 이해할 수 있습니다.  
 
-하지만, 위젯은 `View`와 조금 차이가 있습니다. 먼저, 생명주기(lifespan)가 다릅니다.
+하지만, 위젯은 `뷰`와 조금 차이가 있습니다. 먼저, 생명주기(lifespan)가 다릅니다.
 위젯은 변경 불가능하며 변경이 필요할 때까지만 존재합니다. 
 위젯 혹은 위젯의 상태가 변경되면. Flutter는 위젯 인스턴스의 새로운 트리를 생성합니다.
 반면, 안드로이드의 뷰는 한 번만 그려지고, `invalidate`가 호출되기 전까지는 다시 그리지 않습니다. 
@@ -95,7 +95,7 @@ Text(
 하지만, 예를 들어 `FloatingActionButton`을 클릭할 때 
 "I Like Flutter"를 동적으로 변경하고 싶다면 어떻게 할까요?
 
-그러고 싶다면, `Text`을 `StatefulWidget`으로 감싼 뒤 
+그러고 싶다면, `Text`를 `StatefulWidget`으로 감싼 뒤 
 사용자가 버튼을 클릭할 때 그것을 변경하면 됩니다.
 
 예시:
@@ -157,12 +157,11 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### How do I lay out my widgets? Where is my XML layout file?
+### 위젯을 어떻게 배치하나요? XML 레이아웃 파일은 어디에 있나요?
 
-In Android, you write layouts in XML, but in Flutter you write your layouts
-with a widget tree.
+안드로이드에서는 레이아웃을 XML에 작성하지만, Flutter에서는 레이아웃을 위젯 트리로 작성합니다. 
 
-The following example shows how to display a simple widget with padding:
+아래 예시는 여백과 함께 간단한 위젯을 배치하는 방법을 보여줍니다:
 
 <!-- skip -->
 {% prettify dart %}
@@ -183,19 +182,19 @@ The following example shows how to display a simple widget with padding:
   }
 {% endprettify %}
 
-You can view the layouts that Flutter has to offer in the [widget
-catalog](/docs/development/ui/widgets/layout).
 
-### How do I add or remove a component from my layout?
+[위젯 카탈로그](/docs/development/ui/widgets/layout)에서
+Flutter가 제공하는 레이아웃을 볼 수 있습니다.
 
-In Android, you call `addChild()` or `removeChild()` on a parent to dynamically
-add or remove child views. In Flutter, because widgets are immutable there is
-no direct equivalent to `addChild()`.
-Instead, you can pass a function to the parent that returns a widget, and
-control that child's creation with a boolean flag.
+### 어떻게 하면 레이아웃에서 컴포넌트를 추가하거나 제거할 수 있나요?
 
-For example, here is how you can toggle between two widgets when you click on a
-`FloatingActionButton`:
+안드로이드에서는 `addChild()` 혹은 `removeChild()`를 호출하여 
+동적으로 자식 뷰를 추가하거나 제거합니다.
+Flutter에서는 위젯이 불변이기 때문에 `addChild()`와 동일한 명령은 없습니다.
+대신, 부모에게 위젯을 리턴하는 함수를 전달하고, 
+그 자식의 생성 여부를 boolean flag로 제어할 수 있습니다.  
+
+예시로, `FloatingActionButton`을 클릭했을 때 두 위젯을 번갈아 보여주는 방법입니다: 
 
 <!-- skip -->
 {% prettify dart %}
