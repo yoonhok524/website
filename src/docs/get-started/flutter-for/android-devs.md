@@ -25,73 +25,62 @@ react-style 프로그래밍(또는 선언적 프로그래밍)이 기존 명령�
 비교를 위해, [선언적 UI 소개](/docs/get-started/flutter-for/declarative)를 참조하세요.
 {{site.alert.end}}
 
-In Android, the `View` is the foundation of everything that shows up on the
-screen. Buttons, toolbars, and inputs, everything is a View.
-In Flutter, the rough equivalent to a `View` is a `Widget`.
-Widgets don't map exactly to Android views, but while you're getting
-acquainted with how Flutter works you can think of them as
-"the way you declare and construct UI".
+안드로이드에서, `위젯`는 화면에 나타나는 모든 것의 기반입니다. 
+버튼, 툴바, 입력창 등 모든 것이 뷰입니다.
+Flutter에서는 `위젯`이 `뷰`와 유사합니다. 
+위젯이 안드로이드의 뷰와 정확하게 일치하는 건 아니지만, 
+Flutter를 익힐 때 위젯이 "UI를 선언하고 구성하는 방식"이라고 이해할 수 있습니다.  
 
-However, these have a few differences to a `View`. To start, widgets have a
-different lifespan: they are immutable and only exist until they need to be
-changed. Whenever widgets or their state change, Flutter’s framework creates
-a new tree of widget instances. In comparison, an Android view is drawn once
-and does not redraw until `invalidate` is called.
+하지만, 위젯은 `View`와 조금 차이가 있습니다. 먼저, 생명주기(lifespan)가 다릅니다.
+위젯은 변경 불가능하며 변경이 필요할 때까지만 존재합니다. 
+위젯 혹은 위젯의 상태가 변경되면. Flutter는 위젯 인스턴스의 새로운 트리를 생성합니다.
+반면, 안드로이드의 뷰는 한 번만 그려지고, `invalidate`가 호출되기 전까지는 다시 그리지 않습니다. 
 
-Flutter’s widgets are lightweight, in part due to their immutability.
-Because they aren't views themselves, and aren't directly drawing anything,
-but rather are a description of the UI and its semantics that get "inflated"
-into actual view objects under the hood.
+Flutter의 위젯은 불변하기 때문에 가볍습니다.
+위젯이 그 자체로 뷰가 아니기에 어떤 것도 직접 그리지 않고,
+대신 UI에 대한 설명이며 내부적으로 이미 "inflate"된 실제 뷰 객체 UI의 의미론(semantics)이기 때문입니다.
 
-Flutter includes the [Material Components](https://material.io/develop/flutter/)
-library. These are widgets that implement the
-[Material Design guidelines](https://material.io/design/). Material Design is a
-flexible design system [optimized for all
-platforms](https://material.io/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines),
-including iOS.
+Flutter는 [머터리얼 컴포넌트](https://material.io/develop/flutter/) 라이브러리를 포함합니다.
+위젯은 [머터리얼 디자인 가이드라인](https://material.io/design/)을 따르고 있습니다.
+머터리얼 디자인은 [모든 플랫폼에 최적화된](https://material.io/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines)
+유연한 디자인 시스템입니다. 
 
-But Flutter is flexible and expressive enough to implement any design language.
-For example, on iOS, you can use the [Cupertino
-widgets](/docs/development/ui/widgets/cupertino)
-to produce an interface that looks like
-[Apple's iOS design language](https://developer.apple.com/design/resources/).
+그러나 Flutter는 모든 디자인 언어를 적용할 수 있을만큼 유연하고 표현력이 우수합니다.
+예를 들어, iOS에서는 [쿠퍼티노(Cupertino) 위젯](/docs/development/ui/widgets/cupertino)을 적용하여
+[애플의 iOS 디자인 언어](https://developer.apple.com/design/resources/)와 유사한 인터페이스를 만들 수 있습니다.
 
-### How do I update `Widget`s?
+### `Widget`을 변경하는 방법은 무엇입니까?
 
-In Android, you update your views by directly mutating them. However,
-in Flutter, `Widget`s are immutable and are not updated directly, instead
-you have to work with the widget's state.
+안드로이드에서는 뷰를 직접 수정하여 변경사항을 적용합니다. 
+하지만 플러터에서 `위젯`은 불변이기 때문에 직접 변경할 수 없고, 대신 위젯의 state를 변경할 수 있습니다. 
 
-This is where the concept of Stateful and Stateless widgets comes from. A
-`StatelessWidget` is just what it sounds like&mdash;a widget with no state
-information.
+이게 Stateful 위젯과 Stateless 위젯 개념이 탄생한 배경입니다.
+`StatelessWidget`은 말그대로 상태 정보가 없는 위젯입니다.  
 
-`StatelessWidgets` are useful when the part of the user interface
-you are describing does not depend on anything other than the configuration
-information in the object.
+`StatelessWidget`은 작성하려는 사용자 인터페이스 부분이 
+구성 정보 외에 다른 어떤 정보에도 의존하지 않을 때 유용합니다.
 
-For example, in Android, this is similar to placing an `ImageView`
-with your logo. The logo is not going to change during runtime, so
-use a `StatelessWidget` in Flutter.
+예를 들어, 안드로이드에서 `ImageView`로 로고를 배치하는 경우와 비슷합니다.
+로고는 실행 중에 변경되지 않기 때문에, Flutter에선 `StatelessWidget`를 사용합니다.
 
-If you want to dynamically change the UI based on data received
-after making an HTTP call or user interaction then you have to work
-with `StatefulWidget` and tell the Flutter framework that the widget’s `State`
-has been updated so it can update that widget.
+HTTP 호출이나 사용자와의 상호작용을 통해 받은 데이터를 기반으로 UI를 동적으로 변경하기를 원한다면
+`StatefulWidget`을 사용할 수 있고 
+Flutter 프레임워크에 `State`가 변경되었다고 알려주면 위젯이 변경됩니다.
 
-The important thing to note here is at the core both stateless and stateful
-widgets behave the same. They rebuild every frame, the difference is the
-`StatefulWidget` has a `State` object that stores state data across frames
-and restores it.
+중요한 점은 stateless와 stateful 모두
+핵심 부분은 동일하게 동작한다는 점입니다.
+둘 다 모든 프레임을 다시 빌드합니다,
+차이는 `StatefulWidget`는 
+프레임 전체에 걸쳐 상태를 데이터를 저장하고 다시반환하는 `State` 객체를 가지고 있다는 점입니다.
 
-If you are in doubt, then always remember this rule: if a widget changes
-(because of user interactions, for example) it’s stateful.
-However, if a widget reacts to change, the containing parent widget can
-still be stateless if it doesn't itself react to change.
+의문점이 남아있다면, 이 규칙을 항상 기억하세요: 
+위젯이 변경되면 (예를 들어 사용자와 상호 작용으로 인해) stateful입니다.
+하지만, 위젯이 변경되어도 상위 위젯 자신이 변경되지 않는다면, 
+상위 위젯은 stateless 일 수 있습니다.
 
-The following example shows how to use a `StatelessWidget`. A common
-`StatelessWidget` is the `Text` widget. If you look at the implementation of
-the `Text` widget you'll find it subclasses `StatelessWidget`.
+아래 예제는 `StatelessWidget`을 사용하는 방법을 보여줍니다. 
+`Text` 위젯은 일반적인 `StatelessWidget`입니다.
+`Text` 위젯의 구현을 보면 `StatelessWidget`의 하위클래스라는 걸 알 수 있습니다.
 
 <!-- skip -->
 {% prettify dart %}
@@ -101,16 +90,15 @@ Text(
 );
 {% endprettify %}
 
-As you can see, the `Text` Widget has no state information associated with it,
-it renders what is passed in its constructors and nothing more.
+보다시피, `Text` 위젯은 생성자로 전달된 것들을 그릴 뿐이고, 그 자체에 연결된 상태 정보는 없습니다.
 
-But, what if you want to make "I Like Flutter" change dynamically, for
-example when clicking a `FloatingActionButton`?
+하지만, 예를 들어 `FloatingActionButton`을 클릭할 때 
+"I Like Flutter"를 동적으로 변경하고 싶다면 어떻게 할까요?
 
-To achieve this, wrap the `Text` widget in a `StatefulWidget` and
-update it when the user clicks the button.
+그러고 싶다면, `Text`을 `StatefulWidget`으로 감싼 뒤 
+사용자가 버튼을 클릭할 때 그것을 변경하면 됩니다.
 
-For example:
+예시:
 
 <!-- skip -->
 {% prettify dart %}
