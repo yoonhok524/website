@@ -261,30 +261,28 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### How do I animate a widget?
+### 위젯에 애니메이션을 넣는 방법은?
 
-In Android, you either create animations using XML, or call the `animate()`
-method on a view. In Flutter, animate widgets using the animation
-library by wrapping widgets inside an animated widget.
+안드로이드에서는 XML을 사용하거나 뷰에서 `animate()` 메서드를 호출하여 애니메이션을 만듭니다.
+Flutter에서는 애니메이션용 위젯으로 위젯을 감싸는 방식으로 애니메이션 라이브러리를 사용하여 애니메이션을 만드세요.
 
-In Flutter, use an `AnimationController` which is an `Animation<double>`
-that can pause, seek, stop and reverse the animation. It requires a `Ticker`
-that signals when vsync happens, and produces a linear interpolation between
-0 and 1 on each frame while it's running. You then create one or more
-`Animation`s and attach them to the controller.
+Flutter에서는 중지하고, 탐색하고, 정지하고, 되감기할 수 있는 `Animation<double>`인 `AnimationController`를 사용하세요.
+vsync가 발생할 때 알려주고 
+작동하는 동안 각 프레임에서 0과 1 사이의 직선 궤적(linear interpolation)을 생성하는 `Ticker`도 필요합니다. 
+그런 다음 1개 이상의 `Animation`을 만들어 controller에 연결하세요. 
 
-For example, you might use `CurvedAnimation` to implement an animation
-along an interpolated curve. In this sense, the controller
-is the "master" source of the animation progress and the `CurvedAnimation`
-computes the curve that replaces the controller's default linear motion.
-Like widgets, animations in Flutter work with composition.
+예를 들어, `CurvedAnimation`을 사용하여 곡선 궤적(interpolated curve)을 따르는 애니메이션을 구현할 수 있습니다.
+이러한 의미에서 controller는 애니메이션 진행의 "주" 원천이고
+`CurvedAnimation`은 계산하는 기본 선형 동작 대신 커브로 대체하여 계산합니다.
+Flutter에서는 애니메이션도 위젯처럼 구성물입니다.
 
-When building the widget tree you assign the `Animation` to an animated
-property of a widget, such as the opacity of a `FadeTransition`, and tell the
-controller to start the animation.
+위젯 트리를 만들 때
+`Animation`을  `FadeTransition`의 opacity와 같은 
+애니메이션이 필요한 속성에 할당하고 
+controller에 애니메이션을 시작하도록 지시합니다.
 
-The following example shows how to write a `FadeTransition` that fades the
-widget into a logo when you press the `FloatingActionButton`:
+다음 예에서는 `FloatingActionButton`을 누르면
+위젯이 로고로 바뀌는 `FadeTransition`을 작성하는 방법을 보여줍니다.
 
 <!-- skip -->
 {% prettify dart %}
