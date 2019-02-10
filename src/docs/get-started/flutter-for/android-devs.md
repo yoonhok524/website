@@ -52,7 +52,7 @@ Flutter는 [머터리얼 컴포넌트](https://material.io/develop/flutter/) 라
 ### `Widget`을 변경하는 방법은 무엇입니까?
 
 안드로이드에서는 뷰를 직접 수정하여 변경사항을 적용합니다. 
-하지만 플러터에서 `위젯`은 불변이기 때문에 직접 변경할 수 없고, 대신 위젯의 state를 변경할 수 있습니다. 
+하지만 Flutter에서 `위젯`은 불변이기 때문에 직접 변경할 수 없고, 대신 위젯의 state를 변경할 수 있습니다. 
 
 이게 Stateful 위젯과 Stateless 위젯 개념이 탄생한 배경입니다.
 `StatelessWidget`은 말그대로 상태 정보가 없는 위젯입니다.  
@@ -349,24 +349,23 @@ class _MyFadeTest extends State<MyFadeTest> with TickerProviderStateMixin {
 }
 {% endprettify %}
 
-For more information, see
-[Animation & Motion widgets](/docs/development/ui/widgets/animation),
-the [Animations tutorial](/docs/development/ui/animations/tutorial),
-and the [Animations overview](/docs/development/ui/animations).
+자세한 내용은 
+[애니메이션 & 동작 위젯](/docs/development/ui/widgets/animation), 
+[애니메이션 튜토리얼](/docs/development/ui/animations/tutorial),
+[애니메이션 개요](/docs/development/ui/animations)를
+참조하세요
 
-### How do I use a `Canvas` to draw/paint?
+### `Canvas`를 사용하여 그리는 방법은?
 
-In Android, you would use the `Canvas` and `Drawable`s to draw images and shapes
-to the screen. Flutter has a similar `Canvas` API as well, since it is based
-on the same low-level rendering engine, Skia. As a result, painting to a
-canvas in Flutter is a very familiar task for Android developers.
+화면에 이미지와 모양을 그리기 위해 안드로이드에서는 `Canvas`와 `Drawable`을 사용합니다.
+Flutter도 저수준(low-level) 렌더링 엔진인 Skia를 사용하기 때문에 `Canvas`와 유사한 API를 가지고 있습니다,
+그렇기 때문에 Flutter에서 캔버스에 그리는 것은 안드로이드 개발자에게 매우 익숙한 작업입니다. 
 
-Flutter has two classes that help you draw to the canvas: `CustomPaint`
-and `CustomPainter`, the latter of which implements your algorithm to draw to
-the canvas.
+Flutter는 캔버스에 그리는 일을 도와주는 2개의 클래스를 가지고 있습니다.
+`CustomPaint`와 `CustomPainter`입니다. 
+`CustomPainter`는 캔버스에 어떻게 그릴지 알고리즘을 구현합니다.
 
-To learn how to implement a signature painter in Flutter, see Collin's answer on
-[StackOverflow][].
+Flutter에 서명 그림 그리기를 구현하는 방법은 [StackOverflow][]에 있는 Collin의 답변을 참고하세요.
 
 [StackOverflow]: https://stackoverflow.com/questions/46241071/create-signature-area-for-mobile-app-in-dart-flutter
 
@@ -419,21 +418,23 @@ class SignaturePainter extends CustomPainter {
 }
 {% endprettify %}
 
-### How do I build custom widgets?
+### 커스텀 위젯을 만드는 방법은?
 
-In Android, you typically subclass `View`, or use a pre-existing view,
-to override and implement methods that achieve the desired behavior.
+안드로이드에서는 
+보통 `View`의 하위클래스를 만들거나 이미 있는 View를 사용하여
+원하는 동작을 수행하는 메서드를 오버라이드하고 구현합니다.
 
-In Flutter, build a custom widget by
-[composing](/docs/resources/technical-overview#everythings-a-widget)
-smaller widgets (instead of extending them).
-It is somewhat similar to implementing a custom
-`ViewGroup` in Android, where all the building blocks are already existing, but
-you provide a different behavior&mdash;for example, custom layout logic.
+Flutter에서는 
+[더 작은 위젯들로 구성된](/docs/resources/technical-overview#everythings-a-widget) 새로운 위젯을 만듭니다
+(상속 대신).
 
-For example, how do you build a `CustomButton` that takes a label in
-the constructor? Create a CustomButton that composes a `RaisedButton` with
-a label, rather than by extending `RaisedButton`:
+이것은 구성물(building block)이 이미 준비되어 있는 상황에서 약간 다른 동작을 만들고 싶을 때
+(예를 들면, 새로운 레이아웃 로직을 첨가하고 싶을 때)
+안드로이드에서 `ViewGroup`을 만드는 것과 유사합니다.
+
+예를 들어, `CustomButton`의 생성자가 label을 받게 하려면 어떻게 해야 할까요?
+`RaisedButton`을 상속하는 대신,
+`RaisedButton`을 감싸고 있는 CustomButton을 만들고 생성자에 label을 받게 하면 됩니다.
 
 <!-- skip -->
 {% prettify dart %}
@@ -449,7 +450,7 @@ class CustomButton extends StatelessWidget {
 }
 {% endprettify %}
 
-Then use `CustomButton`, just as you'd use any other Flutter widget:
+그런 다음 다른 Flutter 위젯처럼 `CustomButton`을 사용하기만 하면 됩니다:
 
 <!-- skip -->
 {% prettify dart %}
