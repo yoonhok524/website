@@ -161,9 +161,9 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 
 이 단계에서는 
 가장 많이 사용되는 영어 단어 수천 개와 몇 가지 유틸리티 기능이 포함되어 있는
-오픈소스 패키지인 [english_words](https://pub.dartlang.org/packages/english_words)를 이용할 것입니다.
+오픈 소스 패키지인 [english_words](https://pub.dartlang.org/packages/english_words)를 이용할 것입니다.
 
-다른 오픈소스 패키지와 마찬가지로, 
+다른 오픈 소스 패키지와 마찬가지로, 
 [the Package site](https://pub.dartlang.org/flutter)에서
 `english_words` 패키지를 찾을 수 있습니다.
 

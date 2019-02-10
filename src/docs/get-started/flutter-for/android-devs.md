@@ -462,35 +462,35 @@ Widget build(BuildContext context) {
 }
 {% endprettify %}
 
-## Intents
+## Intents (인텐트)
 
-### What is the equivalent of an `Intent` in Flutter?
+### Flutter에서 `Intent`와 동일한 것은?
 
-In Android, there are two main use cases for `Intent`s: navigating between
-Activities, and communicating with components. Flutter, on the other hand, does
-not have the concept of intents, although you can still start intents
-through native integrations
-(using [a plugin](https://pub.dartlang.org/packages/android_intent)).
+안드로이드에서 `Intent`는 두 가지 용도로 사용됩니다:
+엑티비티 간 이동, 그리고 다른 컴포넌트와 통신할 때입니다.
+반면, Flutter는 intent라는 개념을 가지고 있지 않습니다.
+네이티브 통합을 활용하여 인텐트를 사용할 수는 있습니다.
+([플러그인](https://pub.dartlang.org/packages/android_intent)을 사용)
 
-Flutter doesn't really have a direct equivalent to activities and fragments;
-rather, in Flutter you navigate between screens, using a `Navigator` and
-`Route`s, all within the same `Activity`.
+Flutter는 실제로 액티비티나 프레그먼트와 직접적으로 동등한 요소를 가지고 있지 않습니다.
+Flutter에서는 하나의 `Activity`안에서 `Navigator`와 `Route`를 활용하여 스크린 간 내비게이션을 합니다.
 
-A `Route` is an abstraction for a “screen” or “page” of an app, and a
-`Navigator` is a widget that manages routes. A route roughly maps to an
-`Activity`, but it does not carry the same meaning. A navigator can push
-and pop routes to move from screen to screen. Navigators work like a stack
-on which you can `push()` new routes you want to navigate to, and from
-which you can `pop()` routes when you want to "go back".
+`Route`는 앱의 “스크린”이나 “페이지”를 추상화한 것이고,
+`Navigator`는 route를 관리하는 위젯입니다.
+`Activity`와 route는 유사하지만, 똑같은 의미는 아닙니다.
+Navigator는 routes를 push나 pop을 하여 스크린 간 이동을 할 수 있습니다.
+Navigator는 스텍처럼 동작합니다. 
+이동하려는 새로운 route로 `push()`할 수 있고,
+되돌아가려면 `pop()`하면 됩니다.
 
-In Android, you declare your activities inside the app's `AndroidManifest.xml`.
+안드로이드에서는 앱의 `AndroidManifest.xml`에 액티비티를 정의합니다.
 
-In Flutter, you have a couple options to navigate between pages:
+Flutter에서는 페이지 간 이동을 하는 몇 가지 방법이 있습니다:
 
-* Specify a `Map` of route names. (MaterialApp)
-* Directly navigate to a route. (WidgetApp)
+* route 이름의 `Map`을 지정한다. (MaterialApp)
+* route로 바로 이동한다. (WidgetApp)
 
-The following example builds a Map.
+아래는 Map을 지정하는 방식입니다.
 
 <!-- skip -->
 {% prettify dart %}
@@ -506,19 +506,20 @@ The following example builds a Map.
 }
 {% endprettify %}
 
-Navigate to a route by `push`ing its name to the `Navigator`.
+`Navigator`에 route의 이름을 `push`하여 이동할 수 있습니다. 
 
 <!-- skip -->
 {% prettify dart %}
 Navigator.of(context).pushNamed('/b');
 {% endprettify %}
 
-The other popular use-case for `Intent`s is to call external components such
-as a Camera or File picker. For this, you would need to create a native platform
-integration (or use an [existing plugin](https://pub.dartlang.org/flutter/)).
+`Intent`의 또다른 용도는 카메라나 파일 선택 도구같은 외부 컴포넌트를 를 호출하는 것입니다.
+이 작업을 위해서는 네이티브 플랫폼 통합이 필요합니다.
+(또는 [이미 있는 플러그인](https://pub.dartlang.org/flutter/)을 활용하는 방법도 있습니다)
 
-To learn how to build a native platform integration, see
-[Developing Packages and Plugins](/docs/development/packages-and-plugins/developing-packages).
+네이티브 플랫폼 통합을 배우기 위해서는, 
+[패키지 및 플러그인 개발](/docs/development/packages-and-plugins/developing-packages)를 
+참조하세요.
 
 ### How do I handle incoming intents from external applications in Flutter?
 
