@@ -469,7 +469,7 @@ Widget build(BuildContext context) {
 안드로이드에서 `Intent`는 두 가지 용도로 사용됩니다:
 엑티비티 간 이동, 그리고 다른 컴포넌트와 통신할 때입니다.
 반면, Flutter는 intent라는 개념을 가지고 있지 않습니다.
-네이티브 통합을 활용하여 인텐트를 사용할 수는 있습니다.
+네이티브 통합을 활용하여 intent를 사용할 수는 있습니다.
 ([플러그인](https://pub.dartlang.org/packages/android_intent)을 사용)
 
 Flutter는 실제로 액티비티나 프레그먼트와 직접적으로 동등한 요소를 가지고 있지 않습니다.
@@ -521,20 +521,20 @@ Navigator.of(context).pushNamed('/b');
 [패키지 및 플러그인 개발](/docs/development/packages-and-plugins/developing-packages)를 
 참조하세요.
 
-### How do I handle incoming intents from external applications in Flutter?
+### 앱 외부에서 intent가 넘어올 때는 어떻게 처리해야?  
 
-Flutter can handle incoming intents from Android by directly talking to the
-Android layer and requesting the data that was shared.
+Flutter는 안드로이드 레이어와 직접 통신하고
+공유된 데이터를 요청하여 외부에서 넘어오는 intent를 처리할 수 있습니다.   
 
-The following example registers a text share intent filter on the native
-activity that runs our Flutter code, so other apps can share text with
-our Flutter app.
+아래 예제는
+Flutter 코드를 실행하는 네이티브 액티비티에서 텍스트를 공유하는 intent filter를 등록해서,  
+다른 앱은 Flutter 앱과 텍스트를 공유할 수 있도록 합니다.
 
-The basic flow implies that we first handle the shared text data on the
-Android native side (in our `Activity`), and then wait until Flutter requests
-for the data to provide it using a `MethodChannel`.
+기본 흐름은 
+먼저 안드로이드 네이티브 쪽(우리의 `Activity`)에 공유된 텍스트 데이터를 처리하고,
+Flutter가 `MethodChannel`을 이용하여 데이터를 요청할 때까지 기다립니다.
 
-First, register the intent filter for all intents in `AndroidManifest.xml`:
+먼저, `AndroidManifest.xml`에 모든 intent를 위한 intent filter를 등록하세요:
 
 <!-- skip -->
 {% prettify xml %}
@@ -554,10 +554,8 @@ First, register the intent filter for all intents in `AndroidManifest.xml`:
 </activity>
 {% endprettify %}
 
-Then in `MainActivity`, handle the intent, extract the text that was
-shared from the intent, and hold onto it. When Flutter is ready to process,
-it requests the data using a platform channel, and it's sent
-across from the native side:
+그런 다음 `MainActivity`에서 intent를 처리하고, intent에 공유된 텍스트를 추출한 후 저장해둡니다.
+처리를 시작할 준비가 되면 Flutter가 플랫폼 채널을 사용해서 데이터를 요청하고, 네이티브 쪽에서 데이터가 전송됩니다.
 
 <!-- skip -->
 {% prettify java %}
@@ -610,7 +608,7 @@ public class MainActivity extends FlutterActivity {
 }
 {% endprettify %}
 
-Finally, request the data from the Flutter side when the widget is rendered:
+마지막으로, 위젯이 렌더링 될 때 Flutter쪽에서 데이터를 요청하도록 하세요:
 
 <!-- skip -->
 {% prettify dart %}
