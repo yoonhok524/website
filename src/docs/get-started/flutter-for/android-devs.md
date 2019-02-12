@@ -527,7 +527,7 @@ Flutter는 안드로이드 레이어와 직접 통신하고
 공유된 데이터를 요청하여 외부에서 넘어오는 intent를 처리할 수 있습니다.   
 
 아래 예제는
-Flutter 코드를 실행하는 네이티브 액티비티에서 텍스트를 공유하는 intent filter를 등록해서,  
+Flutter 코드를 실행하는 네이티브 액티비티에서 텍스트를 공유하는 intent filter를 등록해서,
 다른 앱은 Flutter 앱과 텍스트를 공유할 수 있도록 합니다.
 
 기본 흐름은 
@@ -666,22 +666,20 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### What is the equivalent of `startActivityForResult()`?
+### `startActivityForResult()`와 동일한 것은?
 
-The `Navigator` class handles routing in Flutter and is used to get
-a result back from a route that you have pushed on the stack. This is done
-by `await`ing on the `Future` returned by `push()`.
 
-For example, to start a location route that lets the user select
-their location, you could do the following:
+`Navigator` 클래스는 Flutter에서 route를 처리해주고, 스택에 푸시한 route에서 결과를 다시 얻을 때 사용됩니다.
+`push()`에서 리턴되는 `Future`를 `await`해서 이 작업을 할 수 있습니다.
+
+예를 들어, 아래 코드처럼 사용자가 위치를 선택할 수 있도록 location route로 이동할 수 있습니다:
 
 <!-- skip -->
 {% prettify dart %}
 Map coordinates = await Navigator.of(context).pushNamed('/location');
 {% endprettify %}
 
-And then, inside your location route, once the user has selected their location
-you can `pop` the stack with the result:
+그런 다음, location route 안에서, 사용자가 위치를 선택하면 결과와 함께 스택에서 `pop`을 할 수 있습니다: 
 
 <!-- skip -->
 {% prettify dart %}
