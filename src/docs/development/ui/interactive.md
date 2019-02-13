@@ -264,7 +264,7 @@ it. In the same location, create the stateful widget:
 
 That's it! When you hot reload the app, the star icon should now respond to taps.
 
-### Problems?
+### 문제가 있나요?
 
 If you can't get your code to run, look in your IDE for possible errors.
 [Debugging Flutter Apps](/docs/testing/debugging) might help. If you still can't
@@ -309,7 +309,7 @@ manage state:
 * [A mix-and-match approach](#mix-and-match)
 
 {% comment %}
-  NOTE: Commenting this out for now. The example needs some updates.
+  참고: Commenting this out for now. The example needs some updates.
 
   First, fix TapboxD, add it back to the repo, and then restore this note.
 

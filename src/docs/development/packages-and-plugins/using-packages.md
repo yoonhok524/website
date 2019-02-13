@@ -276,7 +276,7 @@ class MyApp extends StatelessWidget {
 
 class DemoPage extends StatelessWidget {
   launchURL() {
-    launch('https://flutter.io');
+    launch('https://flutter-io.kr');
   }
 
   @override

@@ -666,7 +666,7 @@ In Flutter, use the `Image.network` constructor to include an image from a URL.
 ```dart
 // Flutter
 body: Image.network(
-          'https://flutter.io/images/owl.jpg',
+          'https://flutter-io.kr/images/owl.jpg',
 ```
 
 ### How do I install packages and package plugins?
