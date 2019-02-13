@@ -686,27 +686,26 @@ Map coordinates = await Navigator.of(context).pushNamed('/location');
 Navigator.of(context).pop({"lat":43.821757,"long":-79.226392});
 {% endprettify %}
 
-## Async UI
+## 비동기 UI
 
-### What is the equivalent of `runOnUiThread()` in Flutter?
+### Flutter에서 `runOnUiThread()`와 동일한 것은?
 
-Dart has a single-threaded execution model, with support for `Isolate`s
-(a way to run Dart code on another thread), an event loop, and
-asynchronous programming. Unless you spawn an `Isolate`, your Dart code
-runs in the main UI thread and is driven by an event loop. Flutter's event
-loop is equivalent to Android's main `Looper`&mdash;that is, the `Looper` that
-is attached to the main thread.
+다트는 단일-스레드 실행 모델을 가지고 있고,
+`Isolate`(다트 코드를 다른 스레드에서 실행하는 방법)와
+이벤트 루프, 비동기 프로그래밍을 지원합니다.
+`Isolate`를 생성하지 않는 한, 다트 코드는 메인 UI 스레드에서 실행되고 이벤트 루프에 의해 구동됩니다.
+Flutter의 이벤트 루프는 안드로이드의 메인 `Looper`, 즉  메인 스레드에 연결되어 있는 `Looper`와 동일합니다.
 
-Dart's single-threaded model doesn't mean you need to run everything as a
-blocking operation that causes the UI to freeze. Unlike Android, which
-requires you to keep the main thread free at all times, in Flutter,
-use the asynchronous facilities that the Dart language provides, such as
-`async`/`await`, to perform asynchronous work. You may be familiar with
-the `async`/`await` paradigm if you've used it in C#, Javascript, or if you
-have used Kotlin's coroutines.
+다트의 단일-스레드 모델은 모든 걸 동기로 실행하여 UI 끊김을 유발하지는 않습니다.
+항상 메인 스레드를 여유롭게 유지해야 안드로이드와 달리,
+플러터에서는 `async`/`await`와 같은 
+다트 언어가 제공하는 비동기 기능을 사용하여 
+비동기 작업을 수행할 수 있습니다.
+C#이나 Javascript, 또는 코틀린의 coroutine을 사용해봤다면
+`async`/`await` 패러다임에 이미 익숙할 것입니다.
 
-For example, you can run network code without causing the UI to hang by
-using `async`/`await` and letting Dart do the heavy lifting:
+예를 들어, 복잡한 부분은 다트에게 맡겨두고, 
+`async`/`await`를 활용하여 UI 끊김 없이 네트워크 코드를 실행할 수 있습니다:
 
 <!-- skip -->
 {% prettify dart %}
