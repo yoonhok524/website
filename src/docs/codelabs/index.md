@@ -13,7 +13,7 @@ description: "Flutter를 빠르게 시작할 수 있는 코드랩"
 
 #### [아름다운 UI를 가진 Flutter 앱 만들기](https://codelabs.developers.google.com/codelabs/flutter)
 
-"첫 Flutter 앱 만들기" 보다 한층 더 깊게 들어갑니다. 이 코드랩에선 iOS와 Android에 따라 다르게 표현되는 UI와 함께 간단한 애니메이션이 있는 대화방을 만들어봅니다.
+"첫 Flutter 앱 만들기" 보다 한층 더 깊게 들어갑니다. 이 코드랩에선 iOS와 안드로이드에 따라 다르게 표현되는 UI와 함께 간단한 애니메이션이 있는 대화방을 만들어봅니다.
 
 #### [Flutter를 위한 Firebase](https://codelabs.developers.google.com/codelabs/flutter-firebase/)
 
@@ -21,7 +21,7 @@ Flutter 앱과 Firebase 데이터베이스를 연결하는 방법과 실시간�
 
 #### [MDC 101 Flutter: Material Components (MDC) 기본](https://codelabs.developers.google.com/codelabs/mdc-101-flutter/)
 
-핵심 컴포넌트로 만든 간단한 앱과 함께 머터리얼 컴포넌트의 기본 사용법을 배워보세요. 총 4개의 MDC 코드랩에서는 Shirne 이라는 e-commerce 앱을 만듭니다.
+핵심 컴포넌트로 만든 간단한 앱과 함께 머터리얼 컴포넌트의 기본 사용법을 배워보세요. 총 4개의 MDC 코드랩에서는 Shirne이라는 e-commerce 앱을 만듭니다.
 몇 가지의 MDC Flutter Components와 함께 로그인 페이지부터 시작합니다.
 
 #### [MDC 102 Flutter: Material Structure and Layout](https://codelabs.developers.google.com/codelabs/mdc-102-flutter/)
@@ -32,12 +32,12 @@ MDC101에서 만든 e-commerce 앱에 네비게이션과 구조 그리고 데이
 
 #### [MDC 103 Flutter: Material Theming with Color, Shape, Elevation, and Type](https://codelabs.developers.google.com/codelabs/mdc-103-flutter/)
 
-머터리얼 컴포넌트가 어떠한 방식으로 쉽게 제품을 차별화하고 브랜드를 표현하는지 알아보세요. 이전에 만든 e-commerce 앱에 제품을 보여주는 홈 스크린을 추가합니다.
+Flutter에서 머터리얼 컴포넌트가 어떠한 방식으로 쉽게 제품을 차별화하고 브랜드 디자인을 표현하는지 알아보세요. 이전에 만든 e-commerce 앱에 제품을 보여주는 홈 스크린을 추가합니다.
 
 #### [MDC 104 Flutter: Material Advanced Components](https://codelabs.developers.google.com/codelabs/mdc-104-flutter/)
 
-디자인을 더 멋지게 만들고, 백드롭 메뉴를 사용하는 방법을 알아보세요.
-선택한 카테고리로 제품을 필터링하는 백드롭 메뉴를 추가하고 자신만의 e-commerce 앱을 완성해보세요.
+디자인을 더 멋지게 만들고, 고급 구성 요소인 백드롭 메뉴를 사용하는 방법을 알아보세요.
+선택한 카테고리로 제품을 필터링하는 백드롭 메뉴를 추가하고 나만의 e-commerce 앱을 완성합니다.
 
 ---
 
