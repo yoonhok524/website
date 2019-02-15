@@ -223,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    String toLaunch = 'https://flutter.io';
+    String toLaunch = 'https://flutter-io.kr';
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),

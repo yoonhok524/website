@@ -1,29 +1,28 @@
 ---
-title: Test drive
+title: 시운전
 prev:
-  title: Set up an editor
+  title: 에디터 설정
   path: /docs/get-started/editor
 next:
-  title: Write your first Flutter app
+  title: 첫 번째 Flutter 앱 작성
   path: /docs/get-started/codelab
 toc: false
 ---
 
-This page describes how to create a new Flutter app from templates, run it, and experience "hot reload" after you make changes to the app.
+이 페이지는 템플릿을 활용하여 새로운 Flutter 앱을 만들고, 실행하고, 앱을 변경한 후 "hot reload"를 하는 방법을 설명합니다.
 
-Select your development tool of choice for writing, building, and running
-Flutter apps.
+Flutter 앱을 작성 및 제작, 실행하기 위한 개발 도구를 선택하세요.
 
 {% comment %} Nav tabs {% endcomment -%}
 <ul class="nav nav-tabs" id="editor-setup" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="androidstudio-tab" href="#androidstudio" role="tab" aria-controls="androidstudio" aria-selected="true">Android Studio / IntelliJ</a>
+    <a class="nav-link active" id="androidstudio-tab" href="#androidstudio" role="tab" aria-controls="androidstudio" aria-selected="true">안드로이드 스튜디오 / IntelliJ</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="vscode-tab" href="#vscode" role="tab" aria-controls="vscode" aria-selected="false">Visual Studio Code</a>
+    <a class="nav-link" id="vscode-tab" href="#vscode" role="tab" aria-controls="vscode" aria-selected="false">비주얼 스튜디오 코드</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="terminal-tab" href="#terminal" role="tab" aria-controls="terminal" aria-selected="false">Terminal & editor</a>
+    <a class="nav-link" id="terminal-tab" href="#terminal" role="tab" aria-controls="terminal" aria-selected="false">터미널 & 에디터</a>
   </li>
 </ul>
 
@@ -34,6 +33,6 @@ Flutter apps.
   {% include_relative _terminal.md %}
 </div>
 
-## Next step
+## 다음 단계
 
-You'll next learn some core Flutter concepts by creating a small app.
+작은 앱을 만들면서 Flutter의 핵심 개념을 배워봅시다. 
