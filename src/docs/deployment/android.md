@@ -31,7 +31,7 @@ Flutter 앱을 개발하는 동안, 명령줄에서의 `flutter run` 과 Intelli
 
 ## 런처 아이콘 추가하기
 
-새로 생성된 Flutter 앱의 아이콘은 기본 런쳐 아이콘으로 설정되어있습니다. 런쳐 아이콘을 원하는 아이콘으로 변경하고 싶다면, [Flutter Launcher Icons](https://pub.dartlang.org/packages/flutter_launcher_icons) package 를 확인해보세요.
+새로 생성된 Flutter 앱의 아이콘은 기본 런쳐 아이콘으로 설정되어있습니다. 런쳐 아이콘을 원하는 아이콘으로 변경하고 싶다면, [Flutter Launcher Icons]({{site.pub}}/packages/flutter_launcher_icons) package 를 확인해보세요.
 
 package를 사용하지않고, 런쳐 아이콘을 바꾸려면 다음 지시사항을 따르세요.
 
@@ -53,11 +53,6 @@ Google Play 스토어에 출시하기 위해서는 반드시 앱에 디지털 �
 `keytool -genkey -v -keystore ~/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key`
 
 *참고:* 이 파일은 항상 개인적으로 보관하세요; 절대 공개된 저장소에 업로드 하지 마세요.
-
-<!-- *참고:* `keytool` might not be in your path. It is part of the Java JDK,
-which is installed as part of Android Studio. For the concrete path,
-run `flutter doctor -v` and see the path printed after 'Java binary at:',
-and then use that fully qualified path replacing `java` with `keytool`. -->
 
 *참고:* `keytool` 은 프로젝트 경로에 존재하지 않을 수 있습니다. 해당 파일은 안드로이드 스튜디오와 함께 설치되는 Java JDK에 포함되는 파일입니다. 해당 파일에 대한 구체적인 경로는 명령줄에 `flutter doctor -v` 을 통하여 표시되는 'Java binary at:' 다음에 나타나는 경로에서 `java`를 포함하고 있는 디렉토리의 `keytool` 파일을 통해 확인할 수 있습니다.
 
@@ -128,8 +123,8 @@ storeFile=<key store 파일 위치, 예) /Users/<user name>/key.jks>
 기본적으로, Flutter는 안드로이드 관련 코드를 난독화하거나 축소화하지 않습니다.
 서드파티 자바 라이브러리나 안드로이드 라이브러리를 사용한다면 Proguard 적용을 통해 APK의 크기를 줄이고 리버스 엔지니어링으로부터 코드를 보호할 수 있습니다.
 
-다트 코드 난독화에 대한 정보를 얻기 위해서는 [Flutter wiki](https://github.com/flutter/flutter/wiki)의 [Obfuscating Dart
-Code](https://github.com/flutter/flutter/wiki/Obfuscating-Dart-Code)를 참조하세요.
+다트 코드 난독화에 대한 정보를 얻기 위해서는 [Flutter wiki]({{site.github}}/flutter/flutter/wiki)의 [Obfuscating Dart
+Code]({{site.github}}/flutter/flutter/wiki/Obfuscating-Dart-Code)를 참조하세요.
 
 ### Step 1 - Proguard 구성하기
 
@@ -201,13 +196,13 @@ android {
 
 Google Play 스토어 앱 출시에 대한 자세한 내용은 [Google Play 출시 문서][play]에서 확인하세요.
 
-[manifest]: http://developer.android.com/guide/topics/manifest/manifest-intro.html
-[manifesttag]: https://developer.android.com/guide/topics/manifest/manifest-element
-[appid]: https://developer.android.com/studio/build/application-id
-[permissiontag]: https://developer.android.com/guide/topics/manifest/uses-permission-element
-[applicationtag]: https://developer.android.com/guide/topics/manifest/application-element
-[gradlebuild]: https://developer.android.com/studio/build/#module-level
-[versions]: https://developer.android.com/studio/publish/versioning
-[launchericons]: https://developer.android.com/guide/practices/ui_guidelines/icon_design_launcher
-[configuration qualifiers]: https://developer.android.com/guide/topics/resources/providing-resources#AlternativeResources
-[play]: https://developer.android.com/distribute/googleplay/start
+[manifest]: {{site.android-dev}}/guide/topics/manifest/manifest-intro
+[manifesttag]: {{site.android-dev}}/guide/topics/manifest/manifest-element
+[appid]: {{site.android-dev}}/studio/build/application-id
+[permissiontag]: {{site.android-dev}}/guide/topics/manifest/uses-permission-element
+[applicationtag]: {{site.android-dev}}/guide/topics/manifest/application-element
+[gradlebuild]: {{site.android-dev}}/studio/build/#module-level
+[versions]: {{site.android-dev}}/studio/publish/versioning
+[launchericons]: {{site.android-dev}}/guide/practices/ui_guidelines/icon_design_launcher
+[configuration qualifiers]: {{site.android-dev}}/guide/topics/resources/providing-resources#AlternativeResources
+[play]: {{site.android-dev}}/distribute/googleplay/start
