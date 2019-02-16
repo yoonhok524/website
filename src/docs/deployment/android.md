@@ -3,7 +3,7 @@ title: 안드로이드 앱 출시 준비하기
 short-title: Android
 ---
 
-Flutter 앱을 개발하는 동안, 명령줄에서의 `flutter run` 과 IntelliJ에서의 툴바 **Run** 과 **Debug** 버튼을 통해 앱을 테스트 할 수 있습니다. Flutter는 기본적으로 앱의 *debug* 버전을 빌드합니다.
+Flutter 앱을 개발하는 동안, 명령줄에서의 `flutter run` 과 IntelliJ에서의 툴바 **Run** 과 **Debug** 버튼을 통해 앱을 테스트할 수 있습니다. Flutter는 기본적으로 앱의 *debug* 버전을 빌드합니다.
 
 [Google Play 출시][play]하기 위해 안드로이드의 *release* 버전을 준비할 준비가 되었다면, 다음 단계를 따르세요.
 
@@ -12,9 +12,9 @@ Flutter 앱을 개발하는 동안, 명령줄에서의 `flutter run` 과 Intelli
 올바른 앱 설정을 위하여 `<app dir>/android/app/src/main` 에 있는 기본 [앱 매니페스트][manifest] 파일인 `AndroidManifest.xml`을 검토하고 올바른 값들을 포함하는지 확인하세요.
 특히:
 
-* `application`: 앱의 이름을 반영하기 위해 [`application`][applicationtag]에 있는 `android:label`를 수정하세요.
+* `application`: 앱의 이름을 반영하기 위해 [`application`][applicationtag]에 있는 `android:label`을 수정하세요.
 
-* `uses-permission`: 앱 내에서 인터넷 접근이 필요하지 않다면 `android.permission.INTERNET` [permission][permissiontag]을 제거하세요. 기본 템플릿에서는 Flutter 도구와 실행중인 앱의 커뮤니케이션을 위해 해당 권한을 포함합니다.
+* `uses-permission`: 앱 내에서 인터넷 접근이 필요하지 않다면 `android.permission.INTERNET` [permission][permissiontag]을 제거하세요. 기본 템플릿에서는 Flutter 도구와 실행 중인 앱의 커뮤니케이션을 위해 해당 권한을 포함합니다.
   
 
 ## 빌드 구성 검토하기
@@ -31,9 +31,9 @@ Flutter 앱을 개발하는 동안, 명령줄에서의 `flutter run` 과 Intelli
 
 ## 런처 아이콘 추가하기
 
-새로 생성된 Flutter 앱의 아이콘은 기본 런쳐 아이콘으로 설정되어있습니다. 런쳐 아이콘을 원하는 아이콘으로 변경하고 싶다면, [Flutter Launcher Icons]({{site.pub}}/packages/flutter_launcher_icons) package 를 확인해보세요.
+새로 생성된 Flutter 앱의 아이콘은 기본 런처 아이콘으로 설정되어있습니다. 런처 아이콘을 원하는 아이콘으로 변경하고 싶다면, [Flutter Launcher Icons]({{site.pub}}/packages/flutter_launcher_icons) package 를 확인해보세요.
 
-package를 사용하지않고, 런쳐 아이콘을 바꾸려면 다음 지시사항을 따르세요.
+package를 사용하지 않고, 런처 아이콘을 바꾸려면 다음 지시사항을 따르세요.
 
 1. 아이콘 디자인을 위해 [Android Launcher Icons][launchericons] 가이드라인을 확인합니다.
 
@@ -41,11 +41,11 @@ package를 사용하지않고, 런쳐 아이콘을 바꾸려면 다음 지시사
 
 1. `AndroidManifest.xml` 에서 [`application`][applicationtag] 태그의 `android:icon` 항목을 업데이트하여 이전 단계에서 넣은 아이콘을 가져옵니다. (예를 들어, `<application android:icon="@mipmap/ic_launcher> ...`)
 
-1. 아이콘이 변경된 것을 확인하기 위해 `flutter run` 를 통해 앱을 실행시키고 런쳐에서 앱 아이콘을 합니다.
+1. 아이콘이 변경된 것을 확인하기 위해 `flutter run` 를 통해 앱을 실행시키고 런처에서 앱 아이콘을 합니다.
 
 ## 앱 서명하기
 
-Google Play 스토어에 출시하기 위해서는 반드시 앱에 디지털 서명을 해야합니다.
+Google Play 스토어에 출시하기 위해서는 반드시 앱에 디지털 서명을 해야 합니다.
 앱에 디지털 서명을 하기 위해 다음 지시사항을 따르세요.
 
 ### keystore 만들기
@@ -189,8 +189,8 @@ android {
 명령줄을 사용하세요:
 
 1. 안드로이드 기기를 컴퓨터에 연결합니다.
-1. `cd <app dir>` (`<app dir>` 는 설치하려는 앱의 디렉토리입니다).
-1. `flutter install` 를 통해 설치합니다.
+1. `cd <app dir>` (는 설치하려는 앱의 디렉ㅌ토리입니다).
+1. `flutter install` 을 통해 설치합니다.
 
 ## Google Play 스토어에 APK 출시하기
 
