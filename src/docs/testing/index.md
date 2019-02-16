@@ -1,16 +1,15 @@
 ---
-title: Testing Flutter apps
+title: Flutter 앱 테스트하기
 ---
 
-The more features your app has, the harder it is to test manually.
-Automated tests help ensure that your app performs
-correctly before you publish it, while retaining your feature and bug fix
-velocity.
+앱의 기능이 많아질수록, 수동으로 테스트하기는 더 어려워집니다.
+자동 테스트는 기능과 버그 개선 속도를 유지하여 앱을 출시하기 전에 정상적으로 작동할 수 있도록 보장해드립니다.
 
-Automated testing falls into a few categories:
 
-- A _unit test_ tests a single function, method, or class. External dependencies
-  of the unit under test are generally [mocked out](/cookbook/testing/mocking).
+자동 테스트는 아래의 몇 가지 카테고리로 나뉩니다:
+
+- _단위 테스트_ 는 단위 기능, 방법 또는 클래스를 테스트합니다. 테스트 유닛의 외부 의존성은
+  일반적으로 흉내내어 집니다 ([mocked out](/cookbook/testing/mocking)).
   Unit tests generally don't read from or write to disk, render to screen,
   or receive user actions from outside the process running the test. The goal
   of a unit test is to verify the correctness of a unit of logic under a
@@ -38,10 +37,10 @@ different kinds of tests:
 
 |                      | Unit   | Widget | Integration |
 |----------------------|--------|--------|-------------|
-| **Confidence**       | Low    | Higher | Highest     |
-| **Maintenance cost** | Low    | Higher | Highest     |
-| **Dependencies**     | Few    | More   | Most        |
-| **Execution speed**  | Quick  | Slower | Slowest     |
+| **신뢰도**       | Low    | Higher | Highest     |
+| **유지 비용** | Low    | Higher | Highest     |
+| **의존성**     | Few    | More   | Most        |
+| **실행 속도**  | Quick  | Slower | Slowest     |
 {:.table.table-striped}
 
 {{site.alert.tip}}
@@ -64,7 +63,7 @@ using `package:test` is documented on the [Dart
 testing]({{site.github}}/dart-lang/test/blob/master/README.md)
 repo.
 
-Example:
+예제:
 
 Add this file to `test/unit_test.dart`:
 
