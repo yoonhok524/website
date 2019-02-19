@@ -31,16 +31,16 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유�
 코드만으로도 플랫폼 플러그인을 개발할 수 있게 해줍니다.
 
 *Note*: 원한다면 메소드 호출은 반대의 방향으로도 보내질 수 있습니다.
-(Dart로 구현된 메소드의 클라이언트 역할을 하는 플랫폼일때) 예시는 이 플러그인([`quick_actions`](https://pub.dartlang.org/packages/quick_actions))을 봐주세요.
+(Dart로 구현된 메소드의 클라이언트 역할을 하는 플랫폼일때) 예시는 이 플러그인([`quick_actions`]({{site.api}}/packages/quick_actions))을 봐주세요.
 
-[MethodChannel]: https://docs.flutter.io/flutter/services/MethodChannel-class.html
-[MethodChannelAndroid]: https://docs.flutter.io/javadoc/io/flutter/plugin/common/MethodChannel.html
-[MethodChanneliOS]: https://docs.flutter.io/objcdoc/Classes/FlutterMethodChannel.html
+[MethodChannel]: {{site.api}}/flutter/services/MethodChannel-class.html
+[MethodChannelAndroid]: {{site.api}}/javadoc/io/flutter/plugin/common/MethodChannel.html
+[MethodChanneliOS]: {{site.api}}/objcdoc/Classes/FlutterMethodChannel.html
 
 ### 플랫폼 채널 지원 데이터형과 코덱 {#codec}
 
 표준 플랫폼 채널은 간단한 json 형태의 효율적인 바이너리 직렬화를 지원하는 boolean, numbers, Strings,
-byte butters, List, Map등의 표준 메시지 코덱을 사용합니다 (참고: [`StandardMessageCodec`](https://docs.flutter.io/flutter/services/StandardMessageCodec-class.html)).
+byte butters, List, Map등의 표준 메시지 코덱을 사용합니다 (참고: [`StandardMessageCodec`]({{site.api}}/flutter/services/StandardMessageCodec-class.html)).
 이 값들에 대한 메시지 직렬화와 역직렬화는 당신이 값을 보내고 받을 때 자동으로 이루어집니다.
 
 아래 표는 dart의 자료형이 플랫폼에서 어떻게 받고 보내지는지 보여줍니다.
@@ -71,10 +71,10 @@ iOS의 `device.batteryLevel` API 를 `getBatteryLevel` 이라는 단일 플랫�
 packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참고).
 하지만 플랫폼 채널 코드는 여전히 같은 방법으로 작성됩니다.
 
-*Note*: 이 예시의 실행가능한 전체 코드는 여기서 확인할 수 있습니다. [`/examples/platform_channel/`](https://github.com/flutter/flutter/tree/master/examples/platform_channel)
+*Note*: 이 예시의 실행가능한 전체 코드는 여기서 확인할 수 있습니다. [`/examples/platform_channel/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel)
 
 안드로이드는 Java로 되어 있고 iOS 는 Objective-C 로 되어있습니다. Swift 와 iOS에 대한 예제는 다음을
-참고하세요.[`/examples/platform_channel_swift/`](https://github.com/flutter/flutter/tree/master/examples/platform_channel_swift)
+참고하세요.[`/examples/platform_channel_swift/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel_swift)
 
 ### Step 1: 새로운 앱 프로젝트 만들기 {#example-project}
 
@@ -581,7 +581,7 @@ packages](/docs/development/packages-and-plugins/developing-packages#publish) �
 [`BasicMessageChannel`][BasicMessageChannel] 를 사용할 수도 있습니다. 또한 특화된 [`BinaryCodec`][BinaryCodec], [`StringCodec`][StringCodec],
 [`JSONMessageCodec`][JSONMessageCodec] 클래스들 을 사용하거나, 직접 코덱을 만드세요.
 
-[BasicMessageChannel]: https://docs.flutter.io/flutter/services/BasicMessageChannel-class.html
-[BinaryCodec]: https://docs.flutter.io/flutter/services/BinaryCodec-class.html
-[StringCodec]: https://docs.flutter.io/flutter/services/StringCodec-class.html
-[JSONMessageCodec]: https://docs.flutter.io/flutter/services/JSONMessageCodec-class.html
+[BasicMessageChannel]: {{site.api}}/flutter/services/BasicMessageChannel-class.html
+[BinaryCodec]: {{site.api}}/flutter/services/BinaryCodec-class.html
+[StringCodec]: {{site.api}}/flutter/services/StringCodec-class.html
+[JSONMessageCodec]: {{site.api}}/flutter/services/JSONMessageCodec-class.html
