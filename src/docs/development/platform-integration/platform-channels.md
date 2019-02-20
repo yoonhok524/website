@@ -30,7 +30,7 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유�
 ([API][MethodChanneliOS])들이 메시지를 받는 것과 응답을 가능하게 합니다. 이 클래스들은 아주 적은
 코드만으로도 플랫폼 플러그인을 개발할 수 있게 해줍니다.
 
-*Note*: 원한다면 메소드 호출은 반대의 방향으로도 보내질 수 있습니다.
+*참고*: 원한다면 메소드 호출은 반대의 방향으로도 보내질 수 있습니다.
 (Dart로 구현된 메소드의 클라이언트 역할을 하는 플랫폼일때) 예시는 이 플러그인([`quick_actions`]({{site.api}}/packages/quick_actions))을 봐주세요.
 
 [MethodChannel]: {{site.api}}/flutter/services/MethodChannel-class.html
@@ -71,7 +71,7 @@ iOS의 `device.batteryLevel` API 를 `getBatteryLevel` 이라는 단일 플랫�
 packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참고).
 하지만 플랫폼 채널 코드는 여전히 같은 방법으로 작성됩니다.
 
-*Note*: 이 예시의 실행가능한 전체 코드는 여기서 확인할 수 있습니다. [`/examples/platform_channel/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel)
+*참고*: 이 예시의 실행가능한 전체 코드는 여기서 확인할 수 있습니다. [`/examples/platform_channel/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel)
 
 안드로이드는 Java로 되어 있고 iOS 는 Objective-C 로 되어있습니다. Swift 와 iOS에 대한 예제는 다음을
 참고하세요.[`/examples/platform_channel_swift/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel_swift)
@@ -167,7 +167,7 @@ Widget build(BuildContext context) {
 
 ### Step 3a : Java를 이용한 안드로이드 플랫폼 구현 {#example-java}
 
-*Note*: 해당 단계는 Java를 사용합니다. 코틀린을 선호한다면, Step 3b 로 넘어가세요.
+*참고*: 해당 단계는 Java를 사용합니다. 코틀린을 선호한다면, Step 3b 로 넘어가세요.
 
 
 안드로이드 스튜디오에서 안드로이드 부분을 열어서 시작하세요:
@@ -286,7 +286,7 @@ public void onMethodCall(MethodCall call, Result result) {
 ### Step 3b : Kotlin을 사용해서 안드로이드 플랫폼 구현 추가 {#example-kotlin}
 
 
-*Note*: 이 단계는 Java 말고 Kotlin을 사용하는 것 외엔 3a와 비슷합니다.
+*참고*: 이 단계는 Java 말고 Kotlin을 사용하는 것 외엔 3a와 비슷합니다.
 
 
 이 과정은 [step 1.](#example-project) 으로 프로젝트를 생성할 때 `-a kotlin` 옵션을 사용했다고
@@ -399,7 +399,7 @@ import android.os.Build.VERSION_CODES
 ### Step 4a : Objective-C를 이용해서 iOS 플랫폼 특화 구현 추가 {#example-objc}
 
 
-*Note*: 해당 단계는 Objective-C 를 사용합니다. Swift를 선호한다면, step 4b로 건너뛰세요.
+*참고*: 해당 단계는 Objective-C 를 사용합니다. Swift를 선호한다면, step 4b로 건너뛰세요.
 
 Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 
@@ -481,7 +481,7 @@ __weak typeof(self) weakSelf = self
 
 ### Step 4b: Add an iOS platform-specific implementation using Swift {#example-swift}
 
-*Note*: 아래 단계는 Objective-C 말고 Swift를 사용한다는 외에는 step 4a 와 비슷합니다. 
+*참고*: 아래 단계는 Objective-C 말고 Swift를 사용한다는 외에는 step 4a 와 비슷합니다. 
 
 이 과정은 [step 1.](#example-project) 으로 프로젝트를 생성할 때 `-i swift` 옵션을 사용했다고
 가정합니다.
