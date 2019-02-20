@@ -25,8 +25,8 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유�
 
 메시지와 응답은 반응성 좋은 사용자 인터페이스를 위해 비동기적으로 전달됩니다.
 
-클라이언트 쪽에서는, `MethodChannel` ([API][MethodChannel])이 메시지를 그에 상응하는
-메소드로 보낼 수 있도록 해줍니다. 플랫폼 쪽에서는, 안드로이드는 `MethodChannel`([API][MethodChannelAndroid]), iOS는 `FlutterMethodChannel`
+클라이언트 단에서는, `MethodChannel` ([API][MethodChannel])이 메시지를 그에 상응하는
+메소드로 보낼 수 있도록 해줍니다. 플랫폼 단에서는, 안드로이드는 `MethodChannel`([API][MethodChannelAndroid]), iOS는 `FlutterMethodChannel`
 ([API][MethodChanneliOS])들이 메시지를 받는 것과 응답을 가능하게 합니다. 이 클래스들은 아주 적은
 코드만으로도 플랫폼 플러그인을 개발할 수 있게 해줍니다.
 
@@ -414,7 +414,7 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 1. 프로젝트 네비게이터에서 Runner > Runner 에 있는 `AppDelegate.m` 파일을 엽니다.
 
 
-다음으로, `FlutterMethodChannel`을 만들고 `applicationDidFinishLaunchingWithOptions:` 메소드 안에 핸들러를 추가해주세요. Flutter 클라이언트 측과 같은 채널 이름이 사용되었는지 확인해주세요.
+다음으로, `FlutterMethodChannel`을 만들고 `applicationDidFinishLaunchingWithOptions:` 메소드 안에 핸들러를 추가해주세요. Flutter 클라이언트 단과 같은 채널 이름이 사용되었는지 확인해주세요.
 
 
 ```objectivec
