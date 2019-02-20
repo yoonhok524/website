@@ -6,7 +6,7 @@ short-title: 플랫폼 별 코드
 이 가이드는 플랫폼 별 코드를 어떻게 작성하는지 설명합니다. 어떤 플랫폼 별 기능은
 이미 있는 패키지를 통해 사용이 가능합니다. [using packages](/docs/development/packages-and-plugins/using-packages) 를 참조하세요.
 
-Flutter는 안드로이드에서의 Java와 Kotlin, iOS에서의 ObjectiveC 와 Swift 에서 가능한 플랫폼 별 api를
+Flutter는 안드로이드에서의 Java와 Kotlin, iOS에서의 ObjectiveC와 Swift에서 가능한 플랫폼 별 api를
 사용하게 해주는 유연한 시스템을 사용합니다.
 
 Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유연한 메시지 전달 스타일을 사용합니다.
@@ -212,7 +212,7 @@ public class MainActivity extends FlutterActivity {
 ```
 
 
-다음으로, 배터리 레벨을 가져오기 위해 안드로이드 배터리 API를 사용하는 실제  안드로이드 Java 코드를 추가합니다. 해당 코드는
+다음으로, 배터리 레벨을 가져오기 위해 안드로이드 배터리 API를 사용하는 실제 안드로이드 Java 코드를 추가합니다. 해당 코드는
 네이티브 안드로이드 앱에서 사용하던 것과 완전히 같습니다.
 
 첫번째로, 필요한 import 들을 파일 상단에 추가해주세요.
@@ -279,14 +279,14 @@ public void onMethodCall(MethodCall call, Result result) {
 ```
 
 
-이제 안드로이드에서 앱을 실행하는것이 가능합니다. 만약 안드로이드 에뮬레이터를 사용하고 있다면 , 툴바의 `...`
-버튼에서 제어판을 열어서 배터리 레벨을 설정할 수 있습니다.
+이제 안드로이드에서 앱을 실행하는 것이 가능합니다. 만약 안드로이드 에뮬레이터를 사용하고 있다면, 툴바의 `...`
+버튼을 눌러 제어판을 통해 배터리 레벨을 설정할 수 있습니다.
 
 
 ### Step 3b : Kotlin을 사용해서 안드로이드 플랫폼 구현 추가 {#example-kotlin}
 
 
-*Note*: 이 단계는 Java 말고 Kotlin을 사용하는것 외엔 3a와 비슷합니다.
+*Note*: 이 단계는 Java 말고 Kotlin을 사용하는 것 외엔 3a와 비슷합니다.
 
 
 이 과정은 [step 1.](#example-project) 으로 프로젝트를 생성할 때 `-a kotlin` 옵션을 사용했다고
@@ -331,7 +331,7 @@ class MainActivity() : FlutterActivity() {
 다음으로, 배터리 레벨을 가져오기 위해 안드로이드 배터리 API를 사용하는 실제  안드로이드 Kotlin 코드를 추가합니다. 해당 코드는
 네이티브 안드로이드 앱에서 사용하던 것과 완전히 같습니다.
 
-첫번째로, 필요한 import 들을 파일 상단에 추가해주세요.
+첫 번째로, 필요한 import 들을 파일 상단에 추가해주세요.
 
 ```
 import android.content.Context
@@ -363,7 +363,7 @@ import android.os.Build.VERSION_CODES
 
 
 마지막으로, 먼저 추가한 `onMethodCall` 메소드를 완성합니다. 사용할 플랫폼 메소드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메소드는 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메소드가 호출된다면, 기록 해놓으세요.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메소드가 호출된다면, 기록 해놓으세요.
 
 아래 코드를:
 
@@ -477,7 +477,7 @@ __weak typeof(self) weakSelf = self
 }];
 ```
 
-이제 iOS 에서 앱을 실행하는것이 가능합니다.  만약 iOS 시뮬레이터를 사용하고 있다면, 배터리 API 가 지원되지 않음을 알아두세요. (앱에서는 'battery info unavailable' 이라는 메시지를 보여줄 것입니다.)
+이제 iOS 에서 앱을 실행하는 것이 가능합니다.  만약 iOS 시뮬레이터를 사용하고 있다면, 배터리 API 가 지원되지 않음을 알아두세요. (앱에서는 'battery info unavailable' 이라는 메시지를 보여줄 것입니다.)
 
 ### Step 4b: Add an iOS platform-specific implementation using Swift {#example-swift}
 
@@ -579,7 +579,7 @@ packages](/docs/development/packages-and-plugins/developing-packages#publish) �
 
 위에 언급한 `MethodChannel` 외에도, 더 기본적이며 비동기적인 커스텀 메시지 코덱을 사용해서 메시지를 전달하는
 [`BasicMessageChannel`][BasicMessageChannel] 를 사용할 수도 있습니다. 또한 특화된 [`BinaryCodec`][BinaryCodec], [`StringCodec`][StringCodec],
-[`JSONMessageCodec`][JSONMessageCodec] 클래스들 을 사용하거나, 직접 코덱을 만드세요.
+[`JSONMessageCodec`][JSONMessageCodec] 클래스들을 사용하거나, 직접 코덱을 만드세요.
 
 [BasicMessageChannel]: {{site.api}}/flutter/services/BasicMessageChannel-class.html
 [BinaryCodec]: {{site.api}}/flutter/services/BinaryCodec-class.html
