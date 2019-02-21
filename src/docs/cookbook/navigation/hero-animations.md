@@ -1,28 +1,27 @@
 ---
-title: Animating a Widget across screens
+title: 화면을 넘나드는 위젯 애니메이션
 prev:
-  title: Report errors to a service
+  title: 서비스에 에러 보고 하기
   path: /docs/cookbook/maintenance/error-reporting
 next:
-  title: Navigate to a new screen and back
+  title: 새로운 화면으로 이동하고, 되돌아오기
   path: /docs/cookbook/navigation/navigation-basics
 ---
 
-It's often helpful to guide users through our apps as they navigate from screen
-to screen. A common technique to lead users through an app is to animate a
-Widget from one screen to the next. This creates a visual anchor connecting
-the two screens.
+한 화면에서 다른 화면으로 넘어갈 때, 사용자에게 어떠한 가이드를 주는 것은 종종 도움이 됩니다.
+앱에서 사용할 수 있는 일반적인 기술은 다음 화면으로 전환할 때 위젯에 애니메이션 효과를 주는 것입니다.
+이러한 방법은 두 화면을 이어주는 시각적 연결 고리를 만들어 줍니다.
 
-How can we animate a Widget from one screen to the next with Flutter? Using the
-[`Hero`]({{site.api}}/flutter/widgets/Hero-class.html) Widget!
+Flutter에서는 한 화면에서 다음 화면으로 전환할 때 위젯에 어떻게 애니메이션 효과를 줄 수 있을 까요?
+[`Hero`]({{site.api}}/flutter/widgets/Hero-class.html) 위젯이 그 비법입니다!
 
-## Directions
+## 진행 단계
 
-  1. Create two screens showing the same image
-  2. Add a `Hero` Widget to the first screen
-  3. Add a `Hero` Widget to the second screen
+  1. 같은 이미지를 보여주는 2개의 화면을 만듭니다.
+  2. 첫 번째 화면에 `Hero` 위젯을 추가합니다.
+  3. 두 번째 화면에 `Hero` 위젯을 추가합니다.
 
-## 1. Create two screens showing the same image
+## 1. 같은 이미지를 보여주는 2개의 화면을 만듭니다.
 
 In this example, we'll display the same image on both screens. We'll want to
 animate the image from the first screen to the second screen when the user taps
