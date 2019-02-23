@@ -8,12 +8,9 @@ title: Flutter 앱 테스트하기
 
 자동 테스트는 아래의 몇 가지 카테고리로 나뉩니다:
 
-- _단위 테스트_ 는 단위 기능, 방법 또는 클래스를 테스트합니다. 테스트 유닛의 외부 의존성은
-  일반적으로 흉내내어 집니다 ([mocked out](/cookbook/testing/mocking)).
-  Unit tests generally don't read from or write to disk, render to screen,
-  or receive user actions from outside the process running the test. The goal
-  of a unit test is to verify the correctness of a unit of logic under a
-  variety of conditions.
+- _단위 테스트_ 는 단위 기능, 방법 또는 클래스를 테스트합니다. 테스트 유닛의 외부      의존성은 일반적으로 흉내내어 집니다 ([mocked out](/cookbook/testing/mocking)).
+  일반적으로 단위 테스트는 테스트가 실행되고 있는 동안 저장소를 읽거나 쓰지 않으며, 스크린 렌더링을 하지 않고, 외부에서 사용자 액션을 받지 않습니다.
+  단위 테스트의 목적은 다양한 조건 아래에서 논리 단위의 정확성을 검증하는 것입니다.
 - A _widget test_ (in other UI frameworks referred to as _component test_) tests
   a single widget. Testing a widget involves multiple classes and requires a
   test environment that provides the appropriate widget lifecycle context. For
