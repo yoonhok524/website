@@ -12,7 +12,7 @@ next:
 앱에서 사용할 수 있는 일반적인 기술은 다음 화면으로 전환할 때 위젯에 애니메이션 효과를 주는 것입니다.
 이러한 방법은 두 화면을 이어주는 시각적 연결 고리를 만들어 줍니다.
 
-Flutter에서는 한 화면에서 다음 화면으로 전환할 때 위젯에 어떻게 애니메이션 효과를 줄 수 있을 까요?
+Flutter에서는 한 화면에서 다음 화면으로 전환할 때 위젯에 어떻게 애니메이션 효과를 줄 수 있을까요?
 [`Hero`]({{site.api}}/flutter/widgets/Hero-class.html) 위젯이 그 비법입니다!
 
 ## 진행 단계
@@ -74,14 +74,9 @@ class DetailScreen extends StatelessWidget {
 
 ## 2. 첫 번째 화면에 `Hero` 위젯을 추가합니다.
 
-In order to connect the two screens together with an animation, we need to wrap
-the `Image` Widget on both screens in a `Hero` Widget. 
 두 화면을 하나의 애니메이션으로 연결하기 위해 각 화면에 존재하는 `Image`위젯을 `Hero`위젯으로
 감쌉니다. `Hero`위젯에 2개의 인자를 넘겨주어야 합니다:
 
-  1. `tag`: An object that identifies the `Hero`. It must be the same on both
-  screens.
-  2. `child`: The Widget we want to animate across screens.
   1. `tag`: `Hero`위젯을 식별하기 위한 객체로 양쪽 모두 동일한 값을 가져야 합니다.
   2. `child`: 화면 전환 시 애니메이션 효과를 적용할 위젯입니다.
 
@@ -112,9 +107,6 @@ Hero(
 );
 ```
 
-참고: this code is identical to what we had on the first screen! In general, you
-could create a reusable Widget instead of repeating code, but for this example,
-we'll duplicate the code for demonstration purposes.
 참고: 이 코드는 첫 번째 화면에 사용했던 것과 동일한 코드입니다! 이 예제는 데모 목적이기 떄문에 중복하여 
 사용했지만, 실제 코드를 작성하실 땐 재사용 가능한 위젯을 따로 만들어 사용하세요. 
 
