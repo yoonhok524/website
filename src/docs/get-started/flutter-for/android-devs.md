@@ -718,10 +718,11 @@ loadData() async {
 }
 {% endprettify %}
 
-Once the `await`ed network call is done, update the UI by calling `setState()`,
-which triggers a rebuild of the widget sub-tree and updates the data.
+`await`했던 네트워크 요청이 완료되면, 
+위젯 서브트리를 다시 빌드하고 데이터를 업데이트하도록 
+`setState()`로 UI를 업데이트하세요.
 
-The following example loads data asynchronously and displays it in a `ListView`:
+아래는 데이터를 비동기로 받아온 후 `ListView`에 보여주는 예제입니다:   
 
 <!-- skip -->
 {% prettify dart %}
@@ -794,27 +795,27 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-Refer to the next section for more information on doing work in the
-background, and how Flutter differs from Android.
+백그라운드에서 작업하는 방법, 그리고 Flutter가 안드로이드와 어떻게 다른지
+더 알고 싶으시면 다음 섹션을 참조하세요.
 
-### How do you move work to a background thread?
+### 백그라운드 스레드로 이동하여 작업하는 방법은? 
 
-In Android, when you want to access a network resource you would typically
-move to a background thread and do the work, as to not block the main thread,
-and avoid ANRs. For example, you may be using an `AsyncTask`, a `LiveData`,
-an `IntentService`, a `JobScheduler` job, or an RxJava pipeline with a
-scheduler that works on background threads.
+안드로이드에서는 
+메인 스레드를 차단하지 않아야 하고 애플리케이션 응답 없음(ANR)을 피해야 하기 때문에 
+보통 네트워크 리소스에 접근하기 위해서 백그라운드 스레드로 이동하여 작업해야 합니다.
+예를 들면, `AsyncTask`, `LiveData`, `IntentService`, `JobScheduler` 작업, 
+또는 백그라운드 스레드에서 작동하는 스케줄러에서 RxJava 파이프라인을 사용해야 할 것입니다.
 
-Since Flutter is single threaded and runs an event loop (like Node.js), you
-don't have to worry about thread management or spawning background threads. If
-you're doing I/O-bound work, such as disk access or a network call, then
-you can safely use `async`/`await` and you're all set. If, on the other
-hand, you need to do computationally intensive work that keeps the CPU busy,
-you want to move it to an `Isolate` to avoid blocking the event loop, like
-you would keep _any_ sort of work out of the main thread in Android.
+Flutter는 (Node.js 처럼) 단일 스레드에서 동작하고 이벤트 루프를 실행하므로, 
+스레드 관리나 백그라운드 스레드 생성을 걱정할 필요가 없습니다.
+저장 장치 접근이나 네트워크 요청 같은 I/O 위주의 작업을 수행하려면,
+`async`/`await`를 사용해 안전하게 처리할 수 있고, 그렇게만 하면 모든 준비는 끝입니다.
+반대로, CPU를 계속 많이 사용하는 계산 집약적인 작업을 해야 한다면,
+안드로이드의 메인 스레드에서 _어떤_ 종류의 작업도 하지 않는 것처럼
+이벤트 루프가 차단되는 것을 막기 위해 `독립적인(Isolate)` 곳에서 작업을 수행하고 싶을 겁니다.
 
-For I/O-bound work, declare the function as an `async` function,
-and `await` on long-running tasks inside the function:
+I/O 위주의 작업의 경우, 함수를 `async` 함수로 선언하고,
+함수 안에서 오래 걸리는 작업을 `await` 하세요:
 
 <!-- skip -->
 {% prettify dart %}
@@ -827,26 +828,23 @@ loadData() async {
 }
 {% endprettify %}
 
-This is how you would typically do network or database calls, which are both
-I/O operations.
+이것은 I/O 작업인 네트워크 요청이나 데이터베이스 요청을 할 때 일반적으로 사용하는 방법입니다.
 
-On Android, when you extend `AsyncTask`, you typically override 3 methods,
-`onPreExecute()`, `doInBackground()` and `onPostExecute()`. There is no
-equivalent in Flutter, since you `await` on a long running function, and
-Dart's event loop takes care of the rest.
+안드로이드에서는 `AsyncTask`를 상속받으면, 
+보통 `onPreExecute()`, `doInBackground()`, `onPostExecute()` 3개의 메서드를 오버라이드 해야 합니다.
+Flutter에는 이런 메서드가 없습니다.
+수행 시간이 긴 함수를 `await`하면 다트의 이벤트 루프가 나머지를 처리해주기 때문입니다. 
 
-However, there are times when you might be processing a large amount of data and
-your UI hangs. In Flutter, use `Isolate`s to take advantage of
-multiple CPU cores to do long-running or computationally intensive tasks.
+그러나, UI 너무 많은 데이터를 처리할 때는 UI에 정체 현상이 일어날 수 있습니다.
+Flutter에서는 긴 작업이나 계산 집약적인 작업을 할 때
+여러 개의 CPU 코어를 활용하기 위해 `Isolate`를 사용합니다.
 
-Isolates are separate execution threads that do not share any memory
-with the main execution memory heap. This means you can’t access variables from
-the main thread, or update your UI by calling `setState()`. Unlike Android threads,
-Isolates are true to their name, and cannot share memory (in the form of static fields,
-for example).
+Isolate는 메인 메모리 힙과 메모리를 전혀 공유하지 않는 별도의 실행 스레드입니다.
+메인 스레드에 있는 변수에 접근하거나 `setState()`를 호출하여 UI를 업데이트할 수 없다는 뜻입니다.
+안드로이드의 스레드와 다르게, Isolates는 이름에서 파악할 수 있듯이 메모리를 공유할 수 없습니다 (예를 들면, 정적 필드 형태로).
 
-The following example shows, in a simple isolate, how to share data back to
-the main thread to update the UI.
+아래 간단한 Isolate 예시는
+메인 스레드로 데이터를 다시 공유하여 UI를 업데이트하는 방법을 보여줍니다. 
 
 <!-- skip -->
 {% prettify dart %}
@@ -890,11 +888,11 @@ Future sendReceive(SendPort port, msg) {
 }
 {% endprettify %}
 
-Here, `dataLoader()` is the `Isolate` that runs in its own separate execution thread.
-In the isolate you can perform more CPU intensive processing (parsing a big JSON, for
-example), or perform computationally intensive math, such as encryption or signal processing.
+여기서, `dataLoader()`는 별도의 실행 스레드에서 실행되는 `Isolate`입니다.
+Isolate에서 더 CPU 집약적인 작업(예를 들면, 아주 큰 JSON을 파싱하는), 
+또는 암호화나 신호 처리 같은 계산 집약적인 작업을 수행하거나 있습니다. 
 
-You can run the full example below:
+아래 실행할 수 있는 전체 예제가 있습니다:
 
 {% prettify dart %}
 import 'dart:convert';
@@ -1017,16 +1015,15 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### What is the equivalent of OkHttp on Flutter?
+### Flutter에서 OkHttp와 돌일한 것은?
 
-Making a network call in Flutter is easy when you use the popular
-[`http` package](https://pub.dartlang.org/packages/http).
+널리 사용되는 [`http` 패키지](https://pub.dartlang.org/packages/http)를 사용하면 
+Flutter에서 네트워크 요청을 쉽게 할 수 있습니다.
 
-While the http package doesn't have every feature found in OkHttp,
-it abstracts away much of the networking that you would normally implement
-yourself, making it a simple way to make network calls.
+OkHttp에서 찾을 수 있는 모든 기능이 http 패키지에 모두 있지는 않지만,
+일반적으로 구현할 수 있는 네트워킹의 많은 부분이 추상화되어 있어, 네트워크 호출을 쉽게 수행할 수 있습니다.
 
-To use the `http` package, add it to your dependencies in `pubspec.yaml`:
+`http` 패키지를 사용하기 위해, `pubspec.yaml`에 디펜던시를 추가하세요:
 
 <!-- skip -->
 {% prettify yaml %}
@@ -1035,7 +1032,7 @@ dependencies:
   http: ^0.11.3+16
 {% endprettify %}
 
-To make a network call, call `await` on the `async` function `http.get()`:
+네트워크를 호출하기 위해 `async` 함수인 `http.get()`을 `await` 하세요:
 
 <!-- skip -->
 {% prettify dart %}

@@ -1,6 +1,6 @@
 ---
-title: 첫 번째 Flutter 앱 작성하기 - 1부
-short-title: 첫 번째 Flutter 앱 작성하기
+title: 첫 Flutter 앱 작성하기 - 1부
+short-title: 첫 Flutter 앱 작성하기
 prev:
   title: 시운전
   path: /docs/get-started/test-drive
@@ -19,7 +19,7 @@ diff2html: true
 {% endcomment -%}
 <style>pre .highlight { background-color: #dfd; }</style>
 
-첫 번째 Flutter 앱을 만드는 방법을 안내합니다.
+첫 Flutter 앱을 만드는 방법을 안내합니다.
 변수, 반복문, 조건문 등 기본 프로그래밍 개념과 객체지향에 친숙하다면, 이 튜토리얼을 완료할 수 있습니다.
 다트 경험이나 모바일 프로그래밍 경험이 없어도 상관없습니다.
 
@@ -74,7 +74,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 
 <?code-excerpt path-base="codelabs/startup_namer/step1_base"?>
 
-[첫 번째 Flutter 앱 시작하기](/docs/get-started/test-drive#create-app)에 있는 지침을 따라 
+[첫 Flutter 앱 시작하기](/docs/get-started/test-drive#create-app)에 있는 지침을 따라 
 간단한 템플릿 기반 Flutter 앱을 만듭니다.
 이름을 **startup_namer**로 지정합니다 (_myapp_ 대신).
 
