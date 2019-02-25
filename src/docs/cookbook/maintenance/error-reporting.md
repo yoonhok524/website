@@ -10,10 +10,10 @@ next:
 
 버그로부터 자유로운 앱을 만들기 위해 항상 노력하지만, 완전히 자유로울 수 없습니다.
 버그가 많은 앱은 사용자 불만을 야기하기 때문에, 앱의 사용자들이 버그를 얼마나 자주, 
-주로 어디서 발생하는지 이해하는 것은 매우 중요한 일입니다. 그렇게 해야,
- 버그의 우선 순위를 정하고 그것들을 수정해나갈 수 있기 때문입니다.
+주로 어디서 발생하는지 이해하는 것은 매우 중요한 일입니다. 그렇게 해서, 
+버그의 우선 순위를 정하고 그것들을 수정해나갈 수 있습니다.
 
-사용자가 얼마나 자주 버그를 경험하는지 어떻게 알 수 있을 까요? 에러가 발생하면 
+사용자가 얼마나 자주 버그를 경험하는지 어떻게 알 수 있을까요? 에러가 발생하면 
 에러와 stacktrace로 구성된 보고서를 만들어 Sentry, Fabric 혹은 Rollbar와 같은 
 에러 추적 서비스에 보내세요.
 
@@ -24,7 +24,7 @@ next:
 
 ## 진행 단계
 
-  1. DSN from Sentry로부터 DSN 얻기
+  1. Sentry로부터 DSN 얻기
   2. Sentry 패키지 import
   3. `SentryClient` 생성
   4. 에러 리포팅을 위한 함수 생성
@@ -73,7 +73,7 @@ bool get isInDebugMode {
   bool inDebugMode = false;
 
   // Assert 표현식은 개발 단계에서만 사용되며, 프로덕션 모드에서는 무시됩니다.
-  // 그러므로 이 코드는 개발 단계에서는 'inDebugMode'를 항상 true 값으로 설정합니다.
+  // 그러므로 이 코드는 개발 단계에서만 'inDebugMode'를 true로 설정합니다.
   assert(inDebugMode = true);
 
   return inDebugMode;
@@ -106,7 +106,7 @@ Future<void> _reportError(dynamic error, dynamic stackTrace) async {
 개발 환경에 따라 에러 리포팅하는 함수를 작성했으니 이제 다트 에러를 catch할 방법이 필요합니다.
 
 이 작업을 진행하기 위해, 커스텀 [`Zone`]({{site.api}}/flutter/dart-async/Zone-class.html)에서 앱을 실행하세요.
-Zone은 코드가 수행할 컨텍스트를 설정합니다. `onError` 함수를 제공하여 컨텍스트 내에서 발생하는 모든 에러를 편리하게 잡을 수 있게 해줍니다.
+Zone은 코드가 수행될 컨텍스트를 설정합니다. `onError` 함수를 제공하여 컨텍스트 내에서 발생하는 모든 에러를 편리하게 잡을 수 있게 해줍니다.
 
 아래 코드에서는 앱을 새로운 `Zone`에서 실행하고 `onError` 콜백을 통해 모든 에러를 잡습니다.
 
@@ -127,7 +127,7 @@ runZoned<Future<void>>(() async {
 이러한 유형의 에러들 역시 반드시 리포팅해야 합니다.
 
 Flutter 에러를 처리하기 위해서는 [`FlutterError.onError`]({{site.api}}/flutter/foundation/FlutterError/onError.html) 프로퍼티를 오버라이드 하세요.
-만약 디버그 모드라면, Flutter의 편리한 함수를 사용하여 에러를 적절하게 지정하세요.
+만약 디버그 모드라면, Flutter의 편리한 함수를 사용하여 적절한 에러 출력 형식을 지정하세요.
 만약 프로덕션 모드라면, 이전 단계에서 정의한 `onError` 콜백에 에러를 보내세요.
 
 <!-- skip -->
