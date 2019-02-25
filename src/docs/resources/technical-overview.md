@@ -12,19 +12,19 @@ Flutter는 고성능, 고품질의 iOS, 안드로이드 앱을 단일 코드 베
 
 지금 보시는 앱은 Flutter 설치 및 환경 구축 후 직접 돌려볼 수 있는 데모 앱입니다. 
 그 외 다른 Flutter 샘플 앱들은 [Gallery]({{site.github}}/flutter/flutter/tree/master/examples/flutter_gallery/lib/demo)에서 확인할 수 있습니다.
-Shrine은 고품질의 이미지 스크롤, 대화식 카드, 버튼, 드롭다운 리스트 그리고 쇼핑 카트 페이지를 갖고 있습니다. 
+Shrine은 고품질의 이미지 스크롤, 대화형 카드, 버튼, 드롭다운 리스트 그리고 쇼핑 카트 페이지를 갖고 있습니다. 
 이 앱의 단일 코드 베이스 혹은 더 많은 예제들을 보고 싶다면, [GitHub 저장소를 방문하세요]({{site.github}}/flutter/flutter/tree/master/examples).
 
-Flutter 앱 개발을 시작하기 위해 모바일 개발 경험이 반드시 필요하지는 않습니다. 앱은 [다트]({{site.dart-site}})로 작성되는데, 만약 자바나 자바스크립트와 같은 언어를 사용해본 경험이 있다면 익숙할 수 있습니다. 객체지향 언어에 대한 경험은 분명 도움이 되겠지만, 프로그래머가 아닌 사람들도 Flutter 앱을 만들었습니다!
+Flutter 앱 개발을 시작하기 위해 모바일 개발 경험이 반드시 필요하지는 않습니다. 앱은 [다트]({{site.dart-site}})로 작성되는데, 만약 자바나 자바스크립트와 같은 언어를 사용해본 경험이 있다면 익숙할 수 있습니다. 객체지향 언어에 대한 경험은 분명 도움이 되겠지만, 프로그래머가 아닌 사람도 Flutter 앱을 만들었습니다!
 
 ## 왜 Flutter를 사용해야 할까요?
 
 Flutter의 장점은 무엇일까요:
 
 *   높은 생산성
-    *   단일 코드베이스로 iOS와 안드로이드 개발
+    *   단일 코드베이스로 iOS와 안드로이드 개발할 수 있습니다.
     *   모던하고 표현적인 언어 그리고 선언적 접근법을 통해 단일 OS에서 더 적은 코드로 더 많은 것을 할 수 있습니다.
-    *   쉬운 프로토타입과 반복적 개발
+    *   쉽게 프로토타입을 제작하고 반복할 수 있습니다.
         *   앱 실행 중에 코드를 바꾸고 리로드하여 개발을 할 수 있습니다. (hot reload)
         *   앱이 중단된 지점에서 문제를 수정하고 디버깅을 이어나갈 수 있습니다.
 *   아름답고, 고도로 커스터마이징된 UX를 만들 수 있습니다.
@@ -37,7 +37,7 @@ Flutter는 현대적인 react-style 프레임워크, 2D 렌더링 엔진, 바로
 
 ### 모든 것은 위젯입니다
 
-위젯은 Flutter 앱 UI의 기본 단위입니다. 각 위젯은 UI의 불변 선언입니다. 
+위젯은 Flutter 앱 UI의 기본 단위입니다. 모든 위젯은 UI의 불변 선언입니다. 
 뷰, 뷰 컨트롤러, 레이아웃 그리고 기타 다른 속성들을 분리하는 다른 프레임워크들과 
 다르게, Flutter는 일관적이고 통일된 오브젝트 모델을 갖고 있는데, 그것이 바로 위젯입니다.
 
@@ -66,7 +66,7 @@ Flutter는 현대적인 react-style 프레임워크, 2D 렌더링 엔진, 바로
 [Align]({{site.api}}/flutter/widgets/Align-class.html),
 [Padding]({{site.api}}/flutter/widgets/Padding-class.html),
 [DecoratedBox]({{site.api}}/flutter/widgets/DecoratedBox-class.html),
-그리고 [Transform]({{site.api}}/flutter/widgets/Transform-class.html) 
+[Transform]({{site.api}}/flutter/widgets/Transform-class.html) 
 위젯들로 구성됩니다. 커스터마이징을 위해 Container의 서브 클래스를 만들기 보다는 앞서 
 언급한 위젯들 혹은 그외 다른 간단한 위젯들을 참신한 방법으로 조합할 수 있습니다.
 
@@ -83,22 +83,22 @@ Flutter는 현대적인 react-style 프레임워크, 2D 렌더링 엔진, 바로
 
 #### 레이어 케이크는 맛있습니다
 
-Flutter 프레임워크는 겹겹이 쌓인 일련의 레이어 층으로 구성됩니다.
+Flutter 프레임워크는 각각의 층이 이전 층에 의해 빌드되는 일련의 층으로 구성되어 있습니다.
 
 <object type="image/svg+xml" data="/images/whatisflutter/diagram-layercake.svg" style="width: 85%; height: 85%"></object>
 
 프레임워크의 상위 레이어로 갈수록 하위 레이어보다 더 빈번히 사용됩니다. Flutter의 계층화된 프레임워크를 구성하는 전체 라이브러리 셋은 [API 문서]({{site.api}})에서 확인할 수 있습니다.
 
-이러한 설계의 목표는 개발자로 하여금 더 적은 코드로 더 많은 일을 할 수 있게 하는 것입니다. 예를 들어, 머티리얼 계층은 위젯 계층의 기본적인 위젯들을 조합하여 만들어집니다. 그리고 위젯 계층은 랜더링 계층의 하위 레벨 오브젝트들의 조합으로 만들어집니다.
+이러한 설계의 목표는 개발자로 하여금 더 적은 코드로 더 많은 일을 할 수 있게 하는 것입니다. 예를 들어, 머티리얼 계층은 위젯 계층의 기본적인 위젯들을 조합하여 만들어지고, 위젯 계층은 랜더링 계층의 하위 레벨 오브젝트들의 조합으로 만들어집니다.
 
-계층들은 앱을 만드는데 많은 옵션들을 제공합니다. 프레임워크의 풍부한 표현력을 활용할 수 있는 커스터마이즈한 접근 법을 선택하거나 위젯 계층의 블럭들을 사용하세요, 혹은 이것들을 조화롭게 잘 조합하여 사용하세요. Flutter가 제공하는 자체 위젯들을 사용하거나, Flutter 팀에서 프레임워크 개발할 떄 사용한 것과 동일한 툴과 기술들을 갖고 직접 커스텀 위젯도 만들 수 있습니다.
+계층들은 앱을 만드는데 많은 옵션을 제공합니다. 프레임워크의 풍부한 표현력을 활용할 수 있는 커스터마이즈한 접근법을 선택하거나 위젯 계층의 블럭들을 사용하세요, 혹은 이것들을 조화롭게 잘 조합하여 사용하세요. Flutter가 제공하는 자체 위젯들을 사용하거나, Flutter 팀에서 프레임워크 개발할 떄 사용한 것과 동일한 도구와 기술들을 갖고 직접 커스텀 위젯도 만들 수 있습니다.
 
 모든 것은 공개되어 있습니다. 프레임워크의 하위 계층을 뜯어보지 않고도 상위 레벨의 위젯 컨셉만으로도 생산성을 높일 수 있습니다.
 
 ### 위젯 만들기
 
 위젯의 트리 (혹은 계층 구조)를 반환하는 [build]({{site.api}}/flutter/widgets/StatelessWidget/build.html) 함수를 구현하여 위젯의 고유한 특성을 정의할 수 있습니다. 반환된 트리 (계층 구조)는 위젯의 UI 부분을 좀더 구체적으로 나타냅니다. 예를 들어, 툴바 위젯의 build 함수는 약간의 [텍스트]({{site.api}}/flutter/widgets/Text-class.html)와 [다양한]({{site.api}}/flutter/material/IconButton-class.html)
-[버튼들]({{site.api}}/flutter/material/PopupMenuButton-class.html)로 구성된 [horizontal layout]({{site.api}}/flutter/widgets/Row-class.html)를 반환할 것입니다. 프레임워크는 각 위젯들이 [완전히 구체적인 위젯]({{site.api}}/flutter/widgets/RenderObjectWidget-class.html)으로 처리될 때까지 재귀적으로 처리할 것입니다. 그리고 그 결과 위젯은 트리 (계층 구조)로 결합됩니다.
+[버튼들]({{site.api}}/flutter/material/PopupMenuButton-class.html)로 구성된 [horizontal layout]({{site.api}}/flutter/widgets/Row-class.html)를 반환할 것입니다. 프레임워크는 각 위젯들이 [완전히 구체적인 위젯]({{site.api}}/flutter/widgets/RenderObjectWidget-class.html)으로 처리될 때까지 재귀적으로 처리할 것입니다. 그리고 그 결과 위젯은 트리로 결합됩니다.
 
 위젯의 build 함수는 부수 효과가 없어야 합니다. 매번 위젯이 새로 빌드될 때마다, 이전에 반환한 것과 관계없이 항상 새로운 트리를 반환해야 합니다. 프레임워크는 현재 빌드와 이전 빌드를 계속 비교하여 UI를 그리기 위해 어떤 수정이 필요한지 결정합니다.
 
@@ -113,10 +113,10 @@ Flutter 프레임워크는 겹겹이 쌓인 일련의 레이어 층으로 구성
 
 <object type="image/svg+xml" data="/images/whatisflutter/diagram-state.svg" style="width: 85%; height: 85%"></object>
 
-State 오브젝트의 값이 변경될 때마다 (예를 들어 카운터 증가), [setState]({{site.api}}/flutter/widgets/State/setState.html)()를 호출해야 합니다. 그렇게 해야 프레임워크가 State의 빌드 메소드를 다시 호출하여 UI를 업데이트하게 됩니다. 상태 관리 예제는 [MyApp
+State 오브젝트의 값이 변경될 때마다 (예를 들어 카운터 증가), [setState]({{site.api}}/flutter/widgets/State/setState.html)()를 호출해야 합니다. 그렇게 해야 프레임워크가 State의 빌드 메서드를 다시 호출하여 UI를 업데이트하게 됩니다. 상태 관리 예제는 [MyApp
 template]({{site.github}}/flutter/flutter/blob/master/packages/flutter_tools/templates/app/lib/main.dart.tmpl)에서 확인할 수 있습니다.
 
-상태와 위젯 객체를 분리시키면 다른 위젯들이 상태 손실에 대한 걱정없이 stateless 위젯과 stateful 위젯을 동일하게 처리하게 할 수 있습니다. 상태를 유지하기 위해 자식을 붙잡고 있을 필요 없이, 자식의 상태를 잃지 않고도 자유롭게 새로운 자식 인스턴스를 만들 수 있습니다. 프레임워크는 적절한 경우 기존 상태 객체를 찾고 재사용하는 모든 작업을 수행합니다.
+상태와 위젯 객체를 분리시키면 다른 위젯들이 상태 손실에 대한 걱정없이 stateless 위젯과 stateful 위젯을 동일하게 처리하게 할 수 있습니다. 상태를 유지하기 위해 자식을 붙잡고 있을 필요 없이, 자식의 상태를 잃지 않고도 자유롭게 새로운 자식 인스턴스를 만들 수 있습니다. 프레임워크는 기존 상태 객체를 찾고 재사용하는 모든 작업을 적절한 때에 수행합니다.
 
 ## 해보세요!
 
