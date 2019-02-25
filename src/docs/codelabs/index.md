@@ -19,24 +19,24 @@ description: "Flutter를 빠르게 시작할 수 있는 코드랩"
 
 Flutter 앱과 Firebase 데이터베이스를 연결하는 방법과 실시간으로 정보를 갱신하기 위한 트랜잭션의 사용법을 배워봅니다.
 
-#### [MDC 101 Flutter: Material Components (MDC) 기본]({{site.codelabs}}/codelabs/mdc-101-flutter)
+#### [MDC 101 Flutter: Material Components (MDC) Basics]({{site.codelabs}}/codelabs/mdc-101-flutter)
 
-핵심 컴포넌트로 만든 간단한 앱과 함께 머터리얼 컴포넌트의 기본 사용법을 배워보세요. 총 4개의 MDC 코드랩에서는 Shirne이라는 e-commerce 앱을 만듭니다.
+핵심 컴포넌트로 만든 간단한 앱과 함께 머티리얼 컴포넌트의 기본 사용법을 배워보세요. 총 4개의 MDC 코드랩에서는 Shrine이라는 e-commerce 앱을 만듭니다.
 몇 가지의 MDC Flutter Components와 함께 로그인 페이지부터 시작합니다.
 
 #### [MDC 102 Flutter: Material Structure and Layout]({{site.codelabs}}/codelabs/mdc-102-flutter)
 
-Flutter에서 구조와 레이아웃을 위한 머터리얼 사용법을 배워봅니다. 
+Flutter에서 구조와 레이아웃을 위한 머티리얼 사용법을 배워봅니다. 
 MDC101에서 만든 e-commerce 앱에 네비게이션과 구조 그리고 데이터를 추가합니다.
 
 #### [MDC 103 Flutter: Material Theming with Color, Shape, Elevation, and Type]({{site.codelabs}}/codelabs/mdc-103-flutter)
 
-Flutter에서 머터리얼 컴포넌트가 어떠한 방식으로 쉽게 제품을 차별화하고 브랜드 디자인을 표현하는지 알아보세요. 이전에 만든 e-commerce 앱에 제품을 보여주는 홈 스크린을 추가합니다.
+Flutter에서 머티리얼 컴포넌트가 어떠한 방식으로 쉽게 제품을 차별화하고 브랜드 디자인을 표현하는지 알아보세요. 이전에 만든 e-commerce 앱에 제품을 보여주는 홈 스크린을 추가합니다.
 
 #### [MDC 104 Flutter: Material Advanced Components]({{site.codelabs}}/codelabs/mdc-104-flutter)
 
 디자인을 더 멋지게 만들고, 고급 구성 요소인 백드롭 메뉴를 사용하는 방법을 알아보세요.
-선택한 카테고리로 제품을 필터링하는 백드롭 메뉴를 추가하고 나만의 e-commerce 앱을 완성합니다.
+선택한 카테고리로 제품을 필터링하는 백드롭 메뉴를 추가하고 나만의 e-commerce 앱을 완성하세요.
 
 ---
 
