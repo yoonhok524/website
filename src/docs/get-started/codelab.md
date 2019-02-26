@@ -167,8 +167,8 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 [the Package site](https://pub.dartlang.org/flutter)에서
 `english_words` 패키지를 찾을 수 있습니다.
 
- 1. Flutter 앱에서 디펜던시 및 asset 관리는 pubspec 파일이 담당합니다. 
-    `pubspec.yaml`의 디펜던시 목록에 `english_words` (3.1.0 이상)를 추가하세요:  
+ 1. Flutter 앱에서 의존성 및 asset 관리는 pubspec 파일이 담당합니다. 
+    `pubspec.yaml`의 의존성 목록에 `english_words` (3.1.0 이상)를 추가하세요:  
 
     <?code-excerpt path-base="codelabs/startup_namer"?>
     <?code-excerpt "{step1_base,step2_use_package}/pubspec.yaml" diff-u="4" from="dependencies" to="english"?>
