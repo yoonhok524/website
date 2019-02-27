@@ -26,12 +26,12 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유�
 메시지와 응답은 반응성 좋은 사용자 인터페이스를 위해 비동기적으로 전달됩니다.
 
 클라이언트 단에서는, `MethodChannel` ([API][MethodChannel])이 메시지를 그에 상응하는
-메소드로 보낼 수 있도록 해줍니다. 플랫폼 단에서는, 안드로이드는 `MethodChannel`([API][MethodChannelAndroid]), iOS는 `FlutterMethodChannel`
+메서드로 보낼 수 있도록 해줍니다. 플랫폼 단에서는, 안드로이드는 `MethodChannel`([API][MethodChannelAndroid]), iOS는 `FlutterMethodChannel`
 ([API][MethodChanneliOS])들이 메시지를 받는 것과 응답을 가능하게 합니다. 이 클래스들은 아주 적은
 코드만으로도 플랫폼 플러그인을 개발할 수 있게 해줍니다.
 
-*참고*: 원한다면 메소드 호출은 반대의 방향으로도 보내질 수 있습니다.
-(Dart로 구현된 메소드의 클라이언트 역할을 하는 플랫폼일때) 예시는 이 플러그인([`quick_actions`]({{site.api}}/packages/quick_actions))을 봐주세요.
+*참고*: 원한다면 메서드 호출은 반대의 방향으로도 보내질 수 있습니다.
+(Dart로 구현된 메서드의 클라이언트 역할을 하는 플랫폼일때) 예시는 이 플러그인([`quick_actions`]({{site.api}}/packages/quick_actions))을 봐주세요.
 
 [MethodChannel]: {{site.api}}/flutter/services/MethodChannel-class.html
 [MethodChannelAndroid]: {{site.api}}/javadoc/io/flutter/plugin/common/MethodChannel.html
@@ -91,7 +91,7 @@ packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참
 
 앱의 `State` 클래스가 현재 앱 상태를 저장합니다. 현재 배터리 상태를 저장하려면 이를 상속해야 합니다.
 
-먼저, 채널을 작성합니다. 우린 배터리 레벨을 반환하는 한개의 플랫폼 메소드를 가진 `MethodChannel`을 사용할
+먼저, 채널을 작성합니다. 우린 배터리 레벨을 반환하는 한개의 플랫폼 메서드를 가진 `MethodChannel`을 사용할
 것입니다.
 
 
@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 ```
 
-다음으로, `getBatteryLevel` 구분자를 통해 특정 메소드를 지정해서 메소드 채널에서 메소드를 실행합니다.
+다음으로, `getBatteryLevel` 구분자를 통해 특정 메서드를 지정해서 메서드 채널에서 메서드를 실행합니다.
 호출은 실패할 수도 있습니다. 예를 들어 특정 플랫폼이 해당 API를 지원하지 않는 경우(시뮬레이터에서의 실행 등)가 있습니다.
 그러므로 `invokeMethod` 호출을 try-catch 문으로 감싸주세요.
 
@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
 ```
 
 
-마지막으로, 기존 템플릿의 `build` 메소드를  작은 UI (문자열로 배터리 레벨 표시를 하기 위함)와 값을 새로고침하기 위한 버튼을 생성하는 코드로 바꾸세요.
+마지막으로, 기존 템플릿의 `build` 메서드를  작은 UI (문자열로 배터리 레벨 표시를 하기 위함)와 값을 새로고침하기 위한 버튼을 생성하는 코드로 바꾸세요.
 
 <!-- skip -->
 ```dart
@@ -181,7 +181,7 @@ Widget build(BuildContext context) {
 1. 프로젝트 뷰에서 `java` 폴더 안에 있는 `MainActivity.java` 를 엽니다.
 
 
-다음으로, `MethodChannel` 을 만들고 `onCreate` 메소드 안에서 `MethodCallHandler` 를 설정합니다.
+다음으로, `MethodChannel` 을 만들고 `onCreate` 메서드 안에서 `MethodCallHandler` 를 설정합니다.
 Flutter 클라이언트 측과 같은 채널 이름이 사용되었는지 확인해주세요.
 
 ```java
@@ -228,7 +228,7 @@ import android.os.Bundle;
 ```
 
 
-그리고 아래 코드를 액티비티 클래스의 `onCreate` 메소드 아래에 새로운 메소드로 작성해주세요.
+그리고 아래 코드를 액티비티 클래스의 `onCreate` 메서드 아래에 새로운 메서드로 작성해주세요.
 
 ```java
 private int getBatteryLevel() {
@@ -248,8 +248,8 @@ private int getBatteryLevel() {
 ```
 
 
-마지막으로, 먼저 추가한 `onMethodCall` 메소드를 완성합니다. 사용할 플랫폼 메소드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메소드는 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메소드가 호출된다면, 기록 해놓으세요.
+마지막으로, 먼저 추가한 `onMethodCall` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메서드가 호출된다면, 기록 해놓으세요.
 
 아래 코드를:
 
@@ -305,7 +305,7 @@ public void onMethodCall(MethodCall call, Result result) {
   2.3 버전을 사용한다면, 'kotlin' 폴더가 'java' 폴더로 보이는 것에 유의하세요.)
 
 
-다음으로, `onCreate` 메소드 안에서 `MethodChannel`을 만들고 `setMethodCallHandler` 를 호출하세요.
+다음으로, `onCreate` 메서드 안에서 `MethodChannel`을 만들고 `setMethodCallHandler` 를 호출하세요.
 Flutter 클라이언트 쪽에서 사용한 것과 같은 채널 이름을 사용했는지 확인해주세요.
 
 ```kotlin
@@ -343,7 +343,7 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 ```
 
-그리고 아래 코드를 액티비티 클래스의 `onCreate` 메소드 아래에 새로운 메소드로 작성해주세요.
+그리고 아래 코드를 액티비티 클래스의 `onCreate` 메서드 아래에 새로운 메서드로 작성해주세요.
 
 
 ```kotlin
@@ -362,8 +362,8 @@ import android.os.Build.VERSION_CODES
 ```
 
 
-마지막으로, 먼저 추가한 `onMethodCall` 메소드를 완성합니다. 사용할 플랫폼 메소드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메소드는 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메소드가 호출된다면, 기록 해놓으세요.
+마지막으로, 먼저 추가한 `onMethodCall` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메서드가 호출된다면, 기록 해놓으세요.
 
 아래 코드를:
 
@@ -414,7 +414,7 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 1. 프로젝트 네비게이터에서 Runner > Runner 에 있는 `AppDelegate.m` 파일을 엽니다.
 
 
-다음으로, `FlutterMethodChannel`을 만들고 `applicationDidFinishLaunchingWithOptions:` 메소드 안에 핸들러를 추가해주세요. Flutter 클라이언트 단과 같은 채널 이름이 사용되었는지 확인해주세요.
+다음으로, `FlutterMethodChannel`을 만들고 `applicationDidFinishLaunchingWithOptions:` 메서드 안에 핸들러를 추가해주세요. Flutter 클라이언트 단과 같은 채널 이름이 사용되었는지 확인해주세요.
 
 
 ```objectivec
@@ -441,7 +441,7 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 다음으로, 배터리 레벨을 가져오기 위해 iOS 배터리 API를 사용하는 실제  iOS ObjectiveC 코드를 추가합니다. 해당 코드는
 네이티브 iOS 앱에서 사용하던 것과 완전히 같습니다.
 
-`AppDelegate` 클래스에서 `@end` 바로 전에 아래 코드를 새로운 메소드로 추가해주세요.
+`AppDelegate` 클래스에서 `@end` 바로 전에 아래 코드를 새로운 메서드로 추가해주세요.
 
 ```objectivec
 - (int)getBatteryLevel {
@@ -455,8 +455,8 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 }
 ```
 
-마지막으로, 먼저 추가한 `setMethodCallHandler` 메소드를 완성합니다. 사용할 플랫폼 메소드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메소드는 단순히 이전 단계에서 작성한 iOS 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메소드가 호출된다면, 기록 해놓으세요.
+마지막으로, 먼저 추가한 `setMethodCallHandler` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 iOS 코드를 호출합니다.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메서드가 호출된다면, 기록 해놓으세요.
 
 ```objectivec
 __weak typeof(self) weakSelf = self
@@ -529,7 +529,7 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 다음으로, 배터리 레벨을 가져오기 위해 iOS 배터리 API를 사용하는 실제  iOS의 Swift 코드를 추가합니다. 해당 코드는
 네이티브 iOS 앱에서 사용하던 것과 완전히 같습니다.
 
-아래 코드를 `AppDelegate.swift`  맨 밑에 새로운 메소드로 추가하세요.
+아래 코드를 `AppDelegate.swift`  맨 밑에 새로운 메서드로 추가하세요.
 
 ```swift
 private func receiveBatteryLevel(result: FlutterResult) {
@@ -546,8 +546,8 @@ private func receiveBatteryLevel(result: FlutterResult) {
 ```
 
 
-마지막으로, 먼저 추가한 `setMethodCallHandler` 메소드를 완성합니다. 사용할 플랫폼 메소드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메소드는 단순히 이전 단계에서 작성한 iOS 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메소드가 호출된다면, 기록 해놓으세요.
+마지막으로, 먼저 추가한 `setMethodCallHandler` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 iOS 코드를 호출합니다.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메서드가 호출된다면, 기록 해놓으세요.
 
 ```swift
 batteryChannel.setMethodCallHandler({
