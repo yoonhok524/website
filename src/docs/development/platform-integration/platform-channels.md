@@ -76,7 +76,7 @@ packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참
 안드로이드는 Java로 되어 있고 iOS 는 Objective-C 로 되어있습니다. Swift 와 iOS에 대한 예제는 다음을
 참고하세요.[`/examples/platform_channel_swift/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel_swift)
 
-### Step 1: 새로운 앱 프로젝트 만들기 {#example-project}
+### 1단계: 새로운 앱 프로젝트 만들기 {#example-project}
 
 새로운 앱을 만들어서 시작하세요.
 
@@ -87,11 +87,11 @@ packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참
 
 * 터미널에서 실행: `flutter create -i swift -a kotlin batterylevel`
 
-### Step 2: Flutter 플랫폼 클라이언트 생성 {#example-client}
+### 2단계: Flutter 플랫폼 클라이언트 생성 {#example-client}
 
 앱의 `State` 클래스가 현재 앱 상태를 저장합니다. 현재 배터리 상태를 저장하려면 이를 상속해야 합니다.
 
-먼저, 채널을 작성합니다. 우린 배터리 레벨을 반환하는 한개의 플랫폼 메서드를 가진 `MethodChannel`을 사용할
+먼저, 채널을 생성합니다. 배터리 레벨을 반환하는 한개의 플랫폼 메서드를 가진 `MethodChannel`을 사용할
 것입니다.
 
 
@@ -140,8 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 ```
 
-
-마지막으로, 기존 템플릿의 `build` 메서드를  작은 UI (문자열로 배터리 레벨 표시를 하기 위함)와 값을 새로고침하기 위한 버튼을 생성하는 코드로 바꾸세요.
+마지막으로, 문자열로 배터리 상태를 표시하는 작은 UI와 그 값을 새로고침하는 버튼을 생성하도록 기존 템플릿의 `build` 메소드를 수정하세요.
 
 <!-- skip -->
 ```dart
@@ -165,9 +164,9 @@ Widget build(BuildContext context) {
 ```
 
 
-### Step 3a : Java를 이용한 안드로이드 플랫폼 구현 {#example-java}
+### 3a단계 : Java를 이용한 안드로이드 플랫폼 구현 {#example-java}
 
-*참고*: 해당 단계는 Java를 사용합니다. 코틀린을 선호한다면, Step 3b 로 넘어가세요.
+*참고*: 해당 단계는 Java를 사용합니다. 코틀린을 선호한다면, 3b단계 로 넘어가세요.
 
 
 안드로이드 스튜디오에서 안드로이드 부분을 열어서 시작하세요:
@@ -176,7 +175,7 @@ Widget build(BuildContext context) {
 
 1. 메뉴에서 'File > Open...' 선택
 
-1. Flutter 앱이 있는 디렉토리로 이동해서, 그 안의 `android` 폴더를 선택합니다. OK를 클릭합니다.
+1. Flutter 앱이 있는 디렉토리로 이동해서, 그 안의 `android` 폴더를 선택합니다. OK를 클릭하세요.
 
 1. 프로젝트 뷰에서 `java` 폴더 안에 있는 `MainActivity.java` 를 엽니다.
 
@@ -248,8 +247,9 @@ private int getBatteryLevel() {
 ```
 
 
-마지막으로, 먼저 추가한 `onMethodCall` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메서드가 호출된다면, 기록 해놓으세요.
+마지막으로, 먼저 추가한 `onMethodCall` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel`이며, 이는 `call` 인자 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
+이 플랫폼 메서드는 단순히 전 단계에서 작성한 안드로이드 코드를 호출하며, `response` 인자를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
 
 아래 코드를:
 
@@ -283,13 +283,13 @@ public void onMethodCall(MethodCall call, Result result) {
 버튼을 눌러 제어판을 통해 배터리 레벨을 설정할 수 있습니다.
 
 
-### Step 3b : Kotlin을 사용해서 안드로이드 플랫폼 구현 추가 {#example-kotlin}
+### 3b단계 : Kotlin을 사용해서 안드로이드 플랫폼 구현 추가 {#example-kotlin}
 
 
 *참고*: 이 단계는 Java 말고 Kotlin을 사용하는 것 외엔 3a와 비슷합니다.
 
 
-이 과정은 [step 1.](#example-project) 으로 프로젝트를 생성할 때 `-a kotlin` 옵션을 사용했다고
+이 과정은 [1단계](#example-project)로 프로젝트를 생성할 때 `-a kotlin` 옵션을 사용했다고
 가정합니다.
 
 
@@ -363,7 +363,7 @@ import android.os.Build.VERSION_CODES
 
 
 마지막으로, 먼저 추가한 `onMethodCall` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메서드가 호출된다면, 기록 해놓으세요.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
 
 아래 코드를:
 
@@ -396,10 +396,10 @@ import android.os.Build.VERSION_CODES
 버튼에서 제어판을 열어서 배터리 레벨을 설정할 수 있습니다.
 
 
-### Step 4a : Objective-C를 이용해서 iOS 플랫폼 특화 구현 추가 {#example-objc}
+### 4a단계 : Objective-C를 이용해서 iOS 플랫폼 특화 구현 추가 {#example-objc}
 
 
-*참고*: 해당 단계는 Objective-C 를 사용합니다. Swift를 선호한다면, step 4b로 건너뛰세요.
+*참고*: 해당 단계는 Objective-C 를 사용합니다. Swift를 선호한다면, 4b단계로 건너뛰세요.
 
 Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 
@@ -456,7 +456,7 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 ```
 
 마지막으로, 먼저 추가한 `setMethodCallHandler` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 iOS 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메서드가 호출된다면, 기록 해놓으세요.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
 
 ```objectivec
 __weak typeof(self) weakSelf = self
@@ -479,11 +479,11 @@ __weak typeof(self) weakSelf = self
 
 이제 iOS 에서 앱을 실행하는 것이 가능합니다.  만약 iOS 시뮬레이터를 사용하고 있다면, 배터리 API 가 지원되지 않음을 알아두세요. (앱에서는 'battery info unavailable' 이라는 메시지를 보여줄 것입니다.)
 
-### Step 4b: Add an iOS platform-specific implementation using Swift {#example-swift}
+### 4b단계: Add an iOS platform-specific implementation using Swift {#example-swift}
 
-*참고*: 아래 단계는 Objective-C 말고 Swift를 사용한다는 외에는 step 4a 와 비슷합니다. 
+*참고*: 아래 단계는 Objective-C 말고 Swift를 사용한다는 외에는 4a단계 와 비슷합니다. 
 
-이 과정은 [step 1.](#example-project) 으로 프로젝트를 생성할 때 `-i swift` 옵션을 사용했다고
+이 과정은 [1단계](#example-project)로 프로젝트를 생성할 때 `-i swift` 옵션을 사용했다고
 가정합니다.
 
 Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
@@ -547,7 +547,7 @@ private func receiveBatteryLevel(result: FlutterResult) {
 
 
 마지막으로, 먼저 추가한 `setMethodCallHandler` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 iOS 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메서드가 호출된다면, 기록 해놓으세요.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
 
 ```swift
 batteryChannel.setMethodCallHandler({
