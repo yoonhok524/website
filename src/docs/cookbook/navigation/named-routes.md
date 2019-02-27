@@ -1,27 +1,25 @@
 ---
-title: Navigate with named routes
+title: 명명된 경로로의 화면 전환
 prev:
-  title: Navigate to a new screen and back
+  title: 새로운 화면으로 이동하고, 되돌아오기
   path: /docs/cookbook/navigation/navigation-basics
 next:
   title: Return data from a screen
   path: /docs/cookbook/navigation/returning-data
 ---
 
-In the
-[Navigate to a new screen and back](/docs/cookbook/navigation/navigation-basics/)
-recipe, we learned how to Navigate to a new screen by creating a new route and
-pushing it to the
-[`Navigator`]({{site.api}}/flutter/widgets/Navigator-class.html).
+[새로운 화면으로 이동하고, 되돌아오기](/docs/cookbook/navigation/navigation-basics/)
+예제에서는 새로 생성한 경로를 
+[`Navigator`]({{site.api}}/flutter/widgets/Navigator-class.html)
+에 전달하여 새로운 화면으로 전환하는 방법을 배웠습니다.
 
-However, if we need to navigate to the same screen in many parts of our apps,
-this can result in code duplication. In these cases, it can be handy to define
-a "named route," and use the named route for Navigation.
+하지만 만약 앱의 다른 많은 부분들에서 동일한 화면으로 이동하고자 한다면, 중복된 코드가
+생기게 되는데, 이러한 경우 "명명된 경로"를 정의하여 화면 전환에 사용하는 방법이 해결책이
+될 수 있습니다.
 
-To work with named routes, we can use the
-[`Navigator.pushNamed`]({{site.api}}/flutter/widgets/Navigator/pushNamed.html)
-function. This example will replicate the functionality from the original
-recipe, demonstrating how to use named routes instead.
+명명된 경로를 사용하기 위해 [`Navigator.pushNamed`]({{site.api}}/flutter/widgets/Navigator/pushNamed.html)
+함수를 사용할 수 있습니다. 이 예제에서는 명명된 경로를 사용하는 방법을 보여주기 위해
+기존 예제의 기능을 사용할 것입니다.
 
 ## Directions
 
