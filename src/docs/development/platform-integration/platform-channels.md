@@ -96,7 +96,7 @@ packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참
 
 
 채널의 클라이언트와 호스트는 채널 생성자를 통해 전달된 채널 이름으로 연결됩니다. 하나의 앱에서 사용하는 모든
-채널 이름은 유일해야 하기 때문에, 유일한 도메인 prefix를 사용해서 채널 이름 앞에 추가할 것을 권장합니다. 
+채널 이름은 유일해야 하기 때문에, 유일한 도메인 접두사를 사용해서 채널 이름 앞에 추가할 것을 권장합니다. 
 예) `samples.flutter.io/battery`
 
 <!-- skip -->
