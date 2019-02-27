@@ -1031,20 +1031,21 @@ import 'package:http/http.dart' as http;
 }
 {% endprettify %}
 
-### How do I show the progress for a long-running task?
+### 시간이 오래 걸리는 작업을 할 때 어떻게 진행 상태를 표시할 수 있을까요?
 
-In Android you would typically show a `ProgressBar` view in your UI while
-executing a long running task on a background thread.
+안드로이드에서는 보통
+백그라운드 스레드에서 긴 작업을 수행하는 동안
+UI에 `ProgressBar` 뷰를 표시합니다.
 
-In Flutter, use a `ProgressIndicator` widget.
-Show the progress programmatically by controlling when it's rendered
-through a boolean flag. Tell Flutter to update its state before your
-long-running task starts, and hide it after it ends.
+Flutter에서는 `ProgressIndicator` 위젯을 사용합니다.
+렌더링 되는 시점을 boolean으로 제어하여 진행 상태를 표시하세요.
+긴 작업이 시작되기 전에 Flutter에게 위젯의 상태를 변경해야 한다고 알려주고, 
+작업이 끝나면 위젯을 숨기세요. 
 
-In the following example, the build function is separated into three different
-functions. If `showLoadingDialog()` is `true` (when `widgets.length == 0`),
-then render the `ProgressIndicator`. Otherwise, render the
-`ListView` with the data returned from a network call.
+아래 예시에서는 빌드 함수를 3개로 분리합니다.
+`showLoadingDialog()`가 `true` 이면 (`widgets.length == 0`일 때),
+`ProgressIndicator`를 그립니다.
+그렇지 않은 상황에서는 네트워크 요청을 통해 얻은 데이터를 활용하여 `ListView`를 그립니다.
 
 {% prettify dart %}
 import 'dart:convert';
@@ -1130,24 +1131,23 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-## Project structure & resources
+## 프로젝트 구조 & 자원
 
-### Where do I store my resolution-dependent image files?
+### 해상도별 이미지 파일은 어디에 저장하나요?
 
-While Android treats resources and assets as distinct items, Flutter apps have
-only assets. All resources that would live in the `res/drawable-*`
-folders on Android, are placed in an assets folder for Flutter.
+안드로이드는 리소스와 asset을 별개의 항목으로 다루지만, Flutter 앱은 asset만 가지고 있습니다.
+안드로이드의 `res/drawable-*` 폴더에 있는 모든 리소스는 Flutter의 assets 폴더에 저장됩니다. 
 
-Flutter follows a simple density-based format like iOS. Assets might be `1.0x`,
-`2.0x`, `3.0x`, or any other multiplier. Flutter doesn't have `dp`s but there
-are logical pixels, which are basically the same as device-independent pixels.
-The so-called
+Flutter는 iOS처럼 단순한 해상도 기반 형식을 사용합니다. 
+`1.0x`, `2.0x`, `3.0x`, 혹은 다른 배율의 asset이 있을 수 있습니다.
+Flutter는 `dp`를 사용하지 않지만, 기본적으로 장비 독립적인 픽셀과 동일한 논리적 픽셀을 사용합니다.
+이른바
 [`devicePixelRatio`]({{site.api}}/flutter/dart-ui/Window/devicePixelRatio.html)
-expresses the ratio of physical pixels in a single logical pixel.
+는 하나의 논리적 픽셀에서 물리적 픽셀의 비율을 나타냅니다. 
 
-The equivalent to Android's density buckets are:
+안드로이드의 해상도 단위와 비교하면 아래와 같습니다:
 
- Android density qualifier | Flutter pixel ratio
+ 안드로이드 해상도 단위 | Flutter 픽셀 비율
  --- | ---
  `ldpi` | `0.75x`
  `mdpi` | `1.0x`
@@ -1156,28 +1156,26 @@ The equivalent to Android's density buckets are:
  `xxhdpi` | `3.0x`
  `xxxhdpi` | `4.0x`
 
-Assets are located in any arbitrary folder&mdash;Flutter has no
-predefined folder structure. You declare the assets (with location) in
-the `pubspec.yaml` file, and Flutter picks them up.
 
-Note that before Flutter 1.0 beta 2, assets defined in Flutter were not
-accessible from the native side, and vice versa, native assets and resources
-weren’t available to Flutter, as they lived in separate folders.
+어느 곳에나 asset 폴더를 만들 수 있습니다. Flutter는 미리 정의된 폴더 구조가 없습니다.
+`pubspec.yaml` 파일에 asset을 (위치와 함께) 선언하면, Flutter가 추출해갑니다.
 
-As of Flutter beta 2, assets are stored in the native asset folder,
-and are accessed on the native side using Android's `AssetManager`:
+Flutter 1.0 베타 2 이전에는 Flutter 안에 정의된 asset을 네이티브 쪽에서 접근할 수 없었으며, 
+그 반대의 경우에도 분리된 폴더에 있기 때문에 네이티브 asset과 리소스에 Flutter가 접근할 수 없었습니다.
+
+Flutter 베타 2부터는 asset이 네이티브 asset 폴더에 저장되고, 
+안드로이드의 `AssetManager`를 사용하여 네이티브 쪽에서 asset에 접근할 수 있습니다:
 
 {% prettify kotlin %}
 val flutterAssetStream = assetManager.open("flutter_assets/assets/my_flutter_asset.png")
 {% endprettify %}
 
-As of Flutter beta 2, Flutter still cannot access native resources, nor it can
-access native assets.
+Flutter 베타 2에서도 Flutter가 네이티브 리소스와 네이티브 asset에 접근할 수는 없습니다. 
 
-To add a new image asset called `my_icon.png` to our Flutter project, for example,
-and deciding that it should live in a folder we arbitrarily called `images`, you
-would put the base image (1.0x) in the `images` folder, and all the other
-variants in sub-folders called with the appropriate ratio multiplier:
+예를 들어, `my_icon.png`라는 새로운 이미지 asset을 새로운 Flutter 프로젝트에 추가하기 위해,
+임의로 `images`라는 폴더에 담아야 한다고 정하면,
+기본 이미지 (1.0x)를 `images` 폴더에 넣고,
+적합한 배율을 폴더 이름으로 지정하여 하위 폴더에 다른 변형 이미지들을 넣을 수 있습니다:
 
 ```
 images/my_icon.png       // Base: 1.0x image
@@ -1185,20 +1183,20 @@ images/2.0x/my_icon.png  // 2.0x image
 images/3.0x/my_icon.png  // 3.0x image
 ```
 
-Next, you'll need to declare these images in your `pubspec.yaml` file:
+다음으로 `pubspec.yaml`에 이 이미지들을 선언해야 합니다:
 
 {% prettify yaml %}
 assets:
  - images/my_icon.jpeg
 {% endprettify %}
 
-You can then access your images using `AssetImage`:
+그러면 이제 `AssetImage`를 사용하여 이미지에 접근할 수 있습니다:
 
 {% prettify dart %}
 return AssetImage("images/a_dot_burr.jpeg");
 {% endprettify %}
 
-or directly in an `Image` widget:
+혹은 바로 `Image` 위젯을 사용할 수도 있습니다:
 
 {% prettify dart %}
 @override

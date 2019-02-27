@@ -244,7 +244,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
  5. 앱이 실행중이면, hot reload 버튼<i class="material-icons align-bottom">offline_bolt</i>을 사용하여 
     실행중인 앱을 업데이트하세요. 
     실행중인 앱에서 hot reload를 클릭할 때마다 혹은 프로젝트를 저장할 때마다, 랜덤하게 선택된 다른 단어 쌍을 볼 수 있을 것입니다.
-    왜냐하면 MaterialApp이 랜더링 될 때마다 혹은 또는 Flutter Inspector에서 플랫폼을 전환할 때마다
+    왜냐하면 MaterialApp이 렌더링 될 때마다 혹은 또는 Flutter Inspector에서 플랫폼을 전환할 때마다
     실행되는 build 메서드 안에서 단어 쌍을 생성하고 있기 때문입니다.
 
     {% indent %}
