@@ -1031,19 +1031,19 @@ import 'package:http/http.dart' as http;
 }
 {% endprettify %}
 
-### 어떻게 긴 작업을 할 때 진행 상태를 표시할 수 있나요?
+### 시간이 오래 걸리는 작업을 할 때 어떻게 진행 상태를 표시할 수 있을까요?
 
 안드로이드에서는 보통
 백그라운드 스레드에서 긴 작업을 수행하는 동안
 UI에 `ProgressBar` 뷰를 표시합니다.
 
 Flutter에서는 `ProgressIndicator` 위젯을 사용합니다.
-랜더링 되는 시점을 boolean으로 제어하여 진행 상태를 표시하세요.
+렌더링 되는 시점을 boolean으로 제어하여 진행 상태를 표시하세요.
 긴 작업이 시작되기 전에 Flutter에게 위젯의 상태를 변경해야 한다고 알려주고, 
-긴 작업이 끝나면 위젯을 숨기세요. 
+작업이 끝나면 위젯을 숨기세요. 
 
 아래 예시에서는 빌드 함수를 3개로 분리합니다.
-`showLoadingDialog()`가 `true` 이면 (when `widgets.length == 0`),
+`showLoadingDialog()`가 `true` 이면 (`widgets.length == 0`일 때),
 `ProgressIndicator`를 그립니다.
 그렇지 않은 상황에서는 네트워크 요청을 통해 얻은 데이터를 활용하여 `ListView`를 그립니다.
 
@@ -1143,7 +1143,7 @@ Flutter는 iOS처럼 단순한 해상도 기반 형식을 사용합니다.
 Flutter는 `dp`를 사용하지 않지만, 기본적으로 장비 독립적인 픽셀과 동일한 논리적 픽셀을 사용합니다.
 이른바
 [`devicePixelRatio`]({{site.api}}/flutter/dart-ui/Window/devicePixelRatio.html)
-는 하나의 논리 픽셀에서 물리적 픽셀의 비율을 나타냅니다. 
+는 하나의 논리적 픽셀에서 물리적 픽셀의 비율을 나타냅니다. 
 
 안드로이드의 해상도 단위와 비교하면 아래와 같습니다:
 
@@ -1157,7 +1157,7 @@ Flutter는 `dp`를 사용하지 않지만, 기본적으로 장비 독립적인 �
  `xxxhdpi` | `4.0x`
 
 
-어느곳에나 asset 폴더를 만들 수 있습니다. Flutter는 미리 정의된 폴더 구조가 없습니다.
+어느 곳에나 asset 폴더를 만들 수 있습니다. Flutter는 미리 정의된 폴더 구조가 없습니다.
 `pubspec.yaml` 파일에 asset을 (위치와 함께) 선언하면, Flutter가 추출해갑니다.
 
 Flutter 1.0 베타 2 이전에는 Flutter 안에 정의된 asset을 네이티브 쪽에서 접근할 수 없었으며, 
@@ -1183,7 +1183,7 @@ images/2.0x/my_icon.png  // 2.0x image
 images/3.0x/my_icon.png  // 3.0x image
 ```
 
-다음으로 `pubspec.yaml`에 이 이미지들을 선언할 필요가 있습니다:
+다음으로 `pubspec.yaml`에 이 이미지들을 선언해야 합니다:
 
 {% prettify yaml %}
 assets:
