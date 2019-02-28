@@ -8,17 +8,15 @@ title: Flutter 앱 테스트하기
 
 자동 테스트는 아래의 몇 가지 카테고리로 나뉩니다:
 
-- _단위 테스트_ 는 단위 기능, 방법 또는 클래스를 테스트합니다. 테스트 유닛의 외부      의존성은 일반적으로 흉내내어 집니다 ([mocked out](/cookbook/testing/mocking)).
+- _단위 테스트_ 는 단위 기능, 방법 또는 클래스를 테스트합니다. 테스트 유닛의 외부 의존성은 일반적으로 흉내내어 집니다 ([mocked out](/cookbook/testing/mocking)).
   일반적으로 단위 테스트는 테스트가 실행되고 있는 동안 저장소를 읽거나 쓰지 않으며, 스크린 렌더링을 하지 않고, 외부에서 사용자 액션을 받지 않습니다.
   단위 테스트의 목적은 다양한 조건 아래에서 논리 단위의 정확성을 검증하는 것입니다.
   _위젯 테스트_(다른 UI 프레임워크에서는 _컴포넌트 테스트_ 라 불립니다) 는 단일 위젯을 테스트합니다.
   위젯 테스트는 다수의 클래스를 포함하며 적합한 위젯 생명주기 컨텍스트를 제공하는 테스트 환경을 요구합니다.
   예를 들어 사용자의 행동과 이벤트를 받고 응답할 수 있어야 하며 레이아웃을 수행하고 자식 위젯을 인스턴스화 하는 것이 있습니다.
-  A widget test is therefore more comprehensive than a unit test. However, like a unit test, a
-  widget test's environment is replaced with an implementation much simpler than
-  a full-blown UI system. The goal of a widget test is to verify that the
-  widget's UI looks and interacts as expected.
-  위젯 테스트는 ~
+  그러므로 위젯 테스트는 단위 테스트보다 더 포괄적이라고 볼 수 있습니다.
+  하지만 단위 테스트처럼 위젯 테스트의 환경은 전체 UI 시스템보다 훨씬 간단한 구현으로 대체됩니다.
+  위젯 테스트의 목적은 위젯 UI가 예상한대로 보이는지, 상호 작용하는지 검증하는 것입니다.
 
 - An [_integration test_](https://en.wikipedia.org/wiki/Integration_testing)
   tests a complete app or a large part of an app. Generally, an
@@ -32,12 +30,12 @@ title: Flutter 앱 테스트하기
 Here is a table summarizing the tradeoffs concerning the choice between
 different kinds of tests:
 
-|                      | Unit   | Widget | Integration |
+|                      | 단위   | 위젯 | 통합 |
 |----------------------|--------|--------|-------------|
-| **신뢰도**       | Low    | Higher | Highest     |
-| **유지 비용** | Low    | Higher | Highest     |
-| **의존성**     | Few    | More   | Most        |
-| **실행 속도**  | Quick  | Slower | Slowest     |
+| **신뢰도**       | 낮음    | 높음 | 가장 높음     |
+| **유지 비용** | 낮음    | 높음 | 가장 높음     |
+| **의존성**     | 조금    | 높음   | 가장 높음        |
+| **실행 속도**  | 빠름  | 느림 | 가장 느림     |
 {:.table.table-striped}
 
 {{site.alert.tip}}
