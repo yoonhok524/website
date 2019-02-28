@@ -11,15 +11,15 @@ title: Flutter 앱 테스트하기
 - _단위 테스트_ 는 단위 기능, 방법 또는 클래스를 테스트합니다. 테스트 유닛의 외부      의존성은 일반적으로 흉내내어 집니다 ([mocked out](/cookbook/testing/mocking)).
   일반적으로 단위 테스트는 테스트가 실행되고 있는 동안 저장소를 읽거나 쓰지 않으며, 스크린 렌더링을 하지 않고, 외부에서 사용자 액션을 받지 않습니다.
   단위 테스트의 목적은 다양한 조건 아래에서 논리 단위의 정확성을 검증하는 것입니다.
-- A _widget test_ (in other UI frameworks referred to as _component test_) tests
-  a single widget. Testing a widget involves multiple classes and requires a
-  test environment that provides the appropriate widget lifecycle context. For
-  example, it should be able to receive and respond to user actions and events,
-  perform layout, and instantiate child widgets. A widget test is
-  therefore more comprehensive than a unit test. However, like a unit test, a
+  _위젯 테스트_(다른 UI 프레임워크에서는 _컴포넌트 테스트_ 라 불립니다) 는 단일 위젯을 테스트합니다.
+  위젯 테스트는 다수의 클래스를 포함하며 적합한 위젯 생명주기 컨텍스트를 제공하는 테스트 환경을 요구합니다.
+  예를 들어 사용자의 행동과 이벤트를 받고 응답할 수 있어야 하며 레이아웃을 수행하고 자식 위젯을 인스턴스화 하는 것이 있습니다.
+  A widget test is therefore more comprehensive than a unit test. However, like a unit test, a
   widget test's environment is replaced with an implementation much simpler than
   a full-blown UI system. The goal of a widget test is to verify that the
   widget's UI looks and interacts as expected.
+  위젯 테스트는 ~
+
 - An [_integration test_](https://en.wikipedia.org/wiki/Integration_testing)
   tests a complete app or a large part of an app. Generally, an
   _integration test_ runs on a real device or an OS emulator, such as iOS
