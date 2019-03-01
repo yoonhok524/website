@@ -21,14 +21,14 @@ next:
 함수를 사용할 수 있습니다. 이 예제에서는 명명된 경로를 사용하는 방법을 보여주기 위해
 기존 예제의 기능을 사용할 것입니다.
 
-## Directions
+## 진행 단계
 
-  1. Create two screens
-  2. Define the routes
-  3. Navigate to the second screen using `Navigator.pushNamed`
-  4. Return to the first screen using `Navigator.pop`
+  1. 두 개의 화면 만들기
+  2. 경로 정의하기
+  3. `Navigator.pushNamed`를 사용하여 두 번째 화면으로 전환하기
+  4. `Navigator.pop`을 사용하여 첫 번째 화면으로 돌아오기
 
-## 1. Create two screens
+## 1. 두 개의 화면 만들기
 
 First, we'll need two screens to work with. The first screen will contain a
 button that navigates to the second screen. The second screen will contain a
@@ -74,7 +74,7 @@ class SecondScreen extends StatelessWidget {
 }
 ```
 
-## 2. Define the routes
+## 2. 경로 정의하기
 
 Next, we'll need to define our routes by providing additional properties to the
 [`MaterialApp`]({{site.api}}/flutter/material/MaterialApp-class.html)
