@@ -18,17 +18,16 @@ title: Flutter 앱 테스트하기
   하지만 단위 테스트처럼 위젯 테스트의 환경은 전체 UI 시스템보다 훨씬 간단한 구현으로 대체됩니다.
   위젯 테스트의 목적은 위젯 UI가 예상한대로 보이는지, 상호 작용하는지 검증하는 것입니다.
 
-- An [_integration test_](https://en.wikipedia.org/wiki/Integration_testing)
-  tests a complete app or a large part of an app. Generally, an
-  _integration test_ runs on a real device or an OS emulator, such as iOS
-  Simulator or Android Emulator. The app under test is typically isolated from
-  the test driver code to avoid skewing the results. The goal of an integration
-  test is to verify that the app functions correctly as a whole, that all the
-  widgets it is composed of integrate with each other as expected. You can also
-  use your integration tests to verify your app's performance.
+- [_통합 테스트_](https://en.wikipedia.org/wiki/Integration_testing)
+  완성된 앱이나 앱의 상당 부분을 테스트합니다. 일반적으로 _통합 테스트_는 실제 장치나 
+  iOS 시뮬레이터와 안드로이드 에뮬레이터와 같은 OS 에뮬레이터에서 실행됩니다.
+  테스트 대상 앱은 일반적으로 결과가 왜곡되지 않도록 테스트 드라이버 코드에서 격리됩니다.
+  
+  통합의 목표
+  테스트는 앱이 전체적으로 올바르게 작동하는지, 모든 위젯이 예상대로 서로 통합되어있는지 확인하는 것입니다.
+  또한 통합 테스트를 앱의 성능 검증을 위해 사용할 수 있습니다.
 
-Here is a table summarizing the tradeoffs concerning the choice between
-different kinds of tests:
+다음은 다른 종류의 테스트들 간의 선택에 관한 표입니다
 
 |                      | 단위   | 위젯 | 통합 |
 |----------------------|--------|--------|-------------|
@@ -39,9 +38,8 @@ different kinds of tests:
 {:.table.table-striped}
 
 {{site.alert.tip}}
-  A well-tested app has many unit and widget tests,
-  tracked by [code coverage](https://en.wikipedia.org/wiki/Code_coverage),
-  plus enough integration tests to cover all the important use cases.
+  철저히 테스트된 앱은 코드 적용범위[(code coverage)](https://en.wikipedia.org/wiki/Code_coverage)에 의해 추적되는 많은 단위와 위젯테스트를 가지고 있으며,
+  모든 중요한 사용 사례를 커버하기에 충분한 통합 테스트를 가지고 있습니다.
 {{site.alert.end}}
 
 
@@ -327,6 +325,7 @@ but for the `_test` suffix in it.
 ## Continuous integration and testing
 
 For information on continuous deployment and testing, see the following:
+아래를 통해 지속 개발과 테스트에 관한 정보를 확인할 수 있습니다.
 
 * [Continuous Delivery using fastlane with
   Flutter](/docs/deployment/fastlane-cd/)
