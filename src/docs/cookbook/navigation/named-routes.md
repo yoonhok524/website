@@ -4,12 +4,12 @@ prev:
   title: 새로운 화면으로 이동하고, 되돌아오기
   path: /docs/cookbook/navigation/navigation-basics
 next:
-  title: Return data from a screen
+  title: 이전 화면에 데이터 반환하기
   path: /docs/cookbook/navigation/returning-data
 ---
 
 [새로운 화면으로 이동하고, 되돌아오기](/docs/cookbook/navigation/navigation-basics/)
-예제에서는 새로 생성한 경로를 
+예제에서는 경로 생성하고,
 [`Navigator`]({{site.api}}/flutter/widgets/Navigator-class.html)
 에 전달하여 새로운 화면으로 전환하는 방법을 배웠습니다.
 
