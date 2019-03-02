@@ -29,7 +29,7 @@ title: Flutter 앱 테스트하기
 ## 단위 테스트
 
 단위 테스트_ 는 단위 기능, 방법 또는 클래스를 테스트합니다. 단위 테스트의 목적은 다양한 조건 아래에서 논리 단위의 정확성을 검증하는 것입니다.
-테스트 유닛의 외부 의존성은 일반적으로 흉내내어 집니다 ([mocked out](/cookbook/testing/mocking)).
+테스트 유닛의 외부 의존성은 일반적으로 흉내내어 집니다. [(mocked out)](/cookbook/testing/mocking)
 일반적으로 단위 테스트는 테스트가 실행되고 있는 동안 저장소를 읽거나 쓰지 않으며, 스크린 렌더링을 하지 않고, 외부에서 사용자 액션을 받지 않습니다.
 
 ### 사용 방법
@@ -65,12 +65,11 @@ iOS 시뮬레이터와 안드로이드 에뮬레이터와 같은 OS 에뮬레이
   
 ## 연속 통합 서비스
 
-Continuous integration (CI) services allow you to run your tests automatically
-when pushing new code changes. This provides timely feedback on whether the code
-changes work as expected and do not introduce bugs.
+연속 통합 (CI) 서비스는 새로운 코드 변경을 푸시할때 자동으로 테스트하는 것을 허용합니다.
+이는 코드 변경이 예상대로 작동하는지, 버그가 생기지 않는지에 대한 여부를 때에 맞춰 피드백합니다.
 
-For information on running tests on various continuous integration services,
-please see the following: 
+
+다양한 연속 통합 서비스에 대한 테스트 실행에 대한 정보는 다음을 참조하시기 바랍니다.
 
 * [Continuous Delivery using fastlane with
   Flutter](/docs/deployment/fastlane-cd/)
