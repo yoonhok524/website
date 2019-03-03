@@ -1,11 +1,11 @@
 ---
-title: Navigate to a new screen and back
-description: How to navigate between routes
+title: 새로운 화면으로 이동하고, 되돌아오기
+description: 화면간 이동하는 방법
 prev:
-  title: Animating a Widget across screens
+  title: 화면을 넘나드는 위젯 애니메이션
   path: /docs/cookbook/navigation/hero-animations
 next:
-  title: Navigate with named routes
+  title: 명명된 경로로의 화면 전환
   path: /docs/cookbook/navigation/named-routes
 ---
 
