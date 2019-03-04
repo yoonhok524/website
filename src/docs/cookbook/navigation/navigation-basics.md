@@ -9,39 +9,38 @@ next:
   path: /docs/cookbook/navigation/named-routes
 ---
 
-Most apps contain several screens for displaying different types of information.
-For example, an app might have a screen that displays products. Users can then
-tap the image of a product to get more detailed information on a new screen.
+대부분의 앱은 여러 종류의 정보를 보여주기 위해 하나 이상의 여러 화면을 갖고 있습니다.
+예를 들어, 어떤 앱이 상품 목록을 보여주는 화면을 갖고 있다고 한다면, 사용자는 그 중 
+한 상품을 선택하여 새로운 화면에서 해당 상품의 상세 정보를 볼 수 있습니다.
 
 {{site.alert.info}}
-  **Terminology**: In Flutter, _screens_ and _pages_ are called _routes_.
-  The remainder of this doc refers to routes.
+  **용어**: Flutter에서 _screen_ 과 _page_ 는 _route_ 로 불립니다.
+  이 문서의 나머지 부분에서는 Route라고 언급합니다.
 {{site.alert.end}}
 
-In Android, a route is equivalent to an Activity.
-In iOS, a route is equivalent to a ViewController.
-In Flutter, a route is just a widget.
+Route는 안드로이드의 Activity, iOS의 ViewController와 동일합니다.
+Flutter에서 route는 단지 위젯입니다.
 
-How do you navigate to a new route? By using the
-[`Navigator`]({{site.api}}/flutter/widgets/Navigator-class.html).
+새로운 route로 어떻게 이동할까요? 
+[`Navigator`]({{site.api}}/flutter/widgets/Navigator-class.html)를 사용하세요.
 
-## Directions
+## 진행 단계
 
 The next few sections show how to navigate between two routes,
-using these steps:
+다음 섹션에서 두 개의 route에서 화면 전환하는 방법을 보여주겠습니다.
+아래 단계를 따라오세요:
 
-  1. Create two routes
-  2. Navigate to the second route using Navigator.push()
-  3. Return to the first route using Navigator.pop()
+  1. 두 개의 route를 생성합니다.
+  2. Navigator.push()를 사용하여 두 번째 route로 전환합니다.
+  3. Navigator.pop()을 사용하여 첫 번째 route로 되돌아 옵니다.
 
-## 1. Create two routes
+## 1. 두 개의 route를 생성합니다.
 
-First, create two routes to work with. Since this is a basic example,
-each route contains only a single button. Tapping the button on the
-first route navigates to the second route. Tapping the button on the
-second route returns to the first route.
+우선 두 개의 route를 생성합니다. 간단한 예제이기 때문에 각 route에는 버튼
+하나 씩만 넣어줄 겁니다. 첫 번째 route의 버튼을 누르면 두 번째 route로 
+화면 전환되며, 두 번째 route의 버튼을 누르면 첫 번째 route로 되돌아 옵니다.
 
-First, set up the visual structure:
+우선 가상 구조를 세팅합니다.
 
 ```dart
 class FirstRoute extends StatelessWidget {
@@ -55,7 +54,7 @@ class FirstRoute extends StatelessWidget {
         child: RaisedButton(
           child: Text('Open route'),
           onPressed: () {
-            // Navigate to second route when tapped.
+            // 눌렀을 때 두 번째 route로 이동합니다.
           },
         ),
       ),
@@ -73,7 +72,7 @@ class SecondRoute extends StatelessWidget {
       body: Center(
         child: RaisedButton(
           onPressed: () {
-            // Navigate back to first route when tapped.
+            // 눌렀을 때 첫 번째 route로 되돌아 갑니다.
           },
           child: Text('Go back!'),
         ),
@@ -83,19 +82,17 @@ class SecondRoute extends StatelessWidget {
 }
 ```
 
-## 2. Navigate to the second route using Navigator.push()
+## 2. Navigator.push()를 사용하여 두 번째 route로 전환합니다.
 
-To switch to a new route, use the
+새로운 route로 전환하기 위해 
 [`Navigator.push()`]({{site.api}}/flutter/widgets/Navigator/push.html)
-method. The `push()` method adds a `Route` to the stack of routes managed by
-the Navigator. Where does the `Route` come from?
-You can create your own, or use a
-[`MaterialPageRoute`]({{site.api}}/flutter/material/MaterialPageRoute-class.html),
-out of the box. `MaterialPageRoute` is handy because it transitions to the
-new route using a platform-specific animation.
+메서드를 사용하세요. `push()` 메서드는 `Route`를 Navigator에 의해 관리되는 
+route 스택에 추가합니다. `Route`는 어디서 오는 걸까요?
+직접 생성하거나 [`MaterialPageRoute`]({{site.api}}/flutter/material/MaterialPageRoute-class.html)의 
+것을 사용할 수 있습니다. `MaterialPageRoute`는 새로운 route로 이동 시 
+플랫폼 특화된 애니메이션을 사용하기 때문에 편리합니다.
 
-In the `build()` method of the `FirstRoute` widget, update the `onPressed()`
-callback:
+`FirstRoute` 위젯의 `build()` 메서드에서 `onPressed()` 콜백을 수정하세요:
 
 <!-- skip -->
 ```dart
@@ -108,15 +105,14 @@ onPressed: () {
 }
 ```
 
-## 3. Return to the first route using Navigator.pop()
+## 3. Navigator.pop()을 사용하여 첫 번째 route로 되돌아 옵니다.
 
-How do you close the second route and return to the first? By using the
+두 번쨰 route를 닫고 이전 route로 어떻게 되돌아 갈까요?
 [`Navigator.pop()`]({{site.api}}/flutter/widgets/Navigator/pop.html)
-method. The `pop()` method removes the current `Route` from the stack of
-routes managed by the navigator.
+메서드를 사용하세요. `pop()` 메서드는 Navigator에 의해 관리되는 route 스택에서 
+현재 `Route`를 제거합니ㅏ.
 
-To implement a return to the original route, update the `onPressed()`
-callback in the `SecondRoute` widget:
+이전 route로 되돌아 가기 위해, `SecondRoute` 위젯의 `onPressed()` 콜백을 수정하세요:
 
 <!-- skip -->
 ```dart
@@ -126,7 +122,7 @@ onPressed: () {
 }
 ```
 
-## Complete example
+## 완성된 예제
 
 ```dart
 import 'package:flutter/material.dart';
