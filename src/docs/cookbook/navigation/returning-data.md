@@ -1,33 +1,32 @@
 ---
-title: Return data from a screen
+title: 이전 화면에 데이터 반환하기
 prev:
-  title: Navigate with named routes
+  title: 명명된 경로로의 화면 전환
   path: /docs/cookbook/navigation/named-routes
 next:
-  title: Send data to a new screen
+  title: 새로운 화면으로 데이터 전달하기
   path: /docs/cookbook/navigation/passing-data
 ---
 
-In some cases, we might want to return data from a new screen. For example, say
-we push a new screen that presents two options to a user. When the user taps on
-an option, we'll want to inform our first screen of the user's selection so it
-can act on that information!
+새로운 화면으로부터 이전 화면으로 데이터를 반환해야하는 경우가 있습니다. 예를 들어,
+사용자에게 두 가지 옵션을 보여주는 화면이 있다고 합시다. 사용자가 한 옵션을 선택했을 때
+그것을 첫 번째 화면에 알려주면 그에 맞는 동작을 할 수 있을 것입니다!
 
-How can we achieve this? Using
-[`Navigator.pop`]({{site.api}}/flutter/widgets/Navigator/pop.html)!
 
-## Directions
+어떻게 구현할 수있을 까요?
+[`Navigator.pop`]({{site.api}}/flutter/widgets/Navigator/pop.html)을 사용하세요!
 
-  1. Define the home screen
-  2. Add a button that launches the selection screen
-  3. Show the selection screen with two buttons
-  4. When a button is tapped, close the selection screen
-  5. Show a snackbar on the home screen with the selection
+## 진행 단계
 
-## 1. Define the home screen
+  1. 홈 화면을 정의합니다.
+  2. 선택 창을 보여주는 버튼을 추가합니다.
+  3. 두 개의 버튼을 가진 선택 창을 보여줍니다.
+  4. 하나의 버튼을 클릭하면 선택 창을 닫습니다.
+  5. 선택된 정보를 홈 화면의 snackbar에 보여줍니다.
 
-The home screen will display a button. When tapped, it will launch the selection
-screen!
+## 1. 홈 화면을 정의합니다.
+
+홈 화면에서는 버튼 하나를 보여줄 것입니다. 버튼을 클릭하면 선택 창을 보여줄 것입니다!
 
 <!-- skip -->
 ```dart
@@ -38,19 +37,20 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Returning Data Demo'),
       ),
-      // We'll create the SelectionButton Widget in the next step
+      // 다음 단계에서 SelectionButton 위젯을 만들 것입니다.
       body: Center(child: SelectionButton()),
     );
   }
 }
 ```
 
-## 2. Add a button that launches the selection screen
+## 2. 선택 창을 보여주는 버튼을 추가합니다.
 
 Now, we'll create our SelectionButton. Our selection button will:
+이제 SelectionButton을 만들 차례입니다. 선택 버튼은:
 
-  1. Launch the SelectionScreen when it's tapped
-  2. Wait for the SelectionScreen to return a result
+  1. 사용자가 클릭했을 때, SelectionScreen을 보여줄 것입니다.
+  2. SelectionScreen이 결과를 반환할 때까지 대기할 것입니다.
 
 <!-- skip -->
 ```dart
@@ -65,28 +65,25 @@ class SelectionButton extends StatelessWidget {
     );
   }
 
-  // A method that launches the SelectionScreen and awaits the result from
-  // Navigator.pop
+  // SelectionScreen을 호출하고 navigator.pop으로부터 결과를 기다리는 메서드
   _navigateAndDisplaySelection(BuildContext context) async {
-    // Navigator.push returns a Future that will complete after we call
-    // Navigator.pop on the Selection Screen!
+    // Navigator.push는 Future를 반환합니다. Future는 선택 창에서 
+    // Navigator.pop이 호출된 이후 완료될 것입니다.
     final result = await Navigator.push(
       context,
-      // We'll create the SelectionScreen in the next step!
+      // 다음 단계에서 SelectionScreen를 만들 것입니다.
       MaterialPageRoute(builder: (context) => SelectionScreen()),
     );
   }
 }
 ```
 
-## 3. Show the selection screen with two buttons
+## 3. 두 개의 버튼을 가진 선택 창을 보여줍니다.
 
-Now, we'll need to build a selection screen! It will contain two buttons. When
-a user taps on a button, it should close the selection screen and let the home
-screen know which button was tapped!
+이제 선택 창을 만들 차례입니다. 선택 창은 두 개의 버튼을 갖고 있으며, 사용자가 하나의
+버튼을 클릭하면 선택 창을 닫고 그 결과를 홈 화면에 알려줄 것입니다.
 
-For now, we'll define the UI, and figure out how to return data in the next
-step.
+이번 단계에서는 UI를 정의하고, 다음 단계에서 데이터를 반환하는 방법에 대해 설명하겠습니다.
 
 ```dart
 class SelectionScreen extends StatelessWidget {
@@ -104,7 +101,7 @@ class SelectionScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
                 onPressed: () {
-                  // Pop here with "Yep"...
+                  // "Yep" 문자열과 함께 이전 화면으로 돌아갑니다.
                 },
                 child: Text('Yep!'),
               ),
@@ -113,7 +110,7 @@ class SelectionScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
                 onPressed: () {
-                  // Pop here with "Nope"
+                  // "Nope" 문자열과 함께 이전 화면으로 돌아갑니다.
                 },
                 child: Text('Nope.'),
               ),
@@ -126,49 +123,51 @@ class SelectionScreen extends StatelessWidget {
 }
 ```
 
-## 4. When a button is tapped, close the selection screen
+## 4. 하나의 버튼을 클릭하면 선택 창을 닫습니다.
 
 Now, we'll want to update the `onPressed` callback for both of our buttons! In
 order to return data to the first screen, we'll need to use the
 [`Navigator.pop`]({{site.api}}/flutter/widgets/Navigator/pop.html)
 method.
+이제 앞서 만든 두 개 버튼의 `onPressed` 콜백을 작성할 차례입니다. 첫 번째 화면으로
+데이터를 반환하기 위해, [`Navigator.pop`]({{site.api}}/flutter/widgets/Navigator/pop.html)
+메서드를 사용할 것입니다.
 
-`Navigator.pop` accepts an optional second argument called `result`. If we
-provide a result, it will be returned to the `Future` in our SelectionButton!
+`Navigator.pop`는 `result`라고 명시된 두 번째 인자를 선택적으로 받습니다. 만약
+결과 값을 인자로 제공한다면, SelectionButton의 `Future`에 실려 반환될 것입니다.
 
-### Yep button
+### Yep 버튼
 
 <!-- skip -->
 ```dart
 RaisedButton(
   onPressed: () {
-    // Our Yep button will return "Yep!" as the result
+    // Yep 버튼은 결과로 "Yep!"을 반환합니다.
     Navigator.pop(context, 'Yep!');
   },
   child: Text('Yep!'),
 );
 ```
 
-### Nope button
+### Nope 버튼
 
 <!-- skip -->
 ```dart
 RaisedButton(
   onPressed: () {
-    // Our Nope button will return "Nope!" as the result
+    // Nope 버튼은 결과로 "Nope!"을 반환합니다.
     Navigator.pop(context, 'Nope!');
   },
   child: Text('Nope!'),
 );
 ```
 
-## 5. Show a snackbar on the home screen with the selection
+## 5. 선택된 정보를 홈 화면의 snackbar에 보여줍니다.
 
-Now that we're launching a selection screen and awaiting the result, we'll want
-to do something with the information that's returned!
+선택 창을 띄우고 결과를 기다리고 있습니다. 이제 결과 값을 갖고 무언가 할 차례입니다.
 
-In this case, we'll show a Snackbar displaying the result. To do so, we'll
-update the `_navigateAndDisplaySelection` method in our `SelectionButton`.
+이 예제에서는 결과 값을 보여줄 수 있도록 Snackbar를 띄우겠습니다. 이 작업을 하기 위해
+`SelectionButton`의 `_navigateAndDisplaySelection` 메서드를 수정할 것입니다.
 
 <!-- skip -->
 ```dart
@@ -178,15 +177,15 @@ _navigateAndDisplaySelection(BuildContext context) async {
     MaterialPageRoute(builder: (context) => SelectionScreen()),
   );
 
-  // After the Selection Screen returns a result, hide any previous snackbars
-  // and show the new result!
+  // 선택 창으로부터 결과 값을 받은 후, 이전에 있던 snackbar는 숨기고 새로운 결과 값을
+  // 보여줍니다.
   Scaffold.of(context)
     ..removeCurrentSnackBar()
     ..showSnackBar(SnackBar(content: Text("$result")));
 }
 ```
 
-## Complete example
+## 완성된 예제
 
 ```dart
 import 'package:flutter/material.dart';
@@ -221,18 +220,17 @@ class SelectionButton extends StatelessWidget {
     );
   }
 
-  // A method that launches the SelectionScreen and awaits the result from
-  // Navigator.pop!
+  // SelectionScreen을 호출하고 navigator.pop으로부터 결과를 기다리는 메서드
   _navigateAndDisplaySelection(BuildContext context) async {
-    // Navigator.push returns a Future that will complete after we call
-    // Navigator.pop on the Selection Screen!
+    // Navigator.push는 Future를 반환합니다. Future는 선택 창에서 
+    // Navigator.pop이 호출된 이후 완료될 것입니다.
     final result = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SelectionScreen()),
     );
 
-    // After the Selection Screen returns a result, hide any previous snackbars
-    // and show the new result!
+    // 선택 창으로부터 결과 값을 받은 후, 이전에 있던 snackbar는 숨기고 새로운 결과 값을
+    // 보여줍니다.
     Scaffold.of(context)
       ..removeCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text("$result")));
@@ -254,7 +252,7 @@ class SelectionScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
                 onPressed: () {
-                  // Close the screen and return "Yep!" as the result
+                  // 창을 닫고 결과로 "Yep!"을 반환합니다.
                   Navigator.pop(context, 'Yep!');
                 },
                 child: Text('Yep!'),
@@ -264,7 +262,7 @@ class SelectionScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: RaisedButton(
                 onPressed: () {
-                  // Close the screen and return "Nope!" as the result
+                  // 창을 닫고 결과로 "Nope!"을 반환합니다.
                   Navigator.pop(context, 'Nope.');
                 },
                 child: Text('Nope.'),
