@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
 Now, we'll create our SelectionButton. Our selection button will:
 이제 SelectionButton을 만들 차례입니다. 선택 버튼은:
 
-  1. 사용자가 클릭했을 때, SelectionScreen을 보여줄 것입니다.
+  1. 사용자가 클릭했을 때, SelectionScreen을 띄울 것입니다.
   2. SelectionScreen이 결과를 반환할 때까지 대기할 것입니다.
 
 <!-- skip -->
@@ -64,7 +64,7 @@ class SelectionButton extends StatelessWidget {
     );
   }
 
-  // SelectionScreen을 호출하고 navigator.pop으로부터 결과를 기다리는 메서드
+  // SelectionScreen을 띄우고 navigator.pop으로부터 결과를 기다리는 메서드
   _navigateAndDisplaySelection(BuildContext context) async {
     // Navigator.push는 Future를 반환합니다. Future는 선택 창에서 
     // Navigator.pop이 호출된 이후 완료될 것입니다.
@@ -215,7 +215,7 @@ class SelectionButton extends StatelessWidget {
     );
   }
 
-  // SelectionScreen을 호출하고 navigator.pop으로부터 결과를 기다리는 메서드
+  // SelectionScreen을 띄우고 navigator.pop으로부터 결과를 기다리는 메서드
   _navigateAndDisplaySelection(BuildContext context) async {
     // Navigator.push는 Future를 반환합니다. Future는 선택 창에서 
     // Navigator.pop이 호출된 이후 완료될 것입니다.
