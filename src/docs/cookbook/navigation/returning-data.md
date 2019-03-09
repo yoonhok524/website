@@ -12,21 +12,20 @@ next:
 사용자에게 두 가지 옵션을 보여주는 화면이 있다고 합시다. 사용자가 한 옵션을 선택했을 때
 그것을 첫 번째 화면에 알려주면 그에 맞는 동작을 할 수 있을 것입니다!
 
-
 어떻게 구현할 수있을 까요?
 [`Navigator.pop`]({{site.api}}/flutter/widgets/Navigator/pop.html)을 사용하세요!
 
 ## 진행 단계
 
   1. 홈 화면을 정의합니다.
-  2. 선택 창을 보여주는 버튼을 추가합니다.
+  2. 선택 창을 띄우는 버튼을 추가합니다.
   3. 두 개의 버튼을 가진 선택 창을 보여줍니다.
   4. 하나의 버튼을 클릭하면 선택 창을 닫습니다.
   5. 선택된 정보를 홈 화면의 snackbar에 보여줍니다.
 
 ## 1. 홈 화면을 정의합니다.
 
-홈 화면에서는 버튼 하나를 보여줄 것입니다. 버튼을 클릭하면 선택 창을 보여줄 것입니다!
+홈 화면에서는 버튼 하나를 보여줄 것입니다. 버튼을 클릭하면 선택 창을 띄울 것입니다!
 
 <!-- skip -->
 ```dart
@@ -44,7 +43,7 @@ class HomeScreen extends StatelessWidget {
 }
 ```
 
-## 2. 선택 창을 보여주는 버튼을 추가합니다.
+## 2. 선택 창을 띄우는 버튼을 추가합니다.
 
 Now, we'll create our SelectionButton. Our selection button will:
 이제 SelectionButton을 만들 차례입니다. 선택 버튼은:
@@ -125,10 +124,6 @@ class SelectionScreen extends StatelessWidget {
 
 ## 4. 하나의 버튼을 클릭하면 선택 창을 닫습니다.
 
-Now, we'll want to update the `onPressed` callback for both of our buttons! In
-order to return data to the first screen, we'll need to use the
-[`Navigator.pop`]({{site.api}}/flutter/widgets/Navigator/pop.html)
-method.
 이제 앞서 만든 두 개 버튼의 `onPressed` 콜백을 작성할 차례입니다. 첫 번째 화면으로
 데이터를 반환하기 위해, [`Navigator.pop`]({{site.api}}/flutter/widgets/Navigator/pop.html)
 메서드를 사용할 것입니다.
