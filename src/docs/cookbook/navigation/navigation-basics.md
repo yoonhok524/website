@@ -5,11 +5,11 @@ prev:
   title: 화면을 넘나드는 위젯 애니메이션
   path: /docs/cookbook/navigation/hero-animations
 next:
-  title: 명명된 경로로의 화면 전환
+  title: Named-Route로의 화면 전환
   path: /docs/cookbook/navigation/named-routes
 ---
 
-대부분의 앱은 여러 종류의 정보를 보여주기 위해 하나 이상의 여러 화면을 갖고 있습니다.
+대부분의 앱은 여러 종류의 정보를 보여주기 위해 여러 화면을 갖고 있습니다.
 예를 들어, 어떤 앱이 상품 목록을 보여주는 화면을 갖고 있다고 한다면, 사용자는 그 중 
 한 상품을 선택하여 새로운 화면에서 해당 상품의 상세 정보를 볼 수 있습니다.
 
@@ -19,7 +19,7 @@ next:
 {{site.alert.end}}
 
 Route는 안드로이드의 Activity, iOS의 ViewController와 동일합니다.
-Flutter에서 route는 단지 위젯입니다.
+Flutter에서는 Route 역시 위젯입니다.
 
 새로운 route로 어떻게 이동할까요? 
 [`Navigator`]({{site.api}}/flutter/widgets/Navigator-class.html)를 사용하세요.
@@ -40,7 +40,7 @@ The next few sections show how to navigate between two routes,
 하나 씩만 넣어줄 겁니다. 첫 번째 route의 버튼을 누르면 두 번째 route로 
 화면 전환되며, 두 번째 route의 버튼을 누르면 첫 번째 route로 되돌아 옵니다.
 
-우선 가상 구조를 세팅합니다.
+우선 시각적 구조를 세팅합니다.
 
 ```dart
 class FirstRoute extends StatelessWidget {
@@ -107,10 +107,10 @@ onPressed: () {
 
 ## 3. Navigator.pop()을 사용하여 첫 번째 route로 되돌아 옵니다.
 
-두 번쨰 route를 닫고 이전 route로 어떻게 되돌아 갈까요?
+두 번째 route를 닫고 이전 route로 어떻게 되돌아 갈까요?
 [`Navigator.pop()`]({{site.api}}/flutter/widgets/Navigator/pop.html)
 메서드를 사용하세요. `pop()` 메서드는 Navigator에 의해 관리되는 route 스택에서 
-현재 `Route`를 제거합니ㅏ.
+현재 `Route`를 제거합니다.
 
 이전 route로 되돌아 가기 위해, `SecondRoute` 위젯의 `onPressed()` 콜백을 수정하세요:
 
