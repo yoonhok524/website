@@ -15,40 +15,43 @@ description: The landing page for Flutter documentation.
 {% endfor -%}
 </div>
 
-## 이 사이트의 새로운 기능
+## 사이트 개편 내역
 
-**2018년 11월 5일**
+**2019년 2월 26일**
 
-새로워진 Flutter 웹사이트에 오신 것을 환영합니다!
+바르셀로나에서 열리는 Mobile World Congress (MWC)에서 Flutter [1.2 버전](https://developers.googleblog.com/2019/02/launching-flutter-12-at-mobile-world.html) 출시!
 
-지난 몇 달 동안 웹사이트를 재설계했고 어떻게 정보를 정리되는지 보았습니다.
-여러분이 문서를 더 쉽게 찾을 수 있기를 바랍니다.
-웹 사이트 변경 사항은 다음과 같습니다: 
+추가적으로, 최근 업데이트된 몇몇 새로운 문서도 있습니다:
 
-* [첫](/) 페이지 수정
-* [쇼케이스](/showcase) 페이지 수정
-* [커뮤니티](/community) 페이지 수정
-* 왼쪽 메뉴에서 내비게이션 수정
-* 대부부의 페이지 오른쪽에 있는 목차
+* [상태 관리 가이드](/docs/development/data-and-backend/state-mgmt/intro)가 업데이트 됐습니다.
+  새로운 페이지는 
+  [개요](/docs/development/data-and-backend/state-mgmt/intro),
+  [선언적으로 생각하기](/docs/development/data-and-backend/state-mgmt/declarative), 
+  [일시적인 상태 vs 앱 상태](/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app),
+  [간단한 앱 상태 관리](/docs/development/data-and-backend/state-mgmt/simple),
+  [다른 상태 관리 방안](/docs/development/data-and-backend/state-mgmt/options)을 포함하고 있습니다.
+  모든 경우에 옳은 일률적인 접근 방식이 없기 때문에, 상태 관리에 관한 문서화는 까다로운 일입니다. 
+  새로운 문서에 대한 여러분의 의견을 환영합니다!
+* [성능 모범 사례](/docs/testing/best-practices)의 새로운 페이지.
+* 또한 MWC에서는 다트와 Flutter 앱 프로파일링 및 디버깅을 위한 새로운 다트 개발도구의 프리뷰 버전을 발표했습니다. 
+  [개발도구 wiki](https://flutter.github.io/devtools/)에서 확인하실 수 있습니다.
+  특히, 사용자 UI 디버깅을 위한
+  [Flutter 위젯 검사기](https://flutter.github.io/devtools/inspector) 또는 
+  Flutter 앱의 프로파일링을 위한 [타임라인 보기](https://flutter.github.io/devtools/timeline)
+  기능을 확인해보세요.
+  써보시고 어떻게 생각하는지 알려주세요!
+* 새로운 다트 개발도구 UI와 통합하여 [성능 프로파일링](/docs/testing/ui-performance)
+  페이지를 업데이트 했습니다.
+* 새로운 다트 개발도구 UI에 관한 정보를 추가해 [안드로이드 스튜디오/IntelliJ](/docs/development/tools/android-studio)와
+  [VS Code](/docs/development/tools/vs-code) 페이지를 
+  업데이트 했습니다.
 
-새로운 콘텐츠는 다음과 같습니다:
-
-* Flutter 내부 심층 탐구,
-  [Inside Flutter](/docs/resources/inside-flutter)
-* [기술 영상 자료](/docs/resources/videos)
-* [상태 관리](/docs/development/data-and-backend/state-mgmt)
-* [백그라운드 작업](/docs/development/packages-and-plugins/background-processes)
-* [Flutter 빌드 모드](/docs/testing/build-modes)
-{% comment %}
-* How to connect [a native debugger _and_
-  a Dart debugger to your app](/docs/testing/oem-debuggers)
-  (not yet complete)
-{% endcomment %}
-
-개편된 사이트에 대해 질문이나 의견이 있으시면, 
+이 문서에 대해 질문이나 의견이 있으시면, 
 [이슈를 등록해주세요]({{site.repo.this}}/issues).
 
-한글 사이트에 대한 [이슈도 등록해주세요](https://github.com/bro-jo/website/pulls).
+한글 사이트에 대한 [이슈도 등록해주세요](https://github.com/bro-jo/website/issues).
+
+[개편 아카이브](/docs/whats-new-archive)
 
 ## Flutter가 처음인가요?
 

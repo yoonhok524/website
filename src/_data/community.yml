@@ -56,9 +56,9 @@
 
 - name: Flutter Study Group
   description: >
-    Flutter를 잘 아는 팀 맴버와 함께 문제를 해결해보세요.
+    Flutter를 잘 아는 그룹과 소통하고 함께 문제를 해결해보세요.
   logo_src: community/logo-slack.png
-  learn_more_link: https://flutterstudygroup.slack.com/
+  learn_more_link: https://flutterstudygroup.com/
 
 - name: Flutter YouTube
   description: >
