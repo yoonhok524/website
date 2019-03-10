@@ -1205,11 +1205,11 @@ Widget build(BuildContext context) {
 }
 {% endprettify %}
 
-### Where do I store strings? How do I handle localization?
+### 어디에 문자열을 저장하나요? 현지화는 어떻게 처리하나요?
 
-Flutter currently doesn't have a dedicated resources-like system for strings.
-At the moment, the best practice is to hold your copy text in a class as
-static fields and accessing them from there. For example:
+현재 Flutter에는 문자열 전용 리소스 같은 시스템이 없습니다.
+현재로서는 클래스의 텍스트를 정적 필드로 담아둔 후 거기에 접근하는 게 가장 좋습니다.
+예를 들면:
 
 {% prettify dart %}
 class Strings {
@@ -1217,32 +1217,27 @@ class Strings {
 }
 {% endprettify %}
 
-Then in your code, you can access your strings as such:
+그런 다음 코드에서 문자열에 아래와 같이 액세스할 수 있습니다:
 
 {% prettify dart %}
 Text(Strings.welcomeMessage)
 {% endprettify %}
 
-Flutter has basic support for accessibility on Android, though this feature is
-a work in progress.
+Flutter는 안드로이드의 접근성에 대한 기본적인 지원을 제공하지만, 이 기능은 아직 개발 진행 중입니다.
 
-Flutter developers are encouraged to use the [intl
-package]({{site.pub}}/packages/intl) for internationalization and
-localization.
+국제화 및 현지화를 위해 [intl 패키지]({{site.pub}}/packages/intl)를 사용하시기를 권장합니다.
 
-### What is the equivalent of a Gradle file? How do I add dependencies?
+### Gradle 파일과 동일한 것은? 의존성을 어떻게 추가하나요?
 
-In Android, you add dependencies by adding to your Gradle build script. Flutter
-uses Dart's own build system, and the Pub package manager.
-The tools delegate the building of the native Android and iOS wrapper apps to the
-respective build systems.
+안드로이드에서는 Gradle 빌드 스크립트를 추가하여 의존성을 추가합니다.
+Flutter는 다트의 자체 빌드 시스템과 Pub 패키지 관리자를 사용합니다.
+이 도구들은 네이티브 안드로이드와 iOS 래퍼 앱의 빌드를 각각의 빌드 시스템에 위임합니다.
 
-While there are Gradle files under the `android` folder in your Flutter project,
-only use these if you are adding native dependencies needed for
-per-platform integration. In general, use `pubspec.yaml` to declare
-external dependencies to use in Flutter. A good place to find Flutter packages is
-[Pub]({{site.pub}}/flutter/packages/).
-
+Flutter 프로젝트 안에 있는 `android` 폴더 아래에 Gradle 파일이 있지만,
+각 플래폼별 네이티브 의존성을 추가할 때에만 이 파일을 사용하세요.
+일반적인 경우에는, `pubspec.yaml` 파일을 사용하여 Flutter에서 사용하는 외부 의존성을 추가하세요.
+Flutter 패키지를 찾기 좋은 곳은 [Pub]({{site.pub}}/flutter/packages/)입니다.
+ 
 ## Activities and fragments
 
 ### What are the equivalent of activities and fragments in Flutter?
