@@ -1,6 +1,6 @@
 ---
-title: Flutter Documentation
-short-title: Docs
+title: Flutter 문서
+short-title: 문서
 description: The landing page for Flutter documentation.
 ---
 
@@ -15,125 +15,118 @@ description: The landing page for Flutter documentation.
 {% endfor -%}
 </div>
 
-## What's new on the site
+## 사이트 개편 내역
 
-**February 26, 2019**
+**2019년 2월 26일**
 
-Flutter released [version
-1.2](https://developers.googleblog.com/2019/02/launching-flutter-12-at-mobile-world.html)
-at Mobile World Congress (MWC) in Barcelona!
+바르셀로나에서 열리는 Mobile World Congress (MWC)에서 Flutter [1.2 버전](https://developers.googleblog.com/2019/02/launching-flutter-12-at-mobile-world.html) 출시!
 
-In addition, here are some recent new docs:
+추가적으로, 최근 업데이트된 몇몇 새로운 문서도 있습니다:
 
-* We've updated our [state management
-  advice](/docs/development/data-and-backend/state-mgmt/intro).
-  New pages include an
-  [introduction](/docs/development/data-and-backend/state-mgmt/intro),
-  [thinking declaratively](/docs/development/data-and-backend/state-mgmt/declarative), 
-  [ephemeral vs app state](/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app),
-  [simple app state management](/docs/development/data-and-backend/state-mgmt/simple),
-  and [different state management
-  options](/docs/development/data-and-backend/state-mgmt/options).
-  Documenting state management is a tricky thing, as there is no one-size-fits-all
-  approach. We'd love your feedback on these new docs!
-* A new page on [Performance best practices](/docs/testing/best-practices).
-* Also at MWC, we announced a preview version of the new Dart DevTools
-  for profiling and debugging Dart and Flutter apps. You can find the docs on the
-  [DevTools wiki](https://flutter.github.io/devtools/).
-  In particular, check out the DevTool's [Flutter widget
-  inspector](https://flutter.github.io/devtools/inspector) for debugging
-  your UI, or the [timeline
-  view](https://flutter.github.io/devtools/timeline) for profiling your Flutter
-  application. Try them out and let us know what you think!
-* An update to the [Performance profiling](/docs/testing/ui-performance)
-  page that incorporates the new Dart DevTools UI.
-* Updates to the [Android
-  Studio/IntelliJ](/docs/development/tools/android-studio)
-  and [VS Code](/docs/development/tools/vs-code) pages incorporating info from
-  the new Dart DevTools UI.
+* [상태 관리 가이드](/docs/development/data-and-backend/state-mgmt/intro)가 업데이트 됐습니다.
+  새로운 페이지는 
+  [개요](/docs/development/data-and-backend/state-mgmt/intro),
+  [선언적으로 생각하기](/docs/development/data-and-backend/state-mgmt/declarative), 
+  [일시적인 상태 vs 앱 상태](/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app),
+  [간단한 앱 상태 관리](/docs/development/data-and-backend/state-mgmt/simple),
+  [다른 상태 관리 방안](/docs/development/data-and-backend/state-mgmt/options)을 포함하고 있습니다.
+  모든 경우에 옳은 일률적인 접근 방식이 없기 때문에, 상태 관리에 관한 문서화는 까다로운 일입니다. 
+  새로운 문서에 대한 여러분의 의견을 환영합니다!
+* [성능 모범 사례](/docs/testing/best-practices)의 새로운 페이지.
+* 또한 MWC에서는 다트와 Flutter 앱 프로파일링 및 디버깅을 위한 새로운 다트 개발도구의 프리뷰 버전을 발표했습니다. 
+  [개발도구 wiki](https://flutter.github.io/devtools/)에서 확인하실 수 있습니다.
+  특히, 사용자 UI 디버깅을 위한
+  [Flutter 위젯 검사기](https://flutter.github.io/devtools/inspector) 또는 
+  Flutter 앱의 프로파일링을 위한 [타임라인 보기](https://flutter.github.io/devtools/timeline)
+  기능을 확인해보세요.
+  써보시고 어떻게 생각하는지 알려주세요!
+* 새로운 다트 개발도구 UI와 통합하여 [성능 프로파일링](/docs/testing/ui-performance)
+  페이지를 업데이트 했습니다.
+* 새로운 다트 개발도구 UI에 관한 정보를 추가해 [안드로이드 스튜디오/IntelliJ](/docs/development/tools/android-studio)와
+  [VS Code](/docs/development/tools/vs-code) 페이지를 
+  업데이트 했습니다.
 
-If you have questions or comments about any of these docs, [file an
-issue]({{site.repo.this}}/issues).
+이 문서에 대해 질문이나 의견이 있으시면, 
+[이슈를 등록해주세요]({{site.repo.this}}/issues).
 
-[What's new archive](/docs/whats-new-archive)
+한글 사이트에 대한 [이슈도 등록해주세요](https://github.com/bro-jo/website/issues).
 
-## New to Flutter?
+[개편 아카이브](/docs/whats-new-archive)
 
-Once you've gone through [Get Started](/docs/get-started/install),
-including [Write Your First Flutter App,](/docs/get-started/codelab)
-here are some next steps.
+## Flutter가 처음인가요?
 
-[Flutter for Android developers](/docs/get-started/flutter-for/android-devs)
-: Review these tips if you have Android experience.
+[시작하기](/docs/get-started/install)와
+ [첫 번째 앱 작성하기](/docs/get-started/codelab)를 완료했다면, 
+다음 단계가 준비되어 있습니다.
 
-[Flutter for iOS developers](/docs/get-started/flutter-for/ios-devs)
-: Review these tips if you have iOS experience.
+[안드로이드 개발자를 위한 Flutter](/docs/get-started/flutter-for/android-devs)
+: 안드로이드 개발 경험이 있다면 이 팁을 봐보세요.
 
-[Flutter for Web developers](/docs/get-started/flutter-for/web-devs)
-: Review these HTML -> Flutter analogs if you have web experience.
+[iOS 개발자를 위한 Flutter](/docs/get-started/flutter-for/ios-devs)
+: iOS 개발 경험이 있다면 이 팁을 봐보세요.
 
-[Flutter for React Native developers](/docs/get-started/flutter-for/react-native-devs)
-: Review these tips if you have React Native experience.
+[웹 개발자를 위한 Flutter](/docs/get-started/flutter-for/web-devs)
+: 웹 경험이 있다면 HTML과 Flutter의 유사한 점을 살펴보세요.
 
-[Flutter for Xamarin.Forms developers](/docs/get-started/flutter-for/xamarin-forms-devs)
-: Review these tips if you have Xamarin Forms experience.
+[리액트 네이티브 개발자를 위한 Flutter](/docs/get-started/flutter-for/react-native-devs)
+: 리액트 네이티브 개발 경험이 있다면 이 팁을 봐보세요.
 
-[Building layouts in Flutter](/docs/development/ui/layout)
-: Learn how to create layouts in Flutter, where everything is a widget.
+[Xamarin.Forms 개발자를 위한 Flutter](/docs/get-started/flutter-for/xamarin-forms-devs)
+: Xamarin.Forms 개발 경험이 있다면 이 팁을 봐보세요.
 
-[Adding interactivity to your Flutter app](/docs/development/ui/interactive)
-: Learn how to add a stateful widget to your app.
+[Flutter에서 레이아웃](/docs/development/ui/layout)
+: 레이아웃을 만드는 방법을 배워보세요. Flutter에서는 모든 게 위젯입니다.
 
-[A tour of the Flutter widget framework](/docs/development/ui/widgets-intro)
-: Learn more about Flutter's react-style framework.
+[Flutter 앱에 상호작용 추가하기](/docs/development/ui/interactive)
+: 상태를 저장할 수 있는 위젯을 만드는 방법을 배워보세요.
 
-[FAQ](/docs/resources/faq)
-: Get the answers to frequently asked questions.
+[Flutter 위젯 프레임워크 둘러보기](/docs/development/ui/widgets-intro)
+: react-style 프레임워크 Flutter에 대해 더 알아봅시다.
+
+[자주 묻는 질문](/docs/resources/faq)
+: 자주 묻는 질문에 대한 답변을 살펴보세요.
 
 
-## Want to skill up?
+## 한 단계 더 나아가고 싶나요?
 
-Once you’ve mastered the basics, try these pages.
+기본적인 내용을 숙달했으면 이제 다음 페이지를 봐보세요.
 
 [Cookbook](/docs/cookbook)
-: A (growing) collection of recipes that address common Flutter use cases.
+: 일반적인 Flutter 사용 사례를 다루는 레시피 모음. (개선 중)
 
-[Sample apps on GitHub]({{site.github}}/flutter/samples/blob/master/INDEX.md)
-: A (growing) collection of sample apps that show Flutter best practices.
+[깃허브에 있는 예제 앱]({{site.github}}/flutter/samples/blob/master/INDEX.md)
+: Flutter를 잘 활용한 샘플 앱 모음. (개선 중)
 
-[Adding assets and images in Flutter](/docs/development/ui/assets-and-images)
-: How to add resources to a Flutter app.
+[Flutter에서 리소스와 이미지 파일 추가하기](/docs/development/ui/assets-and-images)
+: Flutter 앱에 리소스를 추가하는 방법.
 
-[Animations in Flutter](/docs/development/ui/animations)
-: How to create standard, hero, or staggered animations, to
-  name a few animations styles that Flutter supports.
+[Flutter에서 애니메이션](/docs/development/ui/animations)
+: 기본 애니메이션과, hero 애니메이션, staggered 애니메이션 등 Flutter가 지원하는 애니메이션 생성 방법.
 
-[Navigation and routing](/docs/development/ui/navigation)
-: How to create and navigate to a new screen (called a _route_ in Flutter).
+[내비게이션 및 라우팅](/docs/development/ui/navigation)
+: 새로운 스크린을 만들고 새로운 스크린으로 이동하는 방법 (Flutter에서는 _route_ 라고 부릅니다).
 
-[Internationalization](/docs/development/accessibility-and-localization/internationalization)
-: Go global! How to internationalize your Flutter app.
+[국제화](/docs/development/accessibility-and-localization/internationalization)
+: 글로벌화하세요! Flutter 앱을 국제화하는 방법.
 
 [Effective Dart]({{site.dart-site}}/guides/language/effective-dart)
-: Guides on how to write better Dart code.
+: 더 나은 다트 코드를 작성법 가이드.
 
-## Specialized topics
+## 전문적인 주제
 
-Dive deeper into topics that interest you.
+관심있는 주제를 더 깊게 살펴보세요.
 
-[Flutter Widget inspector](/docs/development/tools/inspector)
-: How to use the widget inspector, a powerful tool that allows
-  you to explore widget trees, disable the "DEBUG"
-  banner, display the performance overlay, and much more.
+[위젯 검사 도구](/docs/development/tools/inspector)
+: 위젯 트리를 탐색하거나, DEBUG 배너를 없애거나, 성능 오버레이 표시해주는 등 다양한 기능을 가능하게 해주는 강력한 도구인 위젯 검사 도구를 사용하는 방법.
 
-[Custom fonts](/docs/cookbook/design/fonts)
-: How to add new fonts to your app.
+[사용자 지정 글꼴](/docs/cookbook/design/fonts)
+: 새로운 폰트를 앱에 추가하는 방법.
 
-[Text input](/docs/cookbook/forms/text-input)
-: How to set up basic text input.
+[문자 입력](/docs/cookbook/forms/text-input)
+: 문자를 입력받는 기본적인 방법.
 
-[Debugging Flutter apps](/docs/testing/debugging)
-: Tools and tips for debugging your app.
+[Flutter 앱 디버깅](/docs/testing/debugging)
+: 앱 디버깅을 위한 도구와 팁
 
-This is not a complete list. Please use the left navigation,
-or the search field to find other topics.
+완성된 목록은 아닙니다.
+왼쪽 탐색 메뉴를 사용해주세요. 다른 주제를 찾고 싶으시면 검색창을 이용해주세요. 

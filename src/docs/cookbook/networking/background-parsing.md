@@ -53,7 +53,7 @@ Future<http.Response> fetchPhotos(http.Client client) async {
 }
 ```
 
-Note: You're providing an `http.Client` to the function in this example.
+참고: You're providing an `http.Client` to the function in this example.
 This makes the function easier to test and use in different environments.
 
 ## 3. Parse and Convert the json into a List of Photos

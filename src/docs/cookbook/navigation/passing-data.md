@@ -1,32 +1,31 @@
 ---
-title: Send data to a new screen
+title: 새로운 화면으로 데이터 보내기
 prev:
-  title: Return data from a screen
+  title: 이전 화면에 데이터 반환하기
   path: /docs/cookbook/navigation/returning-data
 next:
-  title: Fetch data from the internet
+  title: 인터넷에서 데이터 받기
   path: /docs/cookbook/networking/fetch-data
 ---
 
-Oftentimes, we not only want to navigate to a new screen, but also pass some
-data to the screen as well. For example, we often want to pass information about
-the item we tapped on.
+종종 새로운 화면으로 단순히 이동하는 것 뿐만 아니라 데이터를 넘겨주어야 할 필요도 
+있습니다. 예를 들어, 사용자가 선택한 아이템에 대한 정보를 같이 넘겨주고 싶은 경우입니다.
 
-Remember: Screens are Just Widgets&trade;. In this example, we'll create a List
-of Todos. When a todo is tapped on, we'll navigate to a new screen (Widget) that
-displays information about the todo.
+기억하세요: 화면은 단지 위젯입니다&trade;. 이 예제에서 Todo 리스트를 만들 것입니다.
+todo를 선택하면 새로운 화면(위젯)으로 이동하면서 선택한 todo에 대한 정보를
+보여줄 것입니다.
 
-## Directions
+## 진행 단계
 
-  1. Define a Todo class
-  2. Display a List of Todos
-  3. Create a Detail Screen that can display information about a todo
-  4. Navigate and pass data to the Detail Screen
+  1. Todo 클래스를 정의합니다.
+  2. Todo 리스트를 보여줍니다.
+  3. Todo에 대한 상세 정보를 보여줄 수 있는 화면을 생성합니다.
+  4. 상세 화면으로 이동하면서 데이터를 전달합니다.
 
-## 1. Define a Todo class
+## 1. Todo 클래스를 정의합니다.
 
-First, we'll need a simple way to represent Todos. For this example, we'll
-create a class that contains two pieces of data: the title and description.
+우선 Todo를 표현하기 위한 간단한 정보가 필요합니다. 이 예제에서는 두 가지의 데이터를
+갖고 있는 클래스를 정의할 것입니다: 제목과 상세 설명
 
 <!-- skip -->
 ```dart
@@ -38,13 +37,13 @@ class Todo {
 }
 ```
 
-## 2. Create a List of Todos
+## 2. Todo 리스트를 보여줍니다.
 
-Second, we'll want to display a list of Todos. In this example, we'll generate
-20 todos and show them using a ListView. For more information on working with
-Lists, please see the [`Basic List`](/docs/cookbook/lists/basic-list/) recipe.
+두 번째로, Todo 리스트를 보여줄 것입니다. 이 예제에서는 20개의 todo를 생성하고 ListView를
+사용하여 보여줄 것입니다. List에 대한 더 자세한 정보는 [`Basic List`](/docs/cookbook/lists/basic-list/)에서
+확인할 수 있습니다.
 
-### Generate the List of Todos
+### Todo 리스트 생성하기
 
 <!-- skip -->
 ```dart
@@ -57,7 +56,7 @@ final todos = List<Todo>.generate(
 );
 ```
 
-### Display the List of Todos using a ListView
+### ListView를 사용하여 Todo 리스트 보여주기
 
 <!-- skip -->
 ```dart
@@ -71,28 +70,28 @@ ListView.builder(
 );
 ```
 
-So far, so good. We'll generate 20 Todos and display them in a ListView!
+여기까지 그런대로 잘 되었습니다. 이제 20개의 Todo를 생성하여 ListView에 보여줄 것입니다!
 
-## 3. Create a Detail Screen that can display information about a todo
+## 3. Todo에 대한 상세 정보를 보여줄 수 있는 화면을 생성합니다.
 
-Now, we'll create our second screen. The title of the screen will contain the
-title of the todo, and the body of the screen will show the description.
+이제 두 번째 화면을 만들겠습니다. 화면의 제목은 Todo의 제목을 포함하며 본문에는
+상세 설명을 보여줄 것입니다.
 
-Since it's a normal `StatelessWidget`, we'll simply require that users creating
-the Screen pass through a `Todo`! Then, we'll build a UI using the given Todo.
+두 번째 화면은 일반적인 `StatelssWidget`이므로, 생성자 매개변수로 `Todo`를 받을 수 있게 
+간단한 방법으로 강제하겠습니다. 그러면 주어진 Todo를 갖고 UI를 그릴 수 있습니다.
 
 <!-- skip -->
 ```dart
 class DetailScreen extends StatelessWidget {
-  // Declare a field that holds the Todo
+  // Todo를 들고 있을 필드를 선언합니다.
   final Todo todo;
 
-  // In the constructor, require a Todo
+  // 생성자 매개변수로 Todo를 받도록 강제합니다.
   DetailScreen({Key key, @required this.todo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Use the Todo to create our UI
+    // UI를 그리기 위해 Todo를 사용합니다.
     return Scaffold(
       appBar: AppBar(
         title: Text(todo.title),
@@ -106,17 +105,16 @@ class DetailScreen extends StatelessWidget {
 }
 ```
 
-## 4. Navigate and pass data to the Detail Screen
+## 4. 상세 화면으로 이동하면서 데이터를 전달합니다.
 
-With our `DetailScreen` in place, we're ready to perform the Navigation! In our
-case, we'll want to Navigate to the `DetailScreen` when a user taps on a Todo in
-our List. When we do so, we'll also want to pass the Todo to the `DetailScreen`.
+앞서 작성한 `DetailsScreen`으로 화면 전환할 준비가 되었습니다. 본 예제에서는 사용자가
+Todo 리스트 중 하나를 선택했을 때, `DetailsScreen`으로 화면 전환하도록 할 것입니다.
+그와 동시에 `DetailsScreen`에 Todo를 전달할 것입니다.
 
-To achieve this, we'll write an
-[`onTap`]({{site.api}}/flutter/material/ListTile/onTap.html)
-callback for our `ListTile` Widget. Within our `onTap` callback, we'll once
-again employ the [`Navigator.push`]({{site.api}}/flutter/widgets/Navigator/push.html)
-method.
+이를 위해, `ListTile` 위젯에
+[`onTap`]({{site.api}}/flutter/material/ListTile/onTap.html) 콜백을 작성할 것입니다.
+`onTap` 콜백 내에서 다시 한 번 [`Navigator.push`]({{site.api}}/flutter/widgets/Navigator/push.html)
+메서드를 사용할 것입니다.
 
 <!-- skip -->
 ```dart
@@ -125,9 +123,9 @@ ListView.builder(
   itemBuilder: (context, index) {
     return ListTile(
       title: Text(todos[index].title),
-      // When a user taps on the ListTile, navigate to the DetailScreen.
-      // Notice that we're not only creating a DetailScreen, we're
-      // also passing the current todo to it!
+      // 사용자가 ListTile을 선택하면, DetailScreen으로 이동합니다.
+      // DetailScreen을 생성할 뿐만 아니라, 현재 todo를 같이 전달해야
+      // 한다는 것을 명심하세요.
       onTap: () {
         Navigator.push(
           context,
@@ -141,7 +139,7 @@ ListView.builder(
 );
 ```
 
-## Complete example
+## 완성된 예제
 
 ```dart
 import 'package:flutter/foundation.dart';
@@ -185,9 +183,9 @@ class TodosScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(todos[index].title),
-            // When a user taps on the ListTile, navigate to the DetailScreen.
-            // Notice that we're not only creating a DetailScreen, we're
-            // also passing the current todo through to it!
+            // 사용자가 ListTile을 선택하면, DetailScreen으로 이동합니다.
+            // DetailScreen을 생성할 뿐만 아니라, 현재 todo를 같이 전달해야
+            // 한다는 것을 명심하세요.
             onTap: () {
               Navigator.push(
                 context,
@@ -204,15 +202,15 @@ class TodosScreen extends StatelessWidget {
 }
 
 class DetailScreen extends StatelessWidget {
-  // Declare a field that holds the Todo
+  // Todo를 들고 있을 필드를 선언합니다.
   final Todo todo;
 
-  // In the constructor, require a Todo
+  // 생성자는 Todo를 인자로 받습니다.
   DetailScreen({Key key, @required this.todo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Use the Todo to create our UI
+    // UI를 그리기 위해 Todo를 사용합니다.
     return Scaffold(
       appBar: AppBar(
         title: Text(todo.title),
