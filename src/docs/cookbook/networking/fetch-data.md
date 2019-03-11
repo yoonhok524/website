@@ -1,17 +1,17 @@
 ---
-title: Fetch data from the internet
+title: 인터넷에서 데이터 가져오기
 prev:
-  title: Send data to a new screen
+  title: 새로운 화면으로 데이터 보내기
   path: /docs/cookbook/navigation/passing-data
 next:
-  title: Making authenticated requests
+  title: 인증된 요청 생성하기
   path: /docs/cookbook/networking/authenticated-requests
 ---
 
-Fetching data from the internet is necessary for most apps. Luckily, Dart and
-Flutter provide tools for this type of work.
+인터넷을 통해 데이터를 가져오는 것은 대부분의 앱에서 필수적입니다. 다행스럽게도, 다트와 Flutter는
+이러한 유형의 작업을 위해 도구를 제공합니다.
 
-## Directions
+## 진행 단계
 
   1. Add the `http` package
   2. Make a network request using the `http` package
