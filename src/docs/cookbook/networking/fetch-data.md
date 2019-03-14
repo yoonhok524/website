@@ -13,30 +13,30 @@ next:
 
 ## 진행 단계
 
-  1. Add the `http` package
-  2. Make a network request using the `http` package
-  3. Convert the response into a custom Dart object
-  4. Fetch and Display the data with Flutter
+  1. `http` 패키지 추가하기
+  2. `http` 패키지를 사용하여 네트워크 요청 생성하기
+  3. 응답 정보를 커스텀 다트 객체로 변환하기
+  4. 가져온 데이터를 Flutter에 보여주기
 
-## 1. Add the `http` package
+## 1. `http` 패키지 추가하기
 
-The [`http`]({{site.pub-pkg}}/http) package provides the
-simplest way to fetch data from the internet.
+[`http`]({{site.pub-pkg}}/http) 패키지를 사용하면 인터넷으로부터
+데이터를 손쉽게 가져올 수 있습니다.
 
-To install the `http` package, you must add it to the dependencies section
-of the `pubspec.yaml`. You can [find the latest version of the http package on
-the Pub site]({{site.pub}}/packages/http#-installing-tab-).
+`http`패키지를 설치하기 위해서, `pubspec.yaml`의 의존성 부분에 추가해줘야 합니다.
+[최신 버전의 http 패키지는 Pub 사이트]({{site.pub}}/packages/http#-installing-tab-)
+에서 확인할 수 있습니다.
 
 ```yaml
 dependencies:
   http: <latest_version>
 ```
 
-## 2. Make a network request
+## 2. `http` 패키지를 사용하여 네트워크 요청 생성하기
 
-In this example, you'll fetch a sample post from the
-[JSONPlaceholder REST API](https://jsonplaceholder.typicode.com/) using the
-[http.get()]({{site.pub-api}}/http/latest/http/get.html) method.
+본 예제에서는, [http.get()]({{site.pub-api}}/http/latest/http/get.html) 메서드를
+사용하여 [JSONPlaceholder REST API](https://jsonplaceholder.typicode.com/)
+으로부터 샘플 Post를 가져올 것입니다.
 
 <!-- skip -->
 ```dart
@@ -45,30 +45,29 @@ Future<http.Response> fetchPost() {
 }
 ```
 
-The `http.get()` method returns a `Future` that contains a `Response`.
+`http.get()` 메서드는 `Response`를 포함하고 있는 `Future`를 반환합니다.
 
-  * [`Future`]({{site.api}}/flutter/dart-async/Future-class.html) is
-    a core Dart class for working with async operations.
-    It is used to represent a potential value or error that will
-    be available at some time in the future.
-  * The `http.Response` class contains the data received from a successful
-    http call.
+  * [`Future`]({{site.api}}/flutter/dart-async/Future-class.html)는
+    비동기 연산에 사용되는 다트의 핵심 클래스입니다.
+    미래의 특정 시점에 사용가능한 잠재적인 값이나 에러를 나타내기 위해
+    사용됩니다.
+  * `http.Response` 클래스는 http 요청이 성공했을 때 응답으로 받은 데이터를 
+    갖고 있습니다.
 
-## 3. Convert the response into a custom Dart object
+## 3. 응답 정보를 커스텀 다트 객체로 변환하기
 
-While it's easy to make a network request, working with a raw
-`Future<http.Response>` isn't very convenient. To make your life easier,
-convert the `http.Response` into a Dart object.
+네트워크 요청 생성은 쉽지만 `Future<http.Response>`을 사용하는 것은 편리하지 
+않습니다. 이를 좀더 쉽게 하기 위해 `http.Response`를 다트 객체로 변환하겠습니다.
 
-### Create a `Post` class
+### `Post` 클래스를 생성하세요
 
-First, create a `Post` class that contains the data from the
-network request. It will include a factory constructor that 
-creates a `Post` from json.
+우선 네트워크 요청으로부터 받은 데이터를 지니고 있을 `Post` 클래스를 
+생성하세요. json으로부터 `Post`를 생성하는 factory 생성자를 포함할 
+것입니다.
 
-Converting JSON by hand is only one option. For more information,
-please see the full article on [JSON and
-serialization](/docs/development/data-and-backend/json).
+JSON을 직접 변환하는 것도 가능합니다. 더 자세한 정보를 원한다면,
+[JSON과 직렬화](/docs/development/data-and-backend/json) 
+문서를 참고하세요.
 
 <!-- skip -->
 ```dart
@@ -91,16 +90,15 @@ class Post {
 }
 ```
 
-### Convert the `http.Response` to a `Post`
+### `http.Response`를 `Post`로 변환하세요
 
-Now, update the `fetchPost` function to return a `Future<Post>`. To do so,
-you'll need to:
+이제 `fetchPost` 함수가 `Future<Post>`를 반환하도록 수정하겠습니다. 이 작업을 위해
+다음의 것들이 필요합니다:
 
-  1. Convert the response body into a json `Map` with the `dart:convert`
-     package.
-  2. If the server returns an "OK" response with a status code of 200, convert
-     the json `Map` into a `Post` using the `fromJson` factory method.
-  3. If the server returns an unexpected response, throw an error
+  1. `dart:convert` 패키지를 통해 응답 내용을 json `Map`으로 변환하세요.
+  2. 만약 서버가 상태 코드 200과 함께 "OK" 응답을 반환하면, factory 메서드 
+     `fromJson`를 사용하여 json `Map`을 `Post`로 변환하세요.
+  3. 만약 서버가 예상치 못한 응답을 반환하면, 에러를 던지세요.
 
 <!-- skip -->
 ```dart
@@ -109,31 +107,28 @@ Future<Post> fetchPost() async {
       await http.get('https://jsonplaceholder.typicode.com/posts/1');
 
   if (response.statusCode == 200) {
-    // If server returns an OK response, parse the JSON
+    // 만약 서버가 OK 응답을 반환하면, JSON을 파싱합니다.
     return Post.fromJson(json.decode(response.body));
   } else {
-    // If that response was not OK, throw an error.
+    // 만약 응답이 OK가 아니면, 에러를 던집니다.
     throw Exception('Failed to load post');
   }
 }
 ```
 
-Hooray! Now you've got a function that we can call to fetch a Post from the
-internet.
+와우! 이제 인터넷에서 Post를 가져올 수 있는 함수가 생겼습니다.
 
-## 4. Fetch and Display the data
+## 4. 가져온 데이터를 Flutter에 보여주기
 
-In order to fetch the data and display it on screen, you can use the
-[`FutureBuilder`]({{site.api}}/flutter/widgets/FutureBuilder-class.html)
-widget. The `FutureBuilder` Widget comes with Flutter and makes it easy
-to work with async data sources.
+데이터를 가져오고 화면에 보여주기 위한 목적으로, [`FutureBuilder`]({{site.api}}/flutter/widgets/FutureBuilder-class.html)
+위젯을 사용할 수 있습니다. `FutureBuilder` 위젯은 Flutter에 기본적으로 
+제공되는 위젯으로 비동기 데이터 처리를 쉽게 해줍니다.
 
-You must provide two parameters:
+두 가지 파라미터를 제공해야 합니다:
 
-  1. The `Future` you want to work with. In this case, call the
-     `fetchPost()` function.
-  2. A `builder` function that tells Flutter what to render, depending on the
-     state of the `Future`: loading, success, or error.
+  1. `Future` 객체. 여기서는 `fetchPost()` 함수를 그대로 넘겨줍니다.
+  2. `Futer`의 상태(로딩, 성공 혹은 에러)에 따라 Flutter에게 무엇을 랜더링해야 할지 
+     알려줄 `builder` 함수
 
 <!-- skip -->
 ```dart
@@ -146,29 +141,27 @@ FutureBuilder<Post>(
       return Text("${snapshot.error}");
     }
 
-    // By default, show a loading spinner
+    // 기본적으로 로딩 Spinnr를 보여줍니다.
     return CircularProgressIndicator();
   },
 );
 ```
 
-## 5. Moving the fetch call out of the `build()` method
+## 5. 네트워크 요청 호출을 `build()` 바깥으로 옮기세요
 
-Although it's convenient, it's not recommended to put a call to an API in a
-`build()` method.
+편리하겠지만, API 요청 코드를 `build()` 메서드 안에 위치시키는 것은 바람직하지
+않습니다.
 
-Flutter calls the `build()` method every time it wants to change anything
-in the view, and this happens surprisingly often.  If you leave the fetch
-call in your `build()` method, you'll flood the API with unnecessary calls
-and slow down your app.
+Flutter는 무언가 변경될 때마다 항상 `build()` 메서드를 부르는데, 놀랍게도 꽤 
+자주 일어납니다. 만약 네트워크 요청 코드를 `build()` 메서드에 그대로 남겨둔다면,
+불필요한 API 요청이 아주 많이 발생하고 앱이 느려질 수 있습니다.
 
-Here are some better options so it'll only hit the API when the page is
-initially loaded.
+페이지가 최초 로드될 떄 한번 API를 호출하게 하는 좀더 나은 방법이 있습니다.
 
-### Pass it into a `StatelessWidget`
+### `StatelessWidget`에 넘기세요
 
-With this strategy, the parent widget is responsible for calling the fetch
-method, storing its result, and then passing it to your widget.
+이 방법을 사용하면, 부모 위젯은 fetch 메서드를 호출하고 그 결과를 저장하고 위젯에 
+전달하게 됩니다.
 
 <!-- skip -->
 ```dart
@@ -178,21 +171,20 @@ class MyApp extends StatelessWidget {
   MyApp({Key key, this.post}) : super(key: key);
 ```
 
-You can see a working example of this in the complete example below.
+아래 완성된 예제에서 이에 대한 작동 예제를 확인할 수 있습니다.
 
-### Call it in the lifecycle of a `StatefulWidget`'s state
+### `StatefulWidget`의 state의 생명주기 안에서 호출하세요
 
-If your widget is stateful, you can call the fetch method in either the
-[`initState`]({{site.api}}/flutter/widgets/State/initState.html) or
-[`didChangeDependencies`]({{site.api}}/flutter/widgets/State/didChangeDependencies.html)
-methods.
+만약 위젯이 stateful이라면, fetch 메서드를 [`initState`]({{site.api}}/flutter/widgets/State/initState.html) 혹은
+[`didChangeDependencies`]({{site.api}}/flutter/widgets/State/didChangeDependencies.html) 
+메서드에서 호출할 수 있습니다.
 
-`initState` is called exactly once and then never again.
-If you want to have the option of reloading the API in response to an
-[`InheritedWidget`]({{site.api}}/flutter/widgets/InheritedWidget-class.html)
-changing, put the call into the `didChangeDependencies` method.  See
-[`State`]({{site.api}}/flutter/widgets/State-class.html) for more
-details.
+`initState`는 정확히 한번만 호출됩니다.
+만약 
+[`InheritedWidget`]({{site.api}}/flutter/widgets/InheritedWidget-class.html) 변경 시
+API를 다시 호출해야 하는 상황이라면 `didChangeDependencies` 메서드 안에서 호출하세요.
+더 자세한 내용을 위해 
+[`State`]({{site.api}}/flutter/widgets/State-class.html) 문서를 참고하세요.
 
 <!-- skip -->
 ```dart
@@ -206,15 +198,15 @@ class _MyAppState extends State<MyApp> {
   }
 ```
 
-## Testing
+## 테스팅
 
-For information on how to test this functionality,
-please see the following recipes:
+이 기능을 테스트하는 방법에 대해 더 자세히 알고 싶다면,
+아래 문서를 확인하세요:
 
-  * [Introduction to unit testing](/docs/cookbook/testing/unit/introduction)
-  * [Mock dependencies using Mockito](/docs/cookbook/testing/unit/mocking)
+  * [단위 테스트 소개](/docs/cookbook/testing/unit/introduction)
+  * [Mockito를 사용한 Mock 의존성](/docs/cookbook/testing/unit/mocking)
 
-## Complete example
+## 완성된 예제
 
 ```dart
 import 'dart:async';
@@ -228,10 +220,10 @@ Future<Post> fetchPost() async {
       await http.get('https://jsonplaceholder.typicode.com/posts/1');
 
   if (response.statusCode == 200) {
-    // If the call to the server was successful, parse the JSON
+    // 만약 서버로의 요청이 성공하면, JSON을 파싱합니다.
     return Post.fromJson(json.decode(response.body));
   } else {
-    // If that call was not successful, throw an error.
+    // 만약 요청이 실패하면, 에러를 던집니다.
     throw Exception('Failed to load post');
   }
 }
@@ -282,7 +274,7 @@ class MyApp extends StatelessWidget {
                 return Text("${snapshot.error}");
               }
 
-              // By default, show a loading spinner
+              // 기본적으로 로딩 Spinnr를 보여줍니다.
               return CircularProgressIndicator();
             },
           ),
