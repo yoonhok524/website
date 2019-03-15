@@ -22,12 +22,12 @@ Android에서는, 다른 스레드에 작업을 스케줄링하는 것을 의미
 
 ## 진행 단계
 
-  1. Add the `http` package
-  2. Make a network request using the `http` package
-  3. Convert the response into a List of Photos
-  4. Move this work to a separate isolate
+  1. `http` 패키지 추가하기
+  2. `http` 패키지를 사용하여 네트워크 요청 생성하기
+  3. 응답 결과를 Photo 리스트로 변환하기
+  4. 이 작업을 별도 isolte로 옮기기
 
-## 1. Add the `http` package
+## 1. `http` 패키지 추가하기
 
 First, add the [`http`]({{site.pub-pkg}}/http) package to your project.
 The `http` package makes it easier to perform network
@@ -38,7 +38,7 @@ dependencies:
   http: <latest_version>
 ```
 
-## 2. Make a network request
+## 2. 네트워크 요청 생성하ㅣ
 
 In this example, you'll fetch a JSON large document that contains a list of
 5000 photo objects from the [JSONPlaceholder REST
@@ -55,14 +55,14 @@ Future<http.Response> fetchPhotos(http.Client client) async {
 참고: You're providing an `http.Client` to the function in this example.
 This makes the function easier to test and use in different environments.
 
-## 3. Parse and Convert the json into a List of Photos
+## 3. json을 Photo 리스트로 파싱하여 변환하기
 
 Next, following the guidance from the [Fetch data from the
 internet](/docs/cookbook/networking/fetch-data)
 recipe, you'll want to convert the `http.Response` into a list of Dart objects.
 This makes the data easier to work with in the future.
 
-### Create a `Photo` class
+### `Photo` 클래스를 정의하세요
 
 First, create a `Photo` class that contains data about a photo.
 You will include a `fromJson` factory method to make it easy to create a
@@ -87,7 +87,7 @@ class Photo {
 }
 ```
 
-### Convert the response into a List of Photos
+### 응답 결과를 Photo 리스트로 변환하기
 
 Now, update the `fetchPhotos` function so it can return a
 `Future<List<Photo>>`. To do so, you'll need to:
@@ -112,7 +112,7 @@ Future<List<Photo>> fetchPhotos(http.Client client) async {
 }
 ```
 
-## 4. Move this work to a separate isolate
+## 4. 이 작업을 별도 isolte로 옮기기
 
 If you run the `fetchPhotos` function on a slower phone, you may notice the app
 freezes for a brief moment as it parses and converts the json. This is jank,
@@ -144,7 +144,7 @@ simple objects such as the `List<Photo>` in this example.
 You may experience errors if you try to pass more complex objects, such as
 a `Future` or `http.Response` between isolates.
 
-## Complete example
+## 완성된 예제
 
 ```dart
 import 'dart:async';
