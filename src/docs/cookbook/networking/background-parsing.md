@@ -1,27 +1,26 @@
 ---
-title: Parsing JSON in the background
+title: 백그라운드에서 JSON 파싱하기
 prev:
-  title: Making authenticated requests
+  title: 인증된 요청 생성하기
   path: /docs/cookbook/networking/authenticated-requests
 next:
-  title: Working with WebSockets
+  title: WebSockets으로 작업하기
   path: /docs/cookbook/networking/web-sockets
 ---
 
-By default, Dart apps do all of their work on a single thread. In many cases,
-this model simplifies coding and is fast enough that it does not result in
-poor app performance or stuttering animations, often called "jank."
+기본적으로, 다트 앱은 모든 작업을 단일 스레드에서 수행합니다. 대부분의 경우 이러한 모델은
+코딩을 단순화시키며, 앱 성능이 떨어지거나 "jank"라고 불리는 뚝뚝 끊기는 애니메이션을 
+야기하지 않을 만큼 충분히 빠릅니다.
 
-However, you may need to perform an expensive computation, such as parsing a
-very large JSON document. If this work takes more than 16 milliseconds, your
-users will experience jank.
+하지만 아주 큰 JSON 문서를 파싱하는 것과 같은 값 비싼 연산을 해야하는 경우가 있습니다.
+만약 이러한 작업이 16ms 넘게 걸린다면, 사용자는 jank를 경험하게 될 것 입니다.
 
-To avoid jank, you need to perform expensive computations like this in the
-background. On Android, this would mean scheduling work on a different thread.
-In Flutter, you can use a separate
-[Isolate]({{site.api}}/flutter/dart-isolate/Isolate-class.html).
+Jank를 피하기 위해서는, 이러한 값 비싼 연산을 백그라운드에서 수행해야 합니다. 
+Android에서는, 다른 스레드에 작업을 스케줄링하는 것을 의미합니다. Flutter에서는,
+별도의 [Isolate]({{site.api}}/flutter/dart-isolate/Isolate-class.html)를 
+사용할 수 있습니다.
 
-## Directions
+## 진행 단계
 
   1. Add the `http` package
   2. Make a network request using the `http` package
