@@ -2,7 +2,7 @@
 title: 더 알아보기
 description: More resources to help you learn Flutter.
 prev:
-  title: 첫 번째 Flutter 앱 작성하기
+  title: 첫 Flutter 앱 작성하기
   path: /docs/get-started/codelab
 ---
 

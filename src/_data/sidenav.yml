@@ -63,10 +63,6 @@
           permalink: /docs/development/ui/assets-and-images
         - title: 내비게이션 및 라우팅
           permalink: /docs/development/ui/navigation
-        # Commenting out the following entry per
-        # https://github.com/flutter/website/issues/1496#issuecomment-431455211
-        # - title: Inspect an app's UI
-        #   permalink: /docs/development/ui/inspector
         - title: 애니메이션
           permalink: /docs/development/ui/animations
           children:
@@ -136,7 +132,7 @@
         - title: 백그라운드 작업
           permalink: /docs/development/packages-and-plugins/background-processes
         - title: 패키지 사이트
-          permalink: http://pub.dartlang.org/flutter
+          permalink: https://pub.dartlang.org/flutter
     - title: 도구 & 기법
       permalink: /docs/development/tools
       children:
@@ -144,6 +140,8 @@
           permalink: /docs/development/tools/android-studio
         - title: 비주얼 스튜디오 코드
           permalink: /docs/development/tools/vs-code
+        - title: 다트 개발도구
+          permalink: https://flutter.github.io/devtools/
         - title: Flutter SDK
           permalink: /docs/development/tools/sdk
           children:
@@ -155,8 +153,8 @@
           permalink: /docs/development/tools/hot-reload
         - title: 코드 정렬
           permalink: /docs/development/tools/formatting
-        - title: 위젯 검사 도구
-          permalink: /docs/development/tools/inspector
+        - title: Flutter 검사 도구
+          permalink: https://flutter.github.io/devtools/inspector
 
 - title: 테스트 & 최적화
   permalink: /docs/testing
@@ -197,7 +195,7 @@
     - title: 기술 개요
       permalink: /docs/resources/technical-overview
     # - title: Flutter best practices # TODO
-    - title: Flutter를 배우기 위한 기술 비디오
+    - title: 기술 비디오
       permalink: /docs/resources/videos
     # - title: Flutter developer communities # TODO
     # - title: Flutter learning resources # TODO

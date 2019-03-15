@@ -24,8 +24,8 @@ of libraries._ This page explains how you can workaround this issue.
 
 AndroidX can break a Flutter app at compile time in two ways:
 
-1. The app uses an AndroidX plugin and its main `gradle.build` file has a
-   `compileSdk` below version 28.
+1. The app uses an AndroidX plugin and its main `build.gradle` file has a
+   `compileSdkVersion` below version 28.
 2. The app uses both deprecated and AndroidX code at the same time.
 
 The error messages from Gradle vary. Sometimes the messages mention
@@ -125,7 +125,7 @@ Migrating a Flutter plugin to AndroidX follows basically the same process as
 but with some additional concerns and some slight changes.
 
 1. Make sure to increment the [major
-   version]({{site.dart-site}}/pub/versioning#semantic-versions) of
+   version]({{site.dart-site}}/tools/pub/versioning#semantic-versions) of
    your plugin for this change and clearly document it in your plugin's
    changelog. This breaking change requires manual migration for
    users to fix. Pub treats digits differently depending on whether

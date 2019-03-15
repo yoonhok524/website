@@ -1,6 +1,6 @@
 ---
-title: 첫 번째 Flutter 앱 작성하기 - 1부
-short-title: 첫 번째 Flutter 앱 작성하기
+title: 첫 Flutter 앱 작성하기 - 1부
+short-title: 첫 Flutter 앱 작성하기
 prev:
   title: 시운전
   path: /docs/get-started/test-drive
@@ -19,7 +19,7 @@ diff2html: true
 {% endcomment -%}
 <style>pre .highlight { background-color: #dfd; }</style>
 
-첫 번째 Flutter 앱을 만드는 방법을 안내합니다.
+첫 Flutter 앱을 만드는 방법을 안내합니다.
 변수, 반복문, 조건문 등 기본 프로그래밍 개념과 객체지향에 친숙하다면, 이 튜토리얼을 완료할 수 있습니다.
 다트 경험이나 모바일 프로그래밍 경험이 없어도 상관없습니다.
 
@@ -74,7 +74,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 
 <?code-excerpt path-base="codelabs/startup_namer/step1_base"?>
 
-[첫 번째 Flutter 앱 시작하기](/docs/get-started/test-drive#create-app)에 있는 지침을 따라 
+[첫 Flutter 앱 시작하기](/docs/get-started/test-drive#create-app)에 있는 지침을 따라 
 간단한 템플릿 기반 Flutter 앱을 만듭니다.
 이름을 **startup_namer**로 지정합니다 (_myapp_ 대신).
 
@@ -167,8 +167,8 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 [the Package site]({{site.pub}}/flutter)에서
 `english_words` 패키지를 찾을 수 있습니다.
 
- 1. Flutter 앱에서 디펜던시 및 asset 관리는 pubspec 파일이 담당합니다. 
-    `pubspec.yaml`의 디펜던시 목록에 `english_words` (3.1.0 이상)를 추가하세요:  
+ 1. Flutter 앱에서 의존성 및 asset 관리는 pubspec 파일이 담당합니다. 
+    `pubspec.yaml`의 의존성 목록에 `english_words` (3.1.0 이상)를 추가하세요:  
 
     <?code-excerpt path-base="codelabs/startup_namer"?>
     <?code-excerpt "{step1_base,step2_use_package}/pubspec.yaml" diff-u="4" from="dependencies" to="english"?>
@@ -244,7 +244,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
  5. 앱이 실행중이면, hot reload 버튼<i class="material-icons align-bottom">offline_bolt</i>을 사용하여 
     실행중인 앱을 업데이트하세요. 
     실행중인 앱에서 hot reload를 클릭할 때마다 혹은 프로젝트를 저장할 때마다, 랜덤하게 선택된 다른 단어 쌍을 볼 수 있을 것입니다.
-    왜냐하면 MaterialApp이 랜더링 될 때마다 혹은 또는 Flutter Inspector에서 플랫폼을 전환할 때마다
+    왜냐하면 MaterialApp이 렌더링 될 때마다 혹은 또는 Flutter Inspector에서 플랫폼을 전환할 때마다
     실행되는 build 메서드 안에서 단어 쌍을 생성하고 있기 때문입니다.
 
     {% indent %}
