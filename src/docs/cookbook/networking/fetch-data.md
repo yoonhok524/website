@@ -141,7 +141,7 @@ FutureBuilder<Post>(
       return Text("${snapshot.error}");
     }
 
-    // 기본적으로 로딩 Spinnr를 보여줍니다.
+    // 기본적으로 로딩 Spinner를 보여줍니다.
     return CircularProgressIndicator();
   },
 );
@@ -152,11 +152,11 @@ FutureBuilder<Post>(
 편리하겠지만, API 요청 코드를 `build()` 메서드 안에 위치시키는 것은 바람직하지
 않습니다.
 
-Flutter는 무언가 변경될 때마다 항상 `build()` 메서드를 부르는데, 놀랍게도 꽤 
-자주 일어납니다. 만약 네트워크 요청 코드를 `build()` 메서드에 그대로 남겨둔다면,
+Flutter는 무언가 변경될 때마다 `build()` 메서드를 호출하는데, 이 호출은 놀랄 
+만큼 자주 일어납니다. 만약 네트워크 요청 코드를 `build()` 메서드에 그대로 남겨둔다면,
 불필요한 API 요청이 아주 많이 발생하고 앱이 느려질 수 있습니다.
 
-페이지가 최초 로드될 떄 한번 API를 호출하게 하는 좀더 나은 방법이 있습니다.
+페이지가 최초 로드될 때 한번 API를 호출하게 하는 좀더 나은 방법이 있습니다.
 
 ### `StatelessWidget`에 넘기세요
 
@@ -274,7 +274,7 @@ class MyApp extends StatelessWidget {
                 return Text("${snapshot.error}");
               }
 
-              // 기본적으로 로딩 Spinnr를 보여줍니다.
+              // 기본적으로 로딩 Spinner를 보여줍니다.
               return CircularProgressIndicator();
             },
           ),
