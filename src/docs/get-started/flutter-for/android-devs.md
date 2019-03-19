@@ -25,7 +25,7 @@ react-style 프로그래밍(또는 선언적 프로그래밍)이 기존 명령�
 비교를 위해, [선언적 UI 소개](/docs/get-started/flutter-for/declarative)를 참조하세요.
 {{site.alert.end}}
 
-안드로이드에서, `위젯`는 화면에 나타나는 모든 것의 기반입니다. 
+안드로이드에서, `뷰`는 화면에 나타나는 모든 것의 기반입니다. 
 버튼, 툴바, 입력창 등 모든 것이 뷰입니다.
 Flutter에서는 `위젯`이 `뷰`와 유사합니다. 
 위젯이 안드로이드의 뷰와 정확하게 일치하는 건 아니지만, 
@@ -464,14 +464,14 @@ Widget build(BuildContext context) {
 네이티브 통합을 활용하여 intent를 사용할 수는 있습니다.
 ([플러그인]({{site.pub}}/packages/android_intent)을 사용)
 
-Flutter는 실제로 액티비티나 프레그먼트와 직접적으로 동등한 요소를 가지고 있지 않습니다.
+Flutter는 실제로 액티비티나 프래그먼트와 직접적으로 동등한 요소를 가지고 있지 않습니다.
 Flutter에서는 하나의 `Activity`안에서 `Navigator`와 `Route`를 활용하여 스크린 간 내비게이션을 합니다.
 
 `Route`는 앱의 “스크린”이나 “페이지”를 추상화한 것이고,
 `Navigator`는 route를 관리하는 위젯입니다.
 `Activity`와 route는 유사하지만, 똑같은 의미는 아닙니다.
 Navigator는 routes를 push나 pop을 하여 스크린 간 이동을 할 수 있습니다.
-Navigator는 스텍처럼 동작합니다. 
+Navigator는 스택처럼 동작합니다. 
 이동하려는 새로운 route로 `push()`할 수 있고,
 되돌아가려면 `pop()`하면 됩니다.
 
@@ -1238,63 +1238,63 @@ Flutter 프로젝트 안에 있는 `android` 폴더 아래에 Gradle 파일이 �
 일반적인 경우에는, `pubspec.yaml` 파일을 사용하여 Flutter에서 사용하는 외부 의존성을 추가하세요.
 Flutter 패키지를 찾기 좋은 곳은 [Pub]({{site.pub}}/flutter/packages/)입니다.
  
-## Activities and fragments
+## 액티비티와 프래그먼트 
 
-### What are the equivalent of activities and fragments in Flutter?
+### Flutter에서 액티비티, 프래그먼트와 동일한 것은?
 
-In Android, an `Activity` represents a single focused thing the user can do. A
-`Fragment` represents a behavior or a portion of user interface. Fragments
-are a way to modularize your code, compose sophisticated user interfaces for
-larger screens, and help scale your application UI. In Flutter, both of these
-concepts fall under the umbrella of `Widget`s.
+안드로이드에서, `액티비티`는 사용자가 할 수 있는 것을 모아 나타냅니다.
+`프래그먼트`는 사용자 인터페이스의 일부 또는 동작을 나타냅니다. 
+프래그먼트는 코드를 모듈화하고,
+더 큰 화면을 위한 정교한 사용자 인터페이스를 구성하며,
+앱 UI을 확장하는 데 도움을 줍니다.
+Flutter에서는 이 두 개념 모두 `위젯`의 범주에 포함됩니다.
 
-To learn more about the UI for building Activities and Fragements, see
-the community-contributed medium article,
-[Flutter For Android Developers : How to design an Activity UI in
-Flutter]({{site.medium}}/@burhanrashid52/flutter-for-android-developers-how-to-design-activity-ui-in-flutter-4bf7b0de1e48).
+액티비티와 프래그먼트를 만들기 위한 UI에 대해 더 자세히 알고 싶다면,
+커뮤니티 공헌자의 글 
+[안드로이드 개발자를 위한 Flutter: Flutter에서 액티비티 UI를 디자인하는 방법]({{site.medium}}/@burhanrashid52/flutter-for-android-developers-how-to-design-activity-ui-in-flutter-4bf7b0de1e48)을
+참조하세요.
 
-As mentioned in the [Intents](#what-is-the-equivalent-of-an-intent-in-flutter)
-section, screens in Flutter are represented by `Widget`s since everything is
-a widget in Flutter. You use a `Navigator` to move between different `Route`s
-that represent different screens or pages, or maybe just different states or
-renderings of the same data.
 
-### How do I listen to Android activity lifecycle events?
+[인텐트](#what-is-the-equivalent-of-an-intent-in-flutter) 부분에서 언급한 것처럼, 
+Flutter에서 모든 것은 위젯이기 때문에, 
+Flutter에서 화면은 `위젯`들로 표현됩니다. 
+다른 화면이나 페이지인 `Route` 간 이동을 위해 `Navigator`를 사용할 수도 있고,
+혹은 그냥 상태만 바꾸거나, 같은 데이터를 랜더링할 수 있습니다.
 
-In Android, you can override methods from the `Activity` to capture lifecycle
-methods for the activity itself, or register `ActivityLifecycleCallbacks` on
-the `Application`. In Flutter, you have neither concept, but you can instead
-listen to lifecycle events by hooking into the `WidgetsBinding` observer and
-listening to the `didChangeAppLifecycleState()` change event.
+### 안드로이드 액티비티의 생명주기 이벤트를 어떻게 수신할 수 있나요?
 
-The observable lifecycle events are:
+안드로이드에서는 `액티비티`에 있는 메서드를 오버라이드하여, 액티비티 자체에 있는 생명주기를 메서드를 수정하거나
+`Application`에 `ActivityLifecycleCallbacks`를 등록할 수 있습니다.
+Flutter에서는 위와 같은 개념은 없지만, 
+대신 `WidgetsBinding` 옵저버에 연결하고 
+`didChangeAppLifecycleState()` 변경 이벤트를 수신하여
+생명주기 이벤트를 수신할 수 있습니다.
 
-* `inactive` — The application is in an inactive state and is not receiving user
-  input. This event only works on iOS, as there is no equivalent event to map to
-  on Android
-* `paused` — The application is not currently visible to the user, not responding
-  to user input, and running in the background. This is equivalent to `onPause()`
-  in Android
-* `resumed` — The application is visible and responding to user input. This is
-  equivalent to `onPostResume()` in Android
-* `suspending` — The application is suspended momentarily. This is equivalent
-  to `onStop` in Android; it is not triggered on iOS as there is no equivalent
-  event to map to on iOS
+관찰 가능한 생명주기 이벤트는 다음과 같습니다:
 
-For more details on the meaning of these states, see the
-[`AppLifecycleStatus` documentation][].
+* `inactive` — 앱이 비활성화 상태이고 사용자의 입력을 받지 않습니다.
+  안드로이드에서 동일한 이벤트가 없기 때문에 이 이벤트는 iOS에서만 동작합니다.   
+* `paused` — 앱이 현재 사용자에게 보이지 않고, 사용자의 입력을 받지 않으며, 백그라운드에서 동작 중입니다.
+  안드로이드의 `onPause()`와 동일합니다.
+* `resumed` — 앱이 보이고 있고 사용자 입력을 받고 있습니다.
+  안드로이드의 `onPostResume()`와 동일합니다.
+* `suspending` — 앱이 일시 중지 되었습니다. 안드로이드에서 `onStop`과 동일합니다.
+  iOS에서는 동일한 이벤트가 없기 때문에 호출되지 않습니다.
 
-[`AppLifecycleStatus` documentation]: {{site.api}}/flutter/dart-ui/AppLifecycleState-class.html
+이 상태들의 의미에 대해 자세한 정보를 알고 싶으시다면, 
+[`AppLifecycleStatus` 문서][]를 참조하세요.
 
-As you might have noticed, only a small minority of the Activity lifecycle events
-are available; while `FlutterActivity` does capture almost all the activity lifecycle
-events internally and send them over to the Flutter engine, they're mostly shielded
-away from you. Flutter takes care of starting and stopping the engine for you, and
-there is little reason for needing to observe the activity lifecycle on the Flutter
-side in most cases. If you need to observe the lifecycle to acquire or release any
-native resources, you should likely be doing it from the native side, at any rate.
+[`AppLifecycleStatus` 문서]: {{site.api}}/flutter/dart-ui/AppLifecycleState-class.html
 
-Here's an example of how to observe the lifecycle status of the containing activity:
+눈치채셨겠지만, 아주 소수의 액티비티 생명주기만 이용가능합니다;
+`FlutterActivity`가 내부적으로 거의 모든 액티비티 생명주기를 캡처하여 Flutter 앤진으로 보내기는 하지만,
+대부분은 보호되어 있습니다.
+Flutter가 엔진을 시작하고 중지하는 일을 처리하고, 
+대부분의 경우 Flutter 측의 액티비티 생명주기를 관찰할 이유는 거의 없습니다.
+네이티브 리소스를 얻거나 배포하기 위해 생명주기를 관찰할 필요가 있다면,
+어찌됐든 네이티브 쪽에서 수행해야 할 것입니다.
+
+아래에 포함된 액티비티의 생명주기 상태를 관찰하는 방법의 예시가 있습니다:
 
 {% prettify dart %}
 import 'package:flutter/widgets.dart';
