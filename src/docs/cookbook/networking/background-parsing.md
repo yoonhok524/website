@@ -29,21 +29,21 @@ Android에서는, 다른 스레드에 작업을 스케줄링하는 것을 의미
 
 ## 1. `http` 패키지 추가하기
 
-First, add the [`http`]({{site.pub-pkg}}/http) package to your project.
-The `http` package makes it easier to perform network
-requests, such as fetching data from a JSON endpoint.
+먼저 프로젝트에 [`http`]({{site.pub-pkg}}/http) 패키지를 추가하세요.
+`http` 패키지를 통해 JSON 엔드 포인트로부터 데이터를 받아오는 것과 같은
+네트워크 통신을 쉽게 수행할 수 있습니다.
 
 ```yaml
 dependencies:
   http: <latest_version>
 ```
 
-## 2. 네트워크 요청 생성하ㅣ
+## 2. 네트워크 요청 생성하기
 
-In this example, you'll fetch a JSON large document that contains a list of
-5000 photo objects from the [JSONPlaceholder REST
-API](https://jsonplaceholder.typicode.com)
-using the [http.get()]({{site.pub-api}}/http/latest/http/get.html) method.
+본 예제에서는 [JSONPlaceholder REST API](https://jsonplaceholder.typicode.com)
+로부터 5000개의 photo 객체가 포함된 아주 큰 사이즈의 JSON 문서를 
+[http.get()]({{site.pub-api}}/http/latest/http/get.html) 메서드를 사용하여
+받아올 것입니다.
 
 <!-- skip -->
 ```dart
@@ -52,21 +52,19 @@ Future<http.Response> fetchPhotos(http.Client client) async {
 }
 ```
 
-참고: You're providing an `http.Client` to the function in this example.
-This makes the function easier to test and use in different environments.
+참고: 본 예제에서는 함수에 `http.Client`를 제공하고 있는데, 이로인해 해당 함수를
+테스트하거나 다른 환경에서도 사용하기 쉬워집니다.
 
 ## 3. json을 Photo 리스트로 파싱하여 변환하기
 
-Next, following the guidance from the [Fetch data from the
-internet](/docs/cookbook/networking/fetch-data)
-recipe, you'll want to convert the `http.Response` into a list of Dart objects.
-This makes the data easier to work with in the future.
+다음으로, [Fetch data from the internet](/docs/cookbook/networking/fetch-data)의
+가이드를 따라하세요. `http.Response`를 다트 객체의 리스트로 변환할 건데 그렇게 데이터를
+벼환하고 나면 이후 작업을 더 쉽게 수행할 수 있습니다.
 
 ### `Photo` 클래스를 정의하세요
 
-First, create a `Photo` class that contains data about a photo.
-You will include a `fromJson` factory method to make it easy to create a
-`Photo` starting with a json object.
+먼저 사진 관련 데이터를 담을 `Photo` 클래스를 정의합니다. json 객체를 통해 
+`Photo`를 좀더 쉽게 생성하기 위해 `fromJson` 팩토리 메서드를 같이 정의하세요 
 
 <!-- skip -->
 ```dart
@@ -89,15 +87,16 @@ class Photo {
 
 ### 응답 결과를 Photo 리스트로 변환하기
 
-Now, update the `fetchPhotos` function so it can return a
-`Future<List<Photo>>`. To do so, you'll need to:
+이제 `Future<List<Photo>>`를 반환하도록 `fetchPhotos` 함수를 수정하겠습니다.
+이 작업을 하기 위해 다음의 것들이 필요합니다:
 
   1. Create a `parsePhotos` that converts the response body into a `List<Photo>`
-  2. Use the `parsePhotos` function in the `fetchPhotos` function
+  1. 응답 결과를 `List<Photo>`로 변환할 `parsePhotos` 를 생성하세요
+  2. `fetchPhotos` 함수에서 `parsePhotos` 함수를 사용하세요
 
 <!-- skip -->
 ```dart
-// A function that converts a response body into a List<Photo>
+// 응답 결과를 List<Photo>로 변환하는 함수
 List<Photo> parsePhotos(String responseBody) {
   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
 
@@ -114,15 +113,14 @@ Future<List<Photo>> fetchPhotos(http.Client client) async {
 
 ## 4. 이 작업을 별도 isolte로 옮기기
 
-If you run the `fetchPhotos` function on a slower phone, you may notice the app
-freezes for a brief moment as it parses and converts the json. This is jank,
-and we want to be rid of it.
+만약 `fetchPhotos` 함수를 구형의 오래된 폰에서 돌려보면, 앱이 json을 파싱하고 변환하는
+과정에서 버벅대는 것을 느낄 수도 있습니다. 이런 현상을 jank라고 부르는데 이 현상을
+개선하겠습니다.
 
-So how can we do that? By moving the parsing and conversion to a background
-isolate using the [`compute`]({{site.api}}/flutter/foundation/compute.html)
-function provided by Flutter. The `compute` function runs expensive
-functions in a background isolate and returns the result. In this case,
-we want to run the `parsePhotos` function in the background.
+[`compute`]({{site.api}}/flutter/foundation/compute.html) 함수를 사용하여
+파싱하고 변환하는 작업을 백그라운드 isolate으로 옮기면 됩니다. `compute` 함수는
+오래 걸리는 함수를 백그라운드 isolate에서 돌리고 그 결과를 반환합니다. 본 예제에서는
+`parsePhotos` 함수를 백그라운드에서 수행할 것입니다.
 
 <!-- skip -->
 ```dart
@@ -130,19 +128,19 @@ Future<List<Photo>> fetchPhotos(http.Client client) async {
   final response =
       await client.get('https://jsonplaceholder.typicode.com/photos');
 
-  // Use the compute function to run parsePhotos in a separate isolate
+  // compute 함수를 사용하여 parsePhotos를 별도 isolate에서 수행합니다
   return compute(parsePhotos, response.body);
 }
 ```
 
-## Notes on working with Isolates
+## Isolate 작업에 대한 참고 사항
 
-Isolates communicate by passing messages back and forth. These messages can
-be primitive values, such as `null`, `num`, `bool`, `double`, or `String`, or
-simple objects such as the `List<Photo>` in this example.
+Isolate는 메세지를 주고 받으며 통신합니다. 메세지는 `null`, `num`, `bool`, `double`,
+`String` 과 같은 원시 타입이거나 본 예제에서 사용한 `List<Photo>`와 같은 간단한 객체일 수 
+있습니다. 
 
-You may experience errors if you try to pass more complex objects, such as
-a `Future` or `http.Response` between isolates.
+Isolate 간에 `Future`나 `http.Response`와 같이 다소 복잡한 객체를 주고 받을 경우
+에러가 발생할 수도 있습니다.
 
 ## 완성된 예제
 
@@ -158,11 +156,11 @@ Future<List<Photo>> fetchPhotos(http.Client client) async {
   final response =
       await client.get('https://jsonplaceholder.typicode.com/photos');
 
-  // Use the compute function to run parsePhotos in a separate isolate
+  // compute 함수를 사용하여 parsePhotos를 별도 isolate에서 수행합니다
   return compute(parsePhotos, response.body);
 }
 
-// A function that converts a response body into a List<Photo>
+// 응답 결과를 List<Photo>로 변환하는 함수
 List<Photo> parsePhotos(String responseBody) {
   final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
 
