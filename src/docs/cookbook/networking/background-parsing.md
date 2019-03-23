@@ -15,7 +15,7 @@ next:
 하지만 아주 큰 JSON 문서를 파싱하는 것과 같은 값 비싼 연산을 해야하는 경우가 있습니다.
 만약 이러한 작업이 16ms 넘게 걸린다면, 사용자는 jank를 경험하게 될 것 입니다.
 
-Jank를 피하기 위해서는, 이러한 값 비싼 연산을 백그라운드에서 수행해야 합니다. 
+Jank를 피하기 위해서는, 이러한 값비싼 연산을 백그라운드에서 수행해야 합니다. 
 Android에서는, 다른 스레드에 작업을 스케줄링하는 것을 의미합니다. Flutter에서는,
 별도의 [Isolate]({{site.api}}/flutter/dart-isolate/Isolate-class.html)를 
 사용할 수 있습니다.
@@ -52,14 +52,14 @@ Future<http.Response> fetchPhotos(http.Client client) async {
 }
 ```
 
-참고: 본 예제에서는 함수에 `http.Client`를 제공하고 있는데, 이로인해 해당 함수를
+참고: 본 예제에서는 함수에 `http.Client`를 제공하고 있는데, 이로 인해 해당 함수를
 테스트하거나 다른 환경에서도 사용하기 쉬워집니다.
 
 ## 3. json을 Photo 리스트로 파싱하여 변환하기
 
 다음으로, [Fetch data from the internet](/docs/cookbook/networking/fetch-data)의
 가이드를 따라하세요. `http.Response`를 다트 객체의 리스트로 변환할 건데 그렇게 데이터를
-벼환하고 나면 이후 작업을 더 쉽게 수행할 수 있습니다.
+변환하고 나면 이후 작업을 더 쉽게 수행할 수 있습니다.
 
 ### `Photo` 클래스를 정의하세요
 
@@ -90,7 +90,6 @@ class Photo {
 이제 `Future<List<Photo>>`를 반환하도록 `fetchPhotos` 함수를 수정하겠습니다.
 이 작업을 하기 위해 다음의 것들이 필요합니다:
 
-  1. Create a `parsePhotos` that converts the response body into a `List<Photo>`
   1. 응답 결과를 `List<Photo>`로 변환할 `parsePhotos` 를 생성하세요
   2. `fetchPhotos` 함수에서 `parsePhotos` 함수를 사용하세요
 
@@ -115,7 +114,7 @@ Future<List<Photo>> fetchPhotos(http.Client client) async {
 
 만약 `fetchPhotos` 함수를 구형의 오래된 폰에서 돌려보면, 앱이 json을 파싱하고 변환하는
 과정에서 버벅대는 것을 느낄 수도 있습니다. 이런 현상을 jank라고 부르는데 이 현상을
-개선하겠습니다.
+개선해보겠습니다.
 
 [`compute`]({{site.api}}/flutter/foundation/compute.html) 함수를 사용하여
 파싱하고 변환하는 작업을 백그라운드 isolate으로 옮기면 됩니다. `compute` 함수는
