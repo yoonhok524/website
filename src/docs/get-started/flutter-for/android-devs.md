@@ -1341,19 +1341,15 @@ void main() {
 }
 {% endprettify %}
 
-## Layouts
+## 레이아웃
 
-### What is the equivalent of a LinearLayout?
+### LinearLayout과 동일한 것은?
 
-In Android, a LinearLayout is used to lay your widgets out
-linearly&mdash;either horizontally or vertically.
-In Flutter, use the Row widget or Column
-widget to achieve the same result.
+안드로이드에서는 LinearLayout을 사용하여 수평 또는 수직의 선형으로 위젯을 배치합니다.
+Flutter에서는 Row 위젯과 Column 위젯을 사용하여 동일한 결과를 얻을 수 있습니다.
 
-If you notice the two code samples are identical with the exception of the
-"Row" and "Column" widget. The children are the same and this feature can be
-exploited to develop rich layouts that can change overtime with the same
-children.
+두 코드 샘플이 "Row" 및 "Column" 위젯을 제외하고 같은 형태라는 것을 알 수 있습니다.
+children은 똑같고, 이 기능은 children은 같으면서도 계속 변하는 풍부한 레이아웃을 구현하기 위해 이용될 수 있습니다.
 
 {% prettify dart %}
   @override
@@ -1385,31 +1381,30 @@ children.
   }
 {% endprettify %}
 
-To 더 알아보기 about building linear layouts, see the community contributed medium
-article [Flutter For Android Developers : How to design LinearLayout in
-Flutter?]({{site.medium}}/@burhanrashid52/flutter-for-android-developers-how-to-design-linearlayout-in-flutter-5d819c0ddf1a).
+linear layouts에 대해 더 알고 싶다면, 커뮤니티 공헌자의 미디엄 글 
+[안드로이드 개발자를 위한 Flutter : Flutter에서 LinearLayout을 어떻게 디자인 하는가?]({{site.medium}}/@burhanrashid52/flutter-for-android-developers-how-to-design-linearlayout-in-flutter-5d819c0ddf1a)
+를 참조하세요.
 
-### What is the equivalent of a RelativeLayout?
+### RelativeLayout과 동일한 것은?
 
-A RelativeLayout lays your widgets out relative to each other. In
-Flutter, there are a few ways to achieve the same result.
+RelativeLayout은 위젯을 서로 상대적이게 배치합니다. 
+Flutter에도 동일한 결과를 얻을 수 있는 방법이 몇 가지 있습니다.
 
-You can achieve the result of a RelativeLayout by using a combination of
-Column, Row, and Stack widgets. You can specify rules for the widgets
-constructors on how the children are laid out relative to the parent.
+Column, Row, Stack 위젯을 조합하여 RelativeLayout와 동일한 결과를 얻을 수 있습니다.
+위젯 생성자에서 부모를 기준으로 자식을 어떻게 배치할지를 지정할 수 있습니다.
 
-For a good example of building a RelativeLayout in Flutter, see Collin's
-answer on
-[StackOverflow]({{site.so}}/questions/44396075/equivalent-of-relativelayout-in-flutter).
+Flutter에서 RelativeLayout을 작성하는 좋은 예시를 찾고 있으시다면, 
+[StackOverflow]({{site.so}}/questions/44396075/equivalent-of-relativelayout-in-flutter)
+에서 Collin의 답변을 참조하십시오.
 
-### What is the equivalent of a ScrollView?
+### ScrollView와 동일한 것은?
 
-In Android, use a ScrollView to lay out your widgets&mdash;if the user's
-device has a smaller screen than your content, it scrolls.
+안드로이드에서는 ScrollView를 사용하여 위젯을 배치하는 경우가 있습니다. 
+사용자의 기기가 콘텐츠보다 작으면, 스크롤을 해야 합니다.
 
-In Flutter, the easiest way to do this is using the ListView widget. This might
-seem like overkill coming from Android, but in Flutter a ListView widget is
-both a ScrollView and an Android ListView.
+Flutter에서 가장 쉬운 방법은 ListView 위젯을 사용하는 것입니다.
+안드로이드에 익숙하시면 조금 과해 보일 수도 있지만, 
+Flutter에서 ListView 위젯은 ScrollView이면서 안드로이드의 ListView입니다.
 
 {% prettify dart %}
   @override
@@ -1425,25 +1420,24 @@ both a ScrollView and an Android ListView.
   }
 {% endprettify %}
 
-### How do I handle landscape transitions in Flutter?
+### Flutter에서 가로 세로 전환을 어떻게 처리합니까?
 
-FlutterView handles the config change if AndroidManifest.xml contains:
+아래와 같은 속성이 AndroidManifest.xml에 포함되어있는 경우 FlutterView가 환경 설정에 따라 처리합니다.
 
 {% prettify yaml %}
 android:configChanges="orientation|screenSize"
 {% endprettify %}
 
-## Gesture detection and touch event handling
+## 제스처 감지 및 터치 이벤트 처리
 
-### How do I add an onClick listener to a widget in Flutter?
+### Flutter에서 onClick 리스너를 추가하는 방법은?
 
-In Android, you can attach onClick to views such as button by calling
-the method 'setOnClickListener'.
+안드로이드에서는 'setOnClickListener' 메서드를 호출하여 버튼과 같은 뷰에 onClick을 추가할 수 있습니다.  
 
-In Flutter there are two ways of adding touch listeners:
+Flutter에서는 터치 리스너를 붙이는 2가지 방법이 있습니다:
 
- 1. If the Widget supports event detection, pass a function to it and handle it
-    in the function. For example, the RaisedButton has an `onPressed` parameter:
+ 1. 위젯이 이벤트 감지를 지원하면, 함수를 전달하여 함수에서 처리하세요.
+    예를 들어, RaisedButton는 `onPressed` 매개 변수를 가지고 있습니다:
 
     <!-- skip -->
     ```dart
@@ -1457,8 +1451,8 @@ In Flutter there are two ways of adding touch listeners:
     }
     ```
 
- 2. If the Widget doesn't support event detection, wrap the
-    widget in a GestureDetector and pass a function to the `onTap` parameter.
+ 2. 위젯이 이벤트 감지를 지원하지 않으면, 
+    위젯을 GestureDetector로 감싸고 `onTap` 매개 변수에 함수를 전달하세요.
 
     <!-- skip -->
     ```dart
@@ -1480,52 +1474,42 @@ In Flutter there are two ways of adding touch listeners:
     }
     ```
 
-### How do I handle other gestures on widgets?
+### 위젯에서 다른 손동작을 어떻게 처리합니까?
 
-Using the GestureDetector, you can listen to a wide range of Gestures such as:
+GestureDetector를 활용하여 여러 손동작을 감지할 수 있습니다:
 
-* Tap
+* 두드리기(Tap)
 
-  * `onTapDown` - A pointer that might cause a tap has contacted the screen at a
-     particular location.
-  * `onTapUp` - A pointer that triggers a tap has stopped contacting the
-     screen at a particular location.
-  * `onTap` - A tap has occurred.
-  * `onTapCancel` - The pointer that previously triggered the `onTapDown` won't
-     cause a tap.
+  * `onTapDown` - 탭의 원인이 될 수 있는 포인터가 화면의 특정 위치에 닿았다. 
+  * `onTapUp` - 탭을 발생시킨 포인터가 화면의 특정 위치에 접촉했다가 접촉이 끝났다.
+  * `onTap` - 탭이 발생했다.
+  * `onTapCancel` - 이전에 `onTapDown`을 발생시켰던 포인터가 탭을 발생시키지 않았다.
 
-* Double tap
+* 두 번 두드리기(Double tap)
 
-  * `onDoubleTap` - The user tapped the screen at the same location twice in
-     quick succession.
+  * `onDoubleTap` - 사용자가 화면의 동일한 위치를 빠르게 두 번 탭했다. 
 
-* Long press
+* 길게 누르기(Long press)
 
-  * `onLongPress` - A pointer has remained in contact with the screen at the same
-    location for a long period of time.
+  * `onLongPress` - 포인터가 화면의 같은 지점에 오랜 시간 동안 접촉한 채로 남아있다.
 
-* Vertical drag
+* 수직 드래그(Vertical drag)
 
-  * `onVerticalDragStart` - A pointer has contacted the screen and might begin to
-    move vertically.
-  * `onVerticalDragUpdate` - A pointer in contact with the screen
-    has moved further in the vertical direction.
-  * `onVerticalDragEnd` - A pointer that was previously in contact with the
-    screen and moving vertically is no longer in contact with the screen and was
-    moving at a specific velocity when it stopped contacting the screen.
+  * `onVerticalDragStart` - 포인터가 화면에 접촉했고 수직으로 움직이기 시작했다.
+  * `onVerticalDragUpdate` - 포인터가 화면에 접촉한 상태로 수직 방향으로 더 움직였다. 
+  * `onVerticalDragEnd` - 이전에 화면과 접촉하여 수직으로 움직이던 포인터가
+    더 이상 화면과 접촉하지 않고 
+    특정 속도로 이동하다가 화면과의 접촉을 멈췄다. 
 
-* Horizontal drag
+* 수평 드래그(Horizontal drag)
 
-  * `onHorizontalDragStart` - A pointer has contacted the screen and might begin
-    to move horizontally.
-  * `onHorizontalDragUpdate` - A pointer in contact with the screen
-    has moved further in the horizontal direction.
-  * `onHorizontalDragEnd` - A pointer that was previously in contact with the
-    screen and moving horizontally is no longer in contact with the screen and was
-    moving at a specific velocity when it stopped contacting the screen.
+  * `onHorizontalDragStart` - 포인터가 화면에 접촉했고 수평으로 움직이기 시작했다.
+  * `onHorizontalDragUpdate` - 포인터가 화면에 접촉한 상태로 수평 방향으로 더 움직였다. 
+  * `onHorizontalDragEnd` - 이전에 화면과 접촉하여 수평으로 움직이던 포인터가
+    더 이상 화면과 접촉하지 않고 
+    특정 속도로 이동하다가 화면과의 접촉을 멈췄다. 
 
-The following example shows a `GestureDetector` that rotates the Flutter logo
-on a double tap:
+아래 예제는 두 번 탭(double tap)하면 Flutter 로고를 회전시키는 `GestureDetector`입니다:
 
 {% prettify dart %}
 AnimationController controller;
@@ -1563,18 +1547,17 @@ class SampleApp extends StatelessWidget {
 
 ## Listviews & adapters
 
-### What is the alternative to a ListView in Flutter?
+### Flutter에서 ListView 대신 사용할 수 있는 것은?
 
-The equivalent to a ListView in Flutter is … a ListView!
+Flutter에서 ListView와 동일한 것은… ListView입니다!
 
-In an Android ListView, you create an adapter and pass it into the
-ListView, which renders each row with what your adapter returns. However, you
-have to make sure you recycle your rows, otherwise, you get all sorts of crazy
-visual glitches and memory issues.
+안드로이드 ListView에서는 어댑터를 작성하여 ListView로 전달하면,
+어댑터가 반환하는 대로 각 행을 렌더링합니다.
+하지만 행을 꼭 재활용하도록 해야 한다, 
+그렇지 않으면 온갖 미친 시각적 결함이나 메모리 문제가 생긴다.
 
-Due to Flutter's immutable widget pattern, you pass a List of
-Widgets to your ListView, and Flutter takes care of making sure
-that scrolling is fast and smooth.
+Flutter의 불변 위젯 구조 덕분에,
+ListView에 위젯 리스트를 전달하면 Flutter는 스크롤이 빠르고 부드럽게 처리합니다.
 
 {% prettify dart %}
 import 'package:flutter/material.dart';
@@ -1625,11 +1608,10 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### How do I know which list item is clicked on?
+### 리스트에서 어떤 항목을 클릭했는지 어떻게 알 수 있나요?
 
-In Android, the ListView has a method to find out which item was clicked
-'onItemClickListener'.
-In Flutter, use the touch handling provided by the passed-in widgets.
+안드로이드에서는 ListView가 어떤 항목을 클릭했는지 알려주는 'onItemClickListener'라는 메서드가 있습니다.
+Flutter에서는 전달된 위젯에서 터치를 제어합니다.
 
 {% prettify dart %}
 import 'package:flutter/material.dart';
@@ -1687,21 +1669,19 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-### How do I update ListView's dynamically?
+### ListView를 어떻게 동적으로 업데이트합니까?
 
-On Android, you update the adapter and call `notifyDataSetChanged`.
+안드로이드에서는 어뎁터를 수정하고 `notifyDataSetChanged`를 호출합니다.
 
-In Flutter, if you were to update the list of widgets inside a `setState()`,
-you would quickly see that your data did not change visually.
-This is because when `setState()` is called, the Flutter rendering engine
-looks at the widget tree to see if anything has changed. When it gets to your
-`ListView`, it performs a `==` check, and determines that the two `ListView`s are the
-same. Nothing has changed, so no update is required.
+Flutter에서는 `setState()` 안에서 위젯의 리스트를 수정하면, 데이터가 변경되지 않았음을 시각적으로 빠르게 확인할 수 있다.
+`setState()`가 호출되면 Flutter의 랜더링 엔진이 변경 사항이 있는지 위젯 트리를 확인하기 때문입니다.
+랜더링 엔진이 `ListView`까지 오면, 
+`==` 방식의 검사를 하고, 두 `ListView`가 같은지 체크합니다.
+아무것도 안 바뀌었으면, 업데이트가 필요 없습니다.
 
-For a simple way to update your `ListView`, create a new `List` inside of
-`setState()`, and copy the data from the old list to the new list.
-While this approach is simple, it is not recommended for large data sets,
-as shown in the next example.
+간단하게 `ListView`를 업데이트하려면, 
+`setState()` 안에서 새로운 `List`를 만들고 이전 리스트를 새로운 리스트로 복사하세요.
+이 방법은 간단하긴 하지만, 아래 예제 처럼 큰 데이터를 다룰 때 권장할만한 방법은 아닙니다.
 
 {% prettify dart %}
 import 'package:flutter/material.dart';
@@ -1769,11 +1749,9 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-The recommended, efficient, and effective way to build a list uses a
-ListView.Builder. This method is great when you have a dynamic
-List or a List with very large amounts of data. This is essentially
-the equivalent of RecyclerView on Android, which automatically
-recycles list elements for you:
+리스트를 만들 때 권장되고 효율적이며 효과적인 방법은 ListView.Builder를 사용하는 것입니다.
+이 메서드는 동적인 리스트를 다뤄야 하거나 많은 데이터를 다뤄야 할 때 매우 좋습니다. 
+리스트 요소를 재활용 한다는 점에서 본질적으로 안드로이드의 RecyclerView와 동일합니다.
 
 {% prettify dart %}
 import 'package:flutter/material.dart';
@@ -1843,16 +1821,15 @@ class _SampleAppPageState extends State<SampleAppPage> {
 }
 {% endprettify %}
 
-Instead of creating a "ListView", create a ListView.builder that
-takes two key parameters: the initial length of the list, and an ItemBuilder
-function.
+"ListView"를 만드는 대신 ListView.builder를 만듭니다.
+ListView.builder는 리스트의 초기 길이와 ItemBuilder 함수라는 
+2가지 주요 매개 변수를 가지고 있습니다.
 
-The ItemBuilder function is similar to the `getView` function in an Android
-adapter; it takes a position, and returns the row you want rendered at
-that position.
+ItemBuilder 함수는 안드로이드 어뎁터의 `getView` 함수와 유사합니다.
+position을 받아서 랜더링이 필요한 해당 row를 반환합니다.
 
-Finally, but most importantly, notice that the `onTap()` function
-doesn't recreate the list anymore, but instead `.add`s to it.
+마지막으로 가장 중요한 작업이 남았습니다. 
+`onTap()` 함수가 리스트를 다시 생성하는 대신 `.add`를 사용해 요소를 추가하게 합니다.  
 
 ## Working with text
 
