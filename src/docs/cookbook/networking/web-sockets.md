@@ -66,10 +66,10 @@ StreamBuilder(
 
 `Stream` 클래스는 `dart:async` 패키지의 핵심적인 부분으로 데이터 소스로부터
 비동기 이벤트를 수신하는 방법을 제공합니다. 하나의 비동기 응답을 반환하는 `Future`와 
-다르게, `Stream` 클래스는 시간 흐름에 따라 여러 이벤트들을 전달할 수 있습닏.
+다르게, `Stream` 클래스는 시간 흐름에 따라 여러 이벤트들을 전달할 수 있습니다.
 
 [`StreamBuilder`]({{site.api}}/flutter/widgets/StreamBuilder-class.html) 위젯은
-`Stream`와 연결하여 이벤트를 받을 때마다 `builder` 함수를 통해 Flutter에게 다시 
+`Stream`과 연결하여 이벤트를 받을 때마다 `builder` 함수를 통해 Flutter에게 다시 
 빌드하도록 요청합니다.
 
 ## 3. 서버에 데이터 보내기
