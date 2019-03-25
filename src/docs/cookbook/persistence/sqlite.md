@@ -1,46 +1,41 @@
 ---
-title: Persist data with SQLite
+title: SQLite에 데이터 저장하기
 prev:
-  title: Working with WebSockets
+  title: WebSocket 사용하기
   path: /docs/cookbook/networking/web-sockets
 next:
-  title: Reading and Writing Files
+  title: File 읽고 쓰기
   path: /docs/cookbook/persistence/reading-writing-files
 ---
 
-If you write an app that needs to persist and query larger amounts of data on
-the local device, consider using a database instead of a local file or key-value
-store. In general, databases provide faster inserts, updates, and queries
-compared to other local persistence solutions.
+로컬 디바이스에 많은 데이터를 저장하고 쿼리를 요청해야 한다면, 로컬 파일이나 키-값 저장소 대신 데이터베이스를
+사용해보세요. 일반적으로 데이터베이스는 다른 로컬 솔루션보다 더 빠른 쓰기, 수정, 읽기 성능을 제공합니다.
 
-Flutter apps can make use of the SQLite databases via the
-[`sqflite`](https://pub.dartlang.org/packages/sqflite) plugin available on pub.
-This recipe demonstrates the basics of using `sqflite` to insert, read, update,
-and remove data about various Dogs!
+Flutter 앱은 pub에서 이용가능한 
+[`sqflite`](https://pub.dartlang.org/packages/sqflite) 플러그인을 통해 SQLite 데이터베이스를
+사용할 수 있습니다. 본 예제에서는 다양한 강아지 데이터를 가지고 추가, 읽기, 수정, 삭제 등과 같은 기본적인 
+`sqflite` 사용법을 소개할 것입니다.
 
-If you are new to SQLite and SQL statements, please review the [SQLite Tutorial
-site](http://www.sqlitetutorial.net/) to learn the basics before completing
-this recipe.
+만약 SQLite와 SQL문에 대한 경험이 없다면, 본 예제를 완료하기 전에 
+[SQLite Tutorial site](http://www.sqlitetutorial.net/)에서 기본적인 내용을 익히도록 하세요.
 
-## Directions
+## 진행 단계
 
-  1. Add the dependencies
-  2. Define the `Dog` data model
-  3. Open the Database
-  4. Create the `dogs` table
-  5. Insert a `Dog` into the database
-  6. Retrieve the list of Dogs
-  7. Update a `Dog` in the database
-  7. Delete a `Dog` from the database
+  1. 의존성 추가
+  2. `Dog` 데이터 모델 정의
+  3. 데이터베이스 열기
+  4. `dogs` 테이블 생성
+  5. 데이터베이스에 `Dog` 추가
+  6. Dog 리스트 조회
+  7. 데이터베이스에 있는 `Dog` 수정
+  8. 데이터베이스에서 `Dog` 삭제
 
-## 1. Add the dependencies
+## 1. 의존성 추가
 
-To work with SQLite databases, import the `sqflite` and `path` packages. 
+SQLite 데이터베이스를 사용하기 위해 `sqflite`와 `path` 패키지를 추가하세요.
 
-  - The `sqflite` package provides classes and functions that allow you to
-  interact with a SQLite database. 
-  - The `path` package provides functions that allow you to correctly define the
-  location to store the database on disk.
+  - `sqflite` 패키지는 SQLite 데이터베이스를 사용할 수 있도록 여러 클래스와 함수를 제공합니다.
+  - `path` 패키지는 디스크에 저장할 데이터베이스의 위치를 정확히 정의할 수 있는 함수를 제공합니다.
 
 ```yaml
 dependencies:
@@ -50,12 +45,10 @@ dependencies:
   path:
 ```
 
-## 2. Define the Dog data model
+## 2. Dog 데이터 모델 정의
 
-Before you create the table to store information on Dogs, take a few moments to
-define the data that needs to be stored. For this example, define a Dog class
-that contains three pieces of data: A unique `id`, the `name`, and the `age` of
-each dog.
+Dog 정보를 저장할 테이블을 생성하기 전에, 저장할 데이터 구조를 정의하겠습니다. 본 예제에서는 
+세 개의 데이터를 갖는 Dog 클래스를 정의할 것입니다: 각 강아지는 고유 id와 name, age를 가집니다.
 
 <!-- skip -->
 ```dart
@@ -68,78 +61,73 @@ class Dog {
 }
 ``` 
 
-## 3. Open the Database
+## 3. 데이터베이스 열기
 
-Before you read and write data to the database, you need to open a connection 
-to the database. This involves two steps:
+데이터베이스에서 데이터를 읽고 쓰기 전에, 데이터베이스에 대한 연결을 활성화해야 합니다. 이는 아래 두 단계를
+통해 수행됩니다:
 
-  1. Define the path to the database file using the `getDatabasesPath` from the
-  `sqflite` package combined with the `path` function from the `path` package
-  2. Open the database with the `openDatabase` function from `sqflite`
+  1. `path` 패키지의 `path` 함수와 `sqflite` 패키지의 `getDatabasesPath`를 조합하여 
+  데이터베이스 파일을 위한 경로를 정의하세요. 
+  2. `sqflite`의 `openDatabase` 함수를 사용하여 데이터베이스를 여세요.
 
 <!-- skip -->
 ```dart
-// Open the database and store the reference
+// 데이터베이스를 열고 참조 값을 얻습니다.
 final Future<Database> database = openDatabase(
-  // Set the path to the database. Note: Using the `join` function from the
-  // `path` package is best practice to ensure the path is correctly
-  // constructed for each platform.
+  // 데이터베이스 경로를 지정합니다. 참고: `path` 패키지의 `join` 함수를 사용하는 것이
+  // 각 플랫폼 별로 경로가 제대로 생성됐는지 보장할 수 있는 가장 좋은 방법입니다.
   join(await getDatabasesPath(), 'doggie_database.db'),
 );
 ```
 
-## 4. Create the `dogs` table
+## 4. `dogs` 테이블 생성
 
-Next, you need to create a table to store information about various Dogs. For
-this example, create a table called `dogs` that defines the data that can be
-stored. In this case, each `Dog` contains an `id`, `name`, and `age`. Therefore,
-these will be represented as three columns in the `dogs` table.
+다음으로, 다양한 강아지 정보를 저장할 테이블을 만들겠습니다. `dogs` 테이블을 생성하세요. 이 경우,
+각 `Dog`는 `id`, `name`, `age`를 갖고 있습니다. 그리고 이것들은 `dogs` 테이블에서 세 개의 
+컬럼으로 표현될 것입니다.
 
-  1. The `id` is a Dart `int`, and will be stored as an `INTEGER` SQLite
-  Datatype. It is also good practice to use an `id` as the primary key for the
-  table to improve query and update times.
-  2. The `name` is a Dart `String`, and will be stored as a `TEXT` SQLite
-  Datatype
-  3. The `age` is also a Dart `int`, and will be stored as an `INTEGER`
-  Datatype
+  1. `id`는 다트의 `int` 타입이며, SQLite에는 `INTEGER` 타입으로 저장됩니다. `id`를 
+  테이블의 기본키로 사용하는 것은 쿼리, 수정 성능을 높이기 위한 좋은 접근법입니다.
+  2. `name`은 다트의 `String` 타입이며, SQLite에는 `TEXT` 타입으로 저장됩니다.
+  3. `age` 역시 다트의 `int` 타입이므로, SQLite에는 `INTEGER` 타입으로 저장됩니다.
 
-For more information about the available Datatypes that can be stored in a
-SQLite database, please see [the official SQLite Datatypes
-documentation](https://www.sqlite.org/datatype3.html).
+SQLite 데이터베이스에 저장될 수 있는 사용 가능한 자료형들에 대해 더 자세한 정보를 원한다면 
+[공식 SQLite 자료형 문서](https://www.sqlite.org/datatype3.html)를
+살펴보시기 바랍니다.
 
 <!-- skip -->
 ```dart
 final Future<Database> database = openDatabase(
-  // Set the path to the database. 
+  // 데이터베이스 경로를 지정합니다.
   join(await getDatabasesPath(), 'doggie_database.db'),
-  // When the database is first created, create a table to store dogs
+  // 데이터베이스가 처음 생성될 때, dog를 저장하기 위한 테이블을 생성합니다.
   onCreate: (db, version) {
-    // Run the CREATE TABLE statement on the database
+    // 데이터베이스에 CREATE TABLE 수행
     return db.execute(
       "CREATE TABLE dogs(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)",
     );
   },
-  // Set the version. This executes the onCreate function and provides a
-  // path to perform database upgrades and downgrades.
+  // 버전을 설정하세요. onCreate 함수에서 수행되며 데이터베이스 업그레이드와 다운그레이드를 
+  // 수행하기 위한 경로를 제공합니다.
   version: 1,
 );
 ``` 
 
-## 5. Insert a Dog into the database
+## 5. 데이터베이스에 Dog 추가
 
-Now that you have a database with a table suitable for storing information 
-about various dogs, it's time to read and write data!
+이제 다양한 강아지 정보를 저장할 수 있는 테이블과 함께 데이터베이스가 준비되었습니다. 데이터를 읽고
+쓸 차례입니다!
 
-First, insert a `Dog` into the `dogs` table. This involves two steps:
+먼저, `dogs` 테이블에 `Dog`를 추가해보겠습니다. 다음 두 단계를 수행하세요:
 
-  1. Convert the `Dog` into a `Map`
-  2. Use the
+  1. `Dog`를 `Map`으로 변환하세요
+  2. `dogs` 테이블에 `Map`을 저장하기 위해
   [`insert`](https://pub.dartlang.org/documentation/sqflite/latest/sqlite_api/DatabaseExecutor/insert.html)
-  method to store the `Map` in the `dogs` table
+  를 사용하세요
 
 <!-- skip -->
 ```dart
-// First, update the Dog class to include a `toMap` method.
+// Dog 클래스에 `toMap` 메서드를 추가하세요
 class Dog {
   final int id;
   final String name;
@@ -147,8 +135,7 @@ class Dog {
 
   Dog({this.id, this.name, this.age});
 
-  // Convert the dog into a Map. The keys must correspond to the names of the 
-  // columns in the database.
+  // dog를 Map으로 변환합니다. key는 데이터베이스 컬럼 명과 동일해야 합니다.
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -158,15 +145,15 @@ class Dog {
   }
 }
 
-// Next, define a function that inserts dogs into the database
+// 다음으로 데이터베이스에 dog를 추가하는 함수를 정의합니다.
 Future<void> insertDog(Dog dog) async {
-  // Get a reference to the database
+  // 데이터베이스 reference를 얻습니다.
   final Database db = await database;
 
-  // Insert the Dog into the correct table. You may also specify the 
-  // `conflictAlgorithm` to use in case the same dog is inserted twice. 
+  // Dog를 올바른 테이블에 추가합니다. 동일한 dog가 두번 추가되는 경우를 처리하기 위해 
+  // `conflictAlgorithm`을 명시할 수 있습니다.
   // 
-  // In this case, replace any previous data.
+  // 본 예제에서는, 이전 데이터를 갱신하도록 하겠습니다.
   await db.insert(
     'dogs',
     dog.toMap(),
@@ -174,7 +161,7 @@ Future<void> insertDog(Dog dog) async {
   );
 }
 
-// Now, you can create a Dog to and add it to the dogs table!
+// 이제 Dog를 생성하고 dogs 테이블에 추가할 수 있습니다!
 final fido = Dog(
   id: 0, 
   name: 'Fido', 
@@ -184,25 +171,25 @@ final fido = Dog(
 await insertDog(fido);
 ```
 
-## 6. Retrieve the list of Dogs
+## 6. Dog 리스트 조회
 
-Now that you have a `Dog` stored in the database, you can query the database
-for a specific dog or a list of all dogs! This involves two steps:
+이제 데이터베이스에 하나의 `Dog` 정보가 저장되어 있으므로, 특정 dog를 조회하거나 모든 dog 리스트를
+조회할 수 있습니다! 다음 두 단계로 수행할 수 있습니다:
 
-  1. Run a `query` against the `dogs` table. This will return a `List<Map>`
-  2. Convert the `List<Map>` into a `List<Dog>` 
+  1. `dogs` 테이블에 `query`를 수행하세요. `List<Map>`를 반환할 것입니다.
+  2. `List<Map>`을 `List<Dog>`로 변환하세요.
   
 <!-- skip -->
 ```dart
-// A method that will retrieve all the dogs from the dogs table
+// dogs 테이블의 모든 dog를 얻는 메서드
 Future<List<Dog>> dogs() async {
-  // Get a reference to the database
+  // 데이터베이스 reference를 얻습니다.
   final Database db = await database;
 
-  // Query the table for All The Dogs.
+  // 모든 Dog를 얻기 위해 테이블에 질의합니다.
   final List<Map<String, dynamic>> maps = await db.query('dogs');
 
-  // Convert the List<Map<String, dynamic> into a List<Dog>.
+  // List<Map<String, dynamic>를 List<Dog>으로 변환합니다.
   return List.generate(maps.length, (i) {
     return Dog(
       id: maps[i]['id'],
@@ -212,94 +199,93 @@ Future<List<Dog>> dogs() async {
   });
 }
 
-// Now, you can use the method above to retrieve all the dogs!
-print(await dogs()); // Prints a list that include Fido
+// 이제, 모든 dog를 얻을 수 있는 위 메서드를 사용할 수 있습니다!
+print(await dogs()); // Fido를 포함한 리스트를 출력합니다
 ```
 
-## 7. Update a `Dog` in the database
+## 7. 데이터베이스에 있는 `Dog` 수정
 
-After you've inserted some information into the database, you may want to update
-that information at a later time. To do so, use the
+데이터베이스에 어떤 정보를 추가하고 이후에 해당 정보를 수정하고 싶은 경우가 있습니다. 이를 위해
+`sqflite` 라이브러리의 
 [`update`](https://pub.dartlang.org/documentation/sqflite/latest/sqlite_api/DatabaseExecutor/update.html)
-method from the `sqflite` library.
+메서드를 사용하세요.
 
-This involves two steps:
+다음 두 단계로 수행할 수 있습니다:
 
-  1. Convert the Dog into a Map
-  2. Use a `where` clause to ensure you update the correct Dog
+  1. Dog를 Map으로 변환하세요
+  2. 올바른 Dog를 수정하기 위해 `where` 절을 사용하세요
 
 <!-- skip -->
 ```dart
 Future<void> updateDog(Dog dog) async {
-  // Get a reference to the database
+  // 데이터베이스 reference를 얻습니다.
   final db = await database;
 
-  // Update the given Dog
+  // 주어진 Dog를 수정합니다.
   await db.update(
     'dogs',
     dog.toMap(),
-    // Ensure we only update the Dog with a matching id
+    // id가 일치하는 Dog만 수정하도록 확인합니다.
     where: "id = ?",
-    // Pass the Dog's id through as a whereArg to prevent SQL injection
+    // Dog의 id를 where의 인자로 넘겨 SQL injection을 방지합니다.
     whereArgs: [dog.id],
   );
 }
 
-// Now, you can update Fido's age!
+// 이제 Fido의 나이를 수정할 수 있습니다!
 await updateDog(Dog(
   id: 0, 
   name: 'Fido', 
   age: 42,
 ));
 
-// And you could print the updated results
-print(await dogs()); // Prints Fido with age 42.
+// 그리고 수정된 결과를 출력할 수 있습니다.
+print(await dogs()); // Fido의 정보를 나이 42와 함께 출력합니다.
 ```
 
 {{site.alert.warning}}
-Always use `whereArgs` to pass arguments to a `where` statement. This 
-helps safeguard against SQL injection attacks. 
+`where` 절에 인자를 전달할 때에는 항상 `whereArgs`를 사용하세요. SQL injection 
+공격으로부터 보호할 수 있습니다.
 
-Do not use string interpolation, such as `where: "id = ${dog.id}"`!
+`where: "id = ${dog.id}"`와 같은 String interpolation 문법을 사용하지 마세요!
 {{site.alert.end}}
 
 
-## 8. Delete a `Dog` from the database
+## 8. 데이터베이스에서 `Dog` 삭제
 
-In addition to inserting and updating information about Dogs, you can also
-remove dogs from the database. To delete data, use the
+Dog에 대한 정보를 추가, 수정하는 것외에 데이터베이스에서 dog를 제거할 수도 있습니다. 데이터를 제거하기 위해
+`sqflite` 라이브러리의 
 [`delete`](https://pub.dartlang.org/documentation/sqflite/latest/sqlite_api/DatabaseExecutor/delete.html)
-method from the `sqflite` library. 
+메서드를 사용하세요
 
-In this portion, create a function that takes in an id and deletes the dog with
-a matching id from the database. To make this work, you must provide a `where`
-clause to limit the records being deleted.
+여기에서는 하나의 id 값을 인자로 받아 데이터베이스에서 id 값이 일치하는 dog를 삭제하는 함수를 만들 것입니다.
+삭제될 항목을 제한하기 위해 `where` 절을 제공해야 합니다.
 
 <!-- skip -->
 ```dart
 Future<void> deleteDog(int id) async {
-  // Get a reference to the database
+  // 데이터베이스 reference를 얻습니다.
   final db = await database;
 
-  // Remove the Dog from the Database
+  // 데이터베이스에서 Dog를 삭제합니다.
   await db.delete(
     'dogs',
-    // Use a `where` clause to delete a specific dog
+    // 특정 dog를 제거하기 위해 `where` 절을 사용하세요
     where: "id = ?",
-    // Pass the Dog's id through as a whereArg to prevent SQL injection
+    // Dog의 id를 where의 인자로 넘겨 SQL injection을 방지합니다.
     whereArgs: [id],
   );
 }
 ```
 
-## Example
+## 예제
 
-To run the example:
+예제를 실행하기 위해:
 
-  1. Create a new Flutter project
-  2. Add the `sqfite` and `path` packages to your `pubspec.yaml`
-  3. Paste the following code into a new file called `lib/db_test.dart`
-  4. Run the code with `flutter run lib/db_test.dart`
+  1. 새로운 Flutter 프로젝트를 생성하세요
+  2. `pubspec.yaml`에 `sqflite`와 `path` 패키지를 추가하세요
+  3. 새로운 파일 `lib/db_test.dart`에 아래 코드를 붙여 넣으세요
+  4. `flutter run lib/db_test.dart` 코드를 실행하세요
 
 ```dart
 import 'dart:async';
@@ -309,28 +295,26 @@ import 'package:sqflite/sqflite.dart';
 
 void main() async {
   final database = openDatabase(
-    // Set the path to the database. Note: Using the `join` function from the
-    // `path` package is best practice to ensure the path is correctly
-    // constructed for each platform.
+    // 데이터베이스 경로를 지정합니다. 참고: `path` 패키지의 `join` 함수를 사용하는 것이
+    // 각 플랫폼 별로 경로가 제대로 생성됐는지 보장할 수 있는 가장 좋은 방법입니다.
     join(await getDatabasesPath(), 'doggie_database.db'),
-    // When the database is first created, create a table to store dogs
+    // 데이터베이스가 처음 생성될 때, dog를 저장하기 위한 테이블을 생성합니다.
     onCreate: (db, version) {
       return db.execute(
         "CREATE TABLE dogs(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)",
       );
     },
-    // Set the version. This executes the onCreate function and provides a
-    // path to perform database upgrades and downgrades.
+    // 버전을 설정하세요. onCreate 함수에서 수행되며 데이터베이스 업그레이드와 다운그레이드를 
+    // 수행하기 위한 경로를 제공합니다.
     version: 1,
   );
 
   Future<void> insertDog(Dog dog) async {
-    // Get a reference to the database
+    // 데이터베이스 reference를 얻습니다.
     final Database db = await database;
 
-    // Insert the Dog into the correct table. We will also specify the
-    // `conflictAlgorithm` to use in this case. If the same dog is inserted
-    // multiple times, it will replace the previous data.
+    // Dog를 올바른 테이블에 추가하세요. 본 예제에서는 `conflictAlgorithm`을 명시할 것입니다.
+    // 만약 동일한 dog가 여러번 추가되면, 이전 데이터를 덮어쓸 것입니다.
     await db.insert(
       'dogs',
       dog.toMap(),
@@ -339,13 +323,13 @@ void main() async {
   }
 
   Future<List<Dog>> dogs() async {
-    // Get a reference to the database
+    // 데이터베이스 reference를 얻습니다.
     final Database db = await database;
 
-    // Query the table for All The Dogs.
+    // 모든 Dog를 얻기 위해 테이블에 질의합니다.
     final List<Map<String, dynamic>> maps = await db.query('dogs');
 
-    // Convert the List<Map<String, dynamic> into a List<Dog>.
+    // List<Map<String, dynamic>를 List<Dog>으로 변환합니다.
     return List.generate(maps.length, (i) {
       return Dog(
         id: maps[i]['id'],
@@ -356,30 +340,30 @@ void main() async {
   }
 
   Future<void> updateDog(Dog dog) async {
-    // Get a reference to the database
+    // 데이터베이스 reference를 얻습니다.
     final db = await database;
 
-    // Update the given Dog
+    // 주어진 Dog를 수정합니다.
     await db.update(
       'dogs',
       dog.toMap(),
-      // Ensure we only update the Dog with a matching id
+      // id가 일치하는 Dog만 수정하도록 확인합니다.
       where: "id = ?",
-      // Pass the Dog's id through as a whereArg to prevent SQL injection
+      // Dog의 id를 where의 인자로 넘겨 SQL injection을 방지합니다.
       whereArgs: [dog.id],
     );
   }
 
   Future<void> deleteDog(int id) async {
-    // Get a reference to the database
+    // 데이터베이스 reference를 얻습니다.
     final db = await database;
 
-    // Remove the Dog from the Database
+    // 데이터베이스에서 Dog를 삭제합니다.
     await db.delete(
       'dogs',
-      // Use a `where` clause to delete a specific dog
+      // 특정 dog를 제거하기 위해 `where` 절을 사용하세요
       where: "id = ?",
-      // Pass the Dog's id through as a whereArg to prevent SQL injection
+      // Dog의 id를 where의 인자로 넘겨 SQL injection을 방지합니다.
       whereArgs: [id],
     );
   }
@@ -390,13 +374,13 @@ void main() async {
     age: 35,
   );
 
-  // Insert a dog into the database
+  // 데이터베이스에 dog를 추가합니다.
   await insertDog(fido);
 
-  // Print the list of dogs (only Fido for now)
+  // dog 목록을 출력합니다. (지금은 Fido만 존재합니다.)
   print(await dogs());
 
-  // Update Fido's age and save it to the database
+  // Fido의 나이를 수정한 뒤 데이터베이스에 저장합니다.
   fido = Dog(
     id: fido.id,
     name: fido.name,
@@ -404,13 +388,13 @@ void main() async {
   );
   await updateDog(fido);
 
-  // Print Fido's updated information
+  // Fido의 수정된 정보를 출력합니다.
   print(await dogs());
 
-  // Delete Fido from the Database
+  // Fido를 데이터베이스에서 제거합니다.
   await deleteDog(fido.id);
 
-  // Print the list of dogs (empty)
+  // dog 목록을 출력합니다. (비어있습니다.)
   print(await dogs());
 }
 
@@ -429,8 +413,7 @@ class Dog {
     };
   }
 
-  // Implement toString to make it easier to see information about each dog when
-  // using the print statement.
+  // 각 dog 정보를 보기 쉽도록 print 문을 사용하여 toString을 구현하세요
   @override
   String toString() {
     return 'Dog{id: $id, name: $name, age: $age}';
