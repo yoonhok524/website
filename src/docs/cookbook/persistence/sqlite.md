@@ -16,9 +16,6 @@ Flutter 앱은 pub에서 이용가능한
 사용할 수 있습니다. 본 예제에서는 다양한 강아지 데이터를 가지고 추가, 읽기, 수정, 삭제 등과 같은 기본적인 
 `sqflite` 사용법을 소개할 것입니다.
 
-If you are new to SQLite and SQL statements, please review the [SQLite Tutorial
-site](http://www.sqlitetutorial.net/) to learn the basics before completing
-this recipe.
 만약 SQLite와 SQL문에 대한 경험이 없다면, 본 예제를 완료하기 전에 
 [SQLite Tutorial site](http://www.sqlitetutorial.net/)에서 기본적인 내용을 익히도록 하세요.
 
@@ -38,7 +35,7 @@ this recipe.
 SQLite 데이터베이스를 사용하기 위해 `sqflite`와 `path` 패키지를 추가하세요.
 
   - `sqflite` 패키지는 SQLite 데이터베이스를 사용할 수 있도록 여러 클래스와 함수를 제공합니다.
-  - `path` 패키지는 디스크에 저장될 데이터베이스의 올바른 위치를 정의할 수 있는 함수를 제공합니다.
+  - `path` 패키지는 디스크에 저장할 데이터베이스의 위치를 정확히 정의할 수 있는 함수를 제공합니다.
 
 ```yaml
 dependencies:
@@ -50,12 +47,8 @@ dependencies:
 
 ## 2. Dog 데이터 모델 정의
 
-Before you create the table to store information on Dogs, take a few moments to
-define the data that needs to be stored. For this example, define a Dog class
-that contains three pieces of data: A unique `id`, the `name`, and the `age` of
-each dog.
-Dog 정보를 저장할 테이블을 생성하기 전에, 저장할 데이터 구조를 정의하겠습니다. 본 예제에서는 세 개의
-데이터를 갖는 Dog 클래스를 정의할 것입니다: 각 강아지에 대해 유일한 `id`, `name`, `age`
+Dog 정보를 저장할 테이블을 생성하기 전에, 저장할 데이터 구조를 정의하겠습니다. 본 예제에서는 
+세 개의 데이터를 갖는 Dog 클래스를 정의할 것입니다: 각 강아지는 고유 id와 name, age를 가집니다.
 
 <!-- skip -->
 ```dart
