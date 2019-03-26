@@ -1,10 +1,10 @@
 ---
-title: Storing key-value data on disk
+title: 디스크에 키-값 데이터 저장하기
 prev:
-  title: Reading and Writing Files
+  title: File 읽고 쓰기
   path: /docs/cookbook/persistence/reading-writing-files
 next:
-  title: Play and pause a video
+  title: Video 다루기
   path: /docs/cookbook/plugins/play-video
 ---
 
@@ -19,14 +19,14 @@ plugin can be used to persist key-value data on disk. The shared preferences
 plugin wraps `NSUserDefaults` on iOS and `SharedPreferences` on Android,
 providing a persistent store for simple data.
 
-## Directions
+## 진행 단계
 
-  1. Add the dependency
-  2. Save Data
-  3. Read Data
-  4. Remove Data
+  1. 의존성 추가하기
+  2. 데이터 저장하기
+  3. 데이터 읽기
+  4. 데이터 삭제하기
 
-## 1. Add the dependency
+## 1. 의존성 추가하기
 
 Before starting, you need to add the
 [shared_preferences]({{site.pub-pkg}}/shared_preferences)
@@ -39,7 +39,7 @@ dependencies:
   shared_preferences: "<newest version>"
 ```
 
-## 2. Save data
+## 2. 데이터 저장하기
 
 To persist data, use the setter methods provided by the
 `SharedPreferences` class. Setter methods are available for various primitive
@@ -57,7 +57,7 @@ final prefs = await SharedPreferences.getInstance();
 prefs.setInt('counter', counter);
 ```
 
-## 3. Read data
+## 3. 데이터 읽기
 
 To read data, use the appropriate getter method provided by the
 `SharedPreferences` class. For each setter there is a corresponding getter.
@@ -71,7 +71,7 @@ final prefs = await SharedPreferences.getInstance();
 final counter = prefs.getInt('counter') ?? 0;
 ```
 
-## 4. Remove data
+## 4. 데이터 삭제하기
 
 To delete data, use the `remove` method.
 
@@ -82,7 +82,7 @@ final prefs = await SharedPreferences.getInstance();
 prefs.remove('counter');
 ```
 
-## Supported types
+## 지원되는 자료형
 
 While it is easy and convenient to use key-value storage, it has limitations:
 
@@ -115,7 +115,7 @@ const MethodChannel('plugins.flutter.io/shared_preferences')
   });
 ```
 
-## Example
+## 예제
 
 ```dart
 import 'package:flutter/material.dart';
