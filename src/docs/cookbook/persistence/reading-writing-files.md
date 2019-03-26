@@ -1,53 +1,48 @@
 ---
-title: Reading and Writing Files
+title: File 읽고 쓰기
 prev:
-  title: Persist data with SQLite
+  title: SQLite에 데이터 저장하기
   path: /docs/cookbook/persistence/sqlite
 next:
-  title: Storing key-value data on disk
+  title: 디스크에 키-값 데이터 저장하기
   path: /docs/cookbook/persistence/key-value
 ---
 
-In some cases, it can be handy to read and write files to disk.
-This can be used to persist data across app launches,
-or to download data from the internet and save it for later offline use.
+가끔은 디스크에 파일을 읽고 쓰는 것이 유용할 때가 있습니다. 앱 런처간에 데이터를
+관리하거나 나중에 오프라인 모드에서 사용하기 위한 목적으로 인터넷에서 파일을
+다운로드 받을 수도 있습니다.
 
-In order to save files to disk, you'll need to combine the
-[`path_provider` plugin]({{site.pub-pkg}}/path_provider) with
-the [`dart:io`]({{site.api}}/flutter/dart-io/dart-io-library.html)
-library.
+[`dart:io`]({{site.api}}/flutter/dart-io/dart-io-library.html) 라이브러리와
+함께 [`path_provider` plugin]({{site.pub-pkg}}/path_provider)을 조합하여
+사용하면 파일을 디스크에 저장할 수 있습니다.
 
-## Directions
+## 진행 단계
 
-  1. Find the correct local path
-  2. Create a reference to the file location
-  3. Write data to the file
-  4. Read data from the file
+  1. 올바른 로컬 경로 찾기
+  2. 파일 경로에 대한 참조 값 생성하기
+  3. 파일에 데이터 쓰기
+  4. 파일로 부터 데이터 읽기
 
-## 1. Find the correct local path
+## 1. 올바른 로컬 경로 찾기
 
-In this example, you'll display a counter. When the counter changes, you'll
-write data on disk so you can read it again when the app loads.
-Therefore, you must wonder: Where should I store this data?
+본 예제에서는 화면에 counter를 보여줄 것입니다. counter가 변경되면 데이터를 디스크에
+쓰고 앱이 로드되었을 때 다시 읽을 수 있습니다.
+그럼 다음과 같은 질문을 할 수 있습니다: 데이터를 어디에 저장해야 할까?
 
-The [`path_provider`]({{site.pub-pkg}}/path_provider) plugin
-provides a platform-agnostic way to access commonly used locations on the
-device's filesystem. The plugin currently supports access to two filesystem
-locations:
+[`path_provider`]({{site.pub-pkg}}/path_provider) 플러그인은 기기의 파일 시스템에서
+사용되는 일반적인 경로에 접근하기 위해 플랫폼에 무관한 방법을 제공합니다. 현재 두 개의 
+파일 시스템 경로에 접근하도록 지원합니다:
 
-  * *Temporary directory:* A temporary directory (cache) that the system can
-    clear at any time. On iOS, this corresponds to the value that
-    [`NSTemporaryDirectory()`](https://developer.apple.com/reference/foundation/1409211-nstemporarydirectory)
-    returns. On Android, this is the value that
-    [`getCacheDir()`]({{site.android-dev}}/reference/android/content/Context#getCacheDir())
-    returns.
-  * *Documents directory:* A directory for the app to store files that only
-    it can access. The system clears the directory only when the app is deleted.
-    On iOS, this corresponds to `NSDocumentDirectory`. On Android, this is the
-    `AppData` directory.
+  * *임시 디렉토리:* 시스템이 언제든지 삭제할 수 있는 임시 디렉토리 (캐시). iOS에서는 
+    [`NSTemporaryDirectory()`](https://developer.apple.com/reference/foundation/1409211-nstemporarydirectory).
+    안드로이드에서는 [`getCacheDir()`]({{site.android-dev}}/reference/android/content/Context#getCacheDir())에
+    해당합니다.
+  * *문서 디렉토리:* 파일을 저장하기 위해 해당 앱에서만 유일하게 접근할 수 있는 디렉토리.
+    시스템은 해당 디렉토리를 앱이 삭제될 때에만 지웁니다. iOS에서는 `NSDocumentDirectory`,
+    안드로이드에서는 `AppData` 디렉토리가 해당됩니다. 
 
-In this case, you'll want to store information in the documents directory.
-You can find the path to the documents directory as follows:
+본 예제에서는 문서 디렉토리에 정보를 저장할 것이며 해당 경로는 아래 코드를
+통해 찾을 수 있습니다.
 
 <!-- skip -->
 ```dart
@@ -58,13 +53,11 @@ Future<String> get _localPath async {
 }
 ```
 
-## 2. Create a reference to the file location
+## 2. 파일 경로에 대한 참조 값 생성하기
 
-Once you know where to store the file, you'll need to create a reference to the
-file's full location. You can use the
-[`File`]({{site.api}}/flutter/dart-io/File-class.html)
-class from the [dart:io]({{site.api}}/flutter/dart-io/dart-io-library.html)
-library to achieve this.
+파일이 어디에 저장되는지 일단 알게 되면, 파일의 전체 경로에 대한 참조 값을 생성해야 합니다.
+이를 위해 [dart:io]({{site.api}}/flutter/dart-io/dart-io-library.html) 라이브러리에서
+제공하는 [`File`]({{site.api}}/flutter/dart-io/File-class.html) 클래스를 사용하면 됩니다.
 
 <!-- skip -->
 ```dart
@@ -74,26 +67,26 @@ Future<File> get _localFile async {
 }
 ```
 
-## 3. Write data to the file
+## 3. 파일에 데이터 쓰기
 
-Now that you have a `File` to work with, use it to read and write data.
-First, write some data to the file. Since you're working with a counter,
-you'll simply store the integer as a String.
+이제 작업할 수 있는 `File`이 생겼습니다. 여기에 데이터를 읽고 써보겠습니다.
+먼저 파일에 데이터를 작성해봅시다. 본 예제에서는 counter를 다루기 때문에,
+간단히 integer 값을 String 형태로 저장해보겠습니다.
 
 <!-- skip -->
 ```dart
 Future<File> writeCounter(int counter) async {
   final file = await _localFile;
 
-  // Write the file
+  // 파일 쓰기
   return file.writeAsString('$counter');
 }
 ```
 
-## 4. Read data from the file
+## 4. 파일로부터 데이터 읽기
 
-Now that you have some data on disk, you can read it.
-Once again, use the `File` class.
+이제 디스크에 읽을 수 있는 데이터가 존재합니다. 다시 한 번
+`File` 클래스를 사용합시다.
 
 <!-- skip -->
 ```dart
@@ -101,40 +94,38 @@ Future<int> readCounter() async {
   try {
     final file = await _localFile;
 
-    // Read the file
+    // 파일 읽기
     String contents = await file.readAsString();
 
     return int.parse(contents);
   } catch (e) {
-    // If encountering an error, return 0
+    // 에러가 발생할 경우 0을 반환
     return 0;
   }
 }
 ```
 
-## Testing
+## 테스팅
 
-In order to test code that interacts with files, you'll need to Mock calls to
-the `MethodChannel`. The `MethodChannel` is the class that Flutter uses to
-communicate with the host platform.
+File과 상호작용하는 코드를 테스트하기 위해서는 `MethodChannel` Mock 호출을 해야 합니다.
+`MethodChannel`은 Flutter가 호스트 플랫폼과 통신하기 위해 사용하는 클래스입니다.
 
-In these tests, you can't interact with the filesystem on a device.
-You'll need to interact with the test environment's filesystem.
+테스트 코드에서는 디바이스의 파일 시스템과 상호 작용할 수 없습니다.
 
-To mock the method call, provide a `setupAll` function in the test file.
-This function runs before the tests are executed.
+테스트 파일에 메서드 콜을 흉내내는 `setupAll` 이라는 Mock 함수를 제공하겠습니다.
+이 함수는 테스트가 시작되기 전에 수행합니다.
 
 <!-- skip -->
 ```dart
 setUpAll(() async {
-  // Create a temporary directory to work with
+  // 임시 디렉토리를 생성합니다.
   final directory = await Directory.systemTemp.createTemp();
 
-  // Mock out the MethodChannel for the path_provider plugin
+  // path_provider 플러그인을 위해 MethodChannel Mock 객체를 생성하세요
   const MethodChannel('plugins.flutter.io/path_provider')
       .setMockMethodCallHandler((MethodCall methodCall) async {
-    // If you're getting the apps documents directory, return the path to the
-    // temp directory on the test environment instead.
+    // 만약 앱의 문서 디렉토리가 필요하다면, 테스트 환경에서는 그 대신 임시 디렉토리
+    // 경로를 반환하세요.
     if (methodCall.method == 'getApplicationDocumentsDirectory') {
       return directory.path;
     }
@@ -143,7 +134,7 @@ setUpAll(() async {
 });
 ```
 
-## Complete example
+## 완성된 예제
 
 ```dart
 import 'dart:async';
@@ -178,12 +169,12 @@ class CounterStorage {
     try {
       final file = await _localFile;
 
-      // Read the file
+      // 파일 읽기
       String contents = await file.readAsString();
 
       return int.parse(contents);
     } catch (e) {
-      // If encountering an error, return 0
+      // 에러가 발생할 경우 0을 반환
       return 0;
     }
   }
@@ -191,7 +182,7 @@ class CounterStorage {
   Future<File> writeCounter(int counter) async {
     final file = await _localFile;
 
-    // Write the file
+    // 파일 쓰기
     return file.writeAsString('$counter');
   }
 }
@@ -223,7 +214,7 @@ class _FlutterDemoState extends State<FlutterDemo> {
       _counter++;
     });
 
-    // Write the variable as a string to the file.
+    // 파일에 String 타입으로 변수 값 쓰기
     return widget.storage.writeCounter(_counter);
   }
 
