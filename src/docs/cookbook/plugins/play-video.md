@@ -1,39 +1,39 @@
 ---
-title: Play and pause a video
+title: 영상 재생 및 일시 중지
 prev:
-  title: Storing key-value data on disk
+  title: 디스크에 키-값 데이터 저장하기
   path: /docs/cookbook/persistence/key-value
 next:
-  title: Take a picture using the Camera
+  title: 카메라 사진 찍기
   path: /docs/cookbook/plugins/picture-using-camera
 ---
 
-Playing videos is a common task in app development, and Flutter apps are no
-exception. In order to play videos, the Flutter team provides the
-[`video_player`](https://pub.dartlang.org/packages/video_player) plugin. You can
-use the `video_player` plugin to play videos stored on the file system, as an
-asset, or from the internet.
+앱 개발에 있어 영상 재생은 일반적인 작업으로 Flutter에서도 예외는 아닙니다. 영상을
+재생하기 위해 Flutter는 
+[`video_player`](https://pub.dartlang.org/packages/video_player) 플러그인을
+제공하고 있습니다. `video_player` 플러그인을 통해 파일 시스템에 저장된 영상이나
+인터넷의 영상을 재생할 수 있습니다.
 
-On iOS, the `video_player` plugin makes use of
-[`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer) to
-handle playback. On Android, it uses
-[`ExoPlayer`](https://google.github.io/ExoPlayer/).
+iOS의 경우 `video_player` 플러그인은
+[`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer)를
+사용하여 영상을 재생합니다. 안드로이드의 경우는 
+[`ExoPlayer`](https://google.github.io/ExoPlayer/)를 사용합니다.
 
-This recipe demonstrates how to use the `video_player` package to stream a
-video from the internet with basic play and pause controls.
+본 예제에서는 `video_player` 패키지를 사용하여 인터넷 영상을 스트리밍하고
+재생 및 일시 정지와 같은 기본적인 컨트롤을 해볼 것입니다.
 
-## Directions
+## 진행 단계
 
-  1. Add the `video_player` dependency
-  2. Add permissions to your app
-  3. Create and initialize a `VideoPlayerController`
-  4. Display the video player
-  5. Play and pause the video
+  1. `video_player` 의존성 추가하기
+  2. 앱에 권한 부여하기
+  3. `VideoPlayerController` 생성 및 초기화하기
+  4. video player 화면에 보여주기
+  5. 영상을 재생 및 일시 중지하기
 
-## 1. Add the `video_player` dependency
+## 1. `video_player` 의존성 추가하기
 
-This recipe depends on one Flutter plugin: `video_player`. First, add this
-dependency to your `pubspec.yaml`.
+본 예제는 Flutter 플러그인에 의존합니다: `video_player`. 우선 이 라이브러리를
+`pubspec.yaml`에 추가합니다.
 
 ```yaml
 dependencies:
@@ -42,16 +42,16 @@ dependencies:
   video_player:
 ```
 
-## 2. Add permissions to your app
+## 2. 앱에 권한 부여하기
 
-Next, you need to ensure your app has the correct permissions to stream videos
-from the internet. To do so, update your `android` and `ios` configurations.
+다음으로, 앱이 인터넷 영상을 스트리밍하기 위해 올바른 권한을 가졌는지 확인해야 합니다.
+이를 위해, `안드로이드`와 `ios` configuration을 수정하겠습니다.
 
-### Android
+### 안드로이드
 
-Add the following permission to the `AndroidManifest.xml` just after the
-`<application>` definition. The `AndroidManifest.xml` can be found at `<project
-root>/android/app/src/main/AndroidManifest.xml`
+다음의 권한을 `AndroidManifest.xml` 파일의 `<application>` 바로 다음에 추가하세요.
+`AndroidManifest.xml`은 `<projectroot>/android/app/src/main/AndroidManifest.xml`에서
+찾을 수 있습니다.
 
 <!-- skip -->
 ```xml
@@ -66,8 +66,7 @@ root>/android/app/src/main/AndroidManifest.xml`
 
 ### iOS
 
-For iOS, you need to add the following to your `Info.plist` file found at 
-`<project root>/ios/Runner/Info.plist`. 
+iOS는 아래 내용을 `<project root>/ios/Runner/Info.plist`에 파일에 추가해야 합니다.
 
 <!-- skip -->
 ```xml
@@ -79,28 +78,27 @@ For iOS, you need to add the following to your `Info.plist` file found at
 ```
 
 {{site.alert.warning}}
-The `video_player` plugin does not work on iOS simulators. You must test videos 
-on real iOS devices.
+`video_player` 플러그인은 iOS 시뮬레이터에서는 동작하지 않으므로, 영상 재생 테스트는
+반드시 실제 iOS 기기에서 해야 합니다.
 {{site.alert.end}}
 
-## 3. Create and initialize a `VideoPlayerController`
+## 3. `VideoPlayerController` 생성 및 초기화하기
 
-Now that you have the `video_player` plugin installed with the correct
-permissions, you need to create a `VideoPlayerController`. The
-`VideoPlayerController` class allows you to connect to different types of
-videos and control playback.
+이제 `video_player`과 올바른 권한 모두 준비되었고, `VideoPlayerController`를 만들
+차례입니다. `VideoPlayerController` 클래스를 통해 다른 여러 유형의 영상에 연결하고
+제어할 수 있습니다.
 
-Before you can play videos, you must also `initialize` the controller. This
-establishes the connection to the video and prepare the controller for playback.
+영상을 재생하기 전에, controller를 `초기화`해야 합니다. 이 작업을 통해 영상과 연결하고
+영상 제어를 위한 준비 작업을 하게 됩니다.
 
-To create an initialize the `VideoPlayerController`, please:
+`VideoPlayerController`를 초기화하려면,
 
-  1. Create a `StatefulWidget` with a companion `State` class 
-  2. Add a variable to the `State` class to store the `VideoPlayerController`
-  3. Add a variable to the `State` class to store the `Future` returned from
-  `VideoPlayerController.initialize`
-  4. Create and initialize the controller in the `initState` method
-  5. Dispose of the controller in the `dispose` method
+  1. `StatefulWidget`과 `State` 클래스를 생성하세요.
+  2. `State` 클래스에 `VideoPlayerController`를 저장하기 위한 변수를 추가하세요.
+  3. `State` 클래스에 `VideoPlayerController.initialize`로부터 반환되는 `Future`를
+  저장하기 위한 변수를 추가하세요.
+  4. `initState` 메서드에서 controller를 생성하고 초기화하세요.
+  5. `dispose` 메서드에서 controller를 dispose 시키세요.
   
 <!-- skip -->
 ```dart
@@ -117,9 +115,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   void initState() {
-    // Create an store the VideoPlayerController. The VideoPlayerController
-    // offers several different constructors to play videos from assets, files,
-    // or the internet.
+    // VideoPlayerController를 저장하기 위한 변수를 만듭니다. VideoPlayerController는
+    // asset, 파일, 인터넷 등의 영상들을 제어하기 위해 다양한 생성자를 제공합니다.
     _controller = VideoPlayerController.network(
       'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     );
@@ -131,7 +128,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   void dispose() {
-    // Ensure you dispose the VideoPlayerController to free up resources
+    // 자원을 반환하기 위해 VideoPlayerController를 dispose 시키세요.
     _controller.dispose();
 
     super.dispose();
@@ -139,12 +136,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Show the video in the next step
+    // 다음 단계에서 영상을 보여줄 것입니다.
   }
 }
 ```
 
-## 4. Display the video player
+## 4. video player 화면에 보여주기
 
 Now, it's time to display the video. The `video_player` plugin provides the
 [`VideoPlayer`](https://pub.dartlang.org/documentation/video_player/latest/video_player/VideoPlayer-class.html)
@@ -186,7 +183,7 @@ FutureBuilder(
 )
 ```
 
-## 5. Play and pause the video
+## 5. 영상을 재생 및 일시 중지하기
 
 By default, the video starts in a paused state. To begin playback,
 call the
@@ -222,7 +219,7 @@ FloatingActionButton(
 )
 ``` 
  
-## Complete Example
+## 완성된 예제
 
 ```dart
 import 'dart:async';
@@ -255,9 +252,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   void initState() {
-    // Create and store the VideoPlayerController. The VideoPlayerController
-    // offers several different constructors to play videos from assets, files,
-    // or the internet.
+    // VideoPlayerController를 저장하기 위한 변수를 만듭니다. VideoPlayerController는
+    // asset, 파일, 인터넷 등의 영상들을 제어하기 위해 다양한 생성자를 제공합니다.
     _controller = VideoPlayerController.network(
       'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     );
@@ -273,7 +269,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   void dispose() {
-    // Ensure you dispose the VideoPlayerController to free up resources
+    // 자원을 반환하기 위해 VideoPlayerController를 dispose 시키세요.
     _controller.dispose();
 
     super.dispose();
