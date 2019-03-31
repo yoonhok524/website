@@ -1393,7 +1393,7 @@ Flutter에도 동일한 결과를 얻을 수 있는 방법이 몇 가지 있습�
 Column, Row, Stack 위젯을 조합하여 RelativeLayout와 동일한 결과를 얻을 수 있습니다.
 위젯 생성자에서 부모를 기준으로 자식을 어떻게 배치할지를 지정할 수 있습니다.
 
-Flutter에서 RelativeLayout을 작성하는 좋은 예시를 찾고 있으시다면, 
+Flutter에서 RelativeLayout을 작성하는 좋은 예시를 찾고 있다면, 
 [StackOverflow]({{site.so}}/questions/44396075/equivalent-of-relativelayout-in-flutter)
 에서 Collin의 답변을 참조하십시오.
 
@@ -1428,15 +1428,15 @@ Flutter에서 ListView 위젯은 ScrollView이면서 안드로이드의 ListView
 android:configChanges="orientation|screenSize"
 {% endprettify %}
 
-## 제스처 감지 및 터치 이벤트 처리
+## 손동작 감지 및 터치 이벤트 처리
 
-### Flutter에서 onClick 리스너를 추가하는 방법은?
+### Flutter에서 위젯에 onClick 리스너를 추가하는 방법은?
 
 안드로이드에서는 'setOnClickListener' 메서드를 호출하여 버튼과 같은 뷰에 onClick을 추가할 수 있습니다.  
 
 Flutter에서는 터치 리스너를 붙이는 2가지 방법이 있습니다:
 
- 1. 위젯이 이벤트 감지를 지원하면, 함수를 전달하여 함수에서 처리하세요.
+ 1. 위젯이 이벤트 감지를 지원하면, 이벤트를 처리할 수 있는 함수를 전달하세요.
     예를 들어, RaisedButton는 `onPressed` 매개 변수를 가지고 있습니다:
 
     <!-- skip -->
@@ -1478,14 +1478,14 @@ Flutter에서는 터치 리스너를 붙이는 2가지 방법이 있습니다:
 
 GestureDetector를 활용하여 여러 손동작을 감지할 수 있습니다:
 
-* 두드리기(Tap)
+* 탭(Tap)
 
   * `onTapDown` - 탭의 원인이 될 수 있는 포인터가 화면의 특정 위치에 닿았다. 
   * `onTapUp` - 탭을 발생시킨 포인터가 화면의 특정 위치에 접촉했다가 접촉이 끝났다.
   * `onTap` - 탭이 발생했다.
   * `onTapCancel` - 이전에 `onTapDown`을 발생시켰던 포인터가 탭을 발생시키지 않았다.
 
-* 두 번 두드리기(Double tap)
+* 두 번 탭(Double tap)
 
   * `onDoubleTap` - 사용자가 화면의 동일한 위치를 빠르게 두 번 탭했다. 
 
@@ -1553,10 +1553,10 @@ Flutter에서 ListView와 동일한 것은… ListView입니다!
 
 안드로이드 ListView에서는 어댑터를 작성하여 ListView로 전달하면,
 어댑터가 반환하는 대로 각 행을 렌더링합니다.
-하지만 행을 꼭 재활용하도록 해야 한다, 
-그렇지 않으면 온갖 미친 시각적 결함이나 메모리 문제가 생긴다.
+하지만 행을 꼭 재활용하도록 하세요.
+그렇지 않으면 온갖 미친 시각적 결함이나 메모리 문제가 생깁니다.
 
-Flutter의 불변 위젯 구조 덕분에,
+Flutter의 불변 위젯 패턴 덕분에,
 ListView에 위젯 리스트를 전달하면 Flutter는 스크롤이 빠르고 부드럽게 처리합니다.
 
 {% prettify dart %}
