@@ -1,6 +1,6 @@
 ---
 title: 안드로이드 개발자를 위한 Flutter
-description: Learn how to apply Android developer knowledge when building Flutter apps.
+description: 안드로이드 개발 지식을 적용하여 Flutter 앱을 만드는 방법에 대해 알아보십시오.
 ---
 
 이 문서는 기존 안드로이드 지식을 활용하여 
@@ -1831,15 +1831,15 @@ position을 받아서 랜더링이 필요한 해당 row를 반환합니다.
 마지막으로 가장 중요한 작업이 남았습니다. 
 `onTap()` 함수가 리스트를 다시 생성하는 대신 `.add`를 사용해 요소를 추가하게 합니다.  
 
-## Working with text
+## 텍스트 작업하기
 
-### How do I set custom fonts on my Text widgets?
+### 텍스트 위젯에서 사용자 지정 글꼴을 설정하는 방법은?
 
-In Android SDK (as of Android O), you create a Font resource file and
-pass it into the FontFamily param for your TextView.
+안드로이드 SDK에서 (안드로이드 O 기준),
+글꼴 리소스 파일을 만들고 TextView이 FontFamily 매개 변수로 전달합니다.
 
-In Flutter, place the font file in a folder and reference it in the
-`pubspec.yaml` file, similar to how you import images.
+Flutter에서는 이미지 가져오는 방법과 비슷하게
+글꼴 파일을 폴더에서 넣고 `pubspec.yaml`에서 글꼴 파일 위치를 지정합니다.  
 
 {% prettify yaml %}
 fonts:
@@ -1849,7 +1849,7 @@ fonts:
        - style: italic
 {% endprettify %}
 
-Then assign the font to your `Text` widget:
+그런 다음 `Text` 위젯에 폰트를 지정하세요:
 
 {% prettify dart %}
 @override
@@ -1868,11 +1868,11 @@ Widget build(BuildContext context) {
 }
 {% endprettify %}
 
-### How do I style my Text widgets?
+### 텍스트 위젯을 꾸미는 방법은?
 
-Along with fonts, you can customize other styling elements on a `Text` widget.
-The style parameter of a `Text` widget takes a `TextStyle` object, where you can
-customize many parameters, such as:
+글꼴 이외에도 다양한 방법으로 `Text` 위젯을 커스터마이징할 수 있습니다.
+`Text`의 style 매개 변수에서는 `TextStyle` 객체를 사용하는데,
+`TextStyle`에는 아래와 같은 다양한 매개 변수가 있습니다. 
 
 * color
 * decoration
@@ -1889,17 +1889,19 @@ customize many parameters, such as:
 * textBaseline
 * wordSpacing
 
-## Form input
+## 양식 입력(Form input)
 
-For more information on using Forms, see
-[Retrieve the value of a text field](/docs/cookbook/forms/retrieve-input),
-from the [Flutter Cookbook](/docs/cookbook).
+Form 사용법에 관한 자세한 방법은 
+[Flutter Cookbook](/docs/cookbook)의
+[텍스트 필드 값 가져오기](/docs/cookbook/forms/retrieve-input)를
+참조하세요.
 
-### What is the equivalent of a "hint" on an Input?
+### Input에서 "hint"와 동일한 것은? 
 
-In Flutter, you can easily show a "hint" or a placeholder text for your input by
-adding an InputDecoration object to the decoration constructor parameter for
-the Text Widget.
+Flutter에서는
+텍스트 위젯의 생성자 매개 변수로 
+InputDecoration 객체를 추가하여
+쉽게 "hint"나 placeholder를 보여줄 수 있습니다.
 
 {% prettify dart %}
 body: Center(
@@ -1909,14 +1911,17 @@ body: Center(
 )
 {% endprettify %}
 
-### How do I show validation errors?
+### 검증(validation) 오류를 보여주는 방법은?
 
-Just as you would with a "hint", pass an InputDecoration object
-to the decoration constructor for the Text widget.
+"hint"와 마찬가지로,
+텍스트 위젯 생성자의 decoration에 
+InputDecoration 객체를 넘기면 됩니다.
 
-However, you don't want to start off by showing an error.
-Instead, when the user has entered invalid data,
-update the state, and pass a new `InputDecoration` object.
+하지만,
+처음부터 에러를 보여주고 싶지는 않을 겁니다.
+그 대신,
+사용자가 유효하지 않은 값을 입력했을 때
+상태를 업데이트하여 새로운 `InputDecoration`를 전달하세요.
 
 {% prettify dart %}
 import 'package:flutter/material.dart';
@@ -1988,85 +1993,85 @@ class _SampleAppPageState extends State<SampleAppPage> {
 {% endprettify %}
 
 
-## Flutter plugins
+## Flutter 플러그인
 
-### How do I access the GPS sensor?
+### GPS 센서에 접근하는 방법은?
 
-Use the [`geolocator`]({{site.pub}}/packages/geolocator) community plugin.
+커뮤니티 플러그인인 [`geolocator`]({{site.pub}}/packages/geolocator)를 사용하세요.
 
-### How do I access the camera?
+### 카메라에 접근하는 방법은?
 
-The [`image_picker`]({{site.pub}}/packages/image_picker) plugin is popular
-for accessing the camera.
+[`image_picker`]({{site.pub}}/packages/image_picker) 플러그인은
+카메라에 접근할 때 많이 사용됩니다.
 
-### How do I log in with Facebook?
+### 페이스북으로 로그인하는 방법은?
 
-To Log in with Facebook, use the
-[`flutter_facebook_login`]({{site.pub}}/packages/flutter_facebook_login) community plugin.
+페이스북으로 로그인하기 위해, 커뮤니티 플로그인인
+[`flutter_facebook_login`]({{site.pub}}/packages/flutter_facebook_login)을 사용하세요.
 
-### How do I use Firebase features?
+### Firebase 기능을 사용하는 방법은?
 
-Most Firebase functions are covered by
-[first party plugins]({{site.pub}}/flutter/packages?q=firebase).
-These plugins are first-party integrations, maintained by the Flutter team:
+대부분의 Firebase 기능은 
+[first party plugins]({{site.pub}}/flutter/packages?q=firebase)
+를 사용하여 다룰 수 있습니다.
+이 플러그인들은 Flutter 팀에서 관리하는 자사 통합 플러그인입니다: 
 
- * [`firebase_admob`]({{site.pub}}/packages/firebase_admob) for Firebase AdMob
- * [`firebase_analytics`]({{site.pub}}/packages/firebase_analytics) for Firebase Analytics
- * [`firebase_auth`]({{site.pub}}/packages/firebase_auth) for Firebase Auth
- * [`firebase_database`]({{site.pub}}/packages/firebase_database) for Firebase RTDB
- * [`firebase_storage`]({{site.pub}}/packages/firebase_storage) for Firebase Cloud Storage
- * [`firebase_messaging`]({{site.pub}}/packages/firebase_messaging) for Firebase Messaging (FCM)
- * [`flutter_firebase_ui`]({{site.pub}}/packages/flutter_firebase_ui) for quick Firebase Auth integrations (Facebook, Google, Twitter and email)
- * [`cloud_firestore`]({{site.pub}}/packages/cloud_firestore) for Firebase Cloud Firestore
+ * Firebase AdMob을 위한 [`firebase_admob`]({{site.pub}}/packages/firebase_admob)
+ * Firebase 애널리틱스를 위한 [`firebase_analytics`]({{site.pub}}/packages/firebase_analytics)
+ * Firebase 인증을 위한 [`firebase_auth`]({{site.pub}}/packages/firebase_auth)
+ * Firebase 실시간 데이터베이스를 위한 [`firebase_database`]({{site.pub}}/packages/firebase_database)
+ * Firebase Cloud Storage를 위한 [`firebase_storage`]({{site.pub}}/packages/firebase_storage)
+ * Firebase 메시징 (FCM)을 위한 [`firebase_messaging`]({{site.pub}}/packages/firebase_messaging)
+ * 빠르게 Firebase 인증(Facebook, Google, Twitter and email)을 설정하기 위한 [`flutter_firebase_ui`]({{site.pub}}/packages/flutter_firebase_ui)
+ * Firebase Cloud Firestore를 위한 [`cloud_firestore`]({{site.pub}}/packages/cloud_firestore)
 
-You can also find some third-party Firebase plugins on Pub that cover areas
-not directly covered by the first-party plugins.
+또한 자사 통합 플러그인로 구현이 어려운 부분이 있다면 Pub에서 Firebase관련 서드 파티 플러그인을 찾아 사용하실 수 있습니다.
 
-### How do I build my own custom native integrations?
+### 네이티브와 직접 통합하고 싶을 때는? 
 
-If there is platform-specific functionality that Flutter or its community
-Plugins are missing, you can build your own following the
-[developing packages and plugins](/docs/development/packages-and-plugins/developing-packages) page.
+Flutter 또는 커뮤니티 플러그인이 놓친 부분이 있다면,
+[패키지 및 플러그인 개발](/docs/development/packages-and-plugins/developing-packages)을 참고하여
+직접 플랫폼 특화 기능을 구현할 수 있습니다.
 
-Flutter's plugin architecture, in a nutshell, is much like using an Event bus in
-Android: you fire off a message and let the receiver process and emit a result
-back to you. In this case, the receiver is code running on the native side
-on Android or iOS.
+Flutter의 플러그인 구조는 쉽게 말하면 안드로이드의 이벤트 버스와 비슷합니다:
+메시지를 보내고, 수신자가 처리한 뒤 결과를 다시 보내도록 하는 방식입니다.
+이 경우, 수신자는 안드로이드 또는 iOS의 네이티브 쪽에서 실행되는 코드에 해당합니다.
 
-### How do I use the NDK in my Flutter application?
+### Flutter 앱에서 NDK를 사용하는 방법?
 
-If you use the NDK in your current Android application and want your Flutter
-application to take advantage of your native libraries then it's possible by
-building a custom plugin.
+현재 안드로이드 앱에서 NDK를 사용하고 있고 Flutter 앱에서도 네이티브 라이브러리의 이점을 살리고 싶다면
+직접 플러그인을 만드실 수 있습니다.
 
-Your custom plugin first talks to your Android app, where you call your
-`native` functions over JNI. Once a response is ready,
-send a message back to Flutter and render the result.
+직접 만든 플러그인은 일단 안드로이드 앱을 호출한 뒤, JNI를 통해 `네이티브` 함수를 호출합니다.
+응답이 준비되면 Flutter 쪽으로 응답을 보낸 후 결과를 보여주면 됩니다. 
 
-Calling native code directly from Flutter is currently not supported.
+Flutter에서 직접 JNI를 사용하는 방법은 현재 지원하고 있지 않습니다.
 
-## Themes
+## 테마
 
-### How do I theme my app?
+### 앱에 테마를 설정하는 방법은?
 
-Out of the box, Flutter comes with a beautiful implementation of Material
-Design, which takes care of a lot of styling and theming needs that you would
-typically do. Unlike Android where you declare themes in XML and then assign it
-to your application using AndroidManifest.xml, in Flutter you declare themes
-in the top level widget.
+Flutter는 일반적으로 많이 사용하는 스타일링과 테마를 처리할 수 있는 
+아름다운 머터리얼 디자인 구현을 제공하고, 즉시 사용가능합니다.
+AndroidManifest.xml를 사용하여 XML 방식으로 테마를 설정하는 안드로이드와 달리,
+Flutter에서는 최상위 위젯에서 테마를 설정합니다.
 
-To take full advantage of Material Components in your app, you can declare a top
-level widget `MaterialApp` as the entry point to your application. MaterialApp
-is a convenience widget that wraps a number of widgets that are commonly
-required for applications implementing Material Design. It builds upon a WidgetsApp by
-adding Material specific functionality.
+앱에서 머터리얼 컴포넌트의 이점을 살리기 위해서,
+앱의 진입점으로 최상위 위젯 `MaterialApp`을 설정할 수 있습니다.
+MaterialApp은  
+여러 일반적으로 사용되는 머터리얼 디자인 위젯을 담고 있어
+편리하게 머터리얼 디자인을 구현할 수 있도록
+도와주는 위젯입니다.  
+MaterialApp은 WidgetsApp을 기반으로 머터리얼 특유의 기능을 추가하여 구현됐습니다.
 
-You can also use a `WidgetApp` as your app widget, which provides some of the
-same functionality, but is not as rich as `MaterialApp`.
+`WidgetApp`을 앱 위젯으로 사용하셔도 됩니다.
+`MaterialApp`과 동일한 기능을 제공하지만, `MaterialApp`만큼 풍성하지는 않습니다.
 
-To customize the colors and styles of any child components, pass a
-`ThemeData` object to the `MaterialApp` widget. For example, in the code below,
-the primary swatch is set to blue and text selection color is red.
+자식 컴포넌트에 색과 스타일을 커스터마이징하려면,
+`ThemeData` 객체를 `MaterialApp` 위젯에 전달하세요.
+예를 들어, 아래 코드처럼
+primary swatch를 파란색으로 설정하고 
+text selection color를 빨간색으로 설정할 수 있습니다. 
 
 {% prettify dart %}
 class SampleApp extends StatelessWidget {
@@ -2085,17 +2090,16 @@ class SampleApp extends StatelessWidget {
 {% endprettify %}
 
 
-## Databases and local storage
+## 데이터베이스 및 로컬 저장소
 
-### How do I access Shared Preferences?
+### Shared Preferences에 접근하는 방법은?
 
-In Android, you can store a small collection of key-value pairs using
-the SharedPreferences API.
+안드로이드에서는 작은 양의 키-값을 저장하기 SharedPreferences API를 사용할 수 있습니다.
 
-In Flutter, access this functionality using the
-[Shared_Preferences plugin]({{site.pub}}/packages/shared_preferences).
-This plugin wraps the functionality of both Shared Preferences and
-NSUserDefaults (the iOS equivalent).
+Flutter에서는 같은 기능을
+[Shared_Preferences 플러그인]({{site.pub}}/packages/shared_preferences)을
+통해 사용할 수 있습니다.
+이 플러그인은 Shared Preferences와 NSUserDefaults(iOS)의 기능을 감싸고 있습니다.
 
 {% prettify dart %}
 import 'package:flutter/material.dart';
@@ -2125,24 +2129,25 @@ _incrementCounter() async {
 
 {% endprettify %}
 
-### How do I access SQLite in Flutter?
+### Flutter에서 SQLite에 접근하는 방법?
 
-In Android, you use SQLite to store structured data that you can query
-using SQL.
+안드로이드에서는 SQLite을 사용하여 구조적인 데이터를 저장하고
+SQL을 사용해 쿼리할 수 있습니다.
 
-In Flutter, access this functionality using the
-[SQFlite]({{site.pub}}/packages/sqflite) plugin.
+Flutter에서는, 
+[SQFlite]({{site.pub}}/packages/sqflite) 플러그인을 활용해 
+이 기능에 접근합니다.
 
-## Notifications
+## 알림
 
-### How do I set up push notifications?
+### 푸시 알림을 설정하는 방법은?
 
-In Android, you use Firebase Cloud Messaging to setup push
-notifications for your app.
+안드로이드에서는 앱에 푸시 알림을 설정하기 위하여 
+Firebase Cloud Messaging을 사용합니다.
 
-In Flutter, access this functionality using the
-[Firebase_Messaging]({{site.github}}/flutter/plugins/tree/master/packages/firebase_messaging)
-plugin.
-For more information on using the Firebase Cloud Messaging API, see the
+Flutter에서는 
+[Firebase_Messaging]({{site.github}}/flutter/plugins/tree/master/packages/firebase_messaging) 플러그인을
+활용하여 이 기능에 접근합니다.
+Firebase Cloud Messaging API에 대한 저 자세한 정보는
 [`firebase_messaging`]({{site.pub}}/packages/firebase_messaging)
-plugin documentation.
+플러그인 문서를 참조하세요.
