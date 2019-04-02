@@ -21,7 +21,7 @@ next:
   1. 올바른 로컬 경로 찾기
   2. 파일 경로에 대한 참조 값 생성하기
   3. 파일에 데이터 쓰기
-  4. 파일로 부터 데이터 읽기
+  4. 파일로부터 데이터 읽기
 
 ## 1. 올바른 로컬 경로 찾기
 
@@ -34,7 +34,7 @@ next:
 파일 시스템 경로에 접근하도록 지원합니다:
 
   * *임시 디렉토리:* 시스템이 언제든지 삭제할 수 있는 임시 디렉토리 (캐시). iOS에서는 
-    [`NSTemporaryDirectory()`](https://developer.apple.com/reference/foundation/1409211-nstemporarydirectory).
+    [`NSTemporaryDirectory()`](https://developer.apple.com/reference/foundation/1409211-nstemporarydirectory),
     안드로이드에서는 [`getCacheDir()`]({{site.android-dev}}/reference/android/content/Context#getCacheDir())에
     해당합니다.
   * *문서 디렉토리:* 파일을 저장하기 위해 해당 앱에서만 유일하게 접근할 수 있는 디렉토리.
@@ -55,7 +55,7 @@ Future<String> get _localPath async {
 
 ## 2. 파일 경로에 대한 참조 값 생성하기
 
-파일이 어디에 저장되는지 일단 알게 되면, 파일의 전체 경로에 대한 참조 값을 생성해야 합니다.
+일단 파일이 어디에 저장되는지 알게 되면, 파일의 전체 경로에 대한 참조 값을 생성해야 합니다.
 이를 위해 [dart:io]({{site.api}}/flutter/dart-io/dart-io-library.html) 라이브러리에서
 제공하는 [`File`]({{site.api}}/flutter/dart-io/File-class.html) 클래스를 사용하면 됩니다.
 
@@ -107,10 +107,11 @@ Future<int> readCounter() async {
 
 ## 테스팅
 
-File과 상호작용하는 코드를 테스트하기 위해서는 `MethodChannel` Mock 호출을 해야 합니다.
+File과 상호작용하는 코드를 테스트하기 위해서는 `MethodChannel`를 Mock 호출을 해야 합니다.
 `MethodChannel`은 Flutter가 호스트 플랫폼과 통신하기 위해 사용하는 클래스입니다.
 
-테스트 코드에서는 디바이스의 파일 시스템과 상호 작용할 수 없습니다.
+이 테스트 코드에서는 디바이스의 파일 시스템과 상호 작용할 수 없습니다.
+테스트 환경의 파일 시스템을 사용 해야 합니다.
 
 테스트 파일에 메서드 콜을 흉내내는 `setupAll` 이라는 Mock 함수를 제공하겠습니다.
 이 함수는 테스트가 시작되기 전에 수행합니다.
