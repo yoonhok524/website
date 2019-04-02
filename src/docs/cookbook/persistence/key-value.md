@@ -64,7 +64,7 @@ prefs.setInt('counter', counter);
 ```dart
 final prefs = await SharedPreferences.getInstance();
 
-// counter 키를 통해 데이터 읽기를 시도합니다. 만약 존재하지 않는 다면 0을 반환합니다.
+// counter 키에 해당하는 데이터 읽기를 시도합니다. 만약 존재하지 않는 다면 0을 반환합니다.
 final counter = prefs.getInt('counter') ?? 0;
 ```
 
