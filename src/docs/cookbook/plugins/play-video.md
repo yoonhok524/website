@@ -143,40 +143,39 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
 ## 4. video player 화면에 보여주기
 
-Now, it's time to display the video. The `video_player` plugin provides the
+이제 영상을 보여줄 차례입니다. `video_player` 플러그인은 `VideoPlayerController`에
+의해 초기화된 영상을 보여주기 위해
 [`VideoPlayer`](https://pub.dartlang.org/documentation/video_player/latest/video_player/VideoPlayer-class.html)
-Widget to display the video initialized by the `VideoPlayerController`. By
-default, the `VideoPlayer` Widget takes up as much space as possible. This
-often isn't ideal for videos because they are meant to be displayed in a
-specific aspect ratio, such as 16x9 or 4x3.
+위젯을 제공합니다. 기본적으로 `VideoPlayer` 위젯은 가능한한 넓은 면적을 차지하려고 합니다.
+이러한 점은 종종 영상들이 16x9나 4x3과 같이 특정 종횡비로 표시되기 때문에 이상적이지는 않습니다.
 
-Therefore, you can wrap the `VideoPlayer` widget in an
+
+영상이 제대로된 비율로 보여지도록 `VideoPlayer` 위젯을 
 [`AspectRatio`](https://docs.flutter.io/flutter/widgets/AspectRatio-class.html)
-widget to ensure the video is the correct proportions.
+위젯으로 감쌀 수 있습니다.
 
-Furthermore, you must display the `VideoPlayer` widget after the
-`_initializeVideoPlayerFuture` completes. You can use a `FutureBuilder` to
-display a loading spinner until finishes initializing. Note: initializing the
-controller does not begin playback.
+추가로 `_initializeVideoPlayerFuture`가 완료된 후에 `VideoPlayer`를 보여줘야 합니다.
+`FutureBuilder`를 사용하여 초기화가 진행되는 동안 로딩 스피너를 보여줄 수 있습니다. 참고:
+컨트롤러 초기화가 영상을 재생시키지는 않습니다.
 
 <!-- skip -->
 ```dart
-// Use a FutureBuilder to display a loading spinner while you wait for the
-// VideoPlayerController to finish initializing.
+// VideoPlayerController가 초기화를 진행하는 동안 로딩 스피너를 보여주기 위해
+// FutureBuilder를 사용합니다.
 FutureBuilder(
   future: _initializeVideoPlayerFuture,
   builder: (context, snapshot) {
     if (snapshot.connectionState == ConnectionState.done) {
-      // If the VideoPlayerController has finished initialization, use
-      // the data it provides to limit the Aspect Ratio of the VideoPlayer
+      // 만약 VideoPlayerController 초기화가 끝나면, 제공된 데이터를 사용하여
+      // VideoPlayer의 종횡비를 제한하세요.
       return AspectRatio(
         aspectRatio: _controller.value.aspectRatio,
-        // Use the VideoPlayer widget to display the video
+        // 영상을 보여주기 위해 VideoPlayer 위젯을 사용합니다.
         child: VideoPlayer(_controller),
       );
     } else {
-      // If the VideoPlayerController is still initializing, show a
-      // loading spinner
+      // 만약 VideoPlayerController가 여전히 초기화 중이라면, 
+      // 로딩 스피너를 보여줍니다.
       return Center(child: CircularProgressIndicator());
     }
   },
@@ -185,34 +184,34 @@ FutureBuilder(
 
 ## 5. 영상을 재생 및 일시 중지하기
 
-By default, the video starts in a paused state. To begin playback,
-call the
+기본적으로 영상은 일시 중지 상태로 시작합니다. 재생을 시작하려면 `VideoPlayerController`가
+제공하는 
 [`play`](https://pub.dartlang.org/documentation/video_player/latest/video_player/VideoPlayerController/play.html)
-method provided by the `VideoPlayerController`. To pause playback, call the
+메서드를 호출하세요. 재생을 일시 중지 시키려면 
 [`pause`](https://pub.dartlang.org/documentation/video_player/latest/video_player/VideoPlayerController/pause.html)
-method.
+메서드를 호출하면 됩니다.
 
-For this example, add a `FloatingActionButton` to your app that displays a play
-or pause icon depending on the situation. When the user taps the button, play
-the video if it's currently paused, or pause the video if it's playing.
+본 예제에서는 상황에 따라 재생 혹은 일시 중지 아이콘을 보여주기 위해
+`FloatingActionButton`을 추가하였습니다. 사용자가 이 버튼을 눌렀을 때, 영상이 일시 중지
+상태였다면 재생할 것이고, 재생 중이었다면 일시 중지시킬 것입니다.
 
 <!-- skip -->
 ```dart
 FloatingActionButton(
   onPressed: () {
-    // Wrap the play or pause in a call to `setState`. This ensures the correct 
-    // icon is shown
+    // 재생/일시 중지 기능을 `setState` 호출로 감쌉니다. 이렇게 함으로써 올바른 아이콘이
+    // 보여집니다.
     setState(() {
-      // If the video is playing, pause it.
+      // 영상이 재생 중이라면, 일시 중지 시킵니다.
       if (_controller.value.isPlaying) {
         _controller.pause();
       } else {
-        // If the video is paused, play it
+        // 만약 영상이 일시 중지 상태였다면, 재생합니다.
         _controller.play();
       }
     });
   },
-  // Display the correct icon depending on the state of the player.
+  // 플레이어의 상태에 따라 올바른 아이콘을 보여줍니다.
   child: Icon(
     _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
   ),
@@ -258,10 +257,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     );
 
-    // Initialize the controller and store the Future for later use
+    // 컨트롤러를 초기화하고 추후 사용하기 위해 Future를 변수에 할당합니다.
     _initializeVideoPlayerFuture = _controller.initialize();
 
-    // Use the controller to loop the video
+    // 비디오를 반복 재생하기 위해 컨트롤러를 사용합니다.
     _controller.setLooping(true);
 
     super.initState();
@@ -281,45 +280,45 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       appBar: AppBar(
         title: Text('Butterfly Video'),
       ),
-      // Use a FutureBuilder to display a loading spinner while you wait for the
-      // VideoPlayerController to finish initializing.
+      // VideoPlayerController가 초기화를 진행하는 동안 로딩 스피너를 보여주기 위해
+      // FutureBuilder를 사용합니다.
       body: FutureBuilder(
         future: _initializeVideoPlayerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            // If the VideoPlayerController has finished initialization, use
-            // the data it provides to limit the Aspect Ratio of the Video
+            // 만약 VideoPlayerController 초기화가 끝나면, 제공된 데이터를 사용하여
+            // VideoPlayer의 종횡비를 제한하세요.
             return AspectRatio(
               aspectRatio: _controller.value.aspectRatio,
-              // Use the VideoPlayer widget to display the video
+              // 영상을 보여주기 위해 VideoPlayer 위젯을 사용합니다.
               child: VideoPlayer(_controller),
             );
           } else {
-            // If the VideoPlayerController is still initializing, show a
-            // loading spinner
+            // 만약 VideoPlayerController가 여전히 초기화 중이라면, 
+            // 로딩 스피너를 보여줍니다.
             return Center(child: CircularProgressIndicator());
           }
         },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Wrap the play or pause in a call to `setState`. This ensures the
-          // correct icon is shown
+          // 재생/일시 중지 기능을 `setState` 호출로 감쌉니다. 이렇게 함으로써 올바른 아이콘이
+          // 보여집니다.
           setState(() {
-            // If the video is playing, pause it.
+            // 영상이 재생 중이라면, 일시 중지 시킵니다.
             if (_controller.value.isPlaying) {
               _controller.pause();
             } else {
-              // If the video is paused, play it
+              // 만약 영상이 일시 중지 상태였다면, 재생합니다.
               _controller.play();
             }
           });
         },
-        // Display the correct icon depending on the state of the player.
+        // 플레이어의 상태에 따라 올바른 아이콘을 보여줍니다.
         child: Icon(
           _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ), // 이 마지막 콤마는 build 메서드에 자동 서식이 잘 적용될 수 있도록 도와줍니다.
     );
   }
 }
