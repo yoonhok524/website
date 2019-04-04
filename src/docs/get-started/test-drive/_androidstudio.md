@@ -10,7 +10,7 @@
  1. **Finish**를 클릭하세요.
  1. 안드로이드 스튜디오가 SDK를 설치하고 프로젝트를 생성할 때까지 기다리세요.
 
-위 명령은 [머터리얼 컴포넌트][]를 사용한 간단한 예시 앱이 들어있는 Flutter 프로젝트 디렉토리 `myapp`을 생성합니다.
+위 명령은 [머티리얼 컴포넌트][]를 사용한 간단한 예시 앱이 들어있는 Flutter 프로젝트 디렉토리 `myapp`을 생성합니다.
 
 {% include_relative _main-code-note.md  %}
 
@@ -37,5 +37,5 @@
 
 [Main IntelliJ toolbar]: {% asset tools/android-studio/main-toolbar.png @path %}
 [AVD 관리]: {{site.android-dev}}/studio/run/managing-avds
-[머터리얼 컴포넌트]: {{site.material}}/guidelines
+[머티리얼 컴포넌트]: {{site.material}}/guidelines
 </div>
