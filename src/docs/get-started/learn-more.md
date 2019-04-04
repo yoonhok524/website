@@ -1,38 +1,38 @@
 ---
-title: Learn more
+title: 더 알아보기
 description: More resources to help you learn Flutter.
 prev:
-  title: Write your first Flutter app
+  title: 첫 Flutter 앱 작성하기
   path: /docs/get-started/codelab
 ---
 
-Learn more about the Flutter framework from the following pages:
+아래 페이지에서 Flutter 프레임워크에 대해 더 자세히 알아봅니다.
 
-## Flutter basics
+## Flutter 기본
 
-* [Introduction to widgets](/docs/development/ui/widgets-intro)
-* [Building layouts in Flutter](/docs/development/ui/layout/tutorial) tutorial
-* [Add interactivity](/docs/development/ui/interactive) tutorial
+* [위젯 소개](/docs/development/ui/widgets-intro)
+* [Flutter 레이아웃 만들기](/docs/development/ui/layout/tutorial) 튜토리얼
+* [상호작용 추가하기](/docs/development/ui/interactive) 튜토리얼
 
-## Apply your existing knowledge
+## 기존 지식 적용하기
 
-* [Flutter for Android developers](/docs/get-started/flutter-for/android-devs)
-* [From Java to Dart]({{site.codelabs}}/codelabs/from-java-to-dart) codelab
-* [Flutter for iOS developers](/docs/get-started/flutter-for/ios-devs)
-* [Flutter for React Native developers](/docs/get-started/flutter-for/react-native-devs)
-* [Flutter for web developers](/docs/get-started/flutter-for/web-devs)
-* [Flutter for Xamarin.Forms developers](/docs/get-started/flutter-for/xamarin-forms-devs)
+* [안드로이드 개발자를 위한 Flutter](/docs/get-started/flutter-for/android-devs)
+* [자바에서 다트로]({{site.codelabs}}/codelabs/from-java-to-dart) 코드랩
+* [iOS 개발자를 위한 Flutter](/docs/get-started/flutter-for/ios-devs)
+* [리액트 네이티브 개발자를 위한 Flutter](/docs/get-started/flutter-for/react-native-devs)
+* [웹 개발자를 위한 Flutter](/docs/get-started/flutter-for/web-devs)
+* [Xamarin.Forms 개발자를 위한 Flutter](/docs/get-started/flutter-for/xamarin-forms-devs)
 
-## Other resources
+## 기타 자료
 
-* [Flutter samples]({{site.github}}/flutter/samples/blob/master/INDEX.md)
-* [Flutter cookbook](/docs/cookbook)
-* [Bootstrap into Dart: learn more about the language](/docs/resources/bootstrap-into-dart)
-* [Flutter API Docs]({{site.api}})
-* [Udacity online Flutter training](https://www.udacity.com/course/build-native-mobile-apps-with-flutter--ud905)
+* [Flutter 샘플]({{site.github}}/flutter/samples/blob/master/INDEX.md)
+* [Flutter 해설(Cookbook)](/docs/cookbook)
+* [다트 시작하기: 다트 언어에 대해 더 알아보기](/docs/resources/bootstrap-into-dart)
+* [Flutter API 문서]({{site.api}})
+* [Udacity의 Flutter 온라인 강의](https://www.udacity.com/course/build-native-mobile-apps-with-flutter--ud905)
 
-Reach out to us at our [mailing list][]. We'd love to hear from you!
+우리의 [메일링 명단][]에서 우리에게 연락하세요. 당신의 의견을 듣고 싶습니다!
 
 Happy Fluttering!
 
-[mailing list]: mailto:{{site.email}}
+[메일링 명단]: mailto:{{site.email}}

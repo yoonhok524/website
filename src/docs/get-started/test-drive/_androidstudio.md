@@ -1,28 +1,29 @@
 <div class="tab-pane active" id="androidstudio" role="tabpanel" aria-labelledby="androidstudio-tab" markdown="1">
 
-## Create the app {#create-app}
+## 앱 생성 {#create-app}
 
- 1. Select **File > New Flutter Project**.
- 1. Select **Flutter application** as the project type, and press **Next**.
- 1. Make sure that the **Flutter SDK Path** text field specifies the
-    location of the SDK. Install the SDK if you haven't yet done so.
- 1. Enter a project name (for example, `myapp`), and press **Next**.
- 1. Click **Finish**.
- 1. Wait for Android Studio to install the SDK, and create the project.
+ 1. **File > New Flutter Project**를 선택하세요.
+ 1. 프로젝트 유형으로 **Flutter application**을 선택한 후, **Next**을 누르세요.
+ 1. **Flutter SDK Path** 텍스트 창의 내용이 SDK 위치가 맞는지 확인하세요.
+    아직 SDK를 설치하지 않았다면 SDK를 설치하세요.
+ 1. 프로젝트 이름을 입력하고 **Next**를 누르세요. (예, `myapp`) 
+ 1. **Finish**를 클릭하세요.
+ 1. 안드로이드 스튜디오가 SDK를 설치하고 프로젝트를 생성할 때까지 기다리세요.
 
-The above commands create a Flutter project directory called `myapp` that
-contains a simple demo app that uses [Material Components][].
+위 명령은 [머티리얼 컴포넌트][]를 사용한 간단한 예시 앱이 들어있는 Flutter 프로젝트 디렉토리 `myapp`을 생성합니다.
 
 {% include_relative _main-code-note.md  %}
 
-## Run the app
+## 앱 실행
 
- 1. Locate the main Android Studio toolbar:<br>
+ 1. 안드로이드 스튜디오 기본 툴바를 찾으세요: <br>
     ![Main IntelliJ toolbar][]{:.mw-100}
- 1. In the **target selector**, select an Android device for running the app.
-    If none are listed as available, select **Tools> Android > AVD Manager** and
-    create one there. For details, see [Managing AVDs][].
- 1. Click the run icon in the toolbar, or invoke the menu item **Run > Run**.
+ 1. **target selector**에서, 앱을 실행할 안드로이드 기기를 선택하세요.
+    리스트에 사용 가능한 기기가 없다면, 
+    **Tools> Android > AVD Manager**를 선택하고 새 기기를 생성하세요.
+    자세한 사항은, [AVD 관리][]를 참조하세요.
+ 1. 툴바에서 실행 아이콘을 선택하세요, 
+    또는 메뉴 항목에서 **Run > Run**를 실행하세요.
 
 {% capture save_changes -%}
   : invoke **Save All**, or click **Hot Reload**
@@ -35,6 +36,6 @@ contains a simple demo app that uses [Material Components][].
 {% include_relative _try-hot-reload.md save_changes=save_changes %}
 
 [Main IntelliJ toolbar]: {% asset tools/android-studio/main-toolbar.png @path %}
-[Managing AVDs]: {{site.android-dev}}/studio/run/managing-avds
-[Material Components]: {{site.material}}/guidelines
+[AVD 관리]: {{site.android-dev}}/studio/run/managing-avds
+[머티리얼 컴포넌트]: {{site.material}}/guidelines
 </div>

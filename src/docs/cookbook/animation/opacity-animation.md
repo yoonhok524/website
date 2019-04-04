@@ -91,7 +91,7 @@ flip the boolean from true to false, or false to true. You need to make this
 change using [`setState`][], which is a method on the `State` class.
 This lets Flutter know it needs to rebuild the Widget.
 
-Note: For more information on working with user input, please see the
+참고: For more information on working with user input, please see the
 [Gestures](/docs/cookbook#gestures) section of the Cookbook.
 
 <!-- skip -->

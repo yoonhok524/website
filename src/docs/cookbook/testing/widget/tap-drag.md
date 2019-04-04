@@ -50,7 +50,7 @@ features that we'll want to test:
   3. Swipe-to-dismiss removes the item from the list
 
 To keep the focus on testing, this recipe will not provide a detailed guide on
-how to build the todo app. To learn more about how this app is built, please see
+how to build the todo app. To 더 알아보기 about how this app is built, please see
 the relevant recipes:
 
   * [Create and style a text field](/docs/cookbook/forms/text-input/)
@@ -137,7 +137,7 @@ testWidgets('Add and remove a todo', (WidgetTester tester) async {
 });
 ```
 
-**Note:** This recipe builds upon previous Widget testing recipes. To learn the
+**참고:** This recipe builds upon previous Widget testing recipes. To learn the
 core concepts of Widget testing, see the following recipes:
 
   * [Introduction to Widget testing](.)

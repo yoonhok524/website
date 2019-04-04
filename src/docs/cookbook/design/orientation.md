@@ -38,7 +38,7 @@ GridView.count(
 );
 ```
 
-To learn more about working with `GridViews`, please see the
+To 더 알아보기 about working with `GridViews`, please see the
 [Creating a grid list](/docs/cookbook/lists/grid-lists/) recipe.
 
 ## 2. Use an `OrientationBuilder` to change the number of columns
@@ -65,7 +65,7 @@ OrientationBuilder(
 );
 ```
 
-Note: If you're interested in the orientation of the screen, rather than
+참고: If you're interested in the orientation of the screen, rather than
 the amount of space available to the parent, please use
 `MediaQuery.of(context).orientation` instead of an `OrientationBuilder` Widget.
 

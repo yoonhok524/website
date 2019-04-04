@@ -1,7 +1,7 @@
 ---
-title: Flutter Documentation
-short-title: Docs
-description: The landing page for Flutter documentation.
+title: Flutter 문서
+short-title: 문서
+description: Flutter 문서의 랜딩 페이지
 ---
 
 {% for card in site.data.docs_cards -%}
@@ -21,78 +21,75 @@ description: The landing page for Flutter documentation.
   {% endif %}
 {% endfor -%}
 
-## What's new on the site
+## 사이트 개편 내역
 
-**February 26, 2019**
+**2019년 2월 26일**
 
-Flutter released [version
-1.2](https://developers.googleblog.com/2019/02/launching-flutter-12-at-mobile-world.html)
-at Mobile World Congress (MWC) in Barcelona. For more information, see the
-[release notes](https://github.com/flutter/flutter/wiki/Release-Notes---Flutter-1.2.1)
-or [download the release](/docs/development/tools/sdk/archive).
+바르셀로나에서 열리는 Mobile World Congress (MWC)에서 
+Flutter [1.2 버전](https://developers.googleblog.com/2019/02/launching-flutter-12-at-mobile-world.html) 출시되었습니다.
+자세한 정보는 [릴리스 노트](https://github.com/flutter/flutter/wiki/Release-Notes---Flutter-1.2.1) 또는
+[릴리스 다운로드](/docs/development/tools/sdk/archive)를 참조하세요.
 
-For a listing of new docs, see [what's new](/docs/whats-new-archive).
+새로운 문서 목록은 [what's new](/docs/whats-new-archive)를 확인하세요.
 
-## New to Flutter?
+## Flutter가 처음인가요?
 
-Once you've gone through [Get Started](/docs/get-started/install),
-including [Write Your First Flutter App,](/docs/get-started/codelab)
-here are some next steps.
+[시작하기](/docs/get-started/install)와
+ [첫 번째 앱 작성하기](/docs/get-started/codelab)를 완료했다면, 
+다음 단계가 준비되어 있습니다.
 
-### Docs
+### 문서
 
-Coming from another platform? Check out: 
-[Android](/docs/get-started/flutter-for/android-devs),
+다른 플랫폼 경험이 있으신가요? 아래 문서를 확인해보세요:
+[안드로이드](/docs/get-started/flutter-for/android-devs),
 [iOS](/docs/get-started/flutter-for/ios-devs),
-[Web](/docs/get-started/flutter-for/web-devs),
-[React Native](/docs/get-started/flutter-for/react-native-devs),
+[웹](/docs/get-started/flutter-for/web-devs),
+[리액트 네이티브](/docs/get-started/flutter-for/react-native-devs),
 [Xamarin.Forms](/docs/get-started/flutter-for/xamarin-forms-devs)
 
-[Building layouts in Flutter](/docs/development/ui/layout)
-: Learn how to create layouts in Flutter, where everything is a widget.
+[Flutter에서 레이아웃](/docs/development/ui/layout)
+: 레이아웃을 만드는 방법을 배워보세요. Flutter에서는 모든 게 위젯입니다.
 
-[Adding interactivity to your Flutter app](/docs/development/ui/interactive)
-: Learn how to add a stateful widget to your app.
+[Flutter 앱에 상호작용 추가하기](/docs/development/ui/interactive)
+: 상태를 저장할 수 있는 위젯을 만드는 방법을 배워보세요.
 
-[A tour of the Flutter widget framework](/docs/development/ui/widgets-intro)
-: Learn more about Flutter's react-style framework.
+[Flutter 위젯 프레임워크 둘러보기](/docs/development/ui/widgets-intro)
+: react-style 프레임워크 Flutter에 대해 더 알아봅시다.
 
-[FAQ](/docs/resources/faq)
-: Get the answers to frequently asked questions.
+[자주 묻는 질문](/docs/resources/faq)
+: 자주 묻는 질문에 대한 답변을 살펴보세요.
 
-### Videos
+### 영상
 
-We also have some helpful videos on our [Flutter Youtube
-channel]({{site.social.youtube}})!  In particular, check
-out the Flutter in Focus series, and learn about other
-series on our [videos](/docs/resources/videos) page.
+도움이 될만한 영상을 [Flutter 유튜브 채널]({{site.social.youtube}})을 통해 제공합니다!
+특히 Flutter in Focus 시리즈를 보고, 
+비디오 페이지에서 다른 시리즈를 통해 배워보세요.
 
 <iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube.com/embed/wgTBLj7rMPM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 Flutter in Focus: Learn Flutter features in 10 minutes or less.<br>
-[Flutter in Focus playlist](https://www.youtube.com/playlist?list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2)
+[Flutter in Focus 재생 목록](https://www.youtube.com/playlist?list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2)
 
-In Flutter, "everything is a widget"! If you want to better understand the
-two kinds of widgets, Stateless and Stateful, see the following videos,
-part of the [Flutter in
-Focus](https://www.youtube.com/playlist?list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2) series.
+Flutter에서는 "모든 것이 위젯"입니다!
+Stateless과 Stateful라는 2가지 종류의 위젯을 보다 잘 이해하기 위해,
+[Flutter in Focus](https://www.youtube.com/playlist?list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2) 시리즈
+를 확인해보세요.
 
 <iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube.com/embed/wE7khGHVkYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <iframe width="560" height="315" src="https://www.youtube.com/embed/AqCMFXEmf3w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Want to skill up?
+## 한 단계 더 나아가고 싶나요?
 
-If you learn best by watching engineers write code, make mistakes, and fix them,
-check out the [Boring Flutter
-Show](https://www.youtube.com/watch?v=vqPG1tU6-c0&list=PLjxrf2q8roU28W3pXbISJbVA5REsA41Sx&index=3&t=9s)
-video series:
+엔지니어가 코드를 작성하고, 실수하고, 고치는 모습을 보면서 배우길 원한다면
+[Boring Flutter Show](https://www.youtube.com/watch?v=vqPG1tU6-c0&list=PLjxrf2q8roU28W3pXbISJbVA5REsA41Sx&index=3&t=9s)
+영상 시리즈를 확인하세요:
 
 <iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube.com/embed/vqPG1tU6-c0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-[Boring Flutter Show playlist](https://www.youtube.com/watch?v=vqPG1tU6-c0&list=PLjxrf2q8roU28W3pXbISJbVA5REsA41Sx&index=3&t=9s)
+[Boring Flutter Show 재생 목록](https://www.youtube.com/watch?v=vqPG1tU6-c0&list=PLjxrf2q8roU28W3pXbISJbVA5REsA41Sx&index=3&t=9s)
 
-You may also find these docs useful:
+아래 문서들도 유용할 것입니다:
 
-* [Using packages](/docs/development/packages-and-plugins/using-packages)
-* [Adding assets and images](/docs/development/ui/assets-and-images)
-* [Navigation and routing](/docs/development/ui/navigation)
-* [State management](/docs/development/data-and-backend/state-mgmt/intro)
-* [Animations](/docs/development/ui/animations)
+* [패키지 사용하기](/docs/development/packages-and-plugins/using-packages)
+* [리소스 및 이미지 추가하기](/docs/development/ui/assets-and-images)
+* [내비게이션 및 라우팅](/docs/development/ui/navigation)
+* [상태 관리](/docs/development/data-and-backend/state-mgmt/intro)
+* [애니메이션](/docs/development/ui/animations)
 
