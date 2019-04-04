@@ -40,9 +40,9 @@ Flutter의 위젯은 불변하기 때문에 가볍습니다.
 위젯이 그 자체로 뷰가 아니기에 어떤 것도 직접 그리지 않고,
 대신 UI에 대한 설명이며 내부적으로 이미 "inflate"된 실제 뷰 객체 UI의 의미론(semantics)이기 때문입니다.
 
-Flutter는 [머터리얼 컴포넌트]({{site.material}}/develop/flutter/) 라이브러리를 포함합니다.
-위젯은 [머터리얼 디자인 가이드라인]({{site.material}}/design/)을 따르고 있습니다.
-머터리얼 디자인은 [모든 플랫폼에 최적화된]({{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines)
+Flutter는 [머티리얼 컴포넌트]({{site.material}}/develop/flutter/) 라이브러리를 포함합니다.
+위젯은 [머티리얼 디자인 가이드라인]({{site.material}}/design/)을 따르고 있습니다.
+머티리얼 디자인은 [모든 플랫폼에 최적화된]({{site.material}}/design/platform-guidance/cross-platform-adaptation.html#cross-platform-guidelines)
 유연한 디자인 시스템입니다. 
 
 그러나 Flutter는 모든 디자인 언어를 적용할 수 있을만큼 유연하고 표현력이 우수합니다.
@@ -1836,7 +1836,7 @@ position을 받아서 랜더링이 필요한 해당 row를 반환합니다.
 ### 텍스트 위젯에서 사용자 지정 글꼴을 설정하는 방법은?
 
 안드로이드 SDK에서 (안드로이드 O 기준),
-글꼴 리소스 파일을 만들고 TextView이 FontFamily 매개 변수로 전달합니다.
+글꼴 리소스 파일을 만들고 TextView의 FontFamily 매개 변수로 전달합니다.
 
 Flutter에서는 이미지 가져오는 방법과 비슷하게
 글꼴 파일을 폴더에서 넣고 `pubspec.yaml`에서 글꼴 파일 위치를 지정합니다.  
@@ -2006,7 +2006,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
 
 ### 페이스북으로 로그인하는 방법은?
 
-페이스북으로 로그인하기 위해, 커뮤니티 플로그인인
+페이스북으로 로그인하기 위해, 커뮤니티 플러그인인
 [`flutter_facebook_login`]({{site.pub}}/packages/flutter_facebook_login)을 사용하세요.
 
 ### Firebase 기능을 사용하는 방법은?
@@ -2052,17 +2052,17 @@ Flutter에서 직접 JNI를 사용하는 방법은 현재 지원하고 있지 �
 ### 앱에 테마를 설정하는 방법은?
 
 Flutter는 일반적으로 많이 사용하는 스타일링과 테마를 처리할 수 있는 
-아름다운 머터리얼 디자인 구현을 제공하고, 즉시 사용가능합니다.
+아름다운 머티리얼 디자인 구현을 제공하고, 즉시 사용가능합니다.
 AndroidManifest.xml를 사용하여 XML 방식으로 테마를 설정하는 안드로이드와 달리,
 Flutter에서는 최상위 위젯에서 테마를 설정합니다.
 
-앱에서 머터리얼 컴포넌트의 이점을 살리기 위해서,
+앱에서 머티리얼 컴포넌트의 이점을 살리기 위해서,
 앱의 진입점으로 최상위 위젯 `MaterialApp`을 설정할 수 있습니다.
 MaterialApp은  
-여러 일반적으로 사용되는 머터리얼 디자인 위젯을 담고 있어
-편리하게 머터리얼 디자인을 구현할 수 있도록
+여러 일반적으로 사용되는 머티리얼 디자인 위젯을 담고 있어
+편리하게 머티리얼 디자인을 구현할 수 있도록
 도와주는 위젯입니다.  
-MaterialApp은 WidgetsApp을 기반으로 머터리얼 특유의 기능을 추가하여 구현됐습니다.
+MaterialApp은 WidgetsApp을 기반으로 머티리얼 특유의 기능을 추가하여 구현됐습니다.
 
 `WidgetApp`을 앱 위젯으로 사용하셔도 됩니다.
 `MaterialApp`과 동일한 기능을 제공하지만, `MaterialApp`만큼 풍성하지는 않습니다.
@@ -2094,7 +2094,7 @@ class SampleApp extends StatelessWidget {
 
 ### Shared Preferences에 접근하는 방법은?
 
-안드로이드에서는 작은 양의 키-값을 저장하기 SharedPreferences API를 사용할 수 있습니다.
+안드로이드에서는 적은 양의 키-값을 저장하기 SharedPreferences API를 사용할 수 있습니다.
 
 Flutter에서는 같은 기능을
 [Shared_Preferences 플러그인]({{site.pub}}/packages/shared_preferences)을

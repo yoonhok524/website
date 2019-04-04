@@ -139,15 +139,15 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 ### 관찰
 {:.no_toc}
 
-* 이 예제는 머터리얼 앱을 만듭니다. 
-  [머터리얼]({{site.material}}/guidelines/)은
+* 이 예제는 머티리얼 앱을 만듭니다. 
+  [머티리얼]({{site.material}}/guidelines/)은
   모바일 및 웹에서 표준으로 사용되는 시각 디자인 언어입니다.
-  Flutter는 다양한 머터리얼 위젯을 제공합니다. 
+  Flutter는 다양한 머티리얼 위젯을 제공합니다. 
 * `main()` 메서드는 화살표(`=>`) 표기법을 사용합니다.
   한 줄 함수 또는 메서드에 화살표 표기법을 사용하세요.
 * 앱은 `StatelessWidget`을 상속받아 앱 자체를 위젯으로 만듭니다.
   Flutter에서는 정렬, 여백, 레이아웃 등 거의 모든것이 위젯입니다.
-* 머터리얼 라이브러리의 `Scaffold` 위젯은
+* 머티리얼 라이브러리의 `Scaffold` 위젯은
   홈 스크린의 위젯 트리를 구성하는
   app bar, title, body 속성을 기본으로 제공합니다.  
   위젯 하위 트리는 상당히 복잡할 수 있습니다. 
@@ -464,7 +464,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
  4. `RandomWordsState` 클래스에서 `build()` 메서드를 변경하여 
     단어 생성 라이브러리를 직접 호출하지 말고 `_buildSuggestions()`을 사용하도록 하세요, 
     ([Scaffold]({{site.api}}/flutter/material/Scaffold-class.html)는 
-    기본적인 머터리얼 디자인 시각 레이아웃을 구현합니다.)
+    기본적인 머티리얼 디자인 시각 레이아웃을 구현합니다.)
     메서드의 본문을 아래 강조 표시된 코드로 교체하세요:
 
     <?code-excerpt "lib/main.dart (build)" title region="RWS-build" replace="/(\n  )(return.*|  .*|\);)/$1[!$2!]/g" indent-by="2"?>
