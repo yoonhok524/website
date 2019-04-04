@@ -6,4 +6,13 @@
   url: /docs/development/ui/widgets/catalog
 - name: API 문서
   description: Flutter 프레임워크 API 레퍼런스 문서를 북마크하세요.
-  url: https://docs.flutter.io
+  url: https://api.flutter.dev/
+- name: 해설(Cookbook)
+  description: 쉽고 다양한 Flutter 사용 방안을 찾아보세요.
+  url: /docs/cookbook
+- name: 샘플
+  description: Flutter 예제를 확인하세오.
+  url: https://github.com/flutter/samples/blob/master/INDEX.md
+- name: 영상
+  description: Flutter 유튜브 채널에서 다양한 영상을 만나보세요.
+  url: https://www.youtube.com/flutterdev

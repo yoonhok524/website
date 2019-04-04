@@ -42,11 +42,11 @@
     - name: flutter-dev
       url: https://groups.google.com/forum/#!forum/flutter-dev
 
-- name: "@flutter.io"
+- name: "@flutter.dev"
   description: >
     Flutter 팀을 팔로우하여 새로운 기능, 다가오는 이벤트 등에 관한 정보를 실시간으로 받아보세요.
   logo_src: community/logo-twitter.png
-  learn_more_link: https://twitter.com/flutterio
+  learn_more_link: https://twitter.com/flutterdev
 
 - name: Medium
   description: >
@@ -54,11 +54,11 @@
   logo_src: community/logo-medium.png
   learn_more_link: https://medium.com/flutter-io
 
-- name: Flutter Study Group
+- name: Flutter Community Slack
   description: >
     Flutter를 잘 아는 그룹과 소통하고 함께 문제를 해결해보세요.
   logo_src: community/logo-slack.png
-  learn_more_link: https://flutterstudygroup.com/
+  learn_more_link: https://fluttercommunity.dev/joinslack
 
 - name: Flutter YouTube
   description: >

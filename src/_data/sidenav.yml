@@ -147,7 +147,7 @@
           children:
             - title: 업그레이드
               permalink: /docs/development/tools/sdk/upgrading
-            - title: 아카이브
+            - title: 릴리스
               permalink: /docs/development/tools/sdk/archive
         - title: Hot reload
           permalink: /docs/development/tools/hot-reload

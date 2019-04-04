@@ -556,7 +556,7 @@ batteryChannel.setMethodCallHandler({
     result(FlutterMethodNotImplemented)
     return
   }
-  self.receiveBatteryLevel(result: result)
+  self?.receiveBatteryLevel(result: result)
 })
 ```
 

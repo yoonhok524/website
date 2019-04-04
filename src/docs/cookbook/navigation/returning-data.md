@@ -1,8 +1,8 @@
 ---
 title: 이전 화면에 데이터 반환하기
 prev:
-  title: 명명된 경로로의 화면 전환
-  path: /docs/cookbook/navigation/named-routes
+  title: 인자를 named route로 전달하기
+  path: /docs/cookbook/navigation/navigate-with-arguments
 next:
   title: 새로운 화면으로 데이터 전달하기
   path: /docs/cookbook/navigation/passing-data

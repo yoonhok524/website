@@ -4,8 +4,8 @@ prev:
   title: 새로운 화면으로 이동하고, 되돌아오기
   path: /docs/cookbook/navigation/navigation-basics
 next:
-  title: 이전 화면에 데이터 반환하기
-  path: /docs/cookbook/navigation/returning-data
+  title: 인자를 named route로 전달하기
+  path: /docs/cookbook/navigation/navigate-with-arguments
 ---
 
 [새로운 화면으로 이동하고, 되돌아오기](/docs/cookbook/navigation/navigation-basics/)

@@ -1,57 +1,36 @@
 ---
 title: Flutter 문서
 short-title: 문서
-description: The landing page for Flutter documentation.
+description: Flutter 문서의 랜딩 페이지
 ---
 
-<div class="card-deck">
 {% for card in site.data.docs_cards -%}
-  <a class="card" href="{{card.url}}">
-    <div class="card-body">
-      <header class="card-title">{{card.name}}</header>
-      <p class="card-text">{{card.description}}</p>
-    </div>
-  </a>
+  {% capture index0Modulo3 %}{{ forloop.index0 | modulo:3 }}{% endcapture %}
+  {% capture indexModulo3 %}{{ forloop.index | modulo:3 }}{% endcapture %}
+  {% if index0Modulo3 == '0' %}
+  <div class="card-deck mb-4">
+  {% endif %}
+    <a class="card" href="{{card.url}}">
+      <div class="card-body">
+        <header class="card-title">{{card.name}}</header>
+        <p class="card-text">{{card.description}}</p>
+      </div>
+    </a>
+  {% if indexModulo3 == '0' %}
+  </div>
+  {% endif %}
 {% endfor -%}
-</div>
 
 ## 사이트 개편 내역
 
 **2019년 2월 26일**
 
-바르셀로나에서 열리는 Mobile World Congress (MWC)에서 Flutter [1.2 버전](https://developers.googleblog.com/2019/02/launching-flutter-12-at-mobile-world.html) 출시!
+바르셀로나에서 열리는 Mobile World Congress (MWC)에서 
+Flutter [1.2 버전](https://developers.googleblog.com/2019/02/launching-flutter-12-at-mobile-world.html) 출시되었습니다.
+자세한 정보는 [릴리스 노트](https://github.com/flutter/flutter/wiki/Release-Notes---Flutter-1.2.1) 또는
+[릴리스 다운로드](/docs/development/tools/sdk/archive)를 참조하세요.
 
-추가적으로, 최근 업데이트된 몇몇 새로운 문서도 있습니다:
-
-* [상태 관리 가이드](/docs/development/data-and-backend/state-mgmt/intro)가 업데이트 됐습니다.
-  새로운 페이지는 
-  [개요](/docs/development/data-and-backend/state-mgmt/intro),
-  [선언적으로 생각하기](/docs/development/data-and-backend/state-mgmt/declarative), 
-  [일시적인 상태 vs 앱 상태](/docs/development/data-and-backend/state-mgmt/ephemeral-vs-app),
-  [간단한 앱 상태 관리](/docs/development/data-and-backend/state-mgmt/simple),
-  [다른 상태 관리 방안](/docs/development/data-and-backend/state-mgmt/options)을 포함하고 있습니다.
-  모든 경우에 옳은 일률적인 접근 방식이 없기 때문에, 상태 관리에 관한 문서화는 까다로운 일입니다. 
-  새로운 문서에 대한 여러분의 의견을 환영합니다!
-* [성능 모범 사례](/docs/testing/best-practices)의 새로운 페이지.
-* 또한 MWC에서는 다트와 Flutter 앱 프로파일링 및 디버깅을 위한 새로운 다트 개발도구의 프리뷰 버전을 발표했습니다. 
-  [개발도구 wiki](https://flutter.github.io/devtools/)에서 확인하실 수 있습니다.
-  특히, 사용자 UI 디버깅을 위한
-  [Flutter 위젯 검사기](https://flutter.github.io/devtools/inspector) 또는 
-  Flutter 앱의 프로파일링을 위한 [타임라인 보기](https://flutter.github.io/devtools/timeline)
-  기능을 확인해보세요.
-  써보시고 어떻게 생각하는지 알려주세요!
-* 새로운 다트 개발도구 UI와 통합하여 [성능 프로파일링](/docs/testing/ui-performance)
-  페이지를 업데이트 했습니다.
-* 새로운 다트 개발도구 UI에 관한 정보를 추가해 [안드로이드 스튜디오/IntelliJ](/docs/development/tools/android-studio)와
-  [VS Code](/docs/development/tools/vs-code) 페이지를 
-  업데이트 했습니다.
-
-이 문서에 대해 질문이나 의견이 있으시면, 
-[이슈를 등록해주세요]({{site.repo.this}}/issues).
-
-한글 사이트에 대한 [이슈도 등록해주세요](https://github.com/bro-jo/website/issues).
-
-[개편 아카이브](/docs/whats-new-archive)
+새로운 문서 목록은 [what's new](/docs/whats-new-archive)를 확인하세요.
 
 ## Flutter가 처음인가요?
 
@@ -59,20 +38,14 @@ description: The landing page for Flutter documentation.
  [첫 번째 앱 작성하기](/docs/get-started/codelab)를 완료했다면, 
 다음 단계가 준비되어 있습니다.
 
-[안드로이드 개발자를 위한 Flutter](/docs/get-started/flutter-for/android-devs)
-: 안드로이드 개발 경험이 있다면 이 팁을 봐보세요.
+### 문서
 
-[iOS 개발자를 위한 Flutter](/docs/get-started/flutter-for/ios-devs)
-: iOS 개발 경험이 있다면 이 팁을 봐보세요.
-
-[웹 개발자를 위한 Flutter](/docs/get-started/flutter-for/web-devs)
-: 웹 경험이 있다면 HTML과 Flutter의 유사한 점을 살펴보세요.
-
-[리액트 네이티브 개발자를 위한 Flutter](/docs/get-started/flutter-for/react-native-devs)
-: 리액트 네이티브 개발 경험이 있다면 이 팁을 봐보세요.
-
-[Xamarin.Forms 개발자를 위한 Flutter](/docs/get-started/flutter-for/xamarin-forms-devs)
-: Xamarin.Forms 개발 경험이 있다면 이 팁을 봐보세요.
+다른 플랫폼 경험이 있으신가요? 아래 문서를 확인해보세요:
+[안드로이드](/docs/get-started/flutter-for/android-devs),
+[iOS](/docs/get-started/flutter-for/ios-devs),
+[웹](/docs/get-started/flutter-for/web-devs),
+[리액트 네이티브](/docs/get-started/flutter-for/react-native-devs),
+[Xamarin.Forms](/docs/get-started/flutter-for/xamarin-forms-devs)
 
 [Flutter에서 레이아웃](/docs/development/ui/layout)
 : 레이아웃을 만드는 방법을 배워보세요. Flutter에서는 모든 게 위젯입니다.
@@ -86,47 +59,37 @@ description: The landing page for Flutter documentation.
 [자주 묻는 질문](/docs/resources/faq)
 : 자주 묻는 질문에 대한 답변을 살펴보세요.
 
+### 영상
+
+도움이 될만한 영상을 [Flutter 유튜브 채널]({{site.social.youtube}})을 통해 제공합니다!
+특히 Flutter in Focus 시리즈를 보고, 
+비디오 페이지에서 다른 시리즈를 통해 배워보세요.
+
+<iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube.com/embed/wgTBLj7rMPM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Flutter in Focus: Learn Flutter features in 10 minutes or less.<br>
+[Flutter in Focus 재생 목록](https://www.youtube.com/playlist?list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2)
+
+Flutter에서는 "모든 것이 위젯"입니다!
+Stateless과 Stateful라는 2가지 종류의 위젯을 보다 잘 이해하기 위해,
+[Flutter in Focus](https://www.youtube.com/playlist?list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2) 시리즈
+를 확인해보세요.
+
+<iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube.com/embed/wE7khGHVkYY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> <iframe width="560" height="315" src="https://www.youtube.com/embed/AqCMFXEmf3w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## 한 단계 더 나아가고 싶나요?
 
-기본적인 내용을 숙달했으면 이제 다음 페이지를 봐보세요.
+엔지니어가 코드를 작성하고, 실수하고, 고치는 모습을 보면서 배우길 원한다면
+[Boring Flutter Show](https://www.youtube.com/watch?v=vqPG1tU6-c0&list=PLjxrf2q8roU28W3pXbISJbVA5REsA41Sx&index=3&t=9s)
+영상 시리즈를 확인하세요:
 
-[Cookbook](/docs/cookbook)
-: 일반적인 Flutter 사용 사례를 다루는 레시피 모음. (개선 중)
+<iframe style="max-width: 100%" width="560" height="315" src="https://www.youtube.com/embed/vqPG1tU6-c0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[Boring Flutter Show 재생 목록](https://www.youtube.com/watch?v=vqPG1tU6-c0&list=PLjxrf2q8roU28W3pXbISJbVA5REsA41Sx&index=3&t=9s)
 
-[깃허브에 있는 예제 앱]({{site.github}}/flutter/samples/blob/master/INDEX.md)
-: Flutter를 잘 활용한 샘플 앱 모음. (개선 중)
+아래 문서들도 유용할 것입니다:
 
-[Flutter에서 리소스와 이미지 파일 추가하기](/docs/development/ui/assets-and-images)
-: Flutter 앱에 리소스를 추가하는 방법.
+* [패키지 사용하기](/docs/development/packages-and-plugins/using-packages)
+* [리소스 및 이미지 추가하기](/docs/development/ui/assets-and-images)
+* [내비게이션 및 라우팅](/docs/development/ui/navigation)
+* [상태 관리](/docs/development/data-and-backend/state-mgmt/intro)
+* [애니메이션](/docs/development/ui/animations)
 
-[Flutter에서 애니메이션](/docs/development/ui/animations)
-: 기본 애니메이션과, hero 애니메이션, staggered 애니메이션 등 Flutter가 지원하는 애니메이션 생성 방법.
-
-[내비게이션 및 라우팅](/docs/development/ui/navigation)
-: 새로운 스크린을 만들고 새로운 스크린으로 이동하는 방법 (Flutter에서는 _route_ 라고 부릅니다).
-
-[국제화](/docs/development/accessibility-and-localization/internationalization)
-: 글로벌화하세요! Flutter 앱을 국제화하는 방법.
-
-[Effective Dart]({{site.dart-site}}/guides/language/effective-dart)
-: 더 나은 다트 코드를 작성법 가이드.
-
-## 전문적인 주제
-
-관심있는 주제를 더 깊게 살펴보세요.
-
-[위젯 검사 도구](/docs/development/tools/inspector)
-: 위젯 트리를 탐색하거나, DEBUG 배너를 없애거나, 성능 오버레이 표시해주는 등 다양한 기능을 가능하게 해주는 강력한 도구인 위젯 검사 도구를 사용하는 방법.
-
-[사용자 지정 글꼴](/docs/cookbook/design/fonts)
-: 새로운 폰트를 앱에 추가하는 방법.
-
-[문자 입력](/docs/cookbook/forms/text-input)
-: 문자를 입력받는 기본적인 방법.
-
-[Flutter 앱 디버깅](/docs/testing/debugging)
-: 앱 디버깅을 위한 도구와 팁
-
-완성된 목록은 아닙니다.
-왼쪽 탐색 메뉴를 사용해주세요. 다른 주제를 찾고 싶으시면 검색창을 이용해주세요. 

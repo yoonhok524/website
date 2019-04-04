@@ -130,13 +130,14 @@ template]({{site.github}}/flutter/flutter/blob/master/packages/flutter_tools/tem
 
 ## 도움 받기
 
-Flutter 프로젝트에 관심을 갖고 다양한 방식으로 커뮤니티에 참여하세요. Flutter는 오픈 소스이며 당신의 피드백을 환영합니다.
+Flutter 프로젝트에 관심을 갖고 다양한 방식으로 커뮤니티에 참여하세요. 
+Flutter는 오픈 소스이며 당신의 피드백을 환영합니다.
 
 - [특정 솔루션들로 답변될 수 있는 HOWTO 질문들은 여기에 물어봐주세요][so]
 - [Flutter 엔지니어들과 사용자들 간의 실시간 채팅][gitter]
 - [Flutter 관련 논의, 모범 사례, 앱 디자인 그 외 기타 등등을 위한 메일링 리스트][mailinglist]
 - [버그 리포팅, 기능과 문서에 대한 요구 사항][issues]
-- [Twitter 구독: @flutterio](https://twitter.com/flutterio/)
+- [Twitter 구독: @flutterdev](https://twitter.com/flutterdev/)
 
 
 [issues]: {{site.github}}/flutter/flutter/issues
