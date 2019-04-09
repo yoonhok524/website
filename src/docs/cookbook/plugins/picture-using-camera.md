@@ -1,32 +1,31 @@
 ---
-title: Take a picture using the Camera
+title: 카메라 사진 찍기
 prev:
-  title: Play and pause a video
+  title: 영상 재생 및 일시 중지
   path: /docs/cookbook/plugins/play-video
 next:
-  title: An introduction to integration testing
+  title: 통합 테스팅 소개
   path: /docs/cookbook/testing/integration/introduction
 ---
 
-Many apps require working with the device's cameras to take photos and videos.
-Flutter provides the [`camera`](https://pub.dartlang.org/packages/camera) plugin
-for this purpose. The `camera` plugin provides tools to get a list of the
-available cameras, display a preview coming from a specific camera, and take
-photos or videos.
+사진을 찍거나 영상을 촬영하기 위해 디바이스의 카메라를 사용하는 많은 앱들이 있습니다.
+이러한 목적을 위해 Flutter는 [`camera`](https://pub.dartlang.org/packages/camera) 
+플러그인을 제공합니다. `camera` 플러그인을 통해 이용가능한 카메라 리스트를 얻고, 특정 
+카메라라의 프리뷰를 보여주거나 사진, 영상을 촬영하는 등의 작업을 할 수 있습니다.
 
-This recipe demonstrates how to use the `camera` plugin to display a preview, 
-take a photo, and display it.
+본 예제에서는 `camera` 플러그인을 사용하여 프리뷰를 보여주고, 사진을 촬영한 뒤 결과물을 
+사용자에게 보여주는 방법을 소개합니다.
 
-## Directions
+## 진행 단계
 
-  1. Add the required dependencies
-  2. Get a list of the available cameras
-  3. Create and initialize the `CameraController`
-  4. Use a `CameraPreview` to display the camera's feed
-  5. Take a picture with the `CameraController`
-  6. Display the picture with an `Image` Widget
+  1. 필요한 의존성 추가하기
+  2. 이용가능한 카메라 목록 가져오기
+  3. `CameraController` 생성하고 초기화하기
+  4. `CameraPreview`를 사용하여 카메라 피드 보여주기
+  5. `CameraController`를 사용하여 사진 찍기
+  6. 촬영한 사진을 `Image` 위젯으로 보여주기
 
-## 1. Add the required dependencies
+## 1. 필요한 의존성 추가하기
 
 To complete this recipe, you need to add three dependencies to your app:
 
