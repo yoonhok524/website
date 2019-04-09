@@ -27,11 +27,11 @@ next:
 
 ## 1. 필요한 의존성 추가하기
 
-To complete this recipe, you need to add three dependencies to your app:
+본 예제를 수행하기 위해, 아래 세 개의 의존성을 추가해야 합니다:
 
-  - [`camera`](https://pub.dartlang.org/packages/camera) - Provides tools to work with the cameras on device
-  - [`path_provider`](https://pub.dartlang.org/packages/path_provider) - Finds the correct paths to store images
-  - [`path`](https://pub.dartlang.org/packages/path) - Creates paths that work on any platform
+  - [`camera`](https://pub.dartlang.org/packages/camera) - 디바이스의 카메라를 제어하기 위한 도구를 제공합니다.
+  - [`path_provider`](https://pub.dartlang.org/packages/path_provider) - 이미지를 저장할 적합한 경로를 찾습니다.
+  - [`path`](https://pub.dartlang.org/packages/path) - 플랫폼에 상관없이 경로를 생성합니다.
 
 ```yaml
 dependencies:
@@ -42,20 +42,20 @@ dependencies:
   path:
 ```
 
-## 2. Get a list of the available cameras
+## 2. 이용가능한 카메라 목록 가져오기
 
-Next, you can get a list of available cameras using the `camera` plugin.
+이제 `camera` 플러그인을 사용하여 이용가능한 카메라 목록을 받아올 수 있습니다.
 
 <!-- skip -->
 ```dart
-// Obtain a list of the available cameras on the device.
+// 디바이스에서 이용가능한 카메라 목록을 받아옵니다.
 final cameras = await availableCameras();
 
-// Get a specific camera from the list of available cameras
+// 이용가능한 카메라 목록에서 특정 카메라를 얻습니다.
 final firstCamera = cameras.first; 
 ```
 
-## 3. Create and initialize the `CameraController`
+## 3. `CameraController` 생성하고 초기화하기
 
 Once you have a camera to work with, you need to create and initialize a
 `CameraController`. This process establishes a connection to the device's camera
@@ -127,7 +127,7 @@ If you do not initialize the `CameraController`, you *cannot* use the camera
 to display a preview and take pictures.
 {{site.alert.end}}
 
-## 4. Use a `CameraPreview` to display the camera's feed
+## 4. `CameraPreview`를 사용하여 카메라 피드 보여주기
 
 Next, you can use the `CameraPreview` Widget from the `camera` package to
 display a preview of the camera's feed.
@@ -160,7 +160,7 @@ FutureBuilder<void>(
 )
 ```
 
-## 5. Take a picture with the `CameraController`
+## 5. `CameraController`를 사용하여 사진 찍기
 
 You can also use the `CameraController` to take pictures using the
 [`takePicture`](https://pub.dartlang.org/documentation/camera/latest/camera/CameraController/takePicture.html)
@@ -206,7 +206,7 @@ FloatingActionButton(
   },
 )
 ```
-## 6. Display the picture with an `Image` Widget
+## 6. 촬영한 사진을 `Image` 위젯으로 보여주기
 
 If you take the picture successfully, you can then display the saved picture
 using an `Image` widget. In this case, the picture is stored as a file on
@@ -221,7 +221,7 @@ the previous step.
 Image.file(File('path/to/my/picture.png'))
 ```
 
-## Complete Example
+## 완성된 예제
 
 ```dart
 import 'dart:async';
@@ -233,10 +233,10 @@ import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 
 Future<void> main() async {
-  // Obtain a list of the available cameras on the device.
+  // 디바이스에서 이용가능한 카메라 목록을 받아옵니다.
   final cameras = await availableCameras();
 
-  // Get a specific camera from the list of available cameras
+  // 이용가능한 카메라 목록에서 특정 카메라를 얻습니다.
   final firstCamera = cameras.first;
 
   runApp(
