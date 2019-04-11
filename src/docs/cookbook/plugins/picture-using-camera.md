@@ -57,19 +57,17 @@ final firstCamera = cameras.first;
 
 ## 3. `CameraController` 생성하고 초기화하기
 
-Once you have a camera to work with, you need to create and initialize a
-`CameraController`. This process establishes a connection to the device's camera
-that allows you to control the camera and display a preview of the camera's
-feed.
+카메라가 준비되었으면, `CameraController`를 생성하고 초기화할 차례입니다. 이 과정을 통해
+디바이스의 카메라와 연결하여 카메라를 제어하고 카메라 피드의 프리뷰를 보여줄 수 있게 됩니다. 
 
-To achieve this, please:
+이를 위해 다음의 과정을 수행합니다:
 
-  1. Create a `StatefulWidget` with a companion `State` class 
-  2. Add a variable to the `State` class to store the `CameraController`
-  3. Add a variable to the `State` class to store the `Future` returned from
-  `CameraController.initialize`
-  4. Create and initialize the controller in the `initState` method
-  5. Dispose of the controller in the `dispose` method
+  1. `StatefulWidget`과 그에 상응하는 `State` 클래스를 생성합니다.
+  2. `CameraController`를 저장할 변수를 `State` 클래스에 정의합니다.
+  3. `CameraController.initialize`가 반환하는 `Future`를 저장할 변수를 `State`에
+  정의합니다.
+  4. `initState` 메서드에서 컨트롤러를 생성하고 초기화합니다.
+  5. `dispose` 메서드에서 컨트롤러를 해제합니다.
   
 <!-- skip -->
 ```dart
@@ -87,73 +85,69 @@ class TakePictureScreen extends StatefulWidget {
 }
 
 class TakePictureScreenState extends State<TakePictureScreen> {
-  // Add two variables to the state class to store the CameraController and
-  // the Future
+  // CameraController와 Future를 저장하기 위해 두 개의 변수를 state 클래스에 
+  // 정의합니다.
   CameraController _controller;
   Future<void> _initializeControllerFuture;
 
   @override
   void initState() {
     super.initState();
-    // In order to display the current output from the Camera, you need to
-    // create a CameraController.
+    // 카메라의 현재 출력물을 보여주기 위해 CameraController를 생성합니다.
     _controller = CameraController(
-      // Get a specific camera from the list of available cameras
+      // 이용 가능한 카메라 목록에서 특정 카메라를 가져옵니다.
       widget.camera,
-      // Define the resolution to use
+      // 적용할 해상도를 지정합니다.
       ResolutionPreset.medium,
     );
 
-    // Next, you need to initialize the controller. This returns a Future
+    // 다음으로 controller를 초기화합니다. 초기화 메서드는 Future를 반환합니다.
     _initializeControllerFuture = _controller.initialize();
   }
 
   @override
   void dispose() {
-    // Make sure to dispose of the controller when the Widget is disposed
+    // 위젯의 생명주기 종료시 컨트롤러 역시 해제시켜줍니다.
     _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Fill this out in the next steps
+    // 다음 단계에서 이 부분을 작성하겠습니다.
   }
 }
 ```
 
 {{site.alert.warning}}
-If you do not initialize the `CameraController`, you *cannot* use the camera
-to display a preview and take pictures.
+만약 `CameraController`를 초기화하지 않으면, 프리뷰를 보여주거나 사진 촬영을 할 수 없습니다.
 {{site.alert.end}}
 
 ## 4. `CameraPreview`를 사용하여 카메라 피드 보여주기
 
-Next, you can use the `CameraPreview` Widget from the `camera` package to
-display a preview of the camera's feed.
+다음으로 `camera` 패키지의 `CameraPreview` 위젯을 사용하여 카메라 피드의 프리뷰를
+보여줄 것입니다.
 
-Remember: You must wait until the controller has finished initializing before
-working with the camera. Therefore, you must wait for the
-`_initializeControllerFuture` created in the previous step to complete before
-showing a `CameraPreview`.
+참고: 카메라를 사용하기 전에 컨트롤러의 초기화가 완료될 때까지 기다려야 합니다. 그러므로
+`CameraPreview`를 보여주기 전에 이전 단계에서 만든 `_initializeControllerFuture`가
+완료될 때까지 기다려야 합니다.
 
-You can use a
-[`FutureBuilder`](https://docs.flutter.io/flutter/widgets/FutureBuilder-class.html)
-for exactly this purpose.
+이를 위해 
+[`FutureBuilder`](https://docs.flutter.io/flutter/widgets/FutureBuilder-class.html)를
+사용하겠습니다.
 
 <!-- skip -->
 ```dart
-// You must wait until the controller is initialized before displaying the
-// camera preview. Use a FutureBuilder to display a loading spinner until the
-// controller has finished initializing
+// 카메라 프리뷰를 보여주기 전에 컨트롤러 초기화를 기다려야 합니다. 컨트롤러 초기화가 
+// 완료될 때까지 FutureBuilder를 사용하여 로딩 스피너를 보여주세요.
 FutureBuilder<void>(
   future: _initializeControllerFuture,
   builder: (context, snapshot) {
     if (snapshot.connectionState == ConnectionState.done) {
-      // If the Future is complete, display the preview
+      // Future가 완료되면, 프리뷰를 보여줍니다.
       return CameraPreview(_controller);
     } else {
-      // Otherwise, display a loading indicator
+      // 그렇지 않다면, 진행 표시기를 보여줍니다.
       return Center(child: CircularProgressIndicator());
     }
   },
@@ -162,45 +156,44 @@ FutureBuilder<void>(
 
 ## 5. `CameraController`를 사용하여 사진 찍기
 
-You can also use the `CameraController` to take pictures using the
+`CameraController`의 
 [`takePicture`](https://pub.dartlang.org/documentation/camera/latest/camera/CameraController/takePicture.html)
-method. In this example, create a `FloatingActionButton` that takes a picture
-using the `CameraController` when a user taps on the button.
+메서드를 사용하면 사진 촬영을 할 수 있습니다. 본 예제에서는 사용자가 눌렀을 때
+`CameraController`를 사용하여 사진 촬영을 하는 `FloatingActionButton`을 
+만들겠습니다.
 
-Saving a picture requires 3 steps:
+촬영한 사진을 저장하기 위해 3 단계가 필요합니다:
 
-  1. Ensure the camera is initialized
-  2. Construct a path that defines where the picture should be saved
-  3. Use the controller to take a picture and save the result to the path
+  1. 카메라가 초기화되었는지 확인합니다.
+  2. 사진이 저장될 경로를 지정합니다.
+  3. 컨트롤러를 사용하여 사진을 촬영하고 그 결과물을 위에서 지정한 경로에 저장합니다.
   
-It is good practice to wrap these operations in a `try / catch` block in order
-to handle any errors that might occur.
+발생할 수 있는 에러에 대처하기 위해 위 수행 단게들을 `try / catch`로 감싸는 것이 좋습니다.
 
 <!-- skip -->
 ```dart
 FloatingActionButton(
   child: Icon(Icons.camera_alt),
-  // Provide an onPressed callback
+  // onPressed 콜백을 제공합니다.
   onPressed: () async {
-    // Take the Picture in a try / catch block. If anything goes wrong,
-    // catch the error.
+    // try / catch 블럭에서 사진을 촬영합니다. 만약 뭔가 잘못된다면 에러에
+    // 대응할 수 있습니다.
     try {
-      // Ensure the camera is initialized
+      // 카메라 초기화가 완료됐는지 확인합니다.
       await _initializeControllerFuture;
 
-      // Construct the path where the image should be saved using the path
-      // package.
+      // path 패키지를 사용하여 이미지가 저장될 경로를 지정합니다.
       final path = join(
-        // In this example, store the picture in the temp directory. Find
-        // the temp directory using the `path_provider` plugin.
+        // 본 예제에서는 임시 디렉토리에 이미지를 저장합니다. `path_provider`
+        // 플러그인을 사용하여 임시 디렉토리를 찾으세요.
         (await getTemporaryDirectory()).path,
         '${DateTime.now()}.png',
       );
 
-      // Attempt to take a picture and log where it's been saved
+      // 사진 촬영을 시도하고 저장되는 경로를 로그로 남깁니다.
       await _controller.takePicture(path);
     } catch (e) {
-      // If an error occurs, log the error to the console.
+      // 만약 에러가 발생하면, 콘솔에 에러 로그를 남깁니다.
       print(e);
     }
   },
@@ -208,13 +201,11 @@ FloatingActionButton(
 ```
 ## 6. 촬영한 사진을 `Image` 위젯으로 보여주기
 
-If you take the picture successfully, you can then display the saved picture
-using an `Image` widget. In this case, the picture is stored as a file on
-the device.
+성공적으로 사진을 촬영했다면, `Image` 위젯을 사용하여 저장된 사진을 보여줄 수 있습니다.
+이 경우 사진은 디바이스에 파일로 저장되어 있습니다.
 
-Therefore, you must provide a `File` to the `Image.file` constructor. You
-can create an instance of the `File` class by passing in the path you created in
-the previous step.
+그러므로 `Image.file` 생성자에 `File`을 제공해야 합니다. 이전 단계에서 생성한 경로를 
+인자로 넘겨 주어 `File` 클래스의 인스턴스를 생성할 수 있습니다.
 
 <!-- skip -->
 ```dart
@@ -243,14 +234,14 @@ Future<void> main() async {
     MaterialApp(
       theme: ThemeData.dark(),
       home: TakePictureScreen(
-        // Pass the appropriate camera to the TakePictureScreen Widget
+        // 적절한 카메라를 TakePictureScreen 위젯에게 전달합니다.
         camera: firstCamera,
       ),
     ),
   );
 }
 
-// A screen that allows users to take a picture using a given camera
+// 사용자가 주어진 카메라를 사용하여 사진을 찍을 수 있는 화면
 class TakePictureScreen extends StatefulWidget {
   final CameraDescription camera;
 
@@ -270,22 +261,21 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   @override
   void initState() {
     super.initState();
-    // In order to display the current output from the Camera, you need to
-    // create a CameraController.
+    // 카메라의 현재 출력물을 보여주기 위해 CameraController를 생성합니다.
     _controller = CameraController(
-      // Get a specific camera from the list of available cameras
+      // 이용 가능한 카메라 목록에서 특정 카메라를 가져옵니다.
       widget.camera,
-      // Define the resolution to use
+      // 적용할 해상도를 지정합니다.
       ResolutionPreset.medium,
     );
 
-    // Next, you need to initialize the controller. This returns a Future
+    // 다음으로 controller를 초기화합니다. 초기화 메서드는 Future를 반환합니다.
     _initializeControllerFuture = _controller.initialize();
   }
 
   @override
   void dispose() {
-    // Make sure to dispose of the controller when the Widget is disposed
+    // 위젯의 생명주기 종료시 컨트롤러 역시 해제시켜줍니다.
     _controller.dispose();
     super.dispose();
   }
@@ -294,44 +284,42 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Take a picture')),
-      // You must wait until the controller is initialized before displaying the
-      // camera preview. Use a FutureBuilder to display a loading spinner until
-      // the controller has finished initializing
+      // 카메라 프리뷰를 보여주기 전에 컨트롤러 초기화를 기다려야 합니다. 컨트롤러 초기화가 
+      // 완료될 때까지 FutureBuilder를 사용하여 로딩 스피너를 보여주세요.
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            // If the Future is complete, display the preview
+            // Future가 완료되면, 프리뷰를 보여줍니다.
             return CameraPreview(_controller);
           } else {
-            // Otherwise, display a loading indicator
+            // 그렇지 않다면, 진행 표시기를 보여줍니다.
             return Center(child: CircularProgressIndicator());
           }
         },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.camera_alt),
-        // Provide an onPressed callback
+        // onPressed 콜백을 제공합니다.
         onPressed: () async {
-          // Take the Picture in a try / catch block. If anything goes wrong,
-          // catch the error.
+          // try / catch 블럭에서 사진을 촬영합니다. 만약 뭔가 잘못된다면 에러에
+          // 대응할 수 있습니다.
           try {
-            // Ensure the camera is initialized
+            // 카메라 초기화가 완료됐는지 확인합니다.
             await _initializeControllerFuture;
 
-            // Construct the path where the image should be saved using the path
-            // package.
+            // path 패키지를 사용하여 이미지가 저장될 경로를 지정합니다.
             final path = join(
-              // In this example, store the picture in the temp directory. Find
-              // the temp directory using the `path_provider` plugin.
+              // 본 예제에서는 임시 디렉토리에 이미지를 저장합니다. `path_provider`
+              // 플러그인을 사용하여 임시 디렉토리를 찾으세요.
               (await getTemporaryDirectory()).path,
               '${DateTime.now()}.png',
             );
 
-            // Attempt to take a picture and log where it's been saved
+            // 사진 촬영을 시도하고 저장되는 경로를 로그로 남깁니다.
             await _controller.takePicture(path);
 
-            // If the picture was taken, display it on a new screen
+            // 사진을 촬영하면, 새로운 화면으로 넘어갑니다.
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -339,7 +327,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
               ),
             );
           } catch (e) {
-            // If an error occurs, log the error to the console.
+            // 만약 에러가 발생하면, 콘솔에 에러 로그를 남깁니다.
             print(e);
           }
         },
@@ -348,7 +336,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   }
 }
 
-// A Widget that displays the picture taken by the user
+// 사용자가 촬영한 사진을 보여주는 위젯
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
 
@@ -358,8 +346,8 @@ class DisplayPictureScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Display the Picture')),
-      // The image is stored as a file on the device. Use the `Image.file`
-      // constructor with the given path to display the image
+      // 이미지는 디바이스에 파일로 저장됩니다. 이미지를 보여주기 위해 주어진 
+      // 경로로 `Image.file`을 생성하세요.
       body: Image.file(File(imagePath)),
     );
   }
