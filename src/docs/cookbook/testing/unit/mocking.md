@@ -1,22 +1,22 @@
 ---
-title: Mock dependencies using Mockito
+title: Mockito를 사용하여 의존성들에 대해 mock 객체 생성하기
 short-title: Mocking
 prev:
-  title: An introduction to unit testing
+  title: 단위 테스트 소개
   path: /docs/cookbook/testing/unit/introduction
 next:
-  title: An introduction to widget testing
+  title: Widget 테스트 소개
   path: /docs/cookbook/testing/widget/introduction
 ---
 
-In certain cases, unit tests may depend on classes that fetch data from live
-web services or databases. This is inconvenient for a few reasons:
+어떠한 경우에는 단위 테스트가 웹 서비스나 데이터베이스로부터 데이터를 가져오는 역할을
+수행하는 특정 클래스에 의존하는 경우가 있습니다.
 
-  * Calling live services or databases slows down test execution.
-  * A passing test may start failing if a web service or database returns
-    unexpected results. This is known as a "flaky test."
-  * It is difficult to test all possible success & failure scenarios using a
-    live web service or database.
+  * 상용 서비스나 데이터베이스를 호출하는 것은 테스트 수행 성능을 저하시킵니다.
+  * 성공해야 하는 테스트일지라도 만약 웹 서비스나 데이터베이스가 예기치 못한 결과를 
+    반환하면 실패할 수 있습니다. 이러한 경우를 다른 말로 "flaky test"라고 합니다.
+  * 상용 서비스나 데이터베이스를 사용하여 모든 가능한 성공 & 실패 시나리오를 테스트하는
+    것은 어렵습니다.
 
 Therefore, rather than relying on a live web service or database,
 you can "mock" these dependencies. Mocks allow us to emulate a live
@@ -31,13 +31,13 @@ This recipe demonstrates the basics of mocking using the Mockito package.
 For more information, please see the
 [Mockito package documentation]({{site.pub-pkg}}/mockito).
 
-## Directions
+## 진행 단계
 
-  1. Add the `mockito` & `test` dependencies
-  2. Create a function to test
-  3. Create a test file with a mock `http.Client`
-  4. Write a test for each condition
-  5. Run the tests
+  1. `mockito` & `test` 의존성을 추가하기
+  2. 테스트할 함수 생성하기
+  3. `http.Client` Mock 객체와 함께 테스트 파일 생성하기
+  4. 각 조건마다 테스트 작성하기
+  5. 테스트 수행하기
 
 ## 1. Add the `mockito` dependency
 
