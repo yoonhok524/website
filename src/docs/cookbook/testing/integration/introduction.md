@@ -1,42 +1,41 @@
 ---
-title: An introduction to integration testing
-short-title: Introduction
+title: 통합 테스트 소개
+short-title: 소개
 prev:
-  title: Take a picture using the Camera
+  title: 카메라 사진 찍기
   path: /docs/cookbook/plugins/picture-using-camera
 next:
-  title: Performance profiling
+  title: 성능 프로파일링
   path: /docs/cookbook/testing/integration/profiling
 ---
 
-Unit tests and Widget tests are handy for testing individual classes, functions,
-or Widgets. However, they generally don't test how individual pieces work
-together as a whole or capture the performance of an application running on a
-real device. These tasks are performed with *integration tests*.
+단위 테스트와 위젯 테스트는 개별 클래스, 함수, 위젯을 테스트하기 유용합니다. 하지만,
+이러한 각 개별 요소들이 실제 기기에서 어떻게 같이 어우러져 동작하는지 테스트하거나
+실제 기기에서 동작하는 앱의 성능을 측정하는 것은 불가능합니다. 이러한 작업들은
+*통합 테스트*를 통해 수행될 수 있습니다.
 
-Integration tests work as a pair: first, deploy an instrumented application to a
-real device or emulator and then "drive" the application from a separate test
-suite, checking to make sure everything is correct along the way.
+통합 테스트는 쌍으로 동작합니다: 먼저 instrumented 앱을 실제 기기나 에뮬레이터에 설치한 다음에
+별도의 테스트 suite에서 앱을 "구동"하고, 모든 것이 올바로 동작하는지 확인합니다.
 
-To create this test pair, we can use the
-[flutter_driver]({{site.api}}/flutter/flutter_driver/flutter_driver-library.html)
-package. It provides tools to create instrumented apps and drive those apps
-from a test suite.
+이러한 테스트 쌍을 만들기 위해, 
+[flutter_driver]({{site.api}}/flutter/flutter_driver/flutter_driver-library.html) 
+패키지를 사용할 수 있습니다. 이 패키지는 instrumented 앱을 만들고 테스트 suite에서
+구동할 수 있는 도구를 제공합니다.
 
-In this recipe, we'll learn how to test a counter app. It will demonstrate
-how to setup integration tests, how to verify specific text is displayed by the
-app, how to tap on specific Widgets, and how to run integration tests.
+본 예제에서는 카운터 앱을 테스트하는 방법을 배울 것입니다. 통합 테스트를
+셋업하는 방법, 앱에 특정 문구가 제대로 보이는지 확인하는 방법, 특정 위젯을 탭하는 방법,
+통합 테스트를 구동하는 방법 등을 다룰 것입니다.
 
-### Directions
+### 진행 단계
 
-  1. Create an app to test
-  2. Add the `flutter_driver` dependency
-  3. Create the test files
+  1. 테스트할 앱 만들기
+  2. `flutter_driver` 의존성 추가하기
+  3. 테스트 파일 생성하기
   4. Instrument the app
-  5. Write the integration tests
-  6. Run the integration test
+  5. 통합 테스트 작성하기
+  6. 통합 테스트 수행하기
 
-### 1. Create an app to test
+### 1. 테스트할 앱 만들기
 
 First, we'll create an app that we can test! In this example, we'll test the
 counter app produced by the `flutter create` command. This app allows
@@ -117,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 ```
 
-### 2. Add the `flutter_driver` dependency
+### 2. `flutter_driver` 의존성 추가하기
 
 Next, we'll need the `flutter_driver` package to write integration tests. We
 can add the `flutter_driver` dependency to the `dev_dependencies` section of
@@ -133,7 +132,7 @@ dev_dependencies:
   test: any
 ```
 
-### 3. Create the test files
+### 3. 테스트 파일 생성하기
 
 Unlike unit and widget tests, integration test suites do not run in the same
 process as the app being tested. Therefore, we need to create two files that
@@ -162,14 +161,14 @@ counter_app/
 ```
 
 
-### 4. Instrument the app
+### 4. 앱 실행하기
 
 Now, we can instrument the app. This will involve two steps:
 
-  1. Enable the flutter driver extensions
-  2. Run the app
+  1. Flutter 드라이버 extensions을 활성화합니다.
+  2. 앱을 실행합니다.
 
-We will add this code inside the `test_driver/app.dart` file.
+아래 코드를 `test_driver/app.dart` 파일에 추가합니다.
 
 <!-- skip -->
 ```dart
@@ -177,16 +176,16 @@ import 'package:flutter_driver/driver_extension.dart';
 import 'package:counter_app/main.dart' as app;
 
 void main() {
-  // This line enables the extension
+  // Extension을 활성화합니다.
   enableFlutterDriverExtension();
 
-  // Call the `main()` function of your app or call `runApp` with any widget you
-  // are interested in testing.
+  // 앱의 `main()` 함수를 호출하거나 테스트하고 싶은 위젯을 인자로 넣어 `runApp`을
+  // 호출합니다.
   app.main();
 }
 ```
 
-### 5. Write the tests
+### 5. 통합 테스트 작성하기
 
 Now that we have an instrumented app, we can write tests for it! This
 will involve four steps:
@@ -242,7 +241,7 @@ void main() {
 }
 ```
 
-### 6. Run the tests
+### 6. 테스트 수행하기
 
 Now that we have an instrumented app and a test suite, we can run the tests!
 First, be sure to launch an Android Emulator, iOS Simulator, or connect your
