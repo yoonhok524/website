@@ -11,7 +11,7 @@ next:
 사진을 찍거나 영상을 촬영하기 위해 디바이스의 카메라를 사용하는 많은 앱들이 있습니다.
 이러한 목적을 위해 Flutter는 [`camera`](https://pub.dartlang.org/packages/camera) 
 플러그인을 제공합니다. `camera` 플러그인을 통해 이용가능한 카메라 리스트를 얻고, 특정 
-카메라라의 프리뷰를 보여주거나 사진, 영상을 촬영하는 등의 작업을 할 수 있습니다.
+카메라의 프리뷰를 보여주거나 사진, 영상을 촬영을 촬영할 수 있습니다.
 
 본 예제에서는 `camera` 플러그인을 사용하여 프리뷰를 보여주고, 사진을 촬영한 뒤 결과물을 
 사용자에게 보여주는 방법을 소개합니다.
@@ -120,7 +120,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 ```
 
 {{site.alert.warning}}
-만약 `CameraController`를 초기화하지 않으면, 프리뷰를 보여주거나 사진 촬영을 할 수 없습니다.
+만약 `CameraController`를 초기화하지 않으면, 프리뷰를 보여주거나 사진 촬영을 *할 수 없습니다.*
 {{site.alert.end}}
 
 ## 4. `CameraPreview`를 사용하여 카메라 피드 보여주기
