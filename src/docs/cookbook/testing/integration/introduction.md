@@ -14,12 +14,12 @@ next:
 실제 기기에서 동작하는 앱의 성능을 측정하는 것은 불가능합니다. 이러한 작업들은
 *통합 테스트*를 통해 수행될 수 있습니다.
 
-통합 테스트는 쌍으로 동작합니다: 먼저 계측된 앱을 실제 기기나 에뮬레이터에 설치한 다음에
-별도의 테스트 suite에서 앱을 "구동"하고, 모든 것이 올바로 동작하는지 확인합니다.
+통합 테스트는 쌍으로 동작합니다: 먼저 계측 앱을 실제 기기나 에뮬레이터에 설치한 다음에
+별도의 테스트 모음에서 앱을 "구동"하고, 모든 것이 올바로 동작하는지 확인합니다.
 
 이러한 테스트 쌍을 만들기 위해, 
 [flutter_driver]({{site.api}}/flutter/flutter_driver/flutter_driver-library.html) 
-패키지를 사용할 수 있습니다. 이 패키지는 계측된 앱을 만들고 테스트 suite에서
+패키지를 사용할 수 있습니다. 이 패키지는 계측 앱을 만들고 테스트 모음에서
 구동할 수 있는 도구를 제공합니다.
 
 본 예제에서는 카운터 앱을 테스트하는 방법을 배울 것입니다. 통합 테스트를
@@ -43,7 +43,7 @@ next:
 
 또한, `Text`와 `FloatingActionButton` 위젯에
 [`ValueKey`]({{site.api}}/flutter/foundation/ValueKey-class.html)를
-제공해야 하는데, 이를 통해 테스트 suite 내부에서 특정 위젯을 식별하고 상호작용할 수 
+제공해야 하는데, 이를 통해 테스트 모음 내부에서 특정 위젯을 식별하고 상호작용할 수 
 있습니다.
 
 ```dart
@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              // 특정 Text 위젯에 Key를 설정하세요. 이를 통해 테스트 suite에서
+              // 특정 Text 위젯에 Key를 설정하세요. 이를 통해 테스트 모음에서
               // 이 위젯을 식별하고 문자열을 읽을 수 있게 해줍니다.
               key: Key('counter'),
               style: Theme.of(context).textTheme.display1,
@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        // 이 버튼에 Key를 설정하세요. 이를 통해 테스트 suite에서 버튼을 
+        // 이 버튼에 Key를 설정하세요. 이를 통해 테스트 모음에서 버튼을 
         // 찾고 누를 수 있게 해줍니다.
         key: Key('increment'),
         onPressed: _incrementCounter,
@@ -132,16 +132,16 @@ dev_dependencies:
 
 ### 3. 테스트 파일 생성하기
 
-단위 테스트와 위젯 테스트와는 다르게, 통합 테스트 suite는 테스트 중인 앱과 동일한
+단위 테스트와 위젯 테스트와는 다르게, 통합 테스트 모음은 테스트 중인 앱과 동일한
 프로세스에서 실행되지 않습니다. 그러므로 동일한 디렉토리에 두 개의 파일을 만들 필요가
 있습니다. 관습적으로 디렉토리 이름은 `test_driver`로 합니다.
 
-  1. 첫 번째 파일은 앱의 "계측된" 버전을 포함합니다. 계측은 테스트 suite로부터 앱을 
+  1. 첫 번째 파일은 앱의 "계측" 버전을 포함합니다. 계측은 테스트 모음으로부터 앱을 
   "구동"하고 성능 프로파일을 기록합니다. 이 파일에는 의미있는 이름을 지정할 수 있는데, 
   본 예제에서는 `test_driver/app.dart` 이름으로 파일을 생성하겠습니다.
-  2. 두 번째 파일은 앱을 구동하고 기대했던대로 동작하는지 검증하는 테스트 suite를 
-  포함합니다. 테스트 suite는 성능 프로파일을 기록할 수도 있습니다. 테스트 파일의 이름은
-  반드시 계측된 앱을 포함하는 파일의 이름과 쌍을 이뤄서 `_test`로 끝나도록 지정해야
+  2. 두 번째 파일은 앱을 구동하고 기대했던대로 동작하는지 검증하는 테스트 모음을 
+  포함합니다. 테스트 모음은 성능 프로파일을 기록할 수도 있습니다. 테스트 파일의 이름은
+  반드시 계측 앱을 포함하는 파일의 이름과 쌍을 이뤄서 `_test`로 끝나도록 지정해야
   합니다. 그러므로 두 번째 파일은 `test_driver/app_test.dart`로 생성하세요.
 
 이로 인해 다음과 같은 디렉토리 구조가 생깁니다:
@@ -182,13 +182,13 @@ void main() {
 
 ### 5. 통합 테스트 작성하기
 
-계측된 앱이 준비되었으므로, 테스트 코드를 작성할 수 있습니다! 이는 다음 네 단계로 
+계측 앱이 준비되었으므로, 테스트 코드를 작성할 수 있습니다! 이는 다음 네 단계로 
 진행됩니다:
 
   1. 특정 위젯을 위치시키기 위해 
   [`SeralizableFinders`]({{site.api}}/flutter/flutter_driver/CommonFinders-class.html)
   를 생성합니다.
-  2. `setUpAll` 함수의 테스트를 실행하기 전에 앱을 연결합니다.
+  2. 테스트를 실행하기 전에, setUpAll 함수에서 앱과 연결하세요.
   3. 중요한 시나리오를 테스트합니다.
   4. 테스트가 완료되면, `teardownAll` 함수에서 앱 연결을 끊습니다.
 
@@ -199,7 +199,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('Counter App', () {
-    // 먼저 Finders를 정의합니다. 테스트 suite의 위젯들을 위치시키기 위해 Finder를
+    // 먼저 Finders를 정의합니다. 테스트 모음의 위젯들을 위치시키기 위해 Finder를
     // 사용할 것입니다. 참고: `byValueKey` 메서드에 인자로 넘겨줄 문자열은 step 1에서
     // 사용한 Key와 동일해야 합니다. 
     final counterTextFinder = find.byValueKey('counter');
@@ -237,7 +237,7 @@ void main() {
 
 ### 6. 테스트 수행하기
 
-계측된 앱과 테스트 suite가 모두 준비되었습니다. 이제 테스트를 실행할 수 있습니다!
+계측 앱과 테스트 모음이 모두 준비되었습니다. 이제 테스트를 실행할 수 있습니다!
 먼저, 컴퓨터와 안드로이드 에뮬레이터, iOS 시뮬레이터 혹은 실제 iOS / 안드로이드 기기가
 연결되었는지 확인하세요.
 
@@ -251,4 +251,4 @@ flutter drive --target=test_driver/app.dart
 
   1. `--target` 앱을 빌드하고 에뮬레이터 / 기기에 설치합니다.
   2. 앱을 시작시킵니다.
-  3. `test_driver/` 폴더에 위치한 `app_test.dart` 테스트 suite를 실행합니다.
+  3. `test_driver/` 폴더에 위치한 `app_test.dart` 테스트 모음을 실행합니다.
