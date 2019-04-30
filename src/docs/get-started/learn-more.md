@@ -17,9 +17,9 @@ prev:
 ## 기존 지식 적용하기
 
 * [안드로이드 개발자를 위한 Flutter](/docs/get-started/flutter-for/android-devs)
-* [자바에서 다트로]({{site.codelabs}}/codelabs/from-java-to-dart) 코드랩
+* [자바에서 Dart로]({{site.codelabs}}/codelabs/from-java-to-dart) 코드랩
 * [iOS 개발자를 위한 Flutter](/docs/get-started/flutter-for/ios-devs)
-* [리액트 네이티브 개발자를 위한 Flutter](/docs/get-started/flutter-for/react-native-devs)
+* [React Native 개발자를 위한 Flutter](/docs/get-started/flutter-for/react-native-devs)
 * [웹 개발자를 위한 Flutter](/docs/get-started/flutter-for/web-devs)
 * [Xamarin.Forms 개발자를 위한 Flutter](/docs/get-started/flutter-for/xamarin-forms-devs)
 
@@ -27,7 +27,7 @@ prev:
 
 * [Flutter 샘플]({{site.github}}/flutter/samples/blob/master/INDEX.md)
 * [Flutter 해설(Cookbook)](/docs/cookbook)
-* [다트 시작하기: 다트 언어에 대해 더 알아보기](/docs/resources/bootstrap-into-dart)
+* [Dart 시작하기: Dart 언어에 대해 더 알아보기](/docs/resources/bootstrap-into-dart)
 * [Flutter API 문서]({{site.api}})
 * [Udacity의 Flutter 온라인 강의](https://www.udacity.com/course/build-native-mobile-apps-with-flutter--ud905)
 

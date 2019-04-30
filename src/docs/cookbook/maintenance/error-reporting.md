@@ -28,7 +28,7 @@ next:
   2. Sentry 패키지 import
   3. `SentryClient` 생성
   4. 에러 리포팅을 위한 함수 생성
-  5. 다트 에러 catch하고 리포팅하기
+  5. Dart 에러 catch하고 리포팅하기
   6. Flutter 에러 catch하고 리포팅하기
 
 ## 1. Sentry로부터 DSN 얻기
@@ -101,9 +101,9 @@ Future<void> _reportError(dynamic error, dynamic stackTrace) async {
 }
 ```
 
-## 5. 다트 에러 catch하고 리포팅하기
+## 5. Dart 에러 catch하고 리포팅하기
 
-개발 환경에 따라 에러 리포팅하는 함수를 작성했으니 이제 다트 에러를 catch할 방법이 필요합니다.
+개발 환경에 따라 에러 리포팅하는 함수를 작성했으니 이제 Dart 에러를 catch할 방법이 필요합니다.
 
 이 작업을 진행하기 위해, 커스텀 [`Zone`]({{site.api}}/flutter/dart-async/Zone-class.html)에서 앱을 실행하세요.
 Zone은 코드가 수행될 컨텍스트를 설정합니다. `onError` 함수를 제공하여 컨텍스트 내에서 발생하는 모든 에러를 편리하게 잡을 수 있게 해줍니다.
@@ -116,14 +116,14 @@ runZoned<Future<void>>(() async {
   runApp(CrashyApp());
 }, onError: (error, stackTrace) {
   // 에러가 발생할 때 마다, `_reportError` 함수를 호출합니다.
-  // 발생한 다트 에러는 개발 환경에 따라 콘솔에 출력되거나 Sentry로 보내집니다.
+  // 발생한 Dart 에러는 개발 환경에 따라 콘솔에 출력되거나 Sentry로 보내집니다.
   _reportError(error, stackTrace);
 });
 ```
 
 ## 6. Flutter 에러 catch하고 리포팅하기
 
-다트 에러 뿐만 아니라, Flutter도 native 코드를 호출할 때 발생할 수 있는 플랫폼 예외와 같은 에러들을 던질 수 있는데,
+Dart 에러 뿐만 아니라, Flutter도 native 코드를 호출할 때 발생할 수 있는 플랫폼 예외와 같은 에러들을 던질 수 있는데,
 이러한 유형의 에러들 역시 반드시 리포팅해야 합니다.
 
 Flutter 에러를 처리하기 위해서는 [`FlutterError.onError`]({{site.api}}/flutter/foundation/FlutterError/onError.html) 프로퍼티를 오버라이드 하세요.

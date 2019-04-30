@@ -8,7 +8,7 @@ next:
   path: /docs/cookbook/networking/web-sockets
 ---
 
-기본적으로, 다트 앱은 모든 작업을 단일 스레드에서 수행합니다. 대부분의 경우 이러한 모델은
+기본적으로, Dart 앱은 모든 작업을 단일 스레드에서 수행합니다. 대부분의 경우 이러한 모델은
 코딩을 단순화시키며, 앱 성능이 떨어지거나 "jank"라고 불리는 뚝뚝 끊기는 애니메이션을 
 야기하지 않을 만큼 충분히 빠릅니다.
 
@@ -58,7 +58,7 @@ Future<http.Response> fetchPhotos(http.Client client) async {
 ## 3. json을 Photo 리스트로 파싱하여 변환하기
 
 다음으로, [Fetch data from the internet](/docs/cookbook/networking/fetch-data)의
-가이드를 따라하세요. `http.Response`를 다트 객체의 리스트로 변환할 건데 그렇게 데이터를
+가이드를 따라하세요. `http.Response`를 Dart 객체의 리스트로 변환할 건데 그렇게 데이터를
 변환하고 나면 이후 작업을 더 쉽게 수행할 수 있습니다.
 
 ### `Photo` 클래스를 정의하세요

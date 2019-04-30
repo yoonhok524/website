@@ -3,7 +3,7 @@ title: 패키지 사용하기
 description: Flutter 앱에서 패키지를 사용하는 방법을 학습합니다.
 ---
 
-Flutter는 다른 개발자들이 Flutter와 다트 에코시스템에 제공한 공유 패키지들을 사용할 수 있도록 지원합니다. 이 패키지를 이용하면 처음부터 모든 것을 개발하지 않아도 되기 때문에 빠르게 앱을 개발할 수 있습니다. 
+Flutter는 다른 개발자들이 Flutter와 Dart 에코시스템에 제공한 공유 패키지들을 사용할 수 있도록 지원합니다. 이 패키지를 이용하면 처음부터 모든 것을 개발하지 않아도 되기 때문에 빠르게 앱을 개발할 수 있습니다. 
 
 이미 만들어진 패키지들을 이용하면 많은 것을 할 수 있는데, 예를 들어서 네트워크 요청([`http`](/docs/cookbook/networking/fetch-data)), 사용자 지정 탐색/경로 관리([`fluro`]({{site.pub-pkg}}/fluro)), 장비 API 통합(예: [`url_launcher`]({{site.pub-pkg}}/url_launcher) &
 [`battery`]({{site.pub-pkg}}/battery)), 타 플랫폼 SDK 사용(예: [Firebase]({{site.github}}/flutter/plugins/blob/master/FlutterFire.md)) 들을 할 수 있습니다. 
@@ -30,14 +30,14 @@ Pub 사이트에서는 Flutter와 호환되는 가장 인기있는 패키지들�
 1. 설치하기
    * 터미널: `flutter packages get` 명령어를 실행합니다<br/>
    **또는**
-   * 안드로이드 스튜디오/IntelliJ: `pubspec.yaml` 파일을 열고, 상단에서 'Packages Get' 버튼을 클릭합니다
+   * Android 스튜디오/IntelliJ: `pubspec.yaml` 파일을 열고, 상단에서 'Packages Get' 버튼을 클릭합니다
    * 비주얼 스튜디오 코드: `pubspec.yaml` 파일을 열고, 우측 상단에서 'Get Packages' 버튼을 클릭합니다
 
 1. 불러오기
-   * 해당하는 `import` 문을 다트 코드에 추가합니다.
+   * 해당하는 `import` 문을 Dart 코드에 추가합니다.
 
 1. 필요시 앱을 중지하고 재시작하기
-   * 만약에 패키지가 특정 플랫폼의 코드를 사용한다면 (안드로이드: Java/Kotlin, iOS: Swift/Object-C), 꼭 미리 빌드가 되어야 합니다. Hot reload와 hot restart는 다트 코드에 대해서만 동작하기 때문에, 패키지를 사용하면서 `MissingPluginException` 에러를 피하기 위해서는 앱을 완전히 재시작해야 합니다. 
+   * 만약에 패키지가 특정 플랫폼의 코드를 사용한다면 (Android: Java/Kotlin, iOS: Swift/Object-C), 꼭 미리 빌드가 되어야 합니다. Hot reload와 hot restart는 Dart 코드에 대해서만 동작하기 때문에, 패키지를 사용하면서 `MissingPluginException` 에러를 피하기 위해서는 앱을 완전히 재시작해야 합니다. 
 
 Pub 사이트에 있는 각 패키지의 ['Installing']({{site.pub-pkg}}/css_colors#-installing-tab-) 탭에서는 패키지를 설치하는 이런 과정에 대해서 간단히 설명해주고 있습니다.
 
@@ -164,7 +164,7 @@ Pub에 게시되지 않은 패키지도 사용 가능합니다. 추가적인 의
 
 ### 예제: URL Launcher 패키지를 사용해서 브라우저 실행하기 {#url-example}
 
-[URL Launcher]({{site.pub-pkg}}/url_launcher) 플러그인 패키지를 사용하면 주어진 URL을 모바일 플랫폼의 기본 브라우저를 이용해서 표시할 수 있습니다. 이는 플랫폼별 코드가 패키지에 포함될 수 있다는 것을 보여줍니다 (이런 패키지를 '플러그인'이라고 부릅니다). 안드로이드와 iOS 모두 지원됩니다.
+[URL Launcher]({{site.pub-pkg}}/url_launcher) 플러그인 패키지를 사용하면 주어진 URL을 모바일 플랫폼의 기본 브라우저를 이용해서 표시할 수 있습니다. 이는 플랫폼별 코드가 패키지에 포함될 수 있다는 것을 보여줍니다 (이런 패키지를 '플러그인'이라고 부릅니다). Android와 iOS 모두 지원됩니다.
 
 패키지 사용 방법:
 

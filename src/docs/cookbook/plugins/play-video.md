@@ -16,7 +16,7 @@ next:
 
 iOS의 경우 `video_player` 플러그인은
 [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer)를
-사용하여 영상을 재생합니다. 안드로이드의 경우는 
+사용하여 영상을 재생합니다. Android의 경우는 
 [`ExoPlayer`](https://google.github.io/ExoPlayer/)를 사용합니다.
 
 본 예제에서는 `video_player` 패키지를 사용하여 인터넷 영상을 스트리밍하고
@@ -45,9 +45,9 @@ dependencies:
 ## 2. 앱에 권한 부여하기
 
 다음으로, 앱이 인터넷 영상을 스트리밍하기 위해 올바른 권한을 가졌는지 확인해야 합니다.
-이를 위해, `안드로이드`와 `ios` configuration을 수정하겠습니다.
+이를 위해, `Android`와 `ios` configuration을 수정하겠습니다.
 
-### 안드로이드
+### Android
 
 다음의 권한을 `AndroidManifest.xml` 파일의 `<application>` 바로 다음에 추가하세요.
 `AndroidManifest.xml`은 `<projectroot>/android/app/src/main/AndroidManifest.xml`에서

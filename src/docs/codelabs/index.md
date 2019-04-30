@@ -13,7 +13,7 @@ description: "Flutter를 빠르게 시작할 수 있는 코드랩"
 
 #### [아름다운 UI를 가진 Flutter 앱 만들기]({{site.codelabs}}/codelabs/flutter)
 
-"첫 Flutter 앱 만들기" 보다 한층 더 깊게 들어갑니다. 이 코드랩에선 iOS와 안드로이드에 따라 다르게 표현되는 UI와 함께 간단한 애니메이션이 있는 대화방을 만들어봅니다.
+"첫 Flutter 앱 만들기" 보다 한층 더 깊게 들어갑니다. 이 코드랩에선 iOS와 Android에 따라 다르게 표현되는 UI와 함께 간단한 애니메이션이 있는 대화방을 만들어봅니다.
 
 #### [Flutter를 위한 Firebase]({{site.codelabs}}/codelabs/flutter-firebase)
 
@@ -45,5 +45,5 @@ Flutter에서 머티리얼 컴포넌트가 어떠한 방식으로 쉽게 제품�
 {% comment %}
 // Right now, there's only the Java->Dart lab, which is also in the
 // Flutter category, so this is (effectively) a dupe link.
-다트 위주의 코드랩은 [dartlang.org]({{site.dart-site}})의 [codelabs]({{site.dart-site}}/codelabs)에서 보실 수 있습니다.
+Dart 위주의 코드랩은 [dartlang.org]({{site.dart-site}})의 [codelabs]({{site.dart-site}}/codelabs)에서 보실 수 있습니다.
 {% endcomment %}

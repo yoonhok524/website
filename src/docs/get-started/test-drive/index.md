@@ -16,7 +16,7 @@ Flutter 앱을 작성 및 제작, 실행하기 위한 개발 도구를 선택하
 {% comment %} Nav tabs {% endcomment -%}
 <ul class="nav nav-tabs" id="editor-setup" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="androidstudio-tab" href="#androidstudio" role="tab" aria-controls="androidstudio" aria-selected="true">안드로이드 스튜디오 / IntelliJ</a>
+    <a class="nav-link active" id="androidstudio-tab" href="#androidstudio" role="tab" aria-controls="androidstudio" aria-selected="true">Android 스튜디오 / IntelliJ</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="vscode-tab" href="#vscode" role="tab" aria-controls="vscode" aria-selected="false">비주얼 스튜디오 코드</a>

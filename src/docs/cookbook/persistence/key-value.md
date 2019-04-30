@@ -15,7 +15,7 @@ next:
 일반적으로 두 플랫폼 모두에 데이터를 저장하기 위한 네이티브 플랫폼 통합 코드를 작성해야
 합니다. 다행히도 [shared_preferences]({{site.pub-pkg}}/shared_preferences) 플러그인을
 사용하면 키-값 데이터를 디스크에 저장할 수 있습니다. 간단한 데이터 저장 기능을 제공하는
-shared preferences 플러그인은 iOS의 `NSUserDefaults`와 안드로이드의 
+shared preferences 플러그인은 iOS의 `NSUserDefaults`와 Android의 
 `SharedPreferences`를 감싸고 있습니다.
 
 ## 진행 단계
@@ -86,7 +86,7 @@ prefs.remove('counter');
 * 오직 원시 타입만 사용 가능합니다: `int`, `double`, `bool`, `string`, `stringList`
 * 대용량 데이터 저장을 위해 설계되지 않았습니다.
 
-안드로이드의 Shared Preferences에 대해 더 자세히 알고 싶다면, 안드로이드 개발자 사이트의
+Android의 Shared Preferences에 대해 더 자세히 알고 싶다면, Android 개발자 사이트의
 [Shared preferences 문서]({{site.android-dev}}/guide/topics/data/data-storage#pref)를
 참고하세요.
 

@@ -35,11 +35,11 @@ next:
 
   * *임시 디렉토리:* 시스템이 언제든지 삭제할 수 있는 임시 디렉토리 (캐시). iOS에서는 
     [`NSTemporaryDirectory()`](https://developer.apple.com/reference/foundation/1409211-nstemporarydirectory),
-    안드로이드에서는 [`getCacheDir()`]({{site.android-dev}}/reference/android/content/Context#getCacheDir())에
+    Android에서는 [`getCacheDir()`]({{site.android-dev}}/reference/android/content/Context#getCacheDir())에
     해당합니다.
   * *문서 디렉토리:* 파일을 저장하기 위해 해당 앱에서만 유일하게 접근할 수 있는 디렉토리.
     시스템은 해당 디렉토리를 앱이 삭제될 때에만 지웁니다. iOS에서는 `NSDocumentDirectory`,
-    안드로이드에서는 `AppData` 디렉토리가 해당됩니다. 
+    Android에서는 `AppData` 디렉토리가 해당됩니다. 
 
 본 예제에서는 문서 디렉토리에 정보를 저장할 것이며 해당 경로는 아래 코드를
 통해 찾을 수 있습니다.

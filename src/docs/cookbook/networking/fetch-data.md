@@ -8,14 +8,14 @@ next:
   path: /docs/cookbook/networking/authenticated-requests
 ---
 
-인터넷을 통해 데이터를 가져오는 것은 대부분의 앱에서 필수적입니다. 다행스럽게도, 다트와 Flutter는
+인터넷을 통해 데이터를 가져오는 것은 대부분의 앱에서 필수적입니다. 다행스럽게도, Dart와 Flutter는
 이러한 유형의 작업을 위해 도구를 제공합니다.
 
 ## 진행 단계
 
   1. `http` 패키지 추가하기
   2. `http` 패키지를 사용하여 네트워크 요청 생성하기
-  3. 응답 정보를 커스텀 다트 객체로 변환하기
+  3. 응답 정보를 커스텀 Dart 객체로 변환하기
   4. 가져온 데이터를 Flutter에 보여주기
 
 ## 1. `http` 패키지 추가하기
@@ -48,16 +48,16 @@ Future<http.Response> fetchPost() {
 `http.get()` 메서드는 `Response`를 포함하고 있는 `Future`를 반환합니다.
 
   * [`Future`]({{site.api}}/flutter/dart-async/Future-class.html)는
-    비동기 연산에 사용되는 다트의 핵심 클래스입니다.
+    비동기 연산에 사용되는 Dart의 핵심 클래스입니다.
     미래의 특정 시점에 사용가능한 잠재적인 값이나 에러를 나타내기 위해
     사용됩니다.
   * `http.Response` 클래스는 http 요청이 성공했을 때 응답으로 받은 데이터를 
     갖고 있습니다.
 
-## 3. 응답 정보를 커스텀 다트 객체로 변환하기
+## 3. 응답 정보를 커스텀 Dart 객체로 변환하기
 
 네트워크 요청 생성은 쉽지만 `Future<http.Response>`을 사용하는 것은 편리하지 
-않습니다. 이를 좀 더 쉽게 하기 위해 `http.Response`를 다트 객체로 변환하겠습니다.
+않습니다. 이를 좀 더 쉽게 하기 위해 `http.Response`를 Dart 객체로 변환하겠습니다.
 
 ### `Post` 클래스를 생성하세요
 

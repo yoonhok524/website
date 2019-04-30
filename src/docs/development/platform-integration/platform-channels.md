@@ -6,7 +6,7 @@ short-title: 플랫폼 별 코드
 이 가이드는 플랫폼 별 코드를 어떻게 작성하는지 설명합니다. 어떤 플랫폼 별 기능은
 이미 있는 패키지를 통해 사용이 가능합니다. [using packages](/docs/development/packages-and-plugins/using-packages) 를 참조하세요.
 
-Flutter는 안드로이드에서의 Java와 Kotlin, iOS에서의 ObjectiveC와 Swift에서 가능한 플랫폼 별 api를
+Flutter는 Android에서의 Java와 Kotlin, iOS에서의 ObjectiveC와 Swift에서 가능한 플랫폼 별 api를
 사용하게 해주는 유연한 시스템을 사용합니다.
 
 Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유연한 메시지 전달 스타일을 사용합니다.
@@ -26,7 +26,7 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유�
 메시지와 응답은 반응성 좋은 사용자 인터페이스를 위해 비동기적으로 전달됩니다.
 
 클라이언트 단에서는, `MethodChannel` ([API][MethodChannel])이 메시지를 그에 상응하는
-메서드로 보낼 수 있도록 해줍니다. 플랫폼 단에서는, 안드로이드는 `MethodChannel`([API][MethodChannelAndroid]), iOS는 `FlutterMethodChannel`
+메서드로 보낼 수 있도록 해줍니다. 플랫폼 단에서는, Android는 `MethodChannel`([API][MethodChannelAndroid]), iOS는 `FlutterMethodChannel`
 ([API][MethodChanneliOS])들이 메시지를 받는 것과 응답을 가능하게 합니다. 이 클래스들은 아주 적은
 코드만으로도 플랫폼 플러그인을 개발할 수 있게 해줍니다.
 
@@ -61,9 +61,9 @@ byte butters, List, Map등의 표준 메시지 코덱을 사용합니다 (참고
 | Map         | java.util.HashMap   | NSDictionary
 
 <br>
-## 예시: 플랫폼 채널을 이용해서 iOS와 안드로이드 코드 호출하기 {#example}
+## 예시: 플랫폼 채널을 이용해서 iOS와 Android 코드 호출하기 {#example}
 
-아래에선 현재 배터리 레벨를 표시하기 위해 플랫폼 특화 API를 사용하는 법을 설명합니다. 안드로이드의 `BatteryManager`,
+아래에선 현재 배터리 레벨를 표시하기 위해 플랫폼 특화 API를 사용하는 법을 설명합니다. Android의 `BatteryManager`,
 iOS의 `device.batteryLevel` API 를 `getBatteryLevel` 이라는 단일 플랫폼 메시지로 사용합니다.
 
 해당 예시는 메인 앱 자체에 플랫폼 별 코드를 추가합니다. 만약 당신이 다양한 앱에서 플랫폼 특화 코드를 재사용하고
@@ -73,7 +73,7 @@ packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참
 
 *참고*: 이 예시의 실행가능한 전체 코드는 여기서 확인할 수 있습니다. [`/examples/platform_channel/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel)
 
-안드로이드는 Java로 되어 있고 iOS 는 Objective-C 로 되어있습니다. Swift 와 iOS에 대한 예제는 다음을
+Android는 Java로 되어 있고 iOS 는 Objective-C 로 되어있습니다. Swift 와 iOS에 대한 예제는 다음을
 참고하세요.[`/examples/platform_channel_swift/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel_swift)
 
 ### 1단계: 새로운 앱 프로젝트 만들기 {#example-project}
@@ -82,7 +82,7 @@ packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참
 
 * 터미널에서 실행: `flutter create batterylevel`
 
-기본적으로 안드로이드는 Java, iOS는 Objective-C를 사용해서 작성하는 템플릿으로 지원됩니다. Kotlin 이나 Swift를
+기본적으로 Android는 Java, iOS는 Objective-C를 사용해서 작성하는 템플릿으로 지원됩니다. Kotlin 이나 Swift를
 사용하려면 `-i` 혹은 `-a` 플래그를 사용하세요.
 
 * 터미널에서 실행: `flutter create -i swift -a kotlin batterylevel`
@@ -164,14 +164,14 @@ Widget build(BuildContext context) {
 ```
 
 
-### 3a단계 : Java를 이용한 안드로이드 플랫폼 구현 {#example-java}
+### 3a단계 : Java를 이용한 Android 플랫폼 구현 {#example-java}
 
 *참고*: 해당 단계는 Java를 사용합니다. 코틀린을 선호한다면, 3b단계 로 넘어가세요.
 
 
-안드로이드 스튜디오에서 안드로이드 부분을 열어서 시작하세요:
+Android 스튜디오에서 Android 부분을 열어서 시작하세요:
 
-1. 안드로이드 스튜디오 실행
+1. Android 스튜디오 실행
 
 1. 메뉴에서 'File > Open...' 선택
 
@@ -211,8 +211,8 @@ public class MainActivity extends FlutterActivity {
 ```
 
 
-다음으로, 배터리 레벨을 가져오기 위해 안드로이드 배터리 API를 사용하는 실제 안드로이드 Java 코드를 추가합니다. 해당 코드는
-네이티브 안드로이드 앱에서 사용하던 것과 완전히 같습니다.
+다음으로, 배터리 레벨을 가져오기 위해 Android 배터리 API를 사용하는 실제 Android Java 코드를 추가합니다. 해당 코드는
+네이티브 Android 앱에서 사용하던 것과 완전히 같습니다.
 
 첫번째로, 필요한 import 들을 파일 상단에 추가해주세요.
 
@@ -247,9 +247,9 @@ private int getBatteryLevel() {
 ```
 
 
-마지막으로, 먼저 추가한 `onMethodCall` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel`이며, 이는 `call` 인자 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
+마지막으로, 먼저 추가한 `onMethodCall` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel`이며, 이는 `call` 인자 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 Android 코드를 호출합니다.
 그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
-이 플랫폼 메서드는 단순히 전 단계에서 작성한 안드로이드 코드를 호출하며, `response` 인자를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
+이 플랫폼 메서드는 단순히 전 단계에서 작성한 Android 코드를 호출하며, `response` 인자를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
 
 아래 코드를:
 
@@ -279,11 +279,11 @@ public void onMethodCall(MethodCall call, Result result) {
 ```
 
 
-이제 안드로이드에서 앱을 실행하는 것이 가능합니다. 만약 안드로이드 에뮬레이터를 사용하고 있다면, 툴바의 `...`
+이제 Android에서 앱을 실행하는 것이 가능합니다. 만약 Android 에뮬레이터를 사용하고 있다면, 툴바의 `...`
 버튼을 눌러 제어판을 통해 배터리 레벨을 설정할 수 있습니다.
 
 
-### 3b단계 : Kotlin을 사용해서 안드로이드 플랫폼 구현 추가 {#example-kotlin}
+### 3b단계 : Kotlin을 사용해서 Android 플랫폼 구현 추가 {#example-kotlin}
 
 
 *참고*: 이 단계는 Java 말고 Kotlin을 사용하는 것 외엔 3a와 비슷합니다.

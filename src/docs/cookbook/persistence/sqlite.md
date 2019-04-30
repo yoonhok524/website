@@ -86,10 +86,10 @@ final Future<Database> database = openDatabase(
 각 `Dog`는 `id`, `name`, `age`를 갖고 있습니다. 그리고 이것들은 `dogs` 테이블에서 세 개의 
 컬럼으로 표현될 것입니다.
 
-  1. `id`는 다트의 `int` 타입이며, SQLite에는 `INTEGER` 타입으로 저장됩니다. `id`를 
+  1. `id`는 Dart의 `int` 타입이며, SQLite에는 `INTEGER` 타입으로 저장됩니다. `id`를 
   테이블의 기본키로 사용하는 것은 쿼리, 수정 성능을 높이기 위한 좋은 접근법입니다.
-  2. `name`은 다트의 `String` 타입이며, SQLite에는 `TEXT` 타입으로 저장됩니다.
-  3. `age` 역시 다트의 `int` 타입이므로, SQLite에는 `INTEGER` 타입으로 저장됩니다.
+  2. `name`은 Dart의 `String` 타입이며, SQLite에는 `TEXT` 타입으로 저장됩니다.
+  3. `age` 역시 Dart의 `int` 타입이므로, SQLite에는 `INTEGER` 타입으로 저장됩니다.
 
 SQLite 데이터베이스에 저장될 수 있는 사용 가능한 자료형들에 대해 더 자세한 정보를 원한다면 
 [공식 SQLite 자료형 문서](https://www.sqlite.org/datatype3.html)를
