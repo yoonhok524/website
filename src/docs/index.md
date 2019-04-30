@@ -44,7 +44,7 @@ Flutter [1.2 버전](https://developers.googleblog.com/2019/02/launching-flutter
 [Android](/docs/get-started/flutter-for/android-devs),
 [iOS](/docs/get-started/flutter-for/ios-devs),
 [웹](/docs/get-started/flutter-for/web-devs),
-[리액트 네이티브](/docs/get-started/flutter-for/react-native-devs),
+[React Native](/docs/get-started/flutter-for/react-native-devs),
 [Xamarin.Forms](/docs/get-started/flutter-for/xamarin-forms-devs)
 
 [Flutter에서 레이아웃](/docs/development/ui/layout)

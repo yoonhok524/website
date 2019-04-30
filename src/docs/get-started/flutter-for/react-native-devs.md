@@ -1,12 +1,12 @@
 ---
-title: 리액트 네이티브 개발자를 위한 Flutter
-description: 리액트 네이티브 개발자가 Flutter 앱을 만들 때 기존 지식을 활용하는 방법을 배워봅시다.
+title: React Native 개발자를 위한 Flutter
+description: React Native 개발자가 Flutter 앱을 만들 때 기존 지식을 활용하는 방법을 배워봅시다.
 ---
 
 이 문서는
-기존 리액트 네이티브 지식을 활용하여
+기존 React Native 지식을 활용하여
 Flutter로 모바일 앱을 만들려는
-리액트 네이티브(React Native, RN) 개발자를 위한 문서입니다.
+React Native(RN) 개발자를 위한 문서입니다.
 RN 프레임워크의 핵심을 이해하고 있다면
 이 문서를 Flutter 개발을 시작하는 방안으로 사용하실 수 있습니다.
 
@@ -15,7 +15,7 @@ RN 프레임워크의 핵심을 이해하고 있다면
 
 ## 자바스크립트 개발자를 위한 다트 소개
 
-리액트 네이티브처럼, Flutter는 reactive-style 뷰를 사용합니다.
+React Native처럼, Flutter는 reactive-style 뷰를 사용합니다.
 하지만, 네이티브 위젯으로 변환(transpile)하는 RN과 달리, 
 Flutter는 모든 것을 네이티브 코드로 직접 컴파일합니다.
 Flutter는 화면의 각 픽셀을 직접 제어하기 때문에, 자바스크립트 브리지로 인한 성능 문제가 발생하지 않습니다. 

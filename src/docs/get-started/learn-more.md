@@ -19,7 +19,7 @@ prev:
 * [안드로이드 개발자를 위한 Flutter](/docs/get-started/flutter-for/android-devs)
 * [자바에서 다트로]({{site.codelabs}}/codelabs/from-java-to-dart) 코드랩
 * [iOS 개발자를 위한 Flutter](/docs/get-started/flutter-for/ios-devs)
-* [리액트 네이티브 개발자를 위한 Flutter](/docs/get-started/flutter-for/react-native-devs)
+* [React Native 개발자를 위한 Flutter](/docs/get-started/flutter-for/react-native-devs)
 * [웹 개발자를 위한 Flutter](/docs/get-started/flutter-for/web-devs)
 * [Xamarin.Forms 개발자를 위한 Flutter](/docs/get-started/flutter-for/xamarin-forms-devs)
 
