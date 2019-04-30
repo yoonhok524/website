@@ -18,7 +18,7 @@ next:
   이 문서의 나머지 부분에서는 Route라고 언급합니다.
 {{site.alert.end}}
 
-Route는 안드로이드의 Activity, iOS의 ViewController와 동일합니다.
+Route는 Android의 Activity, iOS의 ViewController와 동일합니다.
 Flutter에서는 Route 역시 위젯입니다.
 
 새로운 route로 어떻게 이동할까요? 

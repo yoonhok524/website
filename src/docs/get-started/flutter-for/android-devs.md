@@ -1,18 +1,18 @@
 ---
-title: 안드로이드 개발자를 위한 Flutter
-description: 안드로이드 개발 지식을 적용하여 Flutter 앱을 만드는 방법에 대해 알아보십시오.
+title: Android 개발자를 위한 Flutter
+description: Android 개발 지식을 적용하여 Flutter 앱을 만드는 방법에 대해 알아보십시오.
 ---
 
-이 문서는 기존 안드로이드 지식을 활용하여 
-Flutter 모바일 앱을 개발하고자 하는 안드로이드 개발자를 대상으로 합니다.
-안드로이드 프레임워크의 기본 내용을 이해하고 있다면,
+이 문서는 기존 Android 지식을 활용하여 
+Flutter 모바일 앱을 개발하고자 하는 Android 개발자를 대상으로 합니다.
+Android 프레임워크의 기본 내용을 이해하고 있다면,
 이 문서를 활용하여 Flutter 개발로 도약할 수 있습니다.
 
 Flutter가 다양한 기능과 구성을 위해 모바일 운영체제를 사용하기 때문에 
-안드로이드 관련 지식과 기술은 Flutter 앱을 만들 때 매우 유용합니다.
+Android 관련 지식과 기술은 Flutter 앱을 만들 때 매우 유용합니다.
 Flutter는 모바일에서 UI를 만드는 새로운 방법이지만,
-UI 이외 작업을 위해, 안드로이드 (그리고 iOS)와 통신하는 플러그인 시스템도 가지고 있습니다.
-안드로이드의 전문가라면, Flutter를 사용하기 위해 모든 것을 다시 배울 필요가 없습니다.
+UI 이외 작업을 위해, Android (그리고 iOS)와 통신하는 플러그인 시스템도 가지고 있습니다.
+Android의 전문가라면, Flutter를 사용하기 위해 모든 것을 다시 배울 필요가 없습니다.
 
 필요한 부분에 가장 적합한 질문을 찾아내는 방식으로 이 문서를 요리책(cookbook)처럼 활용하실 수도 있습니다.
 
@@ -25,16 +25,16 @@ react-style 프로그래밍(또는 선언적 프로그래밍)이 기존 명령�
 비교를 위해, [선언적 UI 소개](/docs/get-started/flutter-for/declarative)를 참조하세요.
 {{site.alert.end}}
 
-안드로이드에서, `뷰`는 화면에 나타나는 모든 것의 기반입니다. 
+Android에서, `뷰`는 화면에 나타나는 모든 것의 기반입니다. 
 버튼, 툴바, 입력창 등 모든 것이 뷰입니다.
 Flutter에서는 `위젯`이 `뷰`와 유사합니다. 
-위젯이 안드로이드의 뷰와 정확하게 일치하는 건 아니지만, 
+위젯이 Android의 뷰와 정확하게 일치하는 건 아니지만, 
 Flutter를 익힐 때 위젯이 "UI를 선언하고 구성하는 방식"이라고 이해할 수 있습니다.  
 
 하지만, 위젯은 `뷰`와 조금 차이가 있습니다. 먼저, 생명주기(lifespan)가 다릅니다.
 위젯은 변경 불가능하며 변경이 필요할 때까지만 존재합니다. 
 위젯 혹은 위젯의 상태가 변경되면. Flutter는 위젯 인스턴스의 새로운 트리를 생성합니다.
-반면, 안드로이드의 뷰는 한 번만 그려지고, `invalidate`가 호출되기 전까지는 다시 그리지 않습니다. 
+반면, Android의 뷰는 한 번만 그려지고, `invalidate`가 호출되기 전까지는 다시 그리지 않습니다. 
 
 Flutter의 위젯은 불변하기 때문에 가볍습니다.
 위젯이 그 자체로 뷰가 아니기에 어떤 것도 직접 그리지 않고,
@@ -51,7 +51,7 @@ Flutter는 [머티리얼 컴포넌트]({{site.material}}/develop/flutter/) 라�
 
 ### `Widget`을 변경하는 방법은 무엇입니까?
 
-안드로이드에서는 뷰를 직접 수정하여 변경사항을 적용합니다. 
+Android에서는 뷰를 직접 수정하여 변경사항을 적용합니다. 
 하지만 Flutter에서 `위젯`은 불변이기 때문에 직접 변경할 수 없고, 대신 위젯의 state를 변경할 수 있습니다. 
 
 이게 Stateful 위젯과 Stateless 위젯 개념이 탄생한 배경입니다.
@@ -60,7 +60,7 @@ Flutter는 [머티리얼 컴포넌트]({{site.material}}/develop/flutter/) 라�
 `StatelessWidget`은 작성하려는 사용자 인터페이스 부분이 
 구성 정보 외에 다른 어떤 정보에도 의존하지 않을 때 유용합니다.
 
-예를 들어, 안드로이드에서 `ImageView`로 로고를 배치하는 경우와 비슷합니다.
+예를 들어, Android에서 `ImageView`로 로고를 배치하는 경우와 비슷합니다.
 로고는 실행 중에 변경되지 않기 때문에, Flutter에선 `StatelessWidget`를 사용합니다.
 
 HTTP 호출이나 사용자와의 상호작용을 통해 받은 데이터를 기반으로 UI를 동적으로 변경하기를 원한다면
@@ -157,7 +157,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
 
 ### 위젯을 어떻게 배치하나요? XML 레이아웃 파일은 어디에 있나요?
 
-안드로이드에서는 레이아웃을 XML에 작성하지만, Flutter에서는 레이아웃을 위젯 트리로 작성합니다. 
+Android에서는 레이아웃을 XML에 작성하지만, Flutter에서는 레이아웃을 위젯 트리로 작성합니다. 
 
 아래 예시는 여백과 함께 간단한 위젯을 배치하는 방법을 보여줍니다:
 
@@ -185,7 +185,7 @@ Flutter가 제공하는 레이아웃을 볼 수 있습니다.
 
 ### 어떻게 하면 레이아웃에서 컴포넌트를 추가하거나 제거할 수 있나요?
 
-안드로이드에서는 `addChild()` 혹은 `removeChild()`를 호출하여 
+Android에서는 `addChild()` 혹은 `removeChild()`를 호출하여 
 동적으로 자식 뷰를 추가하거나 제거합니다.
 Flutter에서는 위젯이 불변이기 때문에 `addChild()`와 동일한 명령은 없습니다.
 대신, 부모에게 위젯을 리턴하는 함수를 전달하고, 
@@ -259,7 +259,7 @@ class _SampleAppPageState extends State<SampleAppPage> {
 
 ### 위젯에 애니메이션을 넣는 방법은?
 
-안드로이드에서는 XML을 사용하거나 뷰에서 `animate()` 메서드를 호출하여 애니메이션을 만듭니다.
+Android에서는 XML을 사용하거나 뷰에서 `animate()` 메서드를 호출하여 애니메이션을 만듭니다.
 Flutter에서는 애니메이션용 위젯으로 위젯을 감싸는 방식으로 애니메이션 라이브러리를 사용하여 애니메이션을 만드세요.
 
 Flutter에서는 중지하고, 탐색하고, 정지하고, 되감기할 수 있는 `Animation<double>`인 `AnimationController`를 사용하세요.
@@ -352,9 +352,9 @@ class _MyFadeTest extends State<MyFadeTest> with TickerProviderStateMixin {
 
 ### `Canvas`를 사용하여 그리는 방법은?
 
-화면에 이미지와 모양을 그리기 위해 안드로이드에서는 `Canvas`와 `Drawable`을 사용합니다.
+화면에 이미지와 모양을 그리기 위해 Android에서는 `Canvas`와 `Drawable`을 사용합니다.
 Flutter도 저수준(low-level) 렌더링 엔진인 Skia를 사용하기 때문에 `Canvas`와 유사한 API를 가지고 있습니다,
-그렇기 때문에 Flutter에서 캔버스에 그리는 것은 안드로이드 개발자에게 매우 익숙한 작업입니다. 
+그렇기 때문에 Flutter에서 캔버스에 그리는 것은 Android 개발자에게 매우 익숙한 작업입니다. 
 
 Flutter는 캔버스에 그리는 일을 도와주는 2개의 클래스를 가지고 있습니다.
 `CustomPaint`와 `CustomPainter`입니다. 
@@ -414,7 +414,7 @@ class SignaturePainter extends CustomPainter {
 
 ### 커스텀 위젯을 만드는 방법은?
 
-안드로이드에서는 
+Android에서는 
 보통 `View`의 하위클래스를 만들거나 이미 있는 View를 사용하여
 원하는 동작을 수행하는 메서드를 오버라이드하고 구현합니다.
 
@@ -424,7 +424,7 @@ Flutter에서는
 
 이것은 구성물(building block)이 이미 준비되어 있는 상황에서 약간 다른 동작을 만들고 싶을 때
 (예를 들면, 새로운 레이아웃 로직을 첨가하고 싶을 때)
-안드로이드에서 `ViewGroup`을 만드는 것과 유사합니다.
+Android에서 `ViewGroup`을 만드는 것과 유사합니다.
 
 예를 들어, `CustomButton`의 생성자가 label을 받게 하려면 어떻게 해야 할까요?
 `RaisedButton`을 상속하는 대신,
@@ -458,7 +458,7 @@ Widget build(BuildContext context) {
 
 ### Flutter에서 `Intent`와 동일한 것은?
 
-안드로이드에서 `Intent`는 두 가지 용도로 사용됩니다:
+Android에서 `Intent`는 두 가지 용도로 사용됩니다:
 엑티비티 간 이동, 그리고 다른 컴포넌트와 통신할 때입니다.
 반면, Flutter는 intent라는 개념을 가지고 있지 않습니다.
 네이티브 통합을 활용하여 intent를 사용할 수는 있습니다.

@@ -41,7 +41,7 @@ Flutter [1.2 버전](https://developers.googleblog.com/2019/02/launching-flutter
 ### 문서
 
 다른 플랫폼 경험이 있으신가요? 아래 문서를 확인해보세요:
-[안드로이드](/docs/get-started/flutter-for/android-devs),
+[Android](/docs/get-started/flutter-for/android-devs),
 [iOS](/docs/get-started/flutter-for/ios-devs),
 [웹](/docs/get-started/flutter-for/web-devs),
 [리액트 네이티브](/docs/get-started/flutter-for/react-native-devs),

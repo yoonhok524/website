@@ -1,11 +1,11 @@
 ---
-title: 안드로이드 앱 출시 준비하기
+title: Android 앱 출시 준비하기
 short-title: Android
 ---
 
 Flutter 앱을 개발하는 동안, 명령줄에서의 `flutter run` 과 IntelliJ에서의 툴바 **Run** 과 **Debug** 버튼을 통해 앱을 테스트할 수 있습니다. Flutter는 기본적으로 앱의 *debug* 버전을 빌드합니다.
 
-[Google Play 출시][play]하기 위해 안드로이드의 *release* 버전을 준비할 준비가 되었다면, 다음 단계를 따르세요.
+[Google Play 출시][play]하기 위해 Android의 *release* 버전을 준비할 준비가 되었다면, 다음 단계를 따르세요.
 
 ## 앱 매니페스트 검토하기
 
@@ -54,7 +54,7 @@ Google Play 스토어에 출시하기 위해서는 반드시 앱에 디지털 �
 
 *참고:* 이 파일은 항상 개인적으로 보관하세요; 절대 공개된 저장소에 업로드 하지 마세요.
 
-*참고:* `keytool` 은 프로젝트 경로에 존재하지 않을 수 있습니다. 해당 파일은 안드로이드 스튜디오와 함께 설치되는 Java JDK에 포함되는 파일입니다. 해당 파일에 대한 구체적인 경로는 명령줄에 `flutter doctor -v` 을 통하여 표시되는 'Java binary at:' 다음에 나타나는 경로에서 `java`를 포함하고 있는 디렉토리의 `keytool` 파일을 통해 확인할 수 있습니다.
+*참고:* `keytool` 은 프로젝트 경로에 존재하지 않을 수 있습니다. 해당 파일은 Android 스튜디오와 함께 설치되는 Java JDK에 포함되는 파일입니다. 해당 파일에 대한 구체적인 경로는 명령줄에 `flutter doctor -v` 을 통하여 표시되는 'Java binary at:' 다음에 나타나는 경로에서 `java`를 포함하고 있는 디렉토리의 `keytool` 파일을 통해 확인할 수 있습니다.
 
 ### 앱으로부터 keystore 참조하기
 
@@ -120,8 +120,8 @@ storeFile=<key store 파일 위치, 예) /Users/<user name>/key.jks>
 
 ## Proguard 사용
 
-기본적으로, Flutter는 안드로이드 관련 코드를 난독화하거나 축소화하지 않습니다.
-서드파티 자바 라이브러리나 안드로이드 라이브러리를 사용한다면 Proguard 적용을 통해 APK의 크기를 줄이고 리버스 엔지니어링으로부터 코드를 보호할 수 있습니다.
+기본적으로, Flutter는 Android 관련 코드를 난독화하거나 축소화하지 않습니다.
+서드파티 자바 라이브러리나 Android 라이브러리를 사용한다면 Proguard 적용을 통해 APK의 크기를 줄이고 리버스 엔지니어링으로부터 코드를 보호할 수 있습니다.
 
 다트 코드 난독화에 대한 정보를 얻기 위해서는 [Flutter wiki]({{site.github}}/flutter/flutter/wiki)의 [Obfuscating Dart
 Code]({{site.github}}/flutter/flutter/wiki/Obfuscating-Dart-Code)를 참조하세요.
@@ -169,7 +169,7 @@ android {
 }
 ```
 
-참고: 난독화와 축소 과정으로 인해 안드로이드 앱의 컴파일 시간이 크게 늘어날 수 있습니다.
+참고: 난독화와 축소 과정으로 인해 Android 앱의 컴파일 시간이 크게 늘어날 수 있습니다.
 
 ## Release APK 빌드하기
 
@@ -184,11 +184,11 @@ android {
 
 ## 기기에 release APK 설치하기
 
-다음 지시사항에 따라 이전 단계에서 생성한 APK를 연결된 안드로이드 기기에 설치하세요.
+다음 지시사항에 따라 이전 단계에서 생성한 APK를 연결된 Android 기기에 설치하세요.
 
 명령줄을 사용하세요:
 
-1. 안드로이드 기기를 컴퓨터에 연결합니다.
+1. Android 기기를 컴퓨터에 연결합니다.
 1. `cd <app dir>` (설치하려는 앱의 디렉토리입니다).
 1. `flutter install` 을 통해 설치합니다.
 

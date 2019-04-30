@@ -13,13 +13,13 @@ toc: false
 하지만, 더 나은 환경을 위해 우리의 에디터 플러그인을 사용하기를 권합니다.
 플러그인은 코드 자동완성, 문법 강조 표시, 위젯 편집 지원, 실행 및 디버그 지원 등을 제공합니다.
 
-아래 단계를 따라 안드로이드 스튜디오나 IntelliJ 혹은 VS Code에 플러그인을 추가하세요.
+아래 단계를 따라 Android 스튜디오나 IntelliJ 혹은 VS Code에 플러그인을 추가하세요.
 다른 에디터를 사용하고 싶다면, 생략하고 [다음 단계: 시운전](/docs/get-started/test-drive)로 넘어가도 좋습니다.
 
 {% comment %} Nav tabs {% endcomment -%}
 <ul class="nav nav-tabs" id="editor-setup" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="androidstudio-tab" href="#androidstudio" role="tab" aria-controls="androidstudio" aria-selected="true">안드로이드 스튜디오 / IntelliJ</a>
+    <a class="nav-link active" id="androidstudio-tab" href="#androidstudio" role="tab" aria-controls="androidstudio" aria-selected="true">Android 스튜디오 / IntelliJ</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="vscode-tab" href="#vscode" role="tab" aria-controls="vscode" aria-selected="false">비주얼 스튜디오 코드</a>
@@ -31,11 +31,11 @@ toc: false
 
 <div class="tab-pane active" id="androidstudio" role="tabpanel" aria-labelledby="androidstudio-tab" markdown="1">
 
-## 안드로이드 스튜디오 설치
+## Android 스튜디오 설치
 
-안드로이드 스튜디오는 Flutter에 맞는 완벽한 통합 IDE 경험을 제공합니다.
+Android 스튜디오는 Flutter에 맞는 완벽한 통합 IDE 경험을 제공합니다.
 
-* [안드로이드 스튜디오]({{site.android-dev}}/studio), 3.0 이상 버전
+* [Android 스튜디오]({{site.android-dev}}/studio), 3.0 이상 버전
 
 또는, IntelliJ를 사용할 수도 있습니다:
 
@@ -46,7 +46,7 @@ toc: false
 
 설치를 위해서:
 
- 1. 안드로이드 스튜디오를 시작하세요.
+ 1. Android 스튜디오를 시작하세요.
  1. 플러그인 preferences를 여세요 
     (맥OS에서는 **Preferences > Plugins**,
     윈도우와 리눅스에서는 **File > Settings > Plugins**).
