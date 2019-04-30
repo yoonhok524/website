@@ -32,7 +32,6 @@ Flutter는 화면의 각 픽셀을 직접 제어하기 때문에, 자바스크�
 ### 진입점
 
 자바스크립트에는 진입점 역할을 하는 함수가 미리 정의되어 있지 않습니다.
-JavaScript doesn't have a pre-defined entry function—you define the entry point.
 
 ```js
 // JavaScript
