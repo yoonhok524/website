@@ -123,7 +123,7 @@ storeFile=<key store 파일 위치, 예) /Users/<user name>/key.jks>
 기본적으로, Flutter는 Android 관련 코드를 난독화하거나 축소화하지 않습니다.
 서드파티 자바 라이브러리나 Android 라이브러리를 사용한다면 Proguard 적용을 통해 APK의 크기를 줄이고 리버스 엔지니어링으로부터 코드를 보호할 수 있습니다.
 
-다트 코드 난독화에 대한 정보를 얻기 위해서는 [Flutter wiki]({{site.github}}/flutter/flutter/wiki)의 [Obfuscating Dart
+Dart 코드 난독화에 대한 정보를 얻기 위해서는 [Flutter wiki]({{site.github}}/flutter/flutter/wiki)의 [Obfuscating Dart
 Code]({{site.github}}/flutter/flutter/wiki/Obfuscating-Dart-Code)를 참조하세요.
 
 ### Step 1 - Proguard 구성하기

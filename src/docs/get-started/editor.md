@@ -42,7 +42,7 @@ Android 스튜디오는 Flutter에 맞는 완벽한 통합 IDE 경험을 제공�
 * [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/), 2017.1 이상 버전
 * [IntelliJ IDEA Ultimate](https://www.jetbrains.com/idea/download/), 2017.1 이상 버전
 
-## Flutter와 다트 플러그인 설치
+## Flutter와 Dart 플러그인 설치
 
 설치를 위해서:
 
@@ -51,7 +51,7 @@ Android 스튜디오는 Flutter에 맞는 완벽한 통합 IDE 경험을 제공�
     (맥OS에서는 **Preferences > Plugins**,
     윈도우와 리눅스에서는 **File > Settings > Plugins**).
  1. **Browse repositories**를 선택하고, Flutter 플러그인을 선택하고 **설치**를 클릭하세요.
- 1. 다트 플러그인을 설치하라는 메시지가 나타나면 **Yes**를 클릭하세요.
+ 1. Dart 플러그인을 설치하라는 메시지가 나타나면 **Yes**를 클릭하세요.
  1. 메시지가 나타나면 **Restart**를 클릭하세요.
 
 </div>
@@ -63,13 +63,13 @@ VS Code는 Flutter 앱 실행 및 디버그를 지원하는 가벼운 에디터�
 
 * [VS Code](https://code.visualstudio.com/), 최신 안정 버전
 
-## Flutter와 다트 플러그인 설치
+## Flutter와 Dart 플러그인 설치
 
  1. VS Code를 시작하세요.
  1. **View > Command Palette...**를 호출하세요.
  1. "install"를 입력하고, **Extensions: Install Extensions**를 선택하세요.
  1. 확장 검색 필드에서 "flutter"를 입력하고, 리스트에서 **Flutter**를 선택한 뒤, **Install**을 클릭하세요.
-    이렇게하면 필수 다트 플러그인도 함께 설치됩니다.
+    이렇게하면 필수 Dart 플러그인도 함께 설치됩니다.
  1. VS Code를 다시 로드하기 위해 **Reload to Activate**를 클릭하세요.
  1. **Reload to Activate**을 눌러 VS Code를 다시 시작하세요.
 

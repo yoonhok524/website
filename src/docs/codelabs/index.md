@@ -45,5 +45,5 @@ Flutter에서 머티리얼 컴포넌트가 어떠한 방식으로 쉽게 제품�
 {% comment %}
 // Right now, there's only the Java->Dart lab, which is also in the
 // Flutter category, so this is (effectively) a dupe link.
-다트 위주의 코드랩은 [dartlang.org]({{site.dart-site}})의 [codelabs]({{site.dart-site}}/codelabs)에서 보실 수 있습니다.
+Dart 위주의 코드랩은 [dartlang.org]({{site.dart-site}})의 [codelabs]({{site.dart-site}}/codelabs)에서 보실 수 있습니다.
 {% endcomment %}

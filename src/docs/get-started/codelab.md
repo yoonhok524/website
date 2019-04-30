@@ -21,7 +21,7 @@ diff2html: true
 
 첫 Flutter 앱을 만드는 방법을 안내합니다.
 변수, 반복문, 조건문 등 기본 프로그래밍 개념과 객체지향에 친숙하다면, 이 튜토리얼을 완료할 수 있습니다.
-다트 경험이나 모바일 프로그래밍 경험이 없어도 상관없습니다.
+Dart 경험이나 모바일 프로그래밍 경험이 없어도 상관없습니다.
 
 이 가이드는 코드랩 2부 중 1부입니다.
 [2부]({{site.codelabs}}/codelabs/first-flutter-app-pt2)는
@@ -80,10 +80,10 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
 
 {{site.alert.tip}}
   IDE에서 "New Flutter Project"가 보이지 않는다면,
-  [Flutter와 다트 플러그인 설치](/docs/get-started/editor)가 설치되어 있는지 확인하세요.
+  [Flutter와 Dart 플러그인 설치](/docs/get-started/editor)가 설치되어 있는지 확인하세요.
 {{site.alert.end}}
 
-코드랩에서는 주로 다트 코드가 있는 **lib/main.dart**를 수정할 것입니다.
+코드랩에서는 주로 Dart 코드가 있는 **lib/main.dart**를 수정할 것입니다.
 
  1. `lib/main.dart`의 내용을 바꿉니다.<br>
     **lib/main.dart**의 모든 코드를 삭제합니다.
@@ -400,7 +400,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
     ```
 
     {{site.alert.note}}
-      다트 언어에서는 식별자 앞에 밑줄을 붙이면 
+      Dart 언어에서는 식별자 앞에 밑줄을 붙이면 
       [프라이빗 적용]({{site.dart-site}}/guides/language/language-tour)이 됩니다. 
     {{site.alert.end}}
 
@@ -535,7 +535,7 @@ iOS와 Android 모두에서 작동하는 인터랙티브한 Flutter 앱을 작�
 이 코드랩에서:
 
 * Flutter 앱을 처음부터 만들었습니다.
-* 다트 코드를 작성했습니다.
+* Dart 코드를 작성했습니다.
 * 외부 서드파티 라이브러리를 활용했습니다.
 * 빠른 개발 사이클을 위해 hot reload를 사용했습니다.
 * Stateful 위젯을 적용했습니다.
