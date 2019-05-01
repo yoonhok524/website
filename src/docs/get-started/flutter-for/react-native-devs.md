@@ -1,39 +1,37 @@
 ---
-title: Flutter for React Native developers
-description: Learn how to apply React Native developer knowledge when building Flutter apps.
+title: React Native 개발자를 위한 Flutter
+description: React Native 개발자가 Flutter 앱을 만들 때 기존 지식을 활용하는 방법을 배워봅시다.
 ---
 
-This document is for React Native (RN) developers looking to apply their
-existing RN knowledge to build mobile apps with Flutter. If you understand
-the fundamentals of the RN framework then you can use this document as a
-way to get started learning Flutter development.
+이 문서는
+기존 React Native 지식을 활용하여
+Flutter로 모바일 앱을 만들려는
+React Native(RN) 개발자를 위한 문서입니다.
+RN 프레임워크의 핵심을 이해하고 있다면
+이 문서를 Flutter 개발을 시작하는 방안으로 사용하실 수 있습니다.
 
-This document can be used as a cookbook by jumping around and finding
-questions that are most relevant to your needs.
+필요한 부분에 가장 적합한 질문을 찾아내는 방식으로 이 문서를 요리책(cookbook)처럼 활용하실 수도 있습니다.
 
 
-## Introduction to Dart for JavaScript Developers
+## 자바스크립트 개발자를 위한 Dart 소개
 
-Like React Native, Flutter uses reactive-style views. However, while RN
-transpiles to native widgets, Flutter compiles all the way to native code.
-Flutter controls each pixel on the screen, which avoids performance problems
-caused by the need for a JavaScript bridge.
+React Native처럼, Flutter는 reactive-style 뷰를 사용합니다.
+하지만, 네이티브 위젯으로 변환(transpile)하는 RN과 달리, 
+Flutter는 모든 것을 네이티브 코드로 직접 컴파일합니다.
+Flutter는 화면의 각 픽셀을 직접 제어하기 때문에, 자바스크립트 브리지로 인한 성능 문제가 발생하지 않습니다. 
 
-Dart is an easy language to learn and offers the following features:
+Dart는 아래와 같은 기능을 제공하는 배우기 쉬운 언어입니다:
 
-* Provides an open-source, scalable programming language for building web,
-  server, and mobile apps.
-* Provides an object-oriented, single inheritance language that uses a C-style
-  syntax that is AOT-compiled into native.
-* Transcompiles optionally into JavaScript.
-* Supports interfaces and abstract classes.
+* 웹, 서버, 모바일 앱 개발이 가능한 확장성 있는 오픈 소스 프로그래밍 언어 제공
+* AOT를 통해 네이티브로 컴파일되는 C 방식의 구문을 사용하는 객체 지향 단일 상속 언어를 제공 
+* 자바스크립트로 변환(transcompile) 가능
+* 인터페이스와 추상 클래스 지원
 
-A few examples of the differences between JavaScript and Dart are described
-below.
+아래에 자바스크립트와 Dart의 몇 가지 차이점에 관한 예시가 적혀있습니다.
 
-### Entry point
+### 진입점
 
-JavaScript doesn't have a pre-defined entry function—you define the entry point.
+자바스크립트에는 진입점 역할을 하는 함수가 미리 정의되어 있지 않습니다.
 
 ```js
 // JavaScript
@@ -41,8 +39,7 @@ function startHere() {
   // Can be used as entry point
 }
 ```
-In Dart, every app must have a top-level `main()` function that serves as the
-entry point to the app.
+Dart에서는 최상단에 앱의 진입점인 `main()` 함수가 반드시 있어야 합니다.
 
 <!-- skip -->
 ```dart
@@ -51,11 +48,11 @@ main() {
 }
 ```
 
-Try it out in [DartPad]({{site.dartpad}}/0df636e00f348bdec2bc1c8ebc7daeb1).
+[DartPad]({{site.dartpad}}/0df636e00f348bdec2bc1c8ebc7daeb1)에서 실행해보세요.
 
-### Printing to the console
+### 콘솔에 출력하기
 
-To print to the console in Dart, use `print()`.
+`print()`를 사용하여 Dart 콘솔에 출력해보세요.
 
 ```js
 // JavaScript
@@ -68,8 +65,7 @@ console.log("Hello world!");
 print('Hello world!');
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/cf9e652f77636224d3e37d96dcf238e5).
+[DartPad]({{site.dartpad}}/cf9e652f77636224d3e37d96dcf238e5)에서 실행해보세요.
 
 ### Variables
 
@@ -651,7 +647,7 @@ In Flutter, use the `Image.network` constructor to include an image from a URL.
 ```dart
 // Flutter
 body: Image.network(
-          'https://flutter.io/images/owl.jpg',
+          'https://flutter-io.kr/images/owl.jpg',
 ```
 
 ### How do I install packages and package plugins?
