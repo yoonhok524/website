@@ -67,19 +67,18 @@ print('Hello world!');
 
 [DartPad]({{site.dartpad}}/cf9e652f77636224d3e37d96dcf238e5)에서 실행해보세요.
 
-### Variables
+### 변수
 
-Dart is type safe—it uses a combination of static type checking and runtime
-checks to ensure that a variable’s value always matches the variable’s static
-type. Although types are mandatory, some type annotations are optional because
-Dart performs type inference.
+Dart는 타입 검사를 하는(type safe) 언어입니다. 
+Dart는 정적 타입 검사와 런타임 타입 검사를 동시에 사용하여, 변수의 값이 변수의 정적 타입과 항상 일치하는지 검사합니다.
+타입이 필수이긴 하지만, Dart가 타입 추론을 하기 때문에 일부 타입 표기는 생략해도 됩니다.
 
-#### Creating and assigning variables
+#### 변수 생성 및 할당
 
-In JavaScript, variables cannot be typed.
+자바스크립트에서는, 변수의 타입을 선언할 수 없습니다.
 
-In [Dart]({{site.dart-site}}/dart-2), variables must either be explicitly
-typed or the type system must infer the proper type automatically.
+[Dart]({{site.dart-site}}/dart-2)에서는, 명시적으로 변수의 타입을 선언하거나   
+타입 시스템이 자동으로 적절한 변수의 타입을 추론할 수 있어야 합니다.
 
 ```js
 // JavaScript
@@ -89,24 +88,22 @@ var name = "JavaScript";
 <!-- skip -->
 ```dart
 // Dart
-String name = 'dart'; // Explicitly typed as a string.
-var otherName = 'Dart'; // Inferred string.
-// Both are acceptable in Dart.
+String name = 'dart'; // 명시적으로 문자열 타입 선언.
+var otherName = 'Dart'; // 문자열 타입으로 추론.
+// Dart에서는 두 방법 다 가능.
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/3f4625c16e05eec396d6046883739612).
+[DartPad]({{site.dartpad}}/3f4625c16e05eec396d6046883739612)에서 시도해보세요.
 
-For more information, see [Dart's Type
-System]({{site.dart-site}}/guides/language/sound-dart).
+더 많은 정보를 원하시면, [Dart의 타입 시스템]({{site.dart-site}}/guides/language/sound-dart)를
+참조하세요.
 
-#### Default value
+#### 기본값
 
-In JavaScript, uninitialized variables are `undefined`.
+자바스크립트에서 초기화하지 않은 변수는 `undefined`입니다.
 
-In Dart, uninitialized variables have an initial value of `null`. Because
-numbers are objects in Dart, even uninitialized variables with numeric types
-have the value `null`.
+Dart에서 초기화하지 않은 변수는 `null` 값을 가집니다.
+Dart에선 숫자도 객체이기 때문에, 초기화하지 않은 숫자 타입 변수도 `null` 값을 가집니다. 
 
 ```js
 // JavaScript
@@ -120,15 +117,15 @@ var name; // == null
 int x; // == null
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/57ec21faa8b6fe2326ffd74e9781a2c7).
+[DartPad]({{site.dartpad}}/57ec21faa8b6fe2326ffd74e9781a2c7)에서 시도해보세요.
 
-For more information, see the documentation on
-[variables]({{site.dart-site}}/guides/language/language-tour#variables).
+더 많은 정보를 원하시면, 
+[변수]({{site.dart-site}}/guides/language/language-tour#variables)를
+참조하세요.
 
-### Checking for null or zero
+### null 또는 0 체크
 
-In JavaScript, values of 1 or any non-null objects are treated as true.
+자바스크립트는 1이나 null이 아닌 객체의 도 true로 취급됩니다.
 
 ```js
 // JavaScript
@@ -141,7 +138,7 @@ if (!zero) {
   console.log("0 is treated as false");
 }
 ```
-In Dart, only the boolean value `true` is treated as true.
+Dart는 boolean 값 `true`만 true로 취급합니다.
 
 <!-- skip -->
 ```dart
@@ -156,13 +153,11 @@ if (zero == 0) {
 }
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/c85038ad677963cb6dc943eb1a0b72e6).
+[DartPad]({{site.dartpad}}/c85038ad677963cb6dc943eb1a0b72e6)에서 시도해보세요.
 
-### Functions
+### 함수
 
-Dart and JavaScript functions are generally similar. The primary difference is
-the declaration.
+Dart와 자바스크립트 함수는 대체로 유사합니다. 주된 차이점은 선언입니다.
 
 ```js
 // JavaScript
@@ -183,22 +178,20 @@ bool fn() {
 }
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/5454e8bfadf3000179d19b9bc6be9918).
+[DartPad]({{site.dartpad}}/5454e8bfadf3000179d19b9bc6be9918)에서 시도해보세요.
 
-For more information, see the documentation on
-[functions]({{site.dart-site}}/guides/language/language-tour#functions).
+더 많은 정보를 원하시면, 
+[함수]({{site.dart-site}}/guides/language/language-tour#functions)를 참조하세요.
 
-### Asynchronous programming
+### 비동기 프로그래밍
 
 #### Futures
 
-Like JavaScript, Dart supports single-threaded execution. In JavaScript,
-the Promise object represents the eventual completion (or failure)
-of an asynchronous operation and its resulting value.
+자바스크립트와 마찬가지로 Dart도 단일 스레드 실행을 지원합니다. 
+자바스크립트에서 Promise 객체는 비동기 작업의 최종 완료 (또는 실패)와 결과 값을 나타냅니다.
 
-Dart uses [`Future`]({{site.dart-site}}/tutorials/language/futures)
-objects to handle this.
+Dart는 이러한 비동기 처리를 위해서 
+[`Future`]({{site.dart-site}}/tutorials/language/futures) 객체를 사용합니다.
 
 ```js
 // JavaScript
@@ -226,18 +219,17 @@ _getIPAddress() {
 }
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/5a0017d09b6823d0248d965b93133e2e).
+[DartPad]({{site.dartpad}}/5a0017d09b6823d0248d965b93133e2e)에서 시도해보세요.
 
-For more information, see the documentation on
-[Futures]({{site.dart-site}}/tutorials/language/futures).
+더 많은 정보를 원하시면, 
+[Futures]({{site.dart-site}}/tutorials/language/futures)를 참조하세요.
 
-#### `async` and `await`
+#### `async`와 `await`
 
-The `async` function declaration defines an asynchronous function.
+`async` 함수 선언으로 비동기 함수를 정의합니다.
 
-In JavaScript, the `async` function returns a `Promise`. The `await` operator is
-used to wait for a `Promise`.
+자바스크립트에서는 `async` 함수가 `Promise`를 반환합니다.
+`await` 연산자는 `Promise`를 기다리기 위해서 사용합니다다.
 
 ```js
 // JavaScript
@@ -250,9 +242,8 @@ async _getIPAddress() {
 }
 ```
 
-In Dart, an `async` function returns a `Future`, and the body of the function is
-scheduled for execution later. The `await` operator is used to wait for a
-`Future`.
+Dart에서는 `async` 함수가 `Future`를 반환하고, 함수의 구현된 내용은 나중에 실행되도록 예약됩니다.
+`await` 연산자는 `Future`를 기다리기 위해서 사용됩니다.
 
 <!-- skip -->
 ```dart
@@ -265,11 +256,10 @@ _getIPAddress() async {
 }
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/04bb4334985107cddcd021322398c918).
+[DartPad]({{site.dartpad}}/04bb4334985107cddcd021322398c918)에서 시도해보세요.
 
-For more information, see the documentation for [`async` and
-`await`]({{site.dart-site}}/guides/language/language-tour#asynchrony-support).
+더 많은 정보를 원하시면, [`async`와
+`await`]({{site.dart-site}}/guides/language/language-tour#asynchrony-support)를 참조하세요.
 
 ## The basics
 ### How do I create a Flutter app?
