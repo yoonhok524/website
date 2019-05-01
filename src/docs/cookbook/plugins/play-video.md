@@ -10,7 +10,7 @@ next:
 
 앱 개발에 있어 영상 재생은 일반적인 작업으로 Flutter에서도 예외는 아닙니다. 영상을
 재생하기 위해 Flutter는 
-[`video_player`](https://pub.dartlang.org/packages/video_player) 플러그인을
+[`video_player`]({{site.pub-pkg}}/video_player) 플러그인을
 제공하고 있습니다. `video_player` 플러그인을 통해 파일 시스템에 저장된 영상이나
 인터넷의 영상을 재생할 수 있습니다.
 
@@ -145,13 +145,13 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
 이제 영상을 보여줄 차례입니다. `video_player` 플러그인은 `VideoPlayerController`에
 의해 초기화된 영상을 보여주기 위해
-[`VideoPlayer`](https://pub.dartlang.org/documentation/video_player/latest/video_player/VideoPlayer-class.html)
+[`VideoPlayer`]({{site.pub-api}}/video_player/latest/video_player/VideoPlayer-class.html)
 위젯을 제공합니다. 기본적으로 `VideoPlayer` 위젯은 가능한한 넓은 면적을 차지하려고 합니다.
 이러한 점은 종종 영상들이 16x9나 4x3과 같이 특정 종횡비로 표시되기 때문에 이상적이지는 않습니다.
 
 
 영상이 제대로된 비율로 보여지도록 `VideoPlayer` 위젯을 
-[`AspectRatio`](https://docs.flutter.io/flutter/widgets/AspectRatio-class.html)
+[`AspectRatio`]({{site.api}}/flutter/widgets/AspectRatio-class.html)
 위젯으로 감쌀 수 있습니다.
 
 추가로 `_initializeVideoPlayerFuture`가 완료된 후에 `VideoPlayer`를 보여줘야 합니다.
@@ -186,9 +186,9 @@ FutureBuilder(
 
 기본적으로 영상은 일시 중지 상태로 시작합니다. 재생을 시작하려면 `VideoPlayerController`가
 제공하는 
-[`play`](https://pub.dartlang.org/documentation/video_player/latest/video_player/VideoPlayerController/play.html)
+[`play`]({{site.pub-api}}/video_player/latest/video_player/VideoPlayerController/play.html)
 메서드를 호출하세요. 재생을 일시 중지 시키려면 
-[`pause`](https://pub.dartlang.org/documentation/video_player/latest/video_player/VideoPlayerController/pause.html)
+[`pause`]({{site.pub-api}}/video_player/latest/video_player/VideoPlayerController/pause.html)
 메서드를 호출하면 됩니다.
 
 본 예제에서는 상황에 따라 재생 혹은 일시 중지 아이콘을 보여주기 위해

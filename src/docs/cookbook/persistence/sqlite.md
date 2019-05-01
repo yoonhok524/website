@@ -12,7 +12,7 @@ next:
 사용해보세요. 일반적으로 데이터베이스는 다른 로컬 솔루션보다 더 빠른 쓰기, 수정, 읽기 성능을 제공합니다.
 
 Flutter 앱은 pub에서 이용가능한 
-[`sqflite`](https://pub.dartlang.org/packages/sqflite) 플러그인을 통해 SQLite 데이터베이스를
+[`sqflite`]({{site.pub-pkg}}/sqflite) 플러그인을 통해 SQLite 데이터베이스를
 사용할 수 있습니다. 본 예제에서는 다양한 강아지 데이터를 가지고 추가, 읽기, 수정, 삭제 등과 같은 기본적인 
 `sqflite` 사용법을 소개할 것입니다.
 
@@ -122,7 +122,7 @@ final Future<Database> database = openDatabase(
 
   1. `Dog`를 `Map`으로 변환하세요
   2. `dogs` 테이블에 `Map`을 저장하기 위해
-  [`insert`](https://pub.dartlang.org/documentation/sqflite/latest/sqlite_api/DatabaseExecutor/insert.html)
+  [`insert`]({{site.pub-api}}/sqflite/latest/sqlite_api/DatabaseExecutor/insert.html)
   를 사용하세요
 
 <!-- skip -->
@@ -207,7 +207,7 @@ print(await dogs()); // Fido를 포함한 리스트를 출력합니다
 
 데이터베이스에 어떤 정보를 추가하고 이후에 해당 정보를 수정하고 싶은 경우가 있습니다. 이를 위해
 `sqflite` 라이브러리의 
-[`update`](https://pub.dartlang.org/documentation/sqflite/latest/sqlite_api/DatabaseExecutor/update.html)
+[`update`]({{site.pub-api}}/sqflite/latest/sqlite_api/DatabaseExecutor/update.html)
 메서드를 사용하세요.
 
 다음 두 단계로 수행할 수 있습니다:
@@ -255,7 +255,7 @@ print(await dogs()); // Fido의 정보를 나이 42와 함께 출력합니다.
 
 Dog에 대한 정보를 추가, 수정하는 것외에 데이터베이스에서 dog를 제거할 수도 있습니다. 데이터를 제거하기 위해
 `sqflite` 라이브러리의 
-[`delete`](https://pub.dartlang.org/documentation/sqflite/latest/sqlite_api/DatabaseExecutor/delete.html)
+[`delete`]({{site.pub-api}}/sqflite/latest/sqlite_api/DatabaseExecutor/delete.html)
 메서드를 사용하세요
 
 여기에서는 하나의 id 값을 인자로 받아 데이터베이스에서 id 값이 일치하는 dog를 삭제하는 함수를 만들 것입니다.

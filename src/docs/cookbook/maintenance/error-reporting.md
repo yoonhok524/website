@@ -14,7 +14,7 @@ next:
 버그의 우선 순위를 정하고 그것들을 수정해나갈 수 있습니다.
 
 사용자가 얼마나 자주 버그를 경험하는지 어떻게 알 수 있을까요? 에러가 발생하면 
-에러와 stacktrace로 구성된 보고서를 만들어 Sentry, Fabric 혹은 Rollbar와 같은 
+에러와 stacktrace로 구성된 보고서를 만들어 Sentry, Fabric 혹은 [Rollbar](https://rollbar.com/)와 같은 
 에러 추적 서비스에 보내세요.
 
 에러 추적 서비스는 사용자가 경험한 모든 에러들을 모아 그룹화합니다. 

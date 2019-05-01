@@ -6,16 +6,25 @@ short-title: 플랫폼 별 코드
 이 가이드는 플랫폼 별 코드를 어떻게 작성하는지 설명합니다. 어떤 플랫폼 별 기능은
 이미 있는 패키지를 통해 사용이 가능합니다. [using packages](/docs/development/packages-and-plugins/using-packages) 를 참조하세요.
 
-Flutter는 Android에서의 Java와 Kotlin, iOS에서의 ObjectiveC와 Swift에서 가능한 플랫폼 별 api를
+Flutter는 Android에서의 Java와 Kotlin, iOS에서의 Objective-C와 Swift에서 가능한 플랫폼 별 api를
 사용하게 해주는 유연한 시스템을 사용합니다.
 
 Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유연한 메시지 전달 스타일을 사용합니다.
-
 
 * 앱의 Flutter 부분은 플랫폼 채널을 통해서 iOS 나 Android 가 될 수 있는 *호스트* 에게 메시지를 보냅니다.
 
 * *호스트* 는 플랫폼 채널에서 메시지를 받습니다. 그리고 플랫폼 네이티브 언어를 사용해서
 몇 개 던지 플랫폼 별 APIs 를 호출하고, Flutter 부분인 *클라이언트* 에게 응답을 보냅니다.
+ 
+ <aside id="note" class="alert alert-info" markdown="1">
+**참고:** 
+이 가이드에서는 Java/Kotlin/Objective-C/Swift 플랫폼의 API 또는 라이브러리를 사용해야하는 경우 
+플랫폼 채널 메커니즘을 사용합니다.
+하지만 [defaultTargetPlatform]({{site.api}}/flutter/foundation/defaultTargetPlatform.html) 속성을 
+사용하여 플랫폼별 Dart 코드를 작성할 수도 있습니다.
+[platform-specific adaptations](/docs/resources/platform-adaptations)
+목록은 Flutter가 프레임워크에서 알아서 플랫폼별 적응을 처리해주는 부분에 대한 목록입니다.
+</aside>
 
 ## 아키텍쳐 훝어 보기: 플랫폼 채널 {#architecture}
 

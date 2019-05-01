@@ -4,7 +4,8 @@
   "private": true,
   "description": "www.dartlang.org",
   "scripts": {
-    "dev": "./tool/serve.sh"
+    "start": "./tool/serve.sh",
+    "clean": "rm -Rf ./_site/* ./.jekyll*"
   },
   "repository": {
     "type": "git",

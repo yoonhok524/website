@@ -24,6 +24,8 @@
           permalink: /docs/get-started/flutter-for/web-devs
         - title: Xamarin.Forms 개발자를 위한 Flutter
           permalink: /docs/get-started/flutter-for/xamarin-forms-devs
+        - title: Introduction to declarative UI
+          permalink: /docs/get-started/flutter-for/declarative
     - title: "다트 언어 개요"
       permalink: https://www.dartlang.org/guides/language
 
@@ -192,6 +194,8 @@
       permalink: /docs/resources/bootstrap-into-dart
     - title: Inside Flutter
       permalink: /docs/resources/inside-flutter
+    - title: Platform adaptations
+      permalink: /docs/resources/platform-adaptations
     - title: 기술 개요
       permalink: /docs/resources/technical-overview
     # - title: Flutter best practices # TODO

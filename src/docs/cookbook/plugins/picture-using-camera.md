@@ -9,7 +9,7 @@ next:
 ---
 
 사진을 찍거나 영상을 촬영하기 위해 디바이스의 카메라를 사용하는 많은 앱들이 있습니다.
-이러한 목적을 위해 Flutter는 [`camera`](https://pub.dartlang.org/packages/camera) 
+이러한 목적을 위해 Flutter는 [`camera`]({{site.pub-pkg}}/camera) 
 플러그인을 제공합니다. `camera` 플러그인을 통해 이용가능한 카메라 리스트를 얻고, 특정 
 카메라의 프리뷰를 보여주거나 사진, 영상을 촬영을 촬영할 수 있습니다.
 
@@ -29,9 +29,9 @@ next:
 
 본 예제를 수행하기 위해, 아래 세 개의 의존성을 추가해야 합니다:
 
-  - [`camera`](https://pub.dartlang.org/packages/camera) - 디바이스의 카메라를 제어하기 위한 도구를 제공합니다.
-  - [`path_provider`](https://pub.dartlang.org/packages/path_provider) - 이미지를 저장할 적합한 경로를 찾습니다.
-  - [`path`](https://pub.dartlang.org/packages/path) - 플랫폼에 상관없이 경로를 생성합니다.
+  - [`camera`]({{site.pub-pkg}}/camera) - 디바이스의 카메라를 제어하기 위한 도구를 제공합니다.
+  - [`path_provider`]({{site.pub-pkg}}/path_provider) - 이미지를 저장할 적합한 경로를 찾습니다.
+  - [`path`]({{site.pub-pkg}}/path) - 플랫폼에 상관없이 경로를 생성합니다.
 
 ```yaml
 dependencies:
@@ -133,7 +133,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 완료될 때까지 기다려야 합니다.
 
 이를 위해 
-[`FutureBuilder`](https://docs.flutter.io/flutter/widgets/FutureBuilder-class.html)를
+[`FutureBuilder`]({{site.api}}/flutter/widgets/FutureBuilder-class.html)
 사용하겠습니다.
 
 <!-- skip -->
@@ -157,7 +157,7 @@ FutureBuilder<void>(
 ## 5. `CameraController`를 사용하여 사진 찍기
 
 `CameraController`의 
-[`takePicture`](https://pub.dartlang.org/documentation/camera/latest/camera/CameraController/takePicture.html)
+[`takePicture`]({{site.pub-api}}/camera/latest/camera/CameraController/takePicture.html)
 메서드를 사용하면 사진 촬영을 할 수 있습니다. 본 예제에서는 사용자가 눌렀을 때
 `CameraController`를 사용하여 사진 촬영을 하는 `FloatingActionButton`을 
 만들겠습니다.

@@ -123,8 +123,8 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
       * 터미널: `flutter format <파일명>`을 실행하세요.
     {{site.alert.end}}
 
- 2. IDE에서 녹색 화살표를 클릭하여 [앱을 실행](/docs/get-started/test-drive#androidstudio)하세요.  
-    기기에 따라, 안드로이드 또는 iOS 화면에 글자가 표시되어야 합니다. 
+ 2. [IDE에 적합한 방식으로](/docs/get-started/test-drive) 앱을 실행하세요.
+    장치에 따라, Android 또는 iOS 결과가 나와야 합니다.
 
     {% indent %}
       {% include android-ios-figure-pair.md image="hello-world.png" alt="Hello world app" %}
@@ -241,7 +241,7 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
       그래서, "uppercamelcase"는 "UpperCamelCase"가 됩니다.  
     {{site.alert.end}}
 
- 5. 앱이 실행중이면, hot reload 버튼<i class="material-icons align-bottom">offline_bolt</i>을 사용하여 
+ 5. 앱이 실행중이면, [hot reload](/docs/get-started/test-drive)를 사용하여 
     실행중인 앱을 업데이트하세요. 
     실행중인 앱에서 hot reload를 클릭할 때마다 혹은 프로젝트를 저장할 때마다, 랜덤하게 선택된 다른 단어 쌍을 볼 수 있을 것입니다.
     왜냐하면 MaterialApp이 렌더링 될 때마다 혹은 또는 Flutter Inspector에서 플랫폼을 전환할 때마다
@@ -306,7 +306,7 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
     ```dart
       class RandomWords extends StatefulWidget {
         @override
-        RandomWordsState createState() => new RandomWordsState();
+        RandomWordsState createState() => RandomWordsState();
       }
     ```
 
@@ -407,10 +407,18 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
     다음으로, `RandomWordsState` 클래스에 `_buildSuggestions()` 함수를 추가하세요. 
     이 메서드는 제안된 단어 쌍을 표시하는 `ListView`를 만듭니다.
 
+    The `ListView` class provides a builder property, `itemBuilder`, that's a
+    factory builder and callback function specified as an anonymous function.
+    Two parameters are passed to the function&mdash;the `BuildContext`,
+    and the row iterator, `i`. The iterator begins at 0 and increments
+    each time the function is called, once for every suggested word pairing.
+    This model allows the suggested list to grow infinitely as the user scrolls.
+
     `ListView` 클래스는 builder 속성인 `itemBuilder`를 제공합니다. 
     이 팩토리 빌더는 익명 함수 형태의 콜백 함수를 받습니다.
     두 인자가 함수에 전달됩니다; `BuildContext`와 행 반복자 `i`입니다.
-    반복자는 0부터 시작되고 제안된 모든 단어 쌍에 대해 각각 한 번씩 함수가 호출될 때마다 증가합니다.
+    반복자는 0부터 시작되고 함수가 호출될 때마다 증가합니다.
+    ListTile에 제안된 모든 단어 쌍에 대해 2번씩, 그리고  Divider에 1번씩 증가합니다.
     이 방식을 사용하여 사용자가 스크롤을 할 때마다 목록이 무한하게 증가할 수 있게 할 수 있습니다.
 
  2. `RandomWordsState` 클래스에 `_buildSuggestions()` 함수를 추가하세요: 
