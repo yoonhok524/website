@@ -18,7 +18,7 @@
           permalink: /docs/get-started/flutter-for/android-devs
         - title: iOS 개발자를 위한 Flutter
           permalink: /docs/get-started/flutter-for/ios-devs
-        - title: 리액트 네이티브 개발자를 위한 Flutter
+        - title: React Native 개발자를 위한 Flutter
           permalink: /docs/get-started/flutter-for/react-native-devs
         - title: 웹 개발자를 위한 Flutter
           permalink: /docs/get-started/flutter-for/web-devs
