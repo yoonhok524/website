@@ -125,7 +125,7 @@ int x; // == null
 
 ### null 또는 0 체크
 
-자바스크립트는 1이나 null이 아닌 객체의 도 true로 취급됩니다.
+자바스크립트는 1이나 null이 아닌 객체도 true로 취급합니다.
 
 ```js
 // JavaScript
