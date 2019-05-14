@@ -261,48 +261,45 @@ _getIPAddress() async {
 더 많은 정보를 원하시면, [`async`와
 `await`]({{site.dart-site}}/guides/language/language-tour#asynchrony-support)를 참조하세요.
 
-## The basics
-### How do I create a Flutter app?
+## 기본
+### Flutter 앱을 만드는 방법은?
 
-To create an app using React Native, you would run `create-react-native-app`
-from the command line.
+React Native로 앱을 만드려면 커멘드라인에서 `create-react-native-app`을 실행하면 됩니다.
 
 {% prettify %}
 $ create-react-native-app <projectname>
 {% endprettify%}
 
-To create an app in Flutter, do one of the following:
+Flutter에서 앱을 만들기 위해서는, 아래 방법 중 하나를 수행하면 됩니다:
 
-* Use the `flutter create` command from the command line. Make sure that the
-  Flutter SDK is in your PATH.
-* Use an IDE with the Flutter and Dart plugins installed.
+* 커멘드라인에서 `flutter create` 명령을 실행하세요.
+  Flutter SDK가 PATH에 들어있는지 확인이 필요합니다. 
+* Flutter와 Dart 플러그인이 설치된 IDE를 이용하세요.
 
 {% prettify %}
 $ flutter create <projectname>
 {% endprettify%}
 
-For more information, see [Getting Started](/docs/get-started), which
-walks you through creating a button-click counter app. Creating a Flutter
-project builds all the files that you need to run a sample app on both Android
-and iOS devices.
+더 많은 정보를 원하시면, [시작하기](/docs/get-started)를 참조하세요. 
+버튼 클릭으로 카운터를 조정하는 앱을 만드는 과정을 안내 받을 수 있습니다.
+Flutter 프로젝트를 만들 때 Android 및 iOS 기기에서 샘플 앱을 실행하는 데 필요한 모든 파일이 생성됩니다.
 
-### How do I run my app?
+### 앱을 실행하는 방법은?
 
-In React Native, you would run `npm run` or `yarn run` from the project
- directory.
+React Native를 사용할 때는, 프로젝트 디렉토리에서 `npm run`이나 `yarn run`으로 앱을 실행했을 것입니다.
 
- You can run Flutter apps in a couple of ways:
+ Flutter apps를 실행하는 몇가지 방법이 있습니다:
 
- * Use `flutter run` from the project's root directory.
- * Use the "run" option in an IDE with the Flutter and Dart plugins.
+ * 프로젝트 최상위 디렉토리에서 `flutter run`을 사용하세요.
+ * Flutter와 Dart 플러그인이 설치된 IDE에서 "run"을 실행하세요. 
 
- Your app runs on a connected device, the iOS simulator, or the Android emulator.
+ 앱이 연결된 기기나, iOS 시뮬레이터 혹은 Android 에뮬레이터에서 실행될 것입니다.
 
-For more information, see the Flutter [Getting Started](/docs/get-started) documentation.
+더 많은 정보를 원하시면, [시작하기](/docs/get-started)를 참조하세요.
 
-### How do I import widgets?
+### 위젯을 import 하는 방법은?
 
-In React Native, you need to import each required component.
+React Native에서는 필요한 모든 컴포넌트를 각각 import 해야 합니다.
 
 ```js
 //React Native
@@ -310,7 +307,10 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 ```
 
-In Flutter, to use widgets from the Material Design library, import the `material.dart` package. To use iOS style widgets, import the Cupertino library. To use a more basic widget set, import the Widgets library. Or, you can write your own widget library and import that.
+Flutter에서는 머티리얼 디자인 라이브러리에서 위젯을 사용하기 위해 `material.dart` 패키지를 import 합니다.
+iOS 스타일 위젯을 사용하기 위해 쿠퍼티노 라이브러리를 import 합니다.
+더 많은 기본 위젯을 사용하고 싶다면, 위젯 라이브러리를 import 합니다.
+아니면 직접 위젯 라이브러리를 작성하여 import 할 수도 있습니다.
 
 <!-- skip -->
 ```dart
@@ -319,15 +319,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/my_widgets.dart';
 ```
-Whichever widget package you import, Dart pulls in only the widgets that are
- used in your app.
+어떤 위젯 패키지를 import 하건, Dart는 앱에서 사용되는 위젯만 가져옵니다.
 
-For more information, see the [Flutter Widgets Catalog](/docs/development/ui/widgets).
+더 많은 정보를 원하시면, [Flutter 위젯 카탈로그](/docs/development/ui/widgets)를 참조하세요.
 
-### What is the equivalent of the React Native "Hello world!" app in Flutter?
+### Flutter에서 React Native "Hello world!" 앱과 동일한 것은?
 
-In React Native, the `HelloWorldApp` class extends `React.Component` and
-implements the render method by returning a view component.
+React Native에서는 `HelloWorldApp`이 `React.Component`를 상속 받고 
+render 메서드가 view 컴포넌트를 반환하도록 구현합니다.
 
 ```js
 // React Native
@@ -354,7 +353,8 @@ const styles = StyleSheet.create({
 });
 ```
 
-In Flutter, you can create an identical "Hello world!" app using the `Center` and `Text` widgets from the core widget library. The `Center` widget becomes the root of the widget tree and has one child, the `Text` widget.
+Flutter에서는, 기본 위젯 라이브러리의 `Center`와 `Text` 위젯을 활용하여 "Hello world!" 앱과 동일한 것을 만들 수 있습니다.
+`Center` 위젯을 최상위 위젯으로 하고, 자식으로 `Text` 위젯을 넣으면 됩니다. 
 
 <!-- skip -->
 ```dart
@@ -374,34 +374,33 @@ void main() {
 
 ```
 
-The following images show the Android and iOS UI for the basic Flutter
-"Hello world!" app.
+아래 이미지는 기본 Flutter "Hello world!" 앱의 Android와 iOS 화면을 보여줍니다. 
 
 {% include android-ios-figure-pair.md image="react-native/hello-world-basic.png" alt="Hello world app" class="border" %}
 
-Now that you've seen the most basic Flutter app, the next section shows how to
-take advantage of Flutter's rich widget libraries to create a modern, polished
-app.
+이제 가장 기본적인 Flutter 앱을 봤고, 
+다음 섹션에서는 Flutter의 풍부한 위젯 라이브러리를 활용하여 
+현대적이고 세련된 앱을 만드는 방법을 확인할 수 있습니다.  
 
-### How do I use widgets and nest them to form a widget tree?
+### 위젯을 사용하고 위젯 트리를 형성하는 방법은?
 
-In Flutter, almost everything is a widget.
+Flutter에서는 거의 모든 것이 위젯입니다.
 
-Widgets are the basic building blocks of an app's user interface. You compose
-widgets into a hierarchy, called a widget tree. Each widget nests inside a
-parent widget and inherits properties from its parent. Even the application
-object itself is a widget. There is no separate “application” object. Instead,
-the root widget serves this role.
+위젯은 앱 UI의 기본 구성 요소 입니다.
+위젯을 위젯 트리라고 불리는 계층 구조로 조합합니다. 
+각각의 위젯은 부모 위젯 내부에 들어가게 되고, 부모로부터 속성을 상속 받습니다.
+앱 객체 자체도 위젯입니다.
+별도의 “application” 객체는 없습니다.
+대신, 최상위 위젯이 그 역할을 담당합니다. 
 
-A widget can define:
+위젯을 아래와 같이 정의할 수 있습니다:
 
-* A structural element—like a button or menu
-* A stylistic element—like a font or color scheme
-* An aspect of layout—like padding or alignment
+* 버튼이나 메뉴와 같은 구조적 요소
+* 글꼴이나 색 구성표와 같은 문체 요소
+* 레이아웃과 같은 패딩 또는 정렬의 한 측면
 
-The following example shows the "Hello world!" app using widgets from the
-Material library. In this example, the widget tree is nested inside the
-`MaterialApp` root widget.
+아래 예제는 머티리얼 라이브러리의 위젯을 활용한 "Hello world!" 앱입니다.
+이 예제에서 위젯 트리는 `MaterialApp` 위젯 내부에 위치하게 됩니다. 
 
 
 <!-- skip -->
@@ -431,33 +430,30 @@ class MyApp extends StatelessWidget {
 ```
 
 
-The following images show "Hello world!" built from Material Design widgets. You get more functionality for free than in the basic "Hello world!" app.
+아래 이미지는 머티리얼 디자인 위젯으로 만든 "Hello world!"입니다. 기본적인 "Hello world!"보다 좀 더 많은 기능을 자유롭게 이용할 수 있습니다.
 
 {% include android-ios-figure-pair.md image="react-native/hello-world.png" alt="Hello world app" %}
 
-When writing an app, you'll use two types of widgets:
-[StatelessWidget]({{site.api}}/flutter/widgets/StatelessWidget-class.html) or
+앱을 작성할 때, 2가지 종류의 위젯을 사용하게 될겁니다:
+[StatelessWidget]({{site.api}}/flutter/widgets/StatelessWidget-class.html) 또는
  [StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html).
-A StatelessWidget is just what it sounds like—a
- widget with no state. A StatelessWidget is created once, and never changes its
-  appearance. A StatefulWidget dynamically changes state based on data
-   received, or user input.
+StatelessWidget은 위젯인데 상태가 없는 위젯입니다. 
+StatelessWidget은 한 번 만들어지고 절대 변하지 않습니다. 
+StatefulWidget은 사용자 입력이나 데이터 수신이 있으면 상태를 동적으로 변경합니다.
 
-The important difference between stateless and stateful widgets is that
- StatefulWidgets have a State object that stores state data and carries it over
-  across tree rebuilds, so it's not lost.
+상태가 없는 위젯과 상태가 있는 위젯의 중요한 차이점은 
+StatefulWidgets이 상태 데이터를 저장하고 그것을 트리 재구성을 통해 전달하는 State 객체가 있고,
+그렇기 때문에 손실되지 않는다는 점입니다. 
 
-In simple or basic apps it's easy to nest widgets, but as the code base gets
-larger and the app becomes complex, you should break deeply nested widgets into
-functions that return the widget or smaller classes. Creating separate functions
-and widgets allows you to reuse the components within the app.
+간단하거나 기본적인 앱에서 위젯을 감싸는 것은 쉽지만,
+코드 베이스가 점차 커지고 앱이 복잡해지면, 너무 많이 감싸져 있는 위젯을 함수로 빼거나 작은 클래스로 분리해야 합니다.
+분리된 함수를 만들면 위젯을 앱 내에서 재사용할 수 있게 됩니다. 
 
-### How do I create reusable components?
+### 재사용 가능한 컴포넌트를 만드는 방법은?
 
-In React Native, you would define a class to create a reusable component and then use
-`props` methods to set or return properties and values of the selected elements.
-In the example below, the `CustomCard` class is defined and then used inside a
-parent class.
+React Native에서는 재사용 가능한 컴포넌트를 만들기 위해 클래스를 정의한 다음 
+`props` 메서드를 사용하여 선택한 요소의 속성과 값을 설정하거나 반환합니다. 
+아래 예제에서 `CustomCard` 클래스를 정의하고, 부모 클래스 안에서 사용합니다. 
 
 ```js
 // React Native
@@ -479,9 +475,8 @@ class CustomCard extends React.Component {
 <CustomCard onPress={this.onPress} index={item.key} />
 ```
 
-In Flutter, define a class to create a custom widget and then reuse the
-widget. You can also define and call a function that returns a reusable widget
-as shown in the `build` function in the following example.
+Flutter에서는 커스텀 위젯을 만들기 위해 클래스를 정의하면 그 위젯을 재사용할 수 있습니다.
+또는 아래 예제와 같은 `build` 함수에서 재사용 가능한 위젯을 정의하고 호출할 수 있습니다.
 
 {% prettify dart %}
 
@@ -520,15 +515,15 @@ CustomCard(
 
 {% endprettify %}
 
-In the previous example, the constructor for the `CustomCard` class uses Dart's curly brace syntax `{ }` to indicate named [optional
-parameters]({{site.dart-site}}/guides/language/language-tour#optional-parameters).
+이전 예제에서는 `CustomCard` 클래스의 생성자가
+[optional parameters]({{site.dart-site}}/guides/language/language-tour#optional-parameters)를
+표현하기 위해 Dart의 중괄호 구문 `{ }`을 사용했습니다.
 
-To require these fields, either remove the curly braces from the constructor, or
-add `@required` to the constructor.
+이 필드를 필수로 만들고 싶다면, 
+생성자에서 중괄호를 지우거나 `@required`를 추가하면 됩니다.  
 
 
-
-The following screenshots show an example of the reusable CustomCard class.
+다음 스크린샷은 재사용할 수 있는 CustomCard 클래스의 예를 보여줍니다.
 
 {% include android-ios-figure-pair.md image="react-native/custom-cards.png" alt="Custom cards" class="border" %}
 
