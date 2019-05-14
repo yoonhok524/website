@@ -475,7 +475,7 @@ class CustomCard extends React.Component {
 <CustomCard onPress={this.onPress} index={item.key} />
 ```
 
-Flutter에서는 커스텀 위젯을 만들기 위해 클래스를 정의하면 그 위젯을 재사용 할 수 있습니다.
+Flutter에서는 커스텀 위젯을 만들기 위해 클래스를 정의하면 그 위젯을 재사용할 수 있습니다.
 또는 아래 예제와 같은 `build` 함수에서 재사용 가능한 위젯을 정의하고 호출할 수 있습니다.
 
 {% prettify dart %}
@@ -523,7 +523,7 @@ CustomCard(
 생성자에서 중괄호를 지우거나 `@required`를 추가하면 됩니다.  
 
 
-다음 스크린샷은 재사용 할 수 있는 CustomCard 클래스의 예를 보여줍니다.
+다음 스크린샷은 재사용할 수 있는 CustomCard 클래스의 예를 보여줍니다.
 
 {% include android-ios-figure-pair.md image="react-native/custom-cards.png" alt="Custom cards" class="border" %}
 
