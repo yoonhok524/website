@@ -589,13 +589,12 @@ flutter:
 ```
 
 `assets` 부분은 앱에 포함시켜야하는 파일을 지정합니다.
-각 asset은 `pubspec.yaml`에 명시된 상대 경로에 의해서 asset 파일이 어디에 있는 구분됩니다.
-asset이 어떤 순서로 됐는지는 중요하지 않습니다.
+각 asset은 `pubspec.yaml`에 명시된 상대 경로에 의해서 asset 파일이 어디에 있는지 구분됩니다.
+asset이 정의된 순서는 중요하지 않습니다.
 실제 디렉토리 이름(위 경우에는 `assets`)도 중요하지 않습니다. 
 어떤 디렉토리에도 asset을 배치할 수는 있지만, `assets` 디렉토리에 배치하기를 권합니다.
 
-빌드하는 동안 Flutter는 *asset bundle*이라 불리는 특수한 아카이브에 asset을 저장합니다.
-런타임에 앱이 아카이브에서 읽어옵니다.
+빌드 중, Flutter는 런타임 때에 앱이 읽어올 *asset bundle*이라 불리는 특수한 아카이브에 asset을 저장합니다.
 `pubspec.yaml`에 asset의 경로가 지정되면, 빌드 프로세스는 인접한 디렉토리에서 같은 이름의 파일을 찾습니다. 
 이 파일들은 지정된 asset과 함께 asset bundle에도 포함됩니다. 
 Flutter는 앱에 적합한 해상도의 이미지를 선택할 때 asset variants를 사용합니다.
