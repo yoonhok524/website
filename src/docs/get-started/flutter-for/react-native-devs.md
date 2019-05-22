@@ -617,12 +617,12 @@ image: AssetImage('assets/background.png'),
 더 많은 정보를 원하시면 [Flutter에서 
 Asset과 이미지 파일 추가하기](/docs/development/ui/assets-and-images)를 참조하세요.
 
-### How do I load images over a network?
+### 네트워크를 통해 이미지를 가져오는 방법은?
 
-In React Native, you would specify the `uri` in the `source` prop of the `Image`
-component and also provide the size if needed.
+React Native에서는 `Image` 컴포넌트의 `source` 속성에서 `uri`을 지정하고, 
+필요하다면 크기도 지정합니다.
 
-In Flutter, use the `Image.network` constructor to include an image from a URL.
+Flutter에서는 `Image.network` 생성자를 사용하여 해당 URL에서 이미지를 가져옵니다.
 
 <!-- skip -->
 ```dart
@@ -631,22 +631,20 @@ body: Image.network(
           'https://flutter-io.kr/images/owl.jpg',
 ```
 
-### How do I install packages and package plugins?
+### 패키지와 패키지 플러그인을 설치하는 방법은?
 
-Flutter supports using shared packages contributed by other developers to the
-Flutter and Dart ecosystems. This allows you to quickly build your app without
-having to develop everything from scratch. Packages that contain
-platform-specific code are known as package plugins.
+Flutter에서 Flutter와 Dart 생태계의 다른 개발자들이 만든 공유 패키지를 사용할 수 있습니다.
+이를 통해 일일이 모든 것을 개발할 필요없이 빠르게 앱을 개발할 수 있습니다.
+패키지 플러그인은 플랫폼별 코드가 포함된 패키지입니다.
 
-In React Native, you would use `yarn add {package-name}` or `npm install --save
-{package-name}` to install packages from the command line.
+React Native에서는 커멘드라인 `yarn add {package-name}`나 
+`npm install --save {package-name}` 명령을 사용해서 패키지를 설치합니다. 
 
-In Flutter, install a package using the following instructions:
+Flutter에서는 아래와 같은 방법으로 패키지를 설치합니다:
 
-1. Add the package name and version to the `pubspec.yaml` dependencies section.
-The example below shows how to add the `google_sign_in` Dart package to the
-`pubspec.yaml` file. Check your spaces when working in the YAML file because
-**white space matters**!
+1. `pubspec.yaml`의 dependencies 부분에 패키지 이름과 버전을 추가합니다. 
+아래 예제는 `pubspec.yaml` 파일에 `google_sign_in` Dart 패키지를 추가하는 방법을 보여줍니다. 
+**공백이 문제가 될 수 있기 때문에** YAML file의 공백을 잘 확인하세요! 
 
 ```yaml
 dependencies:
@@ -655,24 +653,23 @@ dependencies:
   google_sign_in: ^3.0.3
 ```
 
-2. Install the package from the command line by using `flutter packages get`.
-   If using an IDE, it often runs `flutter packages get` for you, or it might
-   prompt you to do so.
-3. Import the package into your app code as shown below:
+2. 커멘드라인에서 `flutter packages get`을 사용해서 패키지를 설치하세요.
+   IDE를 이용하고 있으면, IDE가 종종 `flutter packages get`을 실행해주거나, 
+   실행하도록 유도할 것입니다.
+3. 아래 코드와 같은 패키지를 import 하세요:
 
 <!-- skip -->
 ```dart
 import 'package:flutter/cupertino.dart';
 ```
 
-For more information, see [Using
-Packages](/docs/development/packages-and-plugins/using-packages) and
-[Developing Packages &
-Plugins](/docs/development/packages-and-plugins/developing-packages).
+더 많은 정보를 원하시면, 
+[패키지 사용하기](/docs/development/packages-and-plugins/using-packages)와
+[패키지 & 플러그인 개발](/docs/development/packages-and-plugins/developing-packages)를
+참조하세요.
 
-You can find many packages shared by Flutter developers in the [Flutter
-Packages]({{site.pub}}/flutter/) section of
-the [Pub site]({{site.pub}}).
+[Pub site]({{site.pub}})의 [Flutter Packages]({{site.pub}}/flutter/) 섹션에서
+Flutter 개발자들이 공유한 많은 패키지를 만날 수 있습니다.
 
 ## Flutter widgets
 
