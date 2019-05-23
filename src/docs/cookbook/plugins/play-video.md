@@ -91,7 +91,7 @@ iOS는 아래 내용을 `<project root>/ios/Runner/Info.plist`에 파일에 추�
 영상을 재생하기 전에, controller를 `초기화`해야 합니다. 이 작업을 통해 영상과 연결하고
 영상 제어를 위한 준비 작업을 하게 됩니다.
 
-`VideoPlayerController`를 초기화하려면,
+`VideoPlayerController`를 생성하고 초기화하려면,
 
   1. `StatefulWidget`과 `State` 클래스를 생성하세요.
   2. `State` 클래스에 `VideoPlayerController`를 저장하기 위한 변수를 추가하세요.

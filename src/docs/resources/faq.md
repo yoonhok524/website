@@ -7,8 +7,8 @@ description: Frequently asked questions and answers.
 
 ### What is Flutter?
 
-Flutter is Google’s mobile app SDK for crafting high-quality
-native experiences on iOS and Android in record time.
+Flutter is Google’s portable UI toolkit for crafting high-quality
+native experiences for mobile, web and desktop in record time.
 Flutter works with existing code, is used by developers
 and organizations around the world, and is free and open source.
 
@@ -424,10 +424,7 @@ though we are planning further investment in this area.
 
 ### Does Flutter run on the web?
 
-We're [working on porting Flutter to the Web]({{site.flutter-medium}}/hummingbird-building-flutter-for-the-web-e687c2a023a8),
-by taking advantage of the capability of the Dart platform to compile to JavaScript.
-This will enable Flutter code to run on the standards-based Web without change.
-This is not currently available.
+Flutter web is currently in [technical preview]({{site.url}}/web). We are developing Flutter for web in a fork of the Flutter repo. This enables fast iterations while keeping the core Flutter repo stable. You can repackage existing Flutter code to work on the web preview, but there are some caveats while we’re still in preview. Check out the [instructions]({{site.github}}/flutter/flutter-web) for more details.
 
 ### Can I use Flutter to build desktop apps?
 

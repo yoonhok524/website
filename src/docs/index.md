@@ -23,14 +23,15 @@ description: Flutter 문서의 랜딩 페이지
 
 ## 사이트 개편 내역
 
-**2019년 2월 26일**
+**2019년 5월 7일, 구글 I/O 에디션**
 
-바르셀로나에서 열리는 Mobile World Congress (MWC)에서 
-Flutter [1.2 버전](https://developers.googleblog.com/2019/02/launching-flutter-12-at-mobile-world.html) 출시되었습니다.
-자세한 정보는 [릴리스 노트](https://github.com/flutter/flutter/wiki/Release-Notes---Flutter-1.2.1) 또는
-[릴리스 다운로드](/docs/development/tools/sdk/archive)를 참조하세요.
+[Flutter 1.5](https://developers.googleblog.com/2019/05/Flutter-io19.html)가 출시됐습니다!
 
-새로운 문서 목록은 [what's new](/docs/whats-new-archive)를 확인하세요.
+업데이트에 관한 자세한 정보는 
+[릴리스 노트](https://github.com/flutter/flutter/wiki/Release-Notes-Flutter-1.5.4)
+또는 [릴리스 다운로드](/docs/development/tools/sdk/archive)를 참조하세요.
+
+[What's new archive](/docs/whats-new-archive)
 
 ## Flutter가 처음인가요?
 

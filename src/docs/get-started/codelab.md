@@ -188,8 +188,8 @@ GIF 애니메이션은 1부를 완료하면 앱이 어떻게 동작하는지를 
     아래와 같은 메시지를 콘솔에서 확인할 수 있습니다:  
 
     ```terminal
-    $ flutter packages get
-    Running "flutter packages get" in startup_namer...
+    $ flutter pub get
+    Running "flutter pub get" in startup_namer...
     Process finished with exit code 0
     ```
 
@@ -407,13 +407,6 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
     다음으로, `RandomWordsState` 클래스에 `_buildSuggestions()` 함수를 추가하세요. 
     이 메서드는 제안된 단어 쌍을 표시하는 `ListView`를 만듭니다.
 
-    The `ListView` class provides a builder property, `itemBuilder`, that's a
-    factory builder and callback function specified as an anonymous function.
-    Two parameters are passed to the function&mdash;the `BuildContext`,
-    and the row iterator, `i`. The iterator begins at 0 and increments
-    each time the function is called, once for every suggested word pairing.
-    This model allows the suggested list to grow infinitely as the user scrolls.
-
     `ListView` 클래스는 builder 속성인 `itemBuilder`를 제공합니다. 
     이 팩토리 빌더는 익명 함수 형태의 콜백 함수를 받습니다.
     두 인자가 함수에 전달됩니다; `BuildContext`와 행 반복자 `i`입니다.
@@ -530,6 +523,8 @@ StatefulWidget 클래스 그자체는 변경불가능합니다.
 아래 링크에 있는 코드 활용하여 다시 올바르게 동작하게 할 수 있습니다.
 
 * [lib/main.dart]({{code-url}}/startup_namer/step4_infinite_list/lib/main.dart)
+
+{% include run-profile.md %}
 
 ## 다음 단계
 {:.no_toc}

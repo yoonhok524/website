@@ -1,38 +1,47 @@
 ---
 title: 플랫폼 별 코드 작성
 short-title: 플랫폼 별 코드
+description: 앱에서 커스텀하게 플랫폼 별 코드를 작성하는 방법을 배워보세요.
 ---
 
-이 가이드는 플랫폼 별 코드를 어떻게 작성하는지 설명합니다. 어떤 플랫폼 별 기능은
-이미 있는 패키지를 통해 사용이 가능합니다. [using packages](/docs/development/packages-and-plugins/using-packages) 를 참조하세요.
+이 가이드는 플랫폼 별 코드를 어떻게 작성하는지 설명합니다. 어떤 플랫폼 별 기능은 
+이미 있는 패키지를 통해 사용이 가능합니다. 
+[using packages](/docs/development/packages-and-plugins/using-packages)를 
+참조하세요.
 
-Flutter는 Android에서의 Java와 Kotlin, iOS에서의 Objective-C와 Swift에서 가능한 플랫폼 별 api를
+Flutter는 Android에서의 Java와 Kotlin, 
+iOS에서의 Objective-C와 Swift에서 가능한 플랫폼 별 api를
 사용하게 해주는 유연한 시스템을 사용합니다.
 
-Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유연한 메시지 전달 스타일을 사용합니다.
+Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 
+유연한 메시지 전달 스타일을 사용합니다.
 
-* 앱의 Flutter 부분은 플랫폼 채널을 통해서 iOS 나 Android 가 될 수 있는 *호스트* 에게 메시지를 보냅니다.
+* 앱의 Flutter 부분은 플랫폼 채널을 통해서 iOS나 Android가 될 수 있는 
+  *호스트* 에게 메시지를 보냅니다.
 
-* *호스트* 는 플랫폼 채널에서 메시지를 받습니다. 그리고 플랫폼 네이티브 언어를 사용해서
-몇 개 던지 플랫폼 별 APIs 를 호출하고, Flutter 부분인 *클라이언트* 에게 응답을 보냅니다.
+* *호스트* 는 플랫폼 채널에서 메시지를 받습니다. 
+  그리고 플랫폼 네이티브 언어를 사용해서
+  몇 개의 플랫폼 별 APIs 를 호출하고, 
+  Flutter 부분인 *클라이언트* 에게 응답을 보냅니다.
  
- <aside id="note" class="alert alert-info" markdown="1">
-**참고:** 
+{{site.alert.note}} 
 이 가이드에서는 Java/Kotlin/Objective-C/Swift 플랫폼의 API 또는 라이브러리를 사용해야하는 경우 
 플랫폼 채널 메커니즘을 사용합니다.
 하지만 [defaultTargetPlatform]({{site.api}}/flutter/foundation/defaultTargetPlatform.html) 속성을 
 사용하여 플랫폼별 Dart 코드를 작성할 수도 있습니다.
 [platform-specific adaptations](/docs/resources/platform-adaptations)
 목록은 Flutter가 프레임워크에서 알아서 플랫폼별 적응을 처리해주는 부분에 대한 목록입니다.
-</aside>
+{{site.alert.end}}
 
 ## 아키텍쳐 훝어 보기: 플랫폼 채널 {#architecture}
 
-클라이언트(UI)와 호스트(플랫폼)이 플랫폼 채널에서 사용하는 메시지 형태는 아래 다이어그램에 그려져있습니다.
+클라이언트(UI)와 호스트(플랫폼)이 플랫폼 채널에서 사용하는 메시지 형태는 
+아래 다이어그램에 그려져있습니다.
 
 ![Platform channels architecture](/images/PlatformChannels.png)
 
-메시지와 응답은 반응성 좋은 사용자 인터페이스를 위해 비동기적으로 전달됩니다.
+메시지와 응답은 반응성 좋은 사용자 인터페이스를 위해 
+비동기적으로 전달됩니다.
 
 클라이언트 단에서는, `MethodChannel` ([API][MethodChannel])이 메시지를 그에 상응하는
 메서드로 보낼 수 있도록 해줍니다. 플랫폼 단에서는, Android는 `MethodChannel`([API][MethodChannelAndroid]), iOS는 `FlutterMethodChannel`
@@ -40,7 +49,8 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유�
 코드만으로도 플랫폼 플러그인을 개발할 수 있게 해줍니다.
 
 *참고*: 원한다면 메서드 호출은 반대의 방향으로도 보내질 수 있습니다.
-(Dart로 구현된 메서드의 클라이언트 역할을 하는 플랫폼일때) 예시는 이 플러그인([`quick_actions`]({{site.api}}/packages/quick_actions))을 봐주세요.
+(Dart로 구현된 메서드의 클라이언트 역할을 하는 플랫폼일 때) 예시는 
+이 플러그인([`quick_actions`]({{site.api}}/packages/quick_actions))을 봐주세요.
 
 [MethodChannel]: {{site.api}}/flutter/services/MethodChannel-class.html
 [MethodChannelAndroid]: {{site.api}}/javadoc/io/flutter/plugin/common/MethodChannel.html
@@ -48,8 +58,10 @@ Fluttr의 플랫폼 별 API는 코드 생성에 의존하고 있지 않고, 유�
 
 ### 플랫폼 채널 지원 데이터형과 코덱 {#codec}
 
-표준 플랫폼 채널은 간단한 json 형태의 효율적인 바이너리 직렬화를 지원하는 boolean, numbers, Strings,
-byte butters, List, Map등의 표준 메시지 코덱을 사용합니다 (참고: [`StandardMessageCodec`]({{site.api}}/flutter/services/StandardMessageCodec-class.html)).
+표준 플랫폼 채널은 간단한 json 형태의 효율적인 바이너리 직렬화를 지원하는 
+boolean, numbers, Strings, byte butters, List, Map등의 
+표준 메시지 코덱을 사용합니다 
+(참고: [`StandardMessageCodec`]({{site.api}}/flutter/services/StandardMessageCodec-class.html)).
 이 값들에 대한 메시지 직렬화와 역직렬화는 당신이 값을 보내고 받을 때 자동으로 이루어집니다.
 
 아래 표는 dart의 자료형이 플랫폼에서 어떻게 받고 보내지는지 보여줍니다.
@@ -72,18 +84,20 @@ byte butters, List, Map등의 표준 메시지 코덱을 사용합니다 (참고
 <br>
 ## 예시: 플랫폼 채널을 이용해서 iOS와 Android 코드 호출하기 {#example}
 
-아래에선 현재 배터리 레벨를 표시하기 위해 플랫폼 특화 API를 사용하는 법을 설명합니다. Android의 `BatteryManager`,
-iOS의 `device.batteryLevel` API 를 `getBatteryLevel` 이라는 단일 플랫폼 메시지로 사용합니다.
+아래 코드에선 현재 배터리 레벨를 표시하기 위해 플랫폼 특화 API를 사용하는 법을 설명합니다. 
+Android의 `BatteryManager`, iOS의 `device.batteryLevel` API를 
+`getBatteryLevel` 이라는 단일 플랫폼 메시지로 사용합니다.
 
 해당 예시는 메인 앱 자체에 플랫폼 별 코드를 추가합니다. 만약 당신이 다양한 앱에서 플랫폼 특화 코드를 재사용하고
 싶다면, 프로젝트 시작 방법이 약간 다릅니다([developing
 packages](/docs/development/packages-and-plugins/developing-packages#plugin) 참고).
 하지만 플랫폼 채널 코드는 여전히 같은 방법으로 작성됩니다.
 
-*참고*: 이 예시의 실행가능한 전체 코드는 여기서 확인할 수 있습니다. [`/examples/platform_channel/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel)
-
-Android는 Java로 되어 있고 iOS 는 Objective-C 로 되어있습니다. Swift 와 iOS에 대한 예제는 다음을
-참고하세요.[`/examples/platform_channel_swift/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel_swift)
+*참고*: 이 예시의 실행가능한 전체 코드는 여기서 확인할 수 있습니다. 
+[`/examples/platform_channel/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel)
+Android는 Java로 되어 있고 iOS 는 Objective-C 로 되어있습니다. 
+Swift 와 iOS에 대한 예제는 다음을 참고하세요.
+[`/examples/platform_channel_swift/`]({{site.github}}/flutter/flutter/tree/master/examples/platform_channel_swift)
 
 ### 1단계: 새로운 앱 프로젝트 만들기 {#example-project}
 
@@ -98,14 +112,16 @@ Android는 Java로 되어 있고 iOS 는 Objective-C 로 되어있습니다. Swi
 
 ### 2단계: Flutter 플랫폼 클라이언트 생성 {#example-client}
 
-앱의 `State` 클래스가 현재 앱 상태를 저장합니다. 현재 배터리 상태를 저장하려면 이를 상속해야 합니다.
+앱의 `State` 클래스가 현재 앱 상태를 저장합니다. 
+현재 배터리 상태를 저장하려면 이를 상속해야 합니다.
 
-먼저, 채널을 생성합니다. 배터리 레벨을 반환하는 한개의 플랫폼 메서드를 가진 `MethodChannel`을 사용할
-것입니다.
+먼저, 채널을 생성합니다. 배터리 레벨을 반환하는 
+플랫폼 메서드를 가지고 있는 `MethodChannel`을 사용할 것입니다.
 
 
-채널의 클라이언트와 호스트는 채널 생성자를 통해 전달된 채널 이름으로 연결됩니다. 하나의 앱에서 사용하는 모든
-채널 이름은 유일해야 하기 때문에, 유일한 도메인 접두사를 사용해서 채널 이름 앞에 추가할 것을 권장합니다. 
+채널의 클라이언트와 호스트는 채널 생성자를 통해 전달된 채널 이름으로 연결됩니다. 
+하나의 앱에서 사용하는 모든 채널 이름은 유일해야 하기 때문에, 
+유일한 도메인 접두사를 사용해서 채널 이름 앞에 추가하세요. 
 예) `samples.flutter.io/battery`
 
 <!-- skip -->
@@ -116,14 +132,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 ...
 class _MyHomePageState extends State<MyHomePage> {
-  static const platform = const MethodChannel('samples.flutter.io/battery');
+  static const platform = const MethodChannel('samples.flutter.dev/battery');
 
   // 배터리 레벨을 가져옵니다.
 }
 ```
 
-다음으로, `getBatteryLevel` 구분자를 통해 특정 메서드를 지정해서 메서드 채널에서 메서드를 실행합니다.
-호출은 실패할 수도 있습니다. 예를 들어 특정 플랫폼이 해당 API를 지원하지 않는 경우(시뮬레이터에서의 실행 등)가 있습니다.
+다음으로, `getBatteryLevel` 구분자를 통해 특정 메서드를 지정해서 
+메서드 채널에서 메서드를 실행합니다.
+호출은 실패할 수도 있습니다. 
+예를 들어 특정 플랫폼이 해당 API를 지원하지 않는 경우(시뮬레이터에서의 실행 등)가 있습니다.
 그러므로 `invokeMethod` 호출을 try-catch 문으로 감싸주세요.
 
 
@@ -149,7 +167,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 ```
 
-마지막으로, 문자열로 배터리 상태를 표시하는 작은 UI와 그 값을 새로고침하는 버튼을 생성하도록 기존 템플릿의 `build` 메소드를 수정하세요.
+마지막으로, 문자열로 배터리 상태를 표시하는 작은 UI와 
+그 값을 새로고침하는 버튼을 생성하도록 
+기존 템플릿의 `build` 메소드를 수정하세요.
 
 <!-- skip -->
 ```dart
@@ -177,19 +197,20 @@ Widget build(BuildContext context) {
 
 *참고*: 해당 단계는 Java를 사용합니다. 코틀린을 선호한다면, 3b단계 로 넘어가세요.
 
-
 Android 스튜디오에서 Android 부분을 열어서 시작하세요:
 
 1. Android 스튜디오 실행
 
-1. 메뉴에서 'File > Open...' 선택
+1. 메뉴에서 **File > Open...** 선택
 
-1. Flutter 앱이 있는 디렉토리로 이동해서, 그 안의 `android` 폴더를 선택합니다. OK를 클릭하세요.
+1. Flutter 앱이 있는 디렉토리로 이동해서, 
+   그 안의 **android** 폴더를 선택합니다. **OK** 클릭하세요.
 
-1. 프로젝트 뷰에서 `java` 폴더 안에 있는 `MainActivity.java` 를 엽니다.
+1. 프로젝트 뷰에서 
+   **java** 폴더 안에 있는 `MainActivity.java` 를 엽니다.
 
-
-다음으로, `MethodChannel` 을 만들고 `onCreate` 메서드 안에서 `MethodCallHandler` 를 설정합니다.
+다음으로, `MethodChannel` 을 만들고 `onCreate()` 메서드 안에서 
+`MethodCallHandler` 를 설정합니다.
 Flutter 클라이언트 측과 같은 채널 이름이 사용되었는지 확인해주세요.
 
 ```java
@@ -200,7 +221,7 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 
 public class MainActivity extends FlutterActivity {
-    private static final String CHANNEL = "samples.flutter.io/battery";
+    private static final String CHANNEL = "samples.flutter.dev/battery";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -220,12 +241,13 @@ public class MainActivity extends FlutterActivity {
 ```
 
 
-다음으로, 배터리 레벨을 가져오기 위해 Android 배터리 API를 사용하는 실제 Android Java 코드를 추가합니다. 해당 코드는
-네이티브 Android 앱에서 사용하던 것과 완전히 같습니다.
+배터리 레벨을 가져오기 위해 Android 배터리 API를 사용하는 
+실제 Android Java 코드를 추가하세요. 
+해당 코드는 네이티브 Android 앱에서 사용하던 것과 완전히 같습니다.
 
 첫번째로, 필요한 import 들을 파일 상단에 추가해주세요.
 
-```
+```java
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -235,8 +257,8 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 ```
 
-
-그리고 아래 코드를 액티비티 클래스의 `onCreate` 메서드 아래에 새로운 메서드로 작성해주세요.
+그리고 아래 코드를 액티비티 클래스의 `onCreate()` 
+메서드 아래에 새로운 메서드로 작성해주세요.
 
 ```java
 private int getBatteryLevel() {
@@ -256,9 +278,14 @@ private int getBatteryLevel() {
 ```
 
 
-마지막으로, 먼저 추가한 `onMethodCall` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel`이며, 이는 `call` 인자 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 Android 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
-이 플랫폼 메서드는 단순히 전 단계에서 작성한 Android 코드를 호출하며, `response` 인자를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
+마지막으로, 먼저 추가한 `onMethodCall()` 메서드를 완성합니다. 
+사용할 플랫폼 메서드는 `getBatteryLevel()`이며, 
+이는 `call` 인자 안에서 가져와 테스트 해볼 수 있습니다. 
+이 플랫폼 메서드는 단순히 이전 단계에서 작성한 Android 코드를 호출합니다.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 
+이 플랫폼 메서드는 전 단계에서 작성한 Android 코드를 호출하며, 
+`response` 인자를 통해 성공과 에러를 응답으로 돌려줍니다. 
+만약 알 수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
 
 아래 코드를:
 
@@ -288,33 +315,34 @@ public void onMethodCall(MethodCall call, Result result) {
 ```
 
 
-이제 Android에서 앱을 실행하는 것이 가능합니다. 만약 Android 에뮬레이터를 사용하고 있다면, 툴바의 `...`
+이제 Android에서 앱을 실행하는 것이 가능합니다. 
+만약 Android 에뮬레이터를 사용하고 있다면, 툴바의 **...** 
 버튼을 눌러 제어판을 통해 배터리 레벨을 설정할 수 있습니다.
 
 
-### 3b단계 : Kotlin을 사용해서 Android 플랫폼 구현 추가 {#example-kotlin}
-
+### 3b단계: Kotlin을 사용해서 Android 플랫폼 구현 추가 {#example-kotlin}
 
 *참고*: 이 단계는 Java 말고 Kotlin을 사용하는 것 외엔 3a와 비슷합니다.
 
-
 이 과정은 [1단계](#example-project)로 프로젝트를 생성할 때 `-a kotlin` 옵션을 사용했다고
 가정합니다.
-
 
 안드로이드 스튜디오에서 Flutter 앱의 안드로이드 부분을 열어서 시작하세요:
 
 1. 안드로이드 스튜디오 실행
 
-1. 메뉴에서 'File > Open...' 선택
+1. 메뉴에서 **File > Open...** 선택
 
-1. Flutter 앱이 있는 디렉토리로 이동해서, 그 안의 `android` 폴더를 선택합니다. OK를 클릭합니다.
+1. Flutter 앱이 있는 디렉토리로 이동해서, 
+   그 안의 **android** 폴더를 선택합니다. **OK**를 클릭합니다.
 
-1. 프로젝트 뷰에서 `kotlin` 폴더 안에 있는 `MainActivity.kt` 파일을 열어주세요. (참고: 만약 안드로이드 스튜디오
-  2.3 버전을 사용한다면, 'kotlin' 폴더가 'java' 폴더로 보이는 것에 유의하세요.)
+1. 프로젝트 뷰에서 **kotlin** 폴더 안에 있는 `MainActivity.kt` 파일을 열어주세요. 
+   (참고: 만약 안드로이드 스튜디오 2.3 버전을 사용한다면, 
+   **kotlin** 폴더가 **java** 폴더로 보이는 것에 유의하세요.)
 
 
-다음으로, `onCreate` 메서드 안에서 `MethodChannel`을 만들고 `setMethodCallHandler` 를 호출하세요.
+`onCreate` 메서드 안에서 `MethodChannel`을 만들고 
+`setMethodCallHandler` 를 호출하세요.
 Flutter 클라이언트 쪽에서 사용한 것과 같은 채널 이름을 사용했는지 확인해주세요.
 
 ```kotlin
@@ -323,7 +351,7 @@ import io.flutter.app.FlutterActivity
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity() : FlutterActivity() {
-  private val CHANNEL = "samples.flutter.io/battery"
+  private val CHANNEL = "samples.flutter.dev/battery"
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -336,13 +364,13 @@ class MainActivity() : FlutterActivity() {
 }
 ```
 
-
-다음으로, 배터리 레벨을 가져오기 위해 안드로이드 배터리 API를 사용하는 실제  안드로이드 Kotlin 코드를 추가합니다. 해당 코드는
+다음으로, 배터리 레벨을 가져오기 위해 안드로이드 배터리 API를 사용하는 
+안드로이드 Kotlin 코드를 추가합니다. 해당 코드는
 네이티브 안드로이드 앱에서 사용하던 것과 완전히 같습니다.
 
 첫 번째로, 필요한 import 들을 파일 상단에 추가해주세요.
 
-```
+```kotlin
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
@@ -352,7 +380,8 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 ```
 
-그리고 아래 코드를 액티비티 클래스의 `onCreate` 메서드 아래에 새로운 메서드로 작성해주세요.
+그리고 아래 코드를 액티비티 클래스의 
+`onCreate()` 메서드 아래에 새로운 메서드로 작성해주세요.
 
 
 ```kotlin
@@ -371,11 +400,14 @@ import android.os.Build.VERSION_CODES
 ```
 
 
-마지막으로, 먼저 추가한 `onMethodCall` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알 수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
+마지막으로, 먼저 추가한 `onMethodCall()` 메서드를 완성합니다. 
+사용할 플랫폼 메서드는 `getBatteryLevel()` 이며, 
+이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다. 
+이 플랫폼 메서드는 단순히 이전 단계에서 작성한 안드로이드 코드를 호출합니다.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 
+만약 알 수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
 
 아래 코드를:
-
 
 ```kotlin
     MethodChannel(flutterView, CHANNEL).setMethodCallHandler { call, result ->
@@ -401,12 +433,12 @@ import android.os.Build.VERSION_CODES
     }
 ```
 
-이제 안드로이드에서 앱을 실행하는것이 가능합니다. 만약 안드로이드 에뮬레이터를 사용하고 있다면 , 툴바의 `...`
-버튼에서 제어판을 열어서 배터리 레벨을 설정할 수 있습니다.
+이제 안드로이드에서 앱을 실행하는것이 가능합니다. 
+만약 안드로이드 에뮬레이터를 사용하고 있다면, 툴바의 **...**
+버튼에서 **제어판**을 열어서 배터리 레벨을 설정할 수 있습니다.
 
 
 ### 4a단계 : Objective-C를 이용해서 iOS 플랫폼 특화 구현 추가 {#example-objc}
-
 
 *참고*: 해당 단계는 Objective-C 를 사용합니다. Swift를 선호한다면, 4b단계로 건너뛰세요.
 
@@ -414,16 +446,19 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 
 1. Xcode 실행
 
-1. 메뉴에서 'File > Open...' 선택
+1. 메뉴에서 **File > Open...** 선택
 
-1. Flutter 앱이 위치한 디렉토리고 이동하고, 그 안의 `ios` 폴더를 선택합니다. OK 를 클릭합니다.
+1. Flutter 앱이 위치한 디렉토리고 이동하고, 
+   그 안의 **ios** 폴더를 선택합니다. **OK** 를 클릭합니다.
 
 1. Xcode 프로젝트가 에러 없이 빌드되는지 확인하세요.
 
-1. 프로젝트 네비게이터에서 Runner > Runner 에 있는 `AppDelegate.m` 파일을 엽니다.
+1. 프로젝트 네비게이터에서 **Runner > Runner** 에 있는
+   `AppDelegate.m` 파일을 엽니다.
 
-
-다음으로, `FlutterMethodChannel`을 만들고 `applicationDidFinishLaunchingWithOptions:` 메서드 안에 핸들러를 추가해주세요. Flutter 클라이언트 단과 같은 채널 이름이 사용되었는지 확인해주세요.
+`FlutterMethodChannel`을 만들고 
+`applicationDidFinishLaunchingWithOptions:` 메서드 안에 
+핸들러를 추가해주세요. Flutter 클라이언트 단과 같은 채널 이름이 사용되었는지 확인해주세요.
 
 
 ```objectivec
@@ -435,7 +470,7 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
   FlutterViewController* controller = (FlutterViewController*)self.window.rootViewController;
 
   FlutterMethodChannel* batteryChannel = [FlutterMethodChannel
-                                          methodChannelWithName:@"samples.flutter.io/battery"
+                                          methodChannelWithName:@"samples.flutter.de/battery"
                                           binaryMessenger:controller];
 
   [batteryChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
@@ -447,7 +482,8 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 }
 ```
 
-다음으로, 배터리 레벨을 가져오기 위해 iOS 배터리 API를 사용하는 실제  iOS ObjectiveC 코드를 추가합니다. 해당 코드는
+다음으로, 배터리 레벨을 가져오기 위해 iOS 배터리 API를 사용하는 
+iOS ObjectiveC 코드를 추가합니다. 해당 코드는
 네이티브 iOS 앱에서 사용하던 것과 완전히 같습니다.
 
 `AppDelegate` 클래스에서 `@end` 바로 전에 아래 코드를 새로운 메서드로 추가해주세요.
@@ -464,8 +500,12 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 }
 ```
 
-마지막으로, 먼저 추가한 `setMethodCallHandler` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 iOS 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
+마지막으로, 먼저 추가한 `setMethodCallHandler()` 메서드를 완성합니다. 
+사용할 플랫폼 메서드는 `getBatteryLevel()` 이며, 
+이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다. 
+이 플랫폼 메서드는 단순히 이전 단계에서 작성한 iOS 코드를 호출합니다.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 
+만약 알수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
 
 ```objectivec
 __weak typeof(self) weakSelf = self
@@ -486,7 +526,9 @@ __weak typeof(self) weakSelf = self
 }];
 ```
 
-이제 iOS 에서 앱을 실행하는 것이 가능합니다.  만약 iOS 시뮬레이터를 사용하고 있다면, 배터리 API 가 지원되지 않음을 알아두세요. (앱에서는 'battery info unavailable' 이라는 메시지를 보여줄 것입니다.)
+이제 iOS 에서 앱을 실행하는 것이 가능합니다. 만약 iOS 시뮬레이터를 사용하고 있다면, 
+배터리 API 가 지원되지 않음을 알아두세요. 
+앱에서는 'battery info unavailable' 이라는 메시지를 보여줄 것입니다.
 
 ### 4b단계: Add an iOS platform-specific implementation using Swift {#example-swift}
 
@@ -499,20 +541,21 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 
 1. Xcode 실행
 
-1. 메뉴에서 'File > Open...' 선택
+1. 메뉴에서 **File > Open...** 선택
 
-1. Flutter 앱이 위치한 디렉토리고 이동하고, 그 안의 `ios` 폴더를 선택합니다. OK 를 클릭합니다.
+1. Flutter 앱이 위치한 디렉토리고 이동하고, 
+   그 안의 `ios` 폴더를 선택합니다. OK 를 클릭합니다.
 
-다음으로, 기본 템플릿에 Objective-C를 사용하는 Swift 에 대한 지원을 추가하세요.
+그리고 기본 템플릿에 Objective-C를 사용하는 Swift 에 대한 지원을 추가하세요.
 
-1. Expand Runner > Runner in the Project navigator.
+1. 프로젝트 네비게이터에서 **Runner > Runner**을 여세요.
 
-1. 프로젝트 네비게이터에서 Runner > Runner을 여세요.
+1. 프로젝트 네비게이터 안 **Runner > Runner** 에 위치한 
+   `AppDelegate.swift` 파일을 여세요
 
-1. 프로젝트 네비게이터 안 Runner > Runner 에 위치한 `AppDelegate.swift` 파일을 여세요
-
-다음으로,  `application:didFinishLaunchingWithOptions:` 함수를 오버라이드 하고  `samples.flutter.io/battery` 를 채널 이름으로 사용하는 `FlutterMethodChannel` 를 생성하세요. 
-
+다음으로, `application:didFinishLaunchingWithOptions:` 함수를 오버라이드 하고 
+`samples.flutter.dev/battery` 를 채널 이름으로 사용하는 
+`FlutterMethodChannel` 를 생성하세요. 
 
 ```swift
 @UIApplicationMain
@@ -522,7 +565,7 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
     let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
-    let batteryChannel = FlutterMethodChannel(name: "samples.flutter.io/battery",
+    let batteryChannel = FlutterMethodChannel(name: "samples.flutter.dev/battery",
                                               binaryMessenger: controller)
     batteryChannel.setMethodCallHandler({
       (call: FlutterMethodCall, result: FlutterResult) -> Void in
@@ -535,7 +578,8 @@ Xcode에서 Flutter 앱의 iOS 호스트 부분을 열어서 시작하세요:
 }
 ```
 
-다음으로, 배터리 레벨을 가져오기 위해 iOS 배터리 API를 사용하는 실제  iOS의 Swift 코드를 추가합니다. 해당 코드는
+다음으로, 배터리 레벨을 가져오기 위해 iOS 배터리 API를 사용하는  
+iOS의 Swift 코드를 추가합니다. 해당 코드는 
 네이티브 iOS 앱에서 사용하던 것과 완전히 같습니다.
 
 아래 코드를 `AppDelegate.swift`  맨 밑에 새로운 메서드로 추가하세요.
@@ -554,9 +598,11 @@ private func receiveBatteryLevel(result: FlutterResult) {
 }
 ```
 
-
-마지막으로, 먼저 추가한 `setMethodCallHandler` 메서드를 완성합니다. 사용할 플랫폼 메서드는 `getBatteryLevel` 이며, 이는 `call` 매개변수 안에서 가져와 테스트 해볼 수 있습니다.  이 플랫폼 메서드는 단순히 이전 단계에서 작성한 iOS 코드를 호출합니다.
-그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 만약 알수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
+마지막으로, 먼저 추가한 `setMethodCallHandler()` 메서드를 완성합니다. 
+사용할 플랫폼 메서드는 `getBatteryLevel()` 이며, 이는 `call` 매개변수 안에서 가져와 
+테스트 해볼 수 있습니다. 이 플랫폼 메서드는 단순히 이전 단계에서 작성한 iOS 코드를 호출합니다.
+그리고 `response` 매개변수를 통해 성공과 에러를 응답으로 돌려줍니다. 
+만약 알수 없는 메서드가 호출된다면, 예외처리가 필요합니다.
 
 ```swift
 batteryChannel.setMethodCallHandler({
@@ -569,26 +615,32 @@ batteryChannel.setMethodCallHandler({
 })
 ```
 
-이제 iOS 에서 앱을 실행하는것이 가능합니다.  만약 iOS 시뮬레이터를 사용하고 있다면, 배터리 API 가 지원되지 않음을 알아두세요. (앱에서는 'battery info unavailable' 이라는 메시지를 보여줄 것입니다.)
+이제 iOS 에서 앱을 실행하는것이 가능합니다. 
+만약 iOS 시뮬레이터를 사용하고 있다면, 배터리 API 가 지원되지 않음을 알아두세요. 
+앱에서는 'battery info unavailable' 이라는 메시지를 보여줄 것입니다.
 
 ## 플랫폼 별 코드를 UI 코드에서 분리하기 {#separate}
 
-만약 당신의 플랫폼 별 코드를 다양한 Flutter 앱에서 사용할 것 같다면, 메인 어플리케이션 바깥 디렉토리에 플랫폼 플러그인으로 분리하는것이 유용합니다. 자세한 내용은 [developing
-packages](/docs/development/packages-and-plugins/developing-packages)를 참고하세요
-
+만약 당신의 플랫폼 별 코드를 다양한 Flutter 앱에서 사용할 것 같다면, 
+메인 어플리케이션 바깥 디렉토리에 플랫폼 플러그인으로 분리하는것이 유용합니다. 
+자세한 내용은 
+[developing packages](/docs/development/packages-and-plugins/developing-packages)를 
+참고하세요.
 
 ## 플랫폼 특화 코드를 패키지로 배포하기 {#publish}
 
-
-만약 당신의 플랫폼 특화 코드를 Flutter 생태계의 다른 개발자들과 공유하고 싶다면, [publishing
-packages](/docs/development/packages-and-plugins/developing-packages#publish) 를 참고해주세요.
-
+플랫폼 특화 코드를 Flutter 생태계의 다른 개발자들과 공유하고 싶다면, [publishing
+packages](/docs/development/packages-and-plugins/developing-packages#publish)를 
+참조하세요.
 
 ## 커스텀 채널과 코덱
 
-위에 언급한 `MethodChannel` 외에도, 더 기본적이며 비동기적인 커스텀 메시지 코덱을 사용해서 메시지를 전달하는
-[`BasicMessageChannel`][BasicMessageChannel] 를 사용할 수도 있습니다. 또한 특화된 [`BinaryCodec`][BinaryCodec], [`StringCodec`][StringCodec],
-[`JSONMessageCodec`][JSONMessageCodec] 클래스들을 사용하거나, 직접 코덱을 만드세요.
+위에 언급한 `MethodChannel` 외에도, 더 기본적이며 비동기적인 
+커스텀 메시지 코덱을 사용해서 메시지를 전달하는
+[`BasicMessageChannel`][BasicMessageChannel] 를 사용할 수도 있습니다. 
+또한 특화된 [`BinaryCodec`][BinaryCodec], [`StringCodec`][StringCodec],
+[`JSONMessageCodec`][JSONMessageCodec] 클래스들을 사용하거나, 
+직접 코덱을 만드세요.
 
 [BasicMessageChannel]: {{site.api}}/flutter/services/BasicMessageChannel-class.html
 [BinaryCodec]: {{site.api}}/flutter/services/BinaryCodec-class.html

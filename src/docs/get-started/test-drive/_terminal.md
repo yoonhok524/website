@@ -35,6 +35,7 @@ $ cd myapp
 {% endcapture %}
 
 {% include_relative _try-hot-reload.md save_changes=save_changes %}
+{% include run-profile.md %}
 
 [설치]: /docs/get-started/install
 </div>

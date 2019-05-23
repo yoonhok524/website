@@ -46,7 +46,7 @@
     미리 artifacts를 다운로드하는 게 바람직한 경우,
     아래와 같은 방법으로 iOS 및 Android 바이너리를 먼저 다운로드 할 수 있습니다: 
 
-    ```
+    ```terminal
     $ flutter precache
     ```
 

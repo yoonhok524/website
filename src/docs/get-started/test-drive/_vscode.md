@@ -25,11 +25,15 @@
  1. 앱이 실행될 때까지 기다리세요 - **Debug Console**에 진행 상태가 표시됩니다.
 
 {% capture save_changes -%}
-  : invoke **File > Save All**,
-  or click **Hot Reload** (the green circular arrow button).
+  : invoke **Save All**, or click **Hot Reload**
+  <i class="material-icons align-bottom">offline_bolt</i>.
+  {% comment %} Or, as an alternative:
+    {% asset 'get-started/hot-reload-button.png' alt='looks like a lightning bolt' %}.
+  {% endcomment -%}
 {% endcapture %}
 
 {% include_relative _try-hot-reload.md save_changes=save_changes %}
+{% include run-profile.md %}
 
 [설치]: /docs/get-started/install
 [머티리얼 컴포넌트]: {{site.material}}/guidelines

@@ -7,6 +7,12 @@ next:
 
 Flutter를 설치할 운영 체제를 선택해주세요:
 
+{{site.alert.note}}
+  **Are you on Chrome OS?**
+
+  If so, see the official [Chrome OS Flutter installation docs!](/docs/get-started/install/chromeos)
+{{site.alert.end}}
+
 <div class="card-deck mb-8">
 {% for os in site.os-list %}
   {% assign os-korean = '' %}

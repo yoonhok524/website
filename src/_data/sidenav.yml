@@ -134,7 +134,7 @@
         - title: 백그라운드 작업
           permalink: /docs/development/packages-and-plugins/background-processes
         - title: 패키지 사이트
-          permalink: https://pub.dartlang.org/flutter
+          permalink: https://pub.dev/flutter
     - title: 도구 & 기법
       permalink: /docs/development/tools
       children:
@@ -212,6 +212,6 @@
     - title: 위젯 색인
       permalink: /docs/reference/widgets
     - title: API 참조
-      permalink: https://docs.flutter.io
+      permalink: https://api.flutter.dev
     - title: 패키지 사이트
-      permalink: https://pub.dartlang.org/flutter
+      permalink: https://pub.dev/flutter
