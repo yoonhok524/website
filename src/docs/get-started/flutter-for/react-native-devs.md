@@ -697,33 +697,36 @@ import 'package:flutter/cupertino.dart';
 [Flutter Packages]({{site.pub}}/flutter/) 섹션에서
 Flutter 개발자들이 공유한 많은 패키지를 만날 수 있습니다.
 
-## Flutter widgets
+## Flutter 위젯
 
-In Flutter, you build your UI out of widgets that describe what their view
-should look like given their current configuration and state.
+Flutter에서는, UI를 현재 상태와 설정에 따라 어떻게 보여야 하는지가 담겨있는
+위젯을 사용해서 만듭니다.  
 
-Widgets are often composed of many small, single-purpose widgets that are nested
-to produce powerful effects. For example, the Container widget consists of
-several widgets responsible for layout, painting, positioning, and sizing.
-Specifically, the `Container` widget includes the `LimitedBox`,
-`ConstrainedBox`, `Align`, `Padding`, `DecoratedBox`, and `Transform` widgets.
-Rather than subclassing `Container` to produce a customized effect, you can
-compose these and other simple widgets in new and unique ways.
+위젯은 종종 강력한 효과를 내기 위해 
+다수의 중첩된 작은 단일 목적의 위젯으로 구성됩니다.
+예를 들어, Container 위젯은 레이아웃, 그리기, 위치, 크기를 담당하는 여러 위젯으로 구성됩니다.
+구체적으로 말하자면, `Container` 위젯은 `LimitedBox`와 `ConstrainedBox`, 
+`Align`, `Padding`, `DecoratedBox`, `Transform` 위젯을 포함하고 있습니다.
+원하는 효과를 내기 위해 `Container` 를 서브클래스로 만드는 대신, 
+여러 심플한 위젯들을 새롭고 독특한 방식으로 구성할 수 있습니다.
 
-The `Center` widget is another example of how you can control the layout. To
-center a widget, wrap it in a `Center` widget and then use layout
-widgets for alignment, row, columns, and grids. These layout widgets do not have
-a visual representation of their own. Instead, their sole purpose is to control
-some aspect of another widget’s layout. To understand why a widget renders in a
-certain way, it’s often helpful to inspect the neighboring widgets.
+`Center` 위젯은 레이아웃을 어떻게 조절할 수 있는지를 보여주는 또 다른 예입니다.
+위젯을 가운대 정렬 하기 위해, `Center` 위젯으로 감싼 다음
+정렬, 행, 그리드를 배치하는 위젯을 사용하세요.
+이러한 배치 위젯은 시각적으로 자기 자신을 나타내지는 않습니다.
+대신, 그것들의 유일한 목적은 다른 위젯 레이아웃을 제어하는 것입니다.
+왜 위젯이 이런 방식으로 그려지는지 이해하기 위해,
+인접한 위젯을 조사하는 것이 종종 도움이 됩니다.
 
-For more information, see the [Flutter Technical
-Overview](/docs/resources/technical-overview).
+더 많은 정보는
+[Flutter 기술 개요](/docs/resources/technical-overview)를
+참조하세요.
 
-For more information about the core widgets from the Widgets package, see
-[Flutter Basic Widgets](/docs/development/ui/widgets/basics), the
-[Flutter Widget Catalog](/docs/development/ui/widgets), or the
-[Flutter Widget Index](/docs/reference/widgets).
+위젯 패키지의 핵심 위젯에 대한 자세한 정보는, 
+[Flutter 기본 위젯](/docs/development/ui/widgets/basics), 
+[Flutter 위젯 카탈로그](/docs/development/ui/widgets), 
+[Flutter 위젯 색인](/docs/reference/widgets)을 
+참조하세요.
 
 ## Views
 
