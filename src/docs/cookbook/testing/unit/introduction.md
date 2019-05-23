@@ -1,61 +1,60 @@
 ---
-title: An introduction to unit testing
-short-title: Introduction
+title: 단위 테스트 소개
+short-title: 소개
 prev:
-  title: Scrolling
+  title: 스크롤
   path: /docs/cookbook/testing/integration/scrolling
 next:
-  title: Mock dependencies using Mockito
+  title: Mockito를 사용하여 의존성들에 대해 mock 객체 생성하기
   path: /docs/cookbook/testing/unit/mocking
 ---
 
-How can you ensure that your app continues to work as you add more features or
-change existing functionality? By writing tests.
+새로운 기능을 추가하거나 기존 기능을 변경했을 때, 앱이 여전히 제대로 동작한다는 것을
+어떻게 보장할 수 있을까요? 테스트 코드를 작성하세요.
 
-Unit tests are handy for verifying the behavior of a single function,
-method, or class. The [`test`]({{site.pub-pkg}}/test) package provides the
-core framework for writing unit tests, and the
+단위 테스트는 하나의 함수, 메서드 혹은 클래스의 동작을 검증하기 위해 아주 유용합니다.
+[`test`]({{site.pub-pkg}}/test) 패키지는 단위 테스트 작성을 위해 핵심 프레임워크를
+제공하며,
 [`flutter_test`]({{site.api}}/flutter/flutter_test/flutter_test-library.html)
-package provides additional utilities for testing Widgets.
+패키지는 위젯 테스트를 위한 추가적인 유틸리티를 제공합니다.
 
-This recipe demonstrates the core features provided by the `test` package.
-For more information about the test package, see the
-[test package
-documentation]({{site.github}}/dart-lang/test/blob/master/README.md).
+본 예제에서는 `test` 패키지가 제공하는 핵심 기능들을 살펴볼 것입니다.
+test 패키지에 대해 좀더 자세한 정보는 
+[test 패키지 문서]({{site.github}}/dart-lang/test/blob/master/README.md)를
+참고하세요.
 
-## Directions
+## 진행 단계
 
-  1. Add the `test` or `flutter_test` dependency
-  2. Create a test file
-  3. Create a class to test
-  4. Write a `test` for our class
-  5. Combine multiple tests in a `group`
-  6. Run the tests
+  1. `test` 혹은 `flutter_test` 의존성 추가하기
+  2. 테스트 파일 생성하기
+  3. 테스트를 위한 클래스 생성하기
+  4. 클래스 테스트를 위한 `test` 코드 작성하기
+  5. 여러 테스트를 `group`으로 결합하기
+  6. 테스트 수행하기
 
-## 1. Add the test dependency
+## 1. test 의존성 추가하기
 
-If you're working on a Dart package that does not depend on Flutter, you
-can import the `test` package. The test package provides the core functionality
-for writing tests in Dart. This is the best approach when writing packages that
-will be consumed by web, server, and Flutter apps.
+만약 Flutter에 의존하지 않는 다트 패키지에서 작업하고 있다면 `test` 패키지를 import
+하면 됩니다. test 패키지는 다트에서 테스트 코드를 작성하기 위한 핵심 기능을 제공합니다.
+이러한 접근법은 웹, 서버, Flutter 앱에서 사용할 패키지를 개발할 때 아주 좋습니다.
 
 ```yaml
 dev_dependencies:
   test: <latest_version>
 ```
 
-## 2. Create a test file
+## 2. 테스트 파일 생성하기
 
-In this example, create two files: `counter.dart` and `counter_test.dart`.
+본 예제에서는 두 개의 파일을 만들 것입니다: `counter.dart`, `counter_test.dart`.
 
-The `counter.dart` file will contain a class that you want to test and
-resides in the `lib` folder. The `counter_test.dart` file will contain
-the tests themselves and lives inside the `test` folder.
+`counter.dart` 파일은 테스트 대상이 될 클래스를 포함하며, `lib` 폴더에 위치하게
+됩니다. `counter_test.dart` 파일은 테스트 코드를 포함하며, `test` 폴더에
+위치합니다.
 
-In general, test files should reside inside a `test` folder located at the root
-of your Flutter application or package.
+일반적으로 테스트 파일들은 Flutter 앱이나 패키지의 최상단에 있는 `test` 폴더에 
+위치해야 합니다.
 
-When you're finished, the folder structure should look like this:
+여기까지 진행하였으면, 다음과 같은 폴더 구조가 되었을 것입니다:
 
 ```
 counter_app/
@@ -65,12 +64,12 @@ counter_app/
     counter_test.dart
 ```
 
-## 3. Create a class to test
+## 3. 테스트를 위한 클래스 생성하기
 
-Next, you need a "unit" to test. Remember: "unit" is a fancy name for a
-function, method, or class. In this example, create a `Counter` class
-inside the `lib/counter.dart` file. It will be responsible for incrementing
-and decrementing a `value` starting at `0`.
+이제 테스트할 대상이 필요합니다. 기억하세요: 함수, 메서드, 클래스 모두 단위 
+테스트의 최소 단위가 될 수 있습니다. 본 예제에서는 `lib/counter.dart` 파일에 
+`Counter` 클래스를 생성합니다. 이 클래스는 `0`부터 시작하는 `value`의 증가, 
+감소를 담당할 것입니다.
 
 <!-- skip -->
 ```dart
@@ -83,20 +82,19 @@ class Counter {
 }
 ```
 
-**Note:** For simplicity, this tutorial does not follow the "Test Driven
-Development" approach. If you're more comfortable with that style of
-development, you can always go that route.
+**참고:** 단순화하기 위해, 이 예제에서는 "테스트 주도 개발" 접근법을 따르지
+않습니다. 만약 테스트 주도 개발에 더 익숙하다면, 그렇게 해도 좋습니다.
 
-## 4. Write a test for our class
+## 4. 클래스 테스트를 위한 `test` 코드 작성하기
 
-Inside the `counter_test.dart` file, write the first unit test. Tests are
-defined using the top-level `test` function, and you can check if the results
-are correct by using the top-level `expect` function.
-Both of these functions come from the `test` package.
+`counter_test.dart` 파일에 첫 번째 단위 테스트를 작성해봅시다. 테스트 코드는
+최상위 레벨의 `test` 함수를 통해 작성되며, 최상위 레벨의 `expect` 함수를 
+사용하여 그 결과가 올바른지 체크할 수 있습니다. 이 함수들은 `test` 패키지의 
+것들입니다.
 
 <!-- skip -->
 ```dart
-// Import the test package and Counter class
+// test 패키지와 Counter 클래스를 import합니다.
 import 'package:test/test.dart';
 import 'package:counter_app/counter.dart';
 
@@ -111,10 +109,10 @@ void main() {
 }
 ```
 
-## 5. Combine multiple tests in a `group`
+## 5. 여러 테스트를 `group`으로 결합하기
 
-If you have several tests that are related to one another, 
-combine them using the `group` function provided by the `test` package.
+만약 관련있는 다른 테스트 코드들이 있다면, `test` 패키지에서 제공하는 
+`group` 함수를 사용하여 결합할 수 있습니다.
 
 <!-- skip -->
 ```dart
@@ -146,31 +144,31 @@ void main() {
 }
 ```
 
-### 6. Run the tests
+### 6. 테스트 수행하기
 
-Now that you have a `Counter` class with tests in place, you can run the tests.
+이제 `Counter` 클래스와 함께 테스트 코드가 준비되었으니 실행해볼 차례입니다.
 
-#### Run tests using IntelliJ or VSCode
+#### IntelliJ나 VSCode에서 테스트 수행하기
 
-The Flutter plugins for IntelliJ and VSCode support running tests.
-This is often the best option while writing tests because it provides the
-fastest feedback loop as well as the ability to set breakpoints.
+IntelliJ와 VSCode 용 Flutter 플러그인은 테스트 수행을 지원합니다. breakpoint 
+설정 기능과 함께 가장 빠른 피드백 루프를 주기 때문에 테스트 코드를 작성할 때 
+가장 좋은 옵션입니다.
 
   * **IntelliJ**
-    1. Open the `counter_test.dart` file
-    2. Select the `Run` menu
-    3. Click the `Run 'tests in counter_test.dart'` option
-    4. *Alternatively, use the appropriate keyboard shortcut for your platform.*
+    1. `counter_test.dart` 파일을 엽니다.
+    2. `Run` 메뉴를 선택합니다.
+    3. `Run 'tests in counter_test.dart'` 옵션을 클릭합니다.
+    4. *다른 대안으로, 플랫폼에 맞게 적절한 키보드 단축키를 사용할 수 있습니다.*
   * **VSCode**
-    1. Open the `counter_test.dart` file
-    2. Select the `Debug` menu
-    3. Click the `Start Debugging` option
-    4. *Alternatively, use the appropriate keyboard shortcut for your platform.*
+    1. `counter_test.dart` 파일을 엽니다.
+    2. `Debug` 메뉴를 선택합니다.
+    3. `Start Debugging` 옵션을 클릭합니다.
+    4. *다른 대안으로, 플랫폼에 맞게 적절한 키보드 단축키를 사용할 수 있습니다.*
 
-#### Run tests in a terminal
+#### 터미널에서 테스트 수행하기
 
-You can also use a terminal to run the tests by executing the following
-command from the root of the project:
+프로젝트의 최상위 위치에서 아래 명령어를 사용하면 터미널에서도 테스트를 수행할 
+수 있습니다:
 
 ```
 flutter test test/counter_test.dart

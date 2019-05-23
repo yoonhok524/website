@@ -1,39 +1,39 @@
 ---
-title: Flutter for React Native developers
-description: Learn how to apply React Native developer knowledge when building Flutter apps.
+title: React Native 개발자를 위한 Flutter
+description: React Native 개발자가 Flutter 앱을 만들 때 기존 지식을 활용하는 방법을 배워봅시다.
 ---
 
-This document is for React Native (RN) developers looking to apply their
-existing RN knowledge to build mobile apps with Flutter. If you understand
-the fundamentals of the RN framework then you can use this document as a
-way to get started learning Flutter development.
+이 문서는기존 React Native 지식을 활용하여
+Flutter로 모바일 앱을 만들려는 React Native(RN) 개발자를 위한 문서입니다.
+RN 프레임워크의 핵심을 이해하고 있다면
+이 문서를 Flutter 개발을 시작하는 방안으로 사용하실 수 있습니다.
 
-This document can be used as a cookbook by jumping around and finding
-questions that are most relevant to your needs.
+필요한 부분에 가장 적합한 질문을 찾아내는 방식으로 이 문서를 
+요리책(cookbook)처럼 활용하실 수도 있습니다.
 
 
-## Introduction to Dart for JavaScript Developers
+## 자바스크립트 개발자를 위한 Dart 소개
 
-Like React Native, Flutter uses reactive-style views. However, while RN
-transpiles to native widgets, Flutter compiles all the way to native code.
-Flutter controls each pixel on the screen, which avoids performance problems
-caused by the need for a JavaScript bridge.
+React Native처럼, Flutter는 reactive-style 뷰를 사용합니다.
+하지만, 네이티브 위젯으로 변환(transpile)하는 RN과 달리, 
+Flutter는 모든 것을 네이티브 코드로 직접 컴파일합니다.
+Flutter는 화면의 각 픽셀을 직접 제어하기 때문에, 자바스크립트 브리지로 인한 성능 문제가 발생하지 않습니다. 
 
-Dart is an easy language to learn and offers the following features:
+Dart는 아래와 같은 기능을 제공하는 배우기 쉬운 언어입니다:
 
-* Provides an open-source, scalable programming language for building web,
-  server, and mobile apps.
-* Provides an object-oriented, single inheritance language that uses a C-style
-  syntax that is AOT-compiled into native.
-* Transcompiles optionally into JavaScript.
-* Supports interfaces and abstract classes.
+* 웹, 서버, 모바일 앱 개발이 가능한 확장성 있는 
+  오픈 소스 프로그래밍 언어 제공
+* AOT를 통해 네이티브로 컴파일되는 C 방식의 구문을 사용하는 
+  객체 지향 단일 상속 언어를 제공 
+* 자바스크립트로 변환(transcompile) 가능
+* 인터페이스와 추상 클래스 지원
 
-A few examples of the differences between JavaScript and Dart are described
-below.
+아래에 자바스크립트와 Dart의 몇 가지 차이점에 관한 
+예시가 적혀있습니다.
 
-### Entry point
+### 진입점
 
-JavaScript doesn't have a pre-defined entry function—you define the entry point.
+자바스크립트에는 진입점 역할을 하는 함수가 미리 정의되어 있지 않습니다.
 
 ```js
 // JavaScript
@@ -41,8 +41,8 @@ function startHere() {
   // Can be used as entry point
 }
 ```
-In Dart, every app must have a top-level `main()` function that serves as the
-entry point to the app.
+Dart에서는 최상단에 앱의 진입점인 `main()` 함수가 
+반드시 있어야 합니다.
 
 <!-- skip -->
 ```dart
@@ -51,11 +51,11 @@ main() {
 }
 ```
 
-Try it out in [DartPad]({{site.dartpad}}/0df636e00f348bdec2bc1c8ebc7daeb1).
+[DartPad]({{site.dartpad}}/0df636e00f348bdec2bc1c8ebc7daeb1)에서 실행해보세요.
 
-### Printing to the console
+### 콘솔에 출력하기
 
-To print to the console in Dart, use `print()`.
+`print()`를 사용하여 Dart 콘솔에 출력해보세요.
 
 ```js
 // JavaScript
@@ -68,22 +68,22 @@ console.log("Hello world!");
 print('Hello world!');
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/cf9e652f77636224d3e37d96dcf238e5).
+[DartPad]({{site.dartpad}}/cf9e652f77636224d3e37d96dcf238e5)에서 
+실행해보세요.
 
-### Variables
+### 변수
 
-Dart is type safe—it uses a combination of static type checking and runtime
-checks to ensure that a variable’s value always matches the variable’s static
-type. Although types are mandatory, some type annotations are optional because
-Dart performs type inference.
+Dart는 타입 검사를 하는(type safe) 언어입니다. 
+Dart는 정적 타입 검사와 런타임 타입 검사를 동시에 사용하여, 
+변수의 값이 변수의 정적 타입과 항상 일치하는지 검사합니다.
+타입이 필수이긴 하지만, Dart가 타입 추론을 하기 때문에 일부 타입 표기는 생략해도 됩니다.
 
-#### Creating and assigning variables
+#### 변수 생성 및 할당
 
-In JavaScript, variables cannot be typed.
+자바스크립트에서는, 변수의 타입을 선언할 수 없습니다.
 
-In [Dart]({{site.dart-site}}/dart-2), variables must either be explicitly
-typed or the type system must infer the proper type automatically.
+[Dart]({{site.dart-site}}/dart-2)에서는, 명시적으로 변수의 타입을 선언하거나   
+타입 시스템이 자동으로 적절한 변수의 타입을 추론할 수 있어야 합니다.
 
 ```js
 // JavaScript
@@ -93,24 +93,23 @@ var name = "JavaScript";
 <!-- skip -->
 ```dart
 // Dart
-String name = 'dart'; // Explicitly typed as a string.
-var otherName = 'Dart'; // Inferred string.
-// Both are acceptable in Dart.
+String name = 'dart'; // 명시적으로 문자열 타입 선언.
+var otherName = 'Dart'; // 문자열 타입으로 추론.
+// Dart에서는 두 방법 다 가능.
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/3f4625c16e05eec396d6046883739612).
+[DartPad]({{site.dartpad}}/3f4625c16e05eec396d6046883739612)에서 시도해보세요.
 
-For more information, see [Dart's Type
-System]({{site.dart-site}}/guides/language/sound-dart).
+더 많은 정보를 원하시면, [Dart의 타입 시스템]({{site.dart-site}}/guides/language/sound-dart)를
+참조하세요.
 
-#### Default value
+#### 기본값
 
-In JavaScript, uninitialized variables are `undefined`.
+자바스크립트에서 초기화하지 않은 변수는 `undefined`입니다.
 
-In Dart, uninitialized variables have an initial value of `null`. Because
-numbers are objects in Dart, even uninitialized variables with numeric types
-have the value `null`.
+Dart에서 초기화하지 않은 변수는 `null` 값을 가집니다.
+Dart에선 숫자도 객체이기 때문에, 
+초기화하지 않은 숫자 타입 변수도 `null` 값을 가집니다. 
 
 ```js
 // JavaScript
@@ -124,15 +123,16 @@ var name; // == null
 int x; // == null
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/57ec21faa8b6fe2326ffd74e9781a2c7).
+[DartPad]({{site.dartpad}}/57ec21faa8b6fe2326ffd74e9781a2c7)에서 
+시도해보세요.
 
-For more information, see the documentation on
-[variables]({{site.dart-site}}/guides/language/language-tour#variables).
+더 많은 정보를 원하시면, 
+[변수]({{site.dart-site}}/guides/language/language-tour#variables)를
+참조하세요.
 
-### Checking for null or zero
+### null 또는 0 체크
 
-In JavaScript, values of 1 or any non-null objects are treated as true.
+자바스크립트는 1이나 null이 아닌 객체도 true로 취급합니다.
 
 ```js
 // JavaScript
@@ -145,7 +145,7 @@ if (!zero) {
   console.log("0 is treated as false");
 }
 ```
-In Dart, only the boolean value `true` is treated as true.
+Dart는 boolean 값 `true`만 true로 취급합니다.
 
 <!-- skip -->
 ```dart
@@ -160,13 +160,13 @@ if (zero == 0) {
 }
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/c85038ad677963cb6dc943eb1a0b72e6).
+[DartPad]({{site.dartpad}}/c85038ad677963cb6dc943eb1a0b72e6)에서 
+시도해보세요.
 
-### Functions
+### 함수
 
-Dart and JavaScript functions are generally similar. The primary difference is
-the declaration.
+Dart와 자바스크립트 함수는 대체로 유사합니다. 
+주된 차이점은 선언입니다.
 
 ```js
 // JavaScript
@@ -187,22 +187,22 @@ bool fn() {
 }
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/5454e8bfadf3000179d19b9bc6be9918).
+[DartPad]({{site.dartpad}}/5454e8bfadf3000179d19b9bc6be9918)에서 
+시도해보세요.
 
-For more information, see the documentation on
-[functions]({{site.dart-site}}/guides/language/language-tour#functions).
+더 많은 정보를 원하시면, 
+[함수]({{site.dart-site}}/guides/language/language-tour#functions)를 참조하세요.
 
-### Asynchronous programming
+### 비동기 프로그래밍
 
 #### Futures
 
-Like JavaScript, Dart supports single-threaded execution. In JavaScript,
-the Promise object represents the eventual completion (or failure)
-of an asynchronous operation and its resulting value.
+자바스크립트와 마찬가지로 Dart도 단일 스레드 실행을 지원합니다. 
+자바스크립트에서 Promise 객체는 
+비동기 작업의 최종 완료 (또는 실패)와 결과 값을 나타냅니다.
 
-Dart uses [`Future`]({{site.dart-site}}/tutorials/language/futures)
-objects to handle this.
+Dart는 이러한 비동기 처리를 위해서 
+[`Future`]({{site.dart-site}}/tutorials/language/futures) 객체를 사용합니다.
 
 ```js
 // JavaScript
@@ -230,18 +230,18 @@ _getIPAddress() {
 }
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/5a0017d09b6823d0248d965b93133e2e).
+[DartPad]({{site.dartpad}}/5a0017d09b6823d0248d965b93133e2e)에서 
+시도해보세요.
 
-For more information, see the documentation on
-[Futures]({{site.dart-site}}/tutorials/language/futures).
+더 많은 정보를 원하시면, 
+[Futures]({{site.dart-site}}/tutorials/language/futures)를 참조하세요.
 
-#### `async` and `await`
+#### `async`와 `await`
 
-The `async` function declaration defines an asynchronous function.
+`async` 함수 선언으로 비동기 함수를 정의합니다.
 
-In JavaScript, the `async` function returns a `Promise`. The `await` operator is
-used to wait for a `Promise`.
+자바스크립트에서는 `async` 함수가 `Promise`를 반환합니다.
+`await` 연산자는 `Promise`를 기다리기 위해서 사용합니다다.
 
 ```js
 // JavaScript
@@ -254,9 +254,9 @@ async _getIPAddress() {
 }
 ```
 
-In Dart, an `async` function returns a `Future`, and the body of the function is
-scheduled for execution later. The `await` operator is used to wait for a
-`Future`.
+Dart에서는 `async` 함수가 `Future`를 반환하고, 
+함수의 구현된 내용은 나중에 실행되도록 예약됩니다.
+`await` 연산자는 `Future`를 기다리기 위해서 사용됩니다.
 
 <!-- skip -->
 ```dart
@@ -269,54 +269,54 @@ _getIPAddress() async {
 }
 ```
 
-Try it out in
-[DartPad]({{site.dartpad}}/04bb4334985107cddcd021322398c918).
+[DartPad]({{site.dartpad}}/04bb4334985107cddcd021322398c918)에서 
+시도해보세요.
 
-For more information, see the documentation for [`async` and
-`await`]({{site.dart-site}}/guides/language/language-tour#asynchrony-support).
+더 많은 정보를 원하시면, [`async`와
+`await`]({{site.dart-site}}/guides/language/language-tour#asynchrony-support)를 참조하세요.
 
-## The basics
-### How do I create a Flutter app?
+## 기본
+### Flutter 앱을 만드는 방법은?
 
-To create an app using React Native, you would run `create-react-native-app`
-from the command line.
+React Native로 앱을 만드려면 커멘드라인에서 
+`create-react-native-app`을 실행하면 됩니다.
 
 {% prettify %}
 $ create-react-native-app <projectname>
 {% endprettify%}
 
-To create an app in Flutter, do one of the following:
+Flutter에서 앱을 만들기 위해서는, 아래 방법 중 하나를 수행하면 됩니다:
 
-* Use the `flutter create` command from the command line. Make sure that the
-  Flutter SDK is in your PATH.
-* Use an IDE with the Flutter and Dart plugins installed.
+* 커멘드라인에서 `flutter create` 명령을 실행하세요.
+  Flutter SDK가 PATH에 들어있는지 확인이 필요합니다. 
+* Flutter와 Dart 플러그인이 설치된 IDE를 이용하세요.
 
 {% prettify %}
 $ flutter create <projectname>
 {% endprettify%}
 
-For more information, see [Getting Started](/docs/get-started), which
-walks you through creating a button-click counter app. Creating a Flutter
-project builds all the files that you need to run a sample app on both Android
-and iOS devices.
+더 많은 정보를 원하시면, [시작하기](/docs/get-started)를 참조하세요. 
+버튼 클릭으로 카운터를 조정하는 앱을 만드는 과정을 안내 받을 수 있습니다.
+Flutter 프로젝트를 만들 때 
+Android 및 iOS 기기에서 샘플 앱을 실행하는 데 필요한 모든 파일이 생성됩니다.
 
-### How do I run my app?
+### 앱을 실행하는 방법은?
 
-In React Native, you would run `npm run` or `yarn run` from the project
- directory.
+React Native를 사용할 때는, 프로젝트 디렉토리에서 
+`npm run`이나 `yarn run`으로 앱을 실행했을 것입니다.
 
- You can run Flutter apps in a couple of ways:
+ Flutter apps를 실행하는 몇가지 방법이 있습니다:
 
- * Use `flutter run` from the project's root directory.
- * Use the "run" option in an IDE with the Flutter and Dart plugins.
+ * 프로젝트 최상위 디렉토리에서 `flutter run`을 사용하세요.
+ * Flutter와 Dart 플러그인이 설치된 IDE에서 "run"을 실행하세요. 
 
- Your app runs on a connected device, the iOS simulator, or the Android emulator.
+ 앱이 연결된 기기나, iOS 시뮬레이터 혹은 Android 에뮬레이터에서 실행될 것입니다.
 
-For more information, see the Flutter [Getting Started](/docs/get-started) documentation.
+더 많은 정보를 원하시면, [시작하기](/docs/get-started)를 참조하세요.
 
-### How do I import widgets?
+### 위젯을 import 하는 방법은?
 
-In React Native, you need to import each required component.
+React Native에서는 필요한 모든 컴포넌트를 각각 import 해야 합니다.
 
 ```js
 //React Native
@@ -324,7 +324,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 ```
 
-In Flutter, to use widgets from the Material Design library, import the `material.dart` package. To use iOS style widgets, import the Cupertino library. To use a more basic widget set, import the Widgets library. Or, you can write your own widget library and import that.
+Flutter에서는 머티리얼 디자인 라이브러리에서 위젯을 사용하기 위해 `material.dart` 패키지를 import 합니다. iOS 스타일 위젯을 사용하기 위해 쿠퍼티노 라이브러리를 import 합니다. 더 많은 기본 위젯을 사용하고 싶다면, 위젯 라이브러리를 import 합니다. 아니면 직접 위젯 라이브러리를 작성하여 import 할 수도 있습니다.
 
 <!-- skip -->
 ```dart
@@ -333,15 +333,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/my_widgets.dart';
 ```
-Whichever widget package you import, Dart pulls in only the widgets that are
- used in your app.
+어떤 위젯 패키지를 import 하건, 
+Dart는 앱에서 사용되는 위젯만 가져옵니다.
 
-For more information, see the [Flutter Widgets Catalog](/docs/development/ui/widgets).
+더 많은 정보를 원하시면, [Flutter 위젯 카탈로그](/docs/development/ui/widgets)를 참조하세요.
 
-### What is the equivalent of the React Native "Hello world!" app in Flutter?
+### Flutter에서 React Native "Hello world!" 앱과 동일한 것은?
 
-In React Native, the `HelloWorldApp` class extends `React.Component` and
-implements the render method by returning a view component.
+React Native에서는 `HelloWorldApp`이 `React.Component`를 상속 받고 
+render 메서드가 view 컴포넌트를 반환하도록 구현합니다.
 
 ```js
 // React Native
@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
 });
 ```
 
-In Flutter, you can create an identical "Hello world!" app using the `Center` and `Text` widgets from the core widget library. The `Center` widget becomes the root of the widget tree and has one child, the `Text` widget.
+Flutter에서는, 기본 위젯 라이브러리의 `Center`와 `Text` 위젯을 활용하여 "Hello world!" 앱과 동일한 것을 만들 수 있습니다. `Center` 위젯을 최상위 위젯으로 하고, 자식으로 `Text` 위젯을 넣으면 됩니다. 
 
 <!-- skip -->
 ```dart
@@ -388,34 +388,34 @@ void main() {
 
 ```
 
-The following images show the Android and iOS UI for the basic Flutter
-"Hello world!" app.
+아래 이미지는 기본 Flutter "Hello world!" 앱의 
+Android와 iOS 화면을 보여줍니다. 
 
 {% include android-ios-figure-pair.md image="react-native/hello-world-basic.png" alt="Hello world app" class="border" %}
 
-Now that you've seen the most basic Flutter app, the next section shows how to
-take advantage of Flutter's rich widget libraries to create a modern, polished
-app.
+이제 가장 기본적인 Flutter 앱을 봤고, 
+다음 섹션에서는 Flutter의 풍부한 위젯 라이브러리를 활용하여 
+현대적이고 세련된 앱을 만드는 방법을 확인할 수 있습니다.  
 
-### How do I use widgets and nest them to form a widget tree?
+### 위젯을 사용하고 위젯 트리를 형성하는 방법은?
 
-In Flutter, almost everything is a widget.
+Flutter에서는 거의 모든 것이 위젯입니다.
 
-Widgets are the basic building blocks of an app's user interface. You compose
-widgets into a hierarchy, called a widget tree. Each widget nests inside a
-parent widget and inherits properties from its parent. Even the application
-object itself is a widget. There is no separate “application” object. Instead,
-the root widget serves this role.
+위젯은 앱 UI의 기본 구성 요소 입니다.
+위젯을 위젯 트리라고 불리는 계층 구조로 조합합니다. 
+각각의 위젯은 부모 위젯 내부에 들어가게 되고, 부모로부터 속성을 상속 받습니다.
+앱 객체 자체도 위젯입니다.
+별도의 “application” 객체는 없습니다.
+대신, 최상위 위젯이 그 역할을 담당합니다. 
 
-A widget can define:
+위젯을 아래와 같이 정의할 수 있습니다:
 
-* A structural element—like a button or menu
-* A stylistic element—like a font or color scheme
-* An aspect of layout—like padding or alignment
+* 버튼이나 메뉴와 같은 구조적 요소
+* 글꼴이나 색 구성표와 같은 문체 요소
+* 레이아웃과 같은 패딩 또는 정렬의 한 측면
 
-The following example shows the "Hello world!" app using widgets from the
-Material library. In this example, the widget tree is nested inside the
-`MaterialApp` root widget.
+아래 예제는 머티리얼 라이브러리의 위젯을 활용한 "Hello world!" 앱입니다.
+이 예제에서 위젯 트리는 `MaterialApp` 위젯 내부에 위치하게 됩니다. 
 
 
 <!-- skip -->
@@ -445,33 +445,32 @@ class MyApp extends StatelessWidget {
 ```
 
 
-The following images show "Hello world!" built from Material Design widgets. You get more functionality for free than in the basic "Hello world!" app.
+아래 이미지는 머티리얼 디자인 위젯으로 만든 "Hello world!"입니다. 기본적인 "Hello world!"보다 좀 더 많은 기능을 자유롭게 이용할 수 있습니다.
 
 {% include android-ios-figure-pair.md image="react-native/hello-world.png" alt="Hello world app" %}
 
-When writing an app, you'll use two types of widgets:
-[StatelessWidget]({{site.api}}/flutter/widgets/StatelessWidget-class.html) or
+앱을 작성할 때, 2가지 종류의 위젯을 사용하게 될겁니다:
+[StatelessWidget]({{site.api}}/flutter/widgets/StatelessWidget-class.html) 또는
  [StatefulWidget]({{site.api}}/flutter/widgets/StatefulWidget-class.html).
-A StatelessWidget is just what it sounds like—a
- widget with no state. A StatelessWidget is created once, and never changes its
-  appearance. A StatefulWidget dynamically changes state based on data
-   received, or user input.
+StatelessWidget은 위젯인데 상태가 없는 위젯입니다. 
+StatelessWidget은 한 번 만들어지고 절대 변하지 않습니다. 
+StatefulWidget은 사용자 입력이나 
+데이터 수신이 있으면 상태를 동적으로 변경합니다.
 
-The important difference between stateless and stateful widgets is that
- StatefulWidgets have a State object that stores state data and carries it over
-  across tree rebuilds, so it's not lost.
+상태가 없는 위젯과 상태가 있는 위젯의 중요한 차이점은 
+StatefulWidgets이 상태 데이터를 저장하고 그것을 트리 재구성을 통해 전달하는 State 객체가 있고,
+그렇기 때문에 손실되지 않는다는 점입니다. 
 
-In simple or basic apps it's easy to nest widgets, but as the code base gets
-larger and the app becomes complex, you should break deeply nested widgets into
-functions that return the widget or smaller classes. Creating separate functions
-and widgets allows you to reuse the components within the app.
+간단하거나 기본적인 앱에서 위젯을 감싸는 것은 쉽지만,
+코드 베이스가 점차 커지고 앱이 복잡해지면, 
+너무 많이 감싸져 있는 위젯을 함수로 빼거나 작은 클래스로 분리해야 합니다.
+분리된 함수를 만들면 위젯을 앱 내에서 재사용할 수 있게 됩니다. 
 
-### How do I create reusable components?
+### 재사용 가능한 컴포넌트를 만드는 방법은?
 
-In React Native, you would define a class to create a reusable component and then use
-`props` methods to set or return properties and values of the selected elements.
-In the example below, the `CustomCard` class is defined and then used inside a
-parent class.
+React Native에서는 재사용 가능한 컴포넌트를 만들기 위해 클래스를 정의한 다음 
+`props` 메서드를 사용하여 선택한 요소의 속성과 값을 설정하거나 반환합니다. 
+아래 예제에서 `CustomCard` 클래스를 정의하고, 부모 클래스 안에서 사용합니다. 
 
 ```js
 // React Native
@@ -493,9 +492,9 @@ class CustomCard extends React.Component {
 <CustomCard onPress={this.onPress} index={item.key} />
 ```
 
-In Flutter, define a class to create a custom widget and then reuse the
-widget. You can also define and call a function that returns a reusable widget
-as shown in the `build` function in the following example.
+Flutter에서는 커스텀 위젯을 만들기 위해 클래스를 정의하면 그 위젯을 재사용할 수 있습니다.
+또는 아래 예제와 같은 `build` 함수에서 
+재사용 가능한 위젯을 정의하고 호출할 수 있습니다.
 
 {% prettify dart %}
 
@@ -534,25 +533,25 @@ CustomCard(
 
 {% endprettify %}
 
-In the previous example, the constructor for the `CustomCard` class uses Dart's curly brace syntax `{ }` to indicate named [optional
-parameters]({{site.dart-site}}/guides/language/language-tour#optional-parameters).
+이전 예제에서는 `CustomCard` 클래스의 생성자가
+[optional parameters]({{site.dart-site}}/guides/language/language-tour#optional-parameters)를
+표현하기 위해 Dart의 중괄호 구문 `{ }`을 사용했습니다.
 
-To require these fields, either remove the curly braces from the constructor, or
-add `@required` to the constructor.
+이 필드를 필수로 만들고 싶다면, 
+생성자에서 중괄호를 지우거나 `@required`를 추가하면 됩니다.  
 
 
-
-The following screenshots show an example of the reusable CustomCard class.
+다음 스크린샷은 재사용할 수 있는 CustomCard 클래스의 예를 보여줍니다.
 
 {% include android-ios-figure-pair.md image="react-native/custom-cards.png" alt="Custom cards" class="border" %}
 
 
-## Project structure and resources
+## 프로젝트 구조 및 리소스
 
-### Where do I start writing the code?
+### 어디서부터 코드 작성을 시작해야 하나요?
 
-Start with the `main.dart` file. It's autogenerated when you create a
-Flutter app.
+`main.dart` 파일에서 시작하세요.
+Flutter 앱을 만들면 `main.dart`가 자동 생성됩니다.  
 
 <!-- skip -->
 ```dart
@@ -562,44 +561,45 @@ void main(){
 }
 ```
 
-In Flutter, the entry point file is `’projectname’/lib/main.dart` and execution
-starts from the `main` function.
+Flutter에서 진입점은 `’projectname’/lib/main.dart` 파일이고, 
+`main` 함수부터 실행을 시작합니다.  
 
-### How are files structured in a Flutter app?
+### Flutter 앱에서 파일은 어떻게 구성되어 있습니까?
 
-When you create a new Flutter project, it builds the following directory structure. You can customize it later, but this is where you start.
+Flutter 프로젝트를 새롭게 만들면, 아래와 같은 디렉토리 구조가 생성됩니다.
+나중에 구조를 변경할 수는 있지만, 일단은 아래와 같은 상태에서 시작합니다. 
 
 ```
 ┬
 └ projectname
   ┬
-  ├ android      - Contains Android-specific files.
-  ├ build        - Stores iOS and Android build files.
-  ├ ios          - Contains iOS-specific files.
-  ├ lib          - Contains externally accessible Dart source files.
+  ├ android      - 안드로이드 관련 파일 포함.
+  ├ build        - iOS 및 Android 빌드 파일 저장.
+  ├ ios          - iOS 관련 파일 포함.
+  ├ lib          - 외부에서 접근할 수 있는 Dart 소스 파일 포함.
     ┬
-    └ src        - Contains additional source files.
-    └ main.dart  - The Flutter entry point and the start of a new app.
-                   This is generated automatically when you create a Flutter
-                    project.
-                   It's where you start writing your Dart code.
-  ├ test         - Contains automated test files.
-  └ pubspec.yaml - Contains the metadata for the Flutter app.
-                   This is equivalent to the package.json file in React Native.
+    └ src        - 추가적인 소스 파일 포함.
+    └ main.dart  - Flutter 진입점이며 새로운 앱의 시작.
+                   Flutter 프로젝트를 만들 때 자동으로 생성.
+                   Dart코드 작성을 시작하는 부분임.
+  ├ test         - 자동화 테스트 파일 포함.
+  └ pubspec.yaml - Flutter 앱의 메타데이터 포함.
+                   React Native의 package.json 파일과 동일함.
 ```
 
-### Where do I put my resources and assets and how do I use them?
 
-A Flutter resource or asset is a file that is bundled and deployed with your app
-and is accessible at runtime. Flutter apps can include the following asset
-types:
-* Static data such as JSON files
-* Configuration files
-* Icons and images (JPEG, PNG, GIF, Animated GIF, WebP, Animated WebP, BMP,
+### 리소스와 asset은 어디에 위치 시키고, 어떻게 사용하나요?
+
+Flutter 리소스 또는 asset은 앱과 함께 묶여서 
+배포되며 런타임에 접근할 수 있는 파일입니다. 
+Flutter 앱은 아래와 같은 asset 유형을 포함할 수 있습니다:
+* JSON 파일 같은 정적 데이터
+* 설정 파일
+* 아이콘과 이미지 (JPEG, PNG, GIF, Animated GIF, WebP, Animated WebP, BMP,
   and WBMP)
 
-Flutter uses the `pubspec.yaml` file, located at the root of your project, to
-identify assets required by an app.
+Flutter는 프로젝트 최상위에 위치한 
+`pubspec.yaml` 파일을 사용하여 앱에 필요한 assets을 식별합니다.
 
 ```yaml
 flutter:
@@ -608,68 +608,68 @@ flutter:
     - assets/background.png
 ```
 
-The `assets` subsection specifies files that should be included with the app.
-Each asset is identified by an explicit path relative to the `pubspec.yaml`
-file, where the asset file is located. The order in which the assets are
-declared does not matter. The actual directory used (`assets` in this case) does
-not matter. However, while assets can be placed in any app directory, it's a
-best practice to place them in the `assets` directory.
+`assets` 부분은 앱에 포함시켜야하는 파일을 지정합니다.
+각 asset은 `pubspec.yaml`에 명시된 상대 경로에 의해서
+ asset 파일이 어디에 있는지 구분됩니다.
+asset이 정의된 순서는 중요하지 않습니다.
+실제 디렉토리 이름(위 경우에는 `assets`)도 중요하지 않습니다. 
+어떤 디렉토리에도 asset을 배치할 수는 있지만, `assets` 디렉토리에 배치하기를 권합니다.
 
-During a build, Flutter places assets into a special archive called the *asset
-bundle*, which apps read from at runtime. When an asset’s path is specified in
-the assets section of `pubspec.yaml`, the build process looks for any files with
-the same name in adjacent subdirectories. These files are also included in the
-asset bundle along with the specified asset. Flutter uses asset variants when
-choosing resolution-appropriate images for your app.
+빌드 중, Flutter는 런타임 때에 앱이 읽어올 *asset bundle*이라 불리는 
+특수한 아카이브에 asset을 저장합니다.
+`pubspec.yaml`에 asset의 경로가 지정되면, 빌드 프로세스는 인접한 디렉토리에서 같은 이름의 파일을 찾습니다. 
+이 파일들은 지정된 asset과 함께 asset bundle에도 포함됩니다. 
+Flutter는 앱에 적합한 해상도의 이미지를 선택할 때 
+asset variants를 사용합니다.
 
-In React Native, you would add a static image by placing the image file in a
-source code directory and referencing it.
+React Native에서는 이미지 파일을 소스 코드 디렉토리에 놓은 뒤 
+경로를 지정하여 정적 이미지를 추가할 수 있습니다.
 
 ```js
 <Image source={require("./my-icon.png")} />
 ```
 
-In Flutter, add a static image to your app using the `AssetImage` class in a
-widget’s build method.
+Flutter에서는 위젯의 build 메서드 안에서 `AssetImage` 클래스를 사용하여 
+정적 이미지를 추가할 수 있습니다.
 
 <!-- skip -->
 ```dart
 image: AssetImage('assets/background.png'),
 ```
 
-For more information, see [Adding Assets and Images in
-Flutter](/docs/development/ui/assets-and-images).
+더 많은 정보를 원하시면 [Flutter에서 
+Asset과 이미지 파일 추가하기](/docs/development/ui/assets-and-images)를 참조하세요.
 
-### How do I load images over a network?
+### 네트워크를 통해 이미지를 가져오는 방법은?
 
-In React Native, you would specify the `uri` in the `source` prop of the `Image`
-component and also provide the size if needed.
+React Native에서는 `Image` 컴포넌트의 `source` 속성에서 `uri`을 지정하고, 
+필요하다면 크기도 지정합니다.
 
-In Flutter, use the `Image.network` constructor to include an image from a URL.
+Flutter에서는 `Image.network` 생성자를 사용하여 해당 URL에서 이미지를 가져옵니다.
 
 <!-- skip -->
 ```dart
 // Flutter
 body: Image.network(
-          'https://flutter.io/images/owl.jpg',
+          'https://flutter-io.kr/images/owl.jpg',
 ```
 
-### How do I install packages and package plugins?
+### 패키지와 패키지 플러그인을 설치하는 방법은?
 
-Flutter supports using shared packages contributed by other developers to the
-Flutter and Dart ecosystems. This allows you to quickly build your app without
-having to develop everything from scratch. Packages that contain
-platform-specific code are known as package plugins.
+Flutter에서 Flutter와 Dart 생태계의 
+다른 개발자들이 만든 공유 패키지를 사용할 수 있습니다.
+이를 통해 일일이 모든 것을 개발할 필요없이 빠르게 앱을 개발할 수 있습니다.
+패키지 플러그인은 플랫폼별 코드가 포함된 패키지입니다.
 
-In React Native, you would use `yarn add {package-name}` or `npm install --save
-{package-name}` to install packages from the command line.
+React Native에서는 커멘드라인 `yarn add {package-name}`나 
+`npm install --save {package-name}` 명령을 사용해서 패키지를 설치합니다. 
 
-In Flutter, install a package using the following instructions:
+Flutter에서는 아래와 같은 방법으로 패키지를 설치합니다:
 
-1. Add the package name and version to the `pubspec.yaml` dependencies section.
-The example below shows how to add the `google_sign_in` Dart package to the
-`pubspec.yaml` file. Check your spaces when working in the YAML file because
-**white space matters**!
+1. `pubspec.yaml`의 dependencies 부분에 패키지 이름과 버전을 추가합니다. 
+아래 예제는 `pubspec.yaml` 파일에 `google_sign_in` Dart 패키지를 
+추가하는 방법을 보여줍니다. 
+**공백이 문제가 될 수 있기 때문에** YAML file의 공백을 잘 확인하세요! 
 
 ```yaml
 dependencies:
@@ -678,24 +678,24 @@ dependencies:
   google_sign_in: ^3.0.3
 ```
 
-2. Install the package from the command line by using `flutter pub get`.
-   If using an IDE, it often runs `flutter pub get` for you, or it might
-   prompt you to do so.
-3. Import the package into your app code as shown below:
+2. 커멘드라인에서 `flutter pub get`을 사용해서 패키지를 설치하세요.
+   IDE를 이용하고 있으면, IDE가 종종 `flutter pub get`을 실행해주거나, 
+   실행하도록 유도할 것입니다.
+3. 아래 코드와 같은 패키지를 import 하세요:
 
 <!-- skip -->
 ```dart
 import 'package:flutter/cupertino.dart';
 ```
 
-For more information, see [Using
-Packages](/docs/development/packages-and-plugins/using-packages) and
-[Developing Packages &
-Plugins](/docs/development/packages-and-plugins/developing-packages).
+더 많은 정보를 원하시면, 
+[패키지 사용하기](/docs/development/packages-and-plugins/using-packages)와
+[패키지 & 플러그인 개발](/docs/development/packages-and-plugins/developing-packages)를
+참조하세요.
 
-You can find many packages shared by Flutter developers in the [Flutter
-Packages]({{site.pub}}/flutter/) section of
-the [Pub site]({{site.pub}}).
+[Pub site]({{site.pub}})의 
+[Flutter Packages]({{site.pub}}/flutter/) 섹션에서
+Flutter 개발자들이 공유한 많은 패키지를 만날 수 있습니다.
 
 ## Flutter widgets
 
