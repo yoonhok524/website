@@ -1,109 +1,85 @@
 ---
-title: Dealing with box constraints
+title: Box Constraint 다루기
 short-title: Box constraints
 ---
 
 {{site.alert.note}}
-  You may be directed to this page if the framework detects a problem involving
-  box constraints.
+  프레임워크에서 box constraint 관련 문제를 발견하면 이 페이지를 참고해주세요.
 {{site.alert.end}}
 
-In Flutter, widgets are rendered by their underlying
-[`RenderBox`]({{site.api}}/flutter/rendering/RenderBox-class.html)
-objects. Render boxes are given
-constraints by their parent, and size themselves within those
-constraints. Constraints consist of minimum and maximum widths and
-heights; sizes consist of a specific width and height.
+Flutter에서, 위젯은 기본 [`RenderBox`]({{site.api}}/flutter/rendering/RenderBox-class.html) 객체에 의해 렌더링 됩니다.
+렌더링 박스는 부모에 의해 constraint가 주어지며, 해당 조건 내에서 크기가 제어됩니다.
+constraint는 최소 너비와 최대 너비 그리고 높이로 구성되며, 크기는 특정 너비와 높이로 구성됩니다.
 
-Generally, there are three kinds of boxes, in terms of how they handle
-their constraints:
+일반적으로 constraint를 제어하는 방법에는 세 종류의 박스가 있는데요.
 
-- Those that try to be as big as possible.
-  For example, the boxes used by [`Center`]({{site.api}}/flutter/widgets/Center-class.html) and [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html).
-- Those that try to be the same size as their children.
-  For example, the boxes used by [`Transform`]({{site.api}}/flutter/widgets/Transform-class.html) and [`Opacity`]({{site.api}}/flutter/widgets/Opacity-class.html).
-- Those that try to be a particular size.
-  For example, the boxes used by [`Image`]({{site.api}}/flutter/dart-ui/Image-class.html) and [`Text`]({{site.api}}/flutter/widgets/Text-class.html).
+- 가능한 최대 크기로 하고 싶은 경우.
+  예를 들어, [`Center`]({{site.api}}/flutter/widgets/Center-class.html) 및
+  [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)에서 사용하는 박스들이 있습니다.
+- 자식 요소들과 같은 크기로 만들려는 경우.
+  예를 들어, [`Transform`]({{site.api}}/flutter/widgets/Transform-class.html) 및
+  [`Opacity`]({{site.api}}/flutter/widgets/Opacity-class.html)에서 사용하는 박스들이 있습니다.
+- 개별적인 크기를 갖게 하려는 경우.
+  예를 들어, [`Image`]({{site.api}}/flutter/dart-ui/Image-class.html) 및
+  [`Text`]({{site.api}}/flutter/widgets/Text-class.html)에서 사용하는 박스들이 있습니다.
 
-Some widgets, for example [`Container`]({{site.api}}/flutter/widgets/Container-class.html), vary from type to type based on
-their constructor arguments. In the case of [`Container`]({{site.api}}/flutter/widgets/Container-class.html), it defaults
-to trying to be as big as possible, but if you give it a `width`, for
-instance, it tries to honor that and be that particular size.
+[`Container`]({{site.api}}/flutter/widgets/Container-class.html)와 같은
+일부 위젯들은 생성자의 전달인자에 따라 종류별로 달라집니다.
+[`Container`]({{site.api}}/flutter/widgets/Container-class.html)같은 경우,
+최대한 크게 하는 것이 기본 값이지만, `width`를 줄 경우 해당 값을 우선적으로 가지게 됩니다.
 
-Others, for example [`Row`]({{site.api}}/flutter/widgets/Row-class.html) and [`Column`]({{site.api}}/flutter/widgets/Column-class.html) (flex boxes) vary based on the
-constraints they are given, as described below in the "Flex" section.
+다른 경우를 예로 들면 [`Row`]({{site.api}}/flutter/widgets/Row-class.html)와
+[`Column`]({{site.api}}/flutter/widgets/Column-class.html)은
+아래 "Flex" 섹션에서 설명한대로, 주어진 constraint에 따라 달라집니다.
 
-The constraints are sometimes "tight", meaning that they leave no room
-for the render box to decide on a size (e.g. if the minimum and
-maximum width are the same, it is said to have a tight width). The
-main example of this is the `App` widget, which is contained by the
-[`RenderView`]({{site.api}}/flutter/rendering/RenderView-class.html)
-class: the box used by the child returned by the
-application's [`build`]({{site.api}}/flutter/widgets/State/build.html)
-function is given a constraint that forces it to
-exactly fill the application's content area (typically, the entire
-screen). Many of the boxes in Flutter, especially those that just take a
-single child, pass their constraint on to their children. This
-means that if you nest a bunch of boxes inside each other at the root
-of your application's render tree, they'll all exactly fit in each
-other, forced by these tight constraints.
+때때로 "엄격한" constraint(e.g. 최소 너비와 최대 너비가 같을 때, 엄격한 너비를 가진다고 말합니다)는
+렌더링 박스가 크기를 결정할 수 있는 여지를 남기지 않는데,
+그 대표적인 예가 [`RenderView`]({{site.api}}/flutter/rendering/RenderView-class.html) 클래스가 포함된 `App` 위젯입니다.
+어플리케이션의 [`build`]({{site.api}}/flutter/widgets/State/build.html) 함수에 의해
+반환되는 자식에서 사용하는 박스에는 컨텐츠 영역(보통 전체화면)을 전부 채워야 하는 constraint가 주어집니다.
 
-Some boxes _loosen_ the constraints, meaning the maximum is maintained
-but the minimum is removed. For example,
-[`Center`]({{site.api}}/flutter/widgets/Center-class.html).
+Flutter에 있는 많은 박스들 중 하나의 자식만을 가지는 박스는 자식에게 constraint를 전달하는데요.
+이는 즉 어플리케이션 렌더 트리의 루트에 여러 박스들을 배치하면, 이런 엄격한 constraint들에 의해 서로 정확히 들어맞을 겁니다.
+
+일부 박스들은 constraint를 _느슨하게_ 하는데, 이는 최대치는 유지되지만 최소치는 제거된다는 걸 뜻합니다.
+예로는 [`Center`]({{site.api}}/flutter/widgets/Center-class.html)가 있습니다.
 
 Unbounded constraints
 ---------------------
 
-In certain situations, the constraint that is given to a box is
-_unbounded_, or infinite. This means that either the maximum width or
-the maximum height is set to `double.INFINITY`.
+특정한 상황에서, 박스에 주어지는 constraint는 _제한이 없거나_ 무한한데요.
+이는 즉 최대 너비 혹은 최대 높이가 `double.INFINITY`로 설정된다는 걸 뜻합니다.
 
-A box that tries to be as big as possible won't function usefully when
-given an unbounded constraint and, in debug mode, such a combination
-throws an exception that points to this file.
+가능한 만큼 커지는 박스는 제한이 없는 constraint가 주어질 때 유용하게 사용할 수 없으며,
+이런 조합은 디버그 모드에서 해당 파일을 가르키는 예외를 던지게 됩니다.
 
-The most common cases where a render box finds itself with unbounded
-constraints are within flex boxes
-([`Row`]({{site.api}}/flutter/widgets/Row-class.html)
-and [`Column`]({{site.api}}/flutter/widgets/Column-class.html)),
-and **within scrollable regions**
-([`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)
-and other [`ScrollView`]({{site.api}}/flutter/widgets/ScrollView-class.html) subclasses).
+제한이 없는 constraint를 가지는 렌더링 박스를 보게 되는 일반적인 경우는
+플렉스 박스([`Row`]({{site.api}}/flutter/widgets/Row-class.html)
+및 [`Column`]({{site.api}}/flutter/widgets/Column-class.html))와
+**스크롤 가능 영역**([`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)
+및 다른 [`ScrollView`]({{site.api}}/flutter/widgets/ScrollView-class.html) 하위 클래스) 내부입니다.
 
-In particular, [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)
-tries to expand to fit the space available
-in its cross-direction (for example, if it's a vertically-scrolling block,
-it tries to be as wide as its parent). If you nest a vertically
-scrolling [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)
-inside a horizontally scrolling [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html),
-the inner one tries to be as wide as possible, which is infinitely
-wide, since the outer one is scrollable in that direction.
+특히, [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)는 사용할 수 있는
+공간에 맞게 가로 방향으로 확장됩니다. (예를 들어, 세로 스크롤 블록의 경우 부모와 같은 크기로 넓어집니다.)
+만약 가로 스크롤 [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html) 안에
+세로 스크롤 [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)를 배치하면
+내부에 있는 뷰는 가능한 만큼 넓어지는데, 이는 외부 뷰에서 해당 방향으로 스크롤할 수 있기 때문입니다.
 
 Flex
 ----
 
-Flex boxes themselves
-([`Row`]({{site.api}}/flutter/widgets/Row-class.html)
-and [`Column`]({{site.api}}/flutter/widgets/Column-class.html))
-behave differently based on
-whether they are in a bounded constraints or unbounded constraints in
-their given direction.
+플렉스 박스 자체([`Row`]({{site.api}}/flutter/widgets/Row-class.html)
+및 [`Column`]({{site.api}}/flutter/widgets/Column-class.html))는
+제한된 constraint가 있는지 지정된 방향으로 제한되지 않는지에 따라 다르게 동작하는데요.
 
-In bounded constraints, they try to be as big as possible in that
-direction.
+제한된 constraint의 경우, 지정된 방향으로 가능한 만큼 커지게 됩니다.
 
-In unbounded constraints, they try to fit their children in that
-direction. In this case, you cannot set `flex` on the children to
-anything other than 0 (the default). In the widget library, this
-means that you cannot use [`Expanded`]({{site.api}}/flutter/widgets/Expanded-class.html)
-when the flex box is inside
-another flex box or inside a scrollable. If you do, you'll get an
-exception message pointing you at this document.
+제한되지 않은 constraint의 경우, 해당 방향으로 자식 요소들을 딱 맞추려 하는데요.
+이 경우, 자식 요소에 `flex`를 0(기본값) 이외의 다른 것으로 설정할 수 없습니다.
+위젯 라이브러리에서, 이는 플렉스 박스가 또다른 플렉스 박스나 스크롤 박스 안에 있을 때
+[`Expanded`]({{site.api}}/flutter/widgets/Expanded-class.html)를 사용할 수 없다는 걸 의미하는데요.
+만약 그렇게 하면, 이 문서를 가르키는 예외 메세지가 나타날 겁니다.
 
-In the _cross_ direction, i.e. in their width for
-[`Column`]({{site.api}}/flutter/widgets/Column-class.html)
-(vertical flex) and in their height for
-[`Row`]({{site.api}}/flutter/widgets/Row-class.html)
-(horizontal flex), they must never be unbounded,
-otherwise they would not be able to reasonably align their children.
+_교차_ 방향, 즉 [`Column`]({{site.api}}/flutter/widgets/Column-class.html)의
+너비(vertical flex)와 [`Row`]({{site.api}}/flutter/widgets/Row-class.html)의
+높이(horizontal flex)는 제한되면 안되며, 아닐 경우 자식 요소들을 제대로 정렬할 수 없습니다.
