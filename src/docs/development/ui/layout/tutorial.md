@@ -325,7 +325,7 @@ Widget textSection = Container(
 4개의 column 요소들 중에서 이제 3개를 완성하고 이미지만 남았습니다.
 예제에 이미지 파일을 주가합니다.
 
-* `images` 디렉토리를 프로젝트의 루트 폴더에 만듭니다.
+* `images` 디렉토리를 프로젝트의 최상위 폴더에 만듭니다.
 * [`lake.jpg`]({{rawExFile}}/layout/lakes/step5/images/lake.jpg)를 추가합니다.
 
   {{site.alert.info}}
