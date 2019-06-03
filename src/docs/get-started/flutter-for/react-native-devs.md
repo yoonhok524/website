@@ -760,10 +760,10 @@ React Native에서는 `FlatList` 혹은 `SectionList`를 사용하여
 ```
 
 [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)는 
-가장 많이 사용되는 스크롤 위젯입니다. 
-기본 생성자가 명확한 자식들의 목록을 가집니다.
+가장 많이 사용되는 스크롤 위젯입니다.
+`ListView`는 기본 생성자를 통해 명시적으로 자식 목록를 받습니다. 
 [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)는
-소수의 위젯에 가장 적합합니다.
+목록의 수가 적은 경우에 가장 적합합니다.
 큰 목록 혹은 무한스크롤 목록을 위해서는, `ListView.builder`를 사용하세요. 
 자식들을 필요할 때만 빌드하고, 자식들이 화면에 나타내야 할 자식들만 빌드합니다. 
 
