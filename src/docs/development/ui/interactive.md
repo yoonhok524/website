@@ -116,7 +116,7 @@ itself, `FavoriteWidget`, will manage its own state. In this example, toggling t
 star is an isolated action that doesn't affect the parent widget or the rest of
 the UI, so the widget can handle its state internally.
 
-Learn more about the separation of widget and state, and how state might be
+더 알아보기 about the separation of widget and state, and how state might be
 managed, in [Managing state](#managing-state).
 
 <a name="step-2"></a>
@@ -264,7 +264,7 @@ it. In the same location, create the stateful widget:
 
 That's it! When you hot reload the app, the star icon should now respond to taps.
 
-### Problems?
+### 문제가 있나요?
 
 If you can't get your code to run, look in your IDE for possible errors.
 [Debugging Flutter Apps](/docs/testing/debugging) might help. If you still can't
@@ -309,7 +309,7 @@ manage state:
 * [A mix-and-match approach](#mix-and-match)
 
 {% comment %}
-  NOTE: Commenting this out for now. The example needs some updates.
+  참고: Commenting this out for now. The example needs some updates.
 
   First, fix TapboxD, add it back to the repo, and then restore this note.
 
