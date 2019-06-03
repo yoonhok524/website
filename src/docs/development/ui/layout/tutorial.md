@@ -100,6 +100,7 @@ Expanded 위젯을 사용해야 합니다.
 <?code-excerpt path-base="layout/lakes/step2"?>
 
 먼저, 타이틀 영역의 좌측에 column을 만듭니다.
+`MyApp` 클래스의 `build()` 메소드 가장 위에 다음의 코드를 추가합니다.
 
 <?code-excerpt "lib/main.dart (titleSection)" title?>
 ```dart
