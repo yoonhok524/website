@@ -21,10 +21,10 @@ diff2html: true
 {{site.alert.end}}
 
 이 문서는 Flutter에서 레이아웃을 작성하는 방법을 소개합니다.
-You'll build the layout for the following app.
+여러분은 다음 앱의 레이아웃을 만들게 됩니다.
 
 {% include app-figure.md img-class="site-mobile-screenshot border"
-    image="ui/layout/lakes.jpg" caption="The finished app" %}
+    image="ui/layout/lakes.jpg" caption="완성한 앱" %}
 
 Flutter의 레이아웃을 다루기 전에,
 화면 위에 하나의 위젯을 배치하는 방법을 살펴보도록 하겠습니다.
@@ -38,7 +38,7 @@ Flutter의 레이아웃을 다루기 전에,
 [set up](/docs/get-started/install) 과정을 통해 개발 환경을 잘 구성하셨다면,
 다음의 순서를 따라보세요.
 
- 1. [Create a basic "Hello World" Flutter app][hello-world].
+ 1. [기본적인 "Hello World" Flutter앱을 만듭니다.][hello-world].
  2. 아래의 코드를 적용해서 app bar title과 app title을 바꿔보세요.
 
     <?code-excerpt "{codelabs/startup_namer/step1_base,layout/base}/lib/main.dart"?>
