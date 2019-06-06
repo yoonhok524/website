@@ -764,7 +764,7 @@ React Native에서는 `FlatList` 혹은 `SectionList`를 사용하여
 `ListView`는 기본 생성자를 통해 명시적으로 자식 목록을 받습니다. 
 [`ListView`]({{site.api}}/flutter/widgets/ListView-class.html)는
 목록의 수가 적은 경우에 가장 적합합니다.
-무거운 목록이나 무한 스크롤 목록일 때는, `ListView.builder`를 사용하세요. 
+무거운 목록이거나 무한 스크롤 목록일 때는, `ListView.builder`를 사용하세요. 
 자식들을 필요할 때만 빌드하고, 자식들이 화면에 나타내야 할 자식들만 빌드합니다. 
 
 
