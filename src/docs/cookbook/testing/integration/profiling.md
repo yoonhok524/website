@@ -41,23 +41,20 @@ next:
 
 ### 2. 앱의 성능 기록
 
-Next, we need to record the performance of the app as it scrolls through the
-list. To achieve this task, we can use the
-[`traceAction`]({{site.api}}/flutter/flutter_driver/FlutterDriver/traceAction.html)
-method provided by the
-[`FlutterDriver`]({{site.api}}/flutter/flutter_driver/FlutterDriver-class.html)
-class.
+다음으로 아이템 리스트를 스크롤할 때의 앱 성능을 측정하겠습니다. 이 작업을 위해 
+[`FlutterDriver`]({{site.api}}/flutter/flutter_driver/FlutterDriver-class.html) 클래스에서
+제공되는 
+[`traceAction`]({{site.api}}/flutter/flutter_driver/FlutterDriver/traceAction.html) 메서드를 
+사용할 것입니다.
 
-This method runs the provided function and records a
-[`Timeline`]({{site.api}}/flutter/flutter_driver/Timeline-class.html)
-with detailed information about the performance of the app. In this example, we
-provide a function that scrolls through the list of items, ensuring a specific
-item is displayed. When the function completes, the `traceAction` method returns
-a `Timeline`.
+이 메서드는 제공된 함수를 수행하고 앱 성능에 대한 상세 정보를 담은 
+[`타임라인`]({{site.api}}/flutter/flutter_driver/Timeline-class.html)을 
+기록합니다. 본 예제에서는 아이템 리스트를 스크롤하는 함수를 제공하여 특정 아이템이 보여지는지 
+확인할 것입니다. 함수 수행이 완료되면 `traceAction` 메서드는 `타임라인`을 반환합니다.
 
 <!-- skip -->
 ```dart
-// Record a performance timeline as we scroll through the list of items
+// 아이템 리스트를 스크롤했을 때 성능 타임라인을 기록합니다
 final timeline = await driver.traceAction(() async {
   await driver.scrollUntilVisible(
     listFinder,
