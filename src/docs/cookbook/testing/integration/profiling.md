@@ -31,14 +31,13 @@ next:
 
 ### 1. 아이템 리스트를 스크롤하는 테스트 코드 작성
 
-In this recipe, we'll record the performance of an app as it scrolls through a
-list of items. In order to focus on performance profiling, this recipe builds
-upon the
-[Scrolling in integration tests](/docs/cookbook/testing/integration/scrolling)
-recipe.
+본 예제에서는 아이템 리스트를 스크롤할 때의 앱 성능을 측정할 것입니다. 성능 프로파일링 
+주제에 초점을 맞추기 위해 나머지 부분은 
+[통합 테스트에서의 스크롤링](/docs/cookbook/testing/integration/scrolling) 예제를
+기반으로 합니다.
 
-Please follow the instructions in that recipe to create an app, instrument the
-app, and write a test to verify everything works as expected.
+해당 예제를 따라 앱을 만들고, 모든 것이 기대하는 대로 동작하는지 검증하기 위한 
+테스트 코드를 작성하세요.
 
 ### 2. 앱의 성능 기록
 
