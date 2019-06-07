@@ -1,38 +1,35 @@
 ---
-title: Performance profiling
+title: 성능 프로파일링
 prev:
-  title: An introduction to integration testing
+  title: 통합 테스트 소개
   path: /docs/cookbook/testing/integration/introduction
 next:
-  title: Scrolling
+  title: 스크롤링
   path: /docs/cookbook/testing/integration/scrolling
 ---
 
-When it comes to mobile apps, performance is critical to user experience. Users
-expect apps to have smooth scrolling and meaningful animations free of
-stuttering or skipped frames, known as "jank." How can we ensure our apps are
-free of jank on a wide variety of devices?
+모바일 앱에 있어 성능은 사용자 경험에 아주 중요한 요소입니다. 사용자는 끊김 현상이나 
+"jank"와 같은 프레임을 건너뛰는 현상없이 부드러운 스크롤과 의미있는 애니메이션을 기대합니다.
+어떻게 하면 우리가 만든 앱이 다양한 디바이스에서 끊김 현상없이 동작한다는 것을 보장할 수 있을까요?
 
-There are two options: first, we could manually test the app on different
-devices. While that approach might work for a smaller app, it will become more
-cumbersome as an app grows in size. Alternatively, we can run an integration
-test that performs a specific task and record a performance timeline. Then, we
-can examine the results to determine whether or not a specific section of our
-app needs to be improved.
+두 가지 옵션이 있습니다. 먼저 여러 디바이스에서 직접 테스트해보는 것입니다. 이러한 
+접근법은 작은 앱에서는 가능할지 몰라도, 앱이 커지면 점점 번거로워집니다. 다음으로,
+특정 작업을 수행하고 그에 따른 성능 타임라인을 기록하는 통합 테스트를 수행하는 방법이 
+있습니다. 그리고 그 결과를 통해 우리 앱의 특정 세션이 개선될 필요가 있는지 여부를 
+결정할 수 있습니다.
 
-In this recipe, we'll learn how to write a test that records a performance
-timeline while performing a specific task and saves a summary of the results to
-a local file.
+본 예제에서는 특정 작업을 수행하는 동안 성능 타임라인을 측정하고 그 결과를 로컬 파일에 
+저장하는 테스트 코드를 작성해볼 것입니다.
 
-### Directions
+### 진행 단계
 
-  1. Write a test that scrolls through a list of items
-  2. Record the performance of the app
-  3. Save the results to disk
-  4. Run the test
-  5. Review the results
+  1. 아이템 리스트를 스크롤하는 테스트 코드 작성
+  2. 앱의 성능 기록
+  3. 디스크에 결과 저장
+  4. 테스트 수행
+  5. 결과 검토
 
-### 1. Write a test that scrolls through a list of items
+### 1. 아이템 리스트를 스크롤하는 테스트 코드 작성
 
 In this recipe, we'll record the performance of an app as it scrolls through a
 list of items. In order to focus on performance profiling, this recipe builds
@@ -43,7 +40,7 @@ recipe.
 Please follow the instructions in that recipe to create an app, instrument the
 app, and write a test to verify everything works as expected.
 
-### 2. Record the performance of the app
+### 2. 앱의 성능 기록
 
 Next, we need to record the performance of the app as it scrolls through the
 list. To achieve this task, we can use the
@@ -73,7 +70,7 @@ final timeline = await driver.traceAction(() async {
 });
 ```
 
-### 3. Save the results to disk
+### 3. 디스크에 결과 저장
 
 Now that we've captured a performance timeline, we need a way to review it!
 The `Timeline` object provides detailed information about all of the events that
@@ -106,7 +103,7 @@ summary.writeSummaryToFile('scrolling_summary', pretty: true);
 summary.writeTimelineToFile('scrolling_timeline', pretty: true);
 ```
 
-### 4. Run the test
+### 4. 테스트 수행
 
 After we've configured our test to capture a performance `Timeline` and save a
 summary of the results to disk, we can run the test with the following command:
@@ -115,7 +112,7 @@ summary of the results to disk, we can run the test with the following command:
 flutter drive --target=test_driver/app.dart
 ```
 
-### 5. Review the results
+### 5. 결과 검토
 
 After the test completes successfully, the `build` directory at the root of
 the project contains two files:
